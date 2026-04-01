@@ -1,11 +1,15 @@
 @use 'variables';
 @use 'reset';
 
-
-
-
 /** Layout */
-@use 'layout/site_main';
-@use 'layout/header';
-@use 'layout/hero';
-@use 'layout/footer';
+@use 'sections/site_main';
+@use 'sections/header';
+@use 'sections/hero';
+@use 'sections/footer';
+
+/** Components */
+@use 'components/menu';
+@use 'components/button';
+@use 'components/drawer';
+@use 'components/icon';
+@use 'components/other';

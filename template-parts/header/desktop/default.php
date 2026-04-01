@@ -16,7 +16,7 @@
             <div class="header-navigation">
                 <?php  
                 if ( has_nav_menu( 'primary' ) ) {
-                    mytheme()->layout->get_nav_menu([
+                    mytheme()->component->get_navigation_menu([
                         'menu_class' => 'header-menu navigation-menu',
                     ]);
                 } else { 

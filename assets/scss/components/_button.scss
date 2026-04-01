@@ -1,0 +1,16 @@
+@use '../core.scss' as *;
+
+button, .button {
+    position: relative;
+    @include d-inline-flex(15px, center, center);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    @include transition;
+    color: var(--mt-link-color);
+}
+
+.button-hamburger {
+    background-color: transparent;
+}

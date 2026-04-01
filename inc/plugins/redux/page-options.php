@@ -1,5 +1,5 @@
 <?php
-namespace MyTheme\Inc\Integrations\Redux;
+namespace MyTheme\Inc\Plugins\Redux;
 
 /**
  *
@@ -12,35 +12,29 @@ namespace MyTheme\Inc\Integrations\Redux;
  */
 
 use \MyTheme\Inc\Core\Option;
+use MyTheme\Inc\Helpers\StaticOptions;
 
 // Prevents direct access to the file.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class SingularOptions {
+class Page_Options {
 
     private $option;
 
     public function __construct( Option $option_instance ) {
         $this->option = $option_instance;
-        add_action( 'pxl_post_metabox_register', [$this, 'singular_options_register'] );
+        add_action( 'pxl_post_metabox_register', [$this, 'page_options_register'] );
     }
 
-    function singular_options_register( $metabox ) {
+    function page_options_register( $metabox ) {
         $panels = [
-            /** Singular Page */
-            'page' => [
-                'opt_name'            => 'pxl_page_options',
-                'display_name'        => __( 'Page Settings', 'mytheme' ),
-                'show_options_object' => false,
-                'context'  => 'advanced',
-                'priority' => 'default',
-                'sections'  => $this->singular_general_options(),
-            ],
-            /** Template Page */
+            /** 
+             * Template Page 
+             */
             'pxl-template' => [
-                'opt_name'            => 'pxl_hidden_template_options',
+                'opt_name'            => 'pxl_template_options',
                 'display_name'        => __( 'Template Options', 'mytheme' ),
                 'show_options_object' => false,
                 'context'  => 'advanced',
@@ -60,7 +54,7 @@ class SingularOptions {
                                     'header-mobile'=> __('Header Mobile', 'mytheme'),
                                     'footer'       => __('Footer', 'mytheme'), 
                                     'mega-menu'    => __('Mega Menu', 'mytheme'), 
-                                    'hero-section' => __('Hero Section', 'mytheme'), 
+                                    'hero'         => __('Hero', 'mytheme'), 
                                     'panel'        => __('Panel', 'mytheme'),
                                     'page'         => __('Page', 'mytheme'),
                                     'section'      => __('Section', 'mytheme')
@@ -76,8 +70,9 @@ class SingularOptions {
                                 'type'  => 'select',
                                 'title' => __('Header Type', 'mytheme'),
                                 'options' => [
-                                    'default'       => __('Default', 'mytheme'), 
-                                    'transparent'   => __('Transparent', 'mytheme'),
+                                    'default'      => __('Default', 'mytheme'), 
+                                    'transparent'  => __('Transparent', 'mytheme'),
+                                    'sticky'       => __('Sticky', 'mytheme'),
                                 ],
                                 'select2'  => array(
                                     'allowClear' => false,
@@ -86,7 +81,7 @@ class SingularOptions {
                                 'required' => ['template_type', '=', 'header'],
                             ),
                             array(
-                                'id'    => 'hero_section_display_on',
+                                'id'    => 'hero_display_on',
                                 'type'  => 'select',
                                 'title' => __('Display On', 'mytheme'),
                                 'multi' => true,
@@ -95,15 +90,23 @@ class SingularOptions {
                                 ),
                                 'options' => [
                                     'page'         => __('Page', 'mytheme'), 
-                                    'single'       => __('Single Post', 'mytheme'),
+                                    'single'       => __('Single', 'mytheme'),
                                     'archive'      => __('Archive', 'mytheme'),
                                 ],
                                 'default' => 'page',
-                                'required' => ['template_type', '=', 'hero-section'],
+                                'required' => ['template_type', '=', 'hero'],
                             ),
                         ), 
                     ],
                 ]
+            ],
+            'page' => [
+                'opt_name'            => 'pxl_page_options',
+                'display_name'        => __( 'Page Settings', 'mytheme' ),
+                'show_options_object' => false,
+                'context'  => 'advanced',
+                'priority' => 'default',
+                'sections'  => $this->page_options(),
             ],
             // Team
             'team' => [
@@ -114,91 +117,24 @@ class SingularOptions {
                 'priority' => 'default',
                 'sections'  => $this->single_team_options(),
             ],
-            'career' => [
-                'opt_name'            => 'pxl_career_options',
-                'display_name'        => __('Career Settings', 'mytheme' ),
-                'show_options_object' => false,
-                'context'  => 'advanced',
-                'priority' => 'default',
-                'sections'  => $this->single_career_options(),
-            ]
         ];
 
-        $post_types = $this->option->get_theme_option('pxl_post_type', []);
-        if( is_array($post_types) ) {
-            foreach( $post_types as $post_type ) {
-                $post_type_slug = sanitize_title($post_type);
-                $panels[$post_type_slug] = [
-                    'opt_name'            => 'pxl_'.$post_type.'_options',
-                    'display_name'        => $post_type.__( ' Settings', 'mytheme' ),
-                    'show_options_object' => false,
-                    'context'  => 'advanced',
-                    'priority' => 'default',
-                    'sections'  => [],
-                ];
-            }
-        }
         $metabox->add_meta_data( $panels );
     }
 
-    function singular_general_options() {
+    function page_options() {
         return [
             // Header
             'header' => [
                 'title'  => __( 'Header', 'mytheme' ),
                 'icon'   => 'eicon-header',
                 'fields' => array_merge(
-                    array(
-                        array(
-                            'id' => 'header_desktop_heading',
-                            'title' => __('Header Desktop', 'mytheme'),
-                            'type'  => 'section',
-                            'indent' => true,
-                        ),
-                    ),
-                    // Helpers::get_header_options('private'),
-                    array(
-                        array(
-                            'id'       => 'header_logo',
-                            'type'     => 'media',
-                            'title'    => __('Header Logo', 'mytheme'),
-                            'default' => array(
-                                'url' => get_template_directory_uri() . '/assets/img/site-logo.webp'
-                            ),
-                            'url'      => false,
-                            'required' => ['header_mode', '=', 'default'],
-                        ),
-                        array(
-                            'id' => 'header_mobile_heading',
-                            'title' => __('Header Mobile', 'mytheme'),
-                            'type'  => 'section',
-                            'indent' => true,
-                        ),
-                    ),
-                    array(
-                        array(
-                            'id'       => 'header_mobile_logo',
-                            'type'     => 'media',
-                            'title'    => __('Mobile Logo', 'mytheme'),
-                            'default' => array(
-                                'url'=> get_template_directory_uri() . '/assets/img/site-logo.webp'
-                            ),
-                            'url'      => false,
-                        ),
-                        array(
-                            'id'             => 'header_mobile_logo_height',
-                            'type'           => 'dimensions',
-                            'units'          => array('px'), 
-                            'units_extended' => 'false',
-                            'title'          => __('Mobile Logo Height', 'mytheme'),
-                            'height'         => true,
-                            'width'          => false, 
-                        ),
-                    )
+                    StaticOptions::header_options( [ 'scope' => 'private' ] ),
+                    StaticOptions::header_sticky_options( [ 'scope' => 'private' ] ),
                 ),
             ],
             // Hero Section
-            'hero-section' => [
+            'hero' => [
                 'title'  => __( 'Hero Section', 'mytheme' ),
                 'icon'   => 'eicon-archive-title',
                 'fields' => array_merge(
@@ -249,19 +185,6 @@ class SingularOptions {
                         ], 
                         'default' => 'default',
                     ),
-                    array(
-                        'id'    => 'breadcrumb_label',
-                        'type'  => 'text',
-                        'title' => __( 'Breadcrumb Label', 'mytheme' ),
-                        'placeholder' => __('Ex: ABC', 'mytheme'),
-                        'required' => [ 'breadcrumb_mode', '=', 'custom' ]
-                    ),
-                    array(
-                        'id'    => 'breadcrumb_highight',
-                        'type'  => 'text',
-                        'title' => __( 'Breadcrumb Highight', 'mytheme' ),
-                        'placeholder' => __('Ex: ABC', 'mytheme'),
-                    ),
                 ) 
             ],
             'appearance' => [
@@ -301,6 +224,13 @@ class SingularOptions {
                         'id'          => 'secondary_color',
                         'type'        => 'color',
                         'title'       => __('Secondary Color', 'mytheme'),
+                        'transparent' => false,
+                        'default'     => ''
+                    ),
+                    array(
+                        'id'          => 'third_color',
+                        'type'        => 'color',
+                        'title'       => __('Third Color', 'mytheme'),
                         'transparent' => false,
                         'default'     => ''
                     ),
@@ -440,22 +370,4 @@ class SingularOptions {
             ]
         ];
     }
-
-    function single_career_options() {
-        return [
-            'info' => [
-                'title'  => __( 'Info', 'mytheme' ),
-                'icon'   => 'eicon-text-field',
-                'fields' => [
-                    array(
-                        'id'    => 'career_salary',
-                        'type'  => 'text',
-                        'title' => __('Salary', 'mytheme'),
-                        'placeholder' => __('Ex: $99k/year', 'mytheme')
-                    ),
-                ],
-            ],
-        ];
-    }
-
 }

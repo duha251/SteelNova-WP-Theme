@@ -2,10 +2,10 @@
 
 $post_type = $args['post_type'];
 
-$post_header_template_id = (int) mindverse()->get_theme_option('single_' . $post_type . '_header_template_id', 0);
-$post_footer_template_id = (int) mindverse()->get_theme_option('single_' . $post_type . '_footer_template_id', 0);
-$post_before_template_id = (int) mindverse()->get_theme_option('single_' . $post_type . '_before_template_id', 0);
-$post_after_template_id = (int) mindverse()->get_theme_option('single_' . $post_type . '_after_template_id', 0);
+$post_header_template_id = (int) mytheme()->get_theme_option('single_' . $post_type . '_header_template_id', 0);
+$post_footer_template_id = (int) mytheme()->get_theme_option('single_' . $post_type . '_footer_template_id', 0);
+$post_before_template_id = (int) mytheme()->get_theme_option('single_' . $post_type . '_before_template_id', 0);
+$post_after_template_id = (int) mytheme()->get_theme_option('single_' . $post_type . '_after_template_id', 0);
 
 ?>
 

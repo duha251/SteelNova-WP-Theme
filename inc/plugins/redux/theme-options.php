@@ -8,10 +8,10 @@
  * @subpackage Inc\Core
  * @author     Case Theme
  */
-namespace MyTheme\Inc\Integrations\Redux;
+namespace MyTheme\Inc\Plugins\Redux;
 
-use \MyTheme\Inc\Core\Option as CoreOption;
-use MyTheme\Inc\Helpers\Option as HelpersOption;
+use \MyTheme\Inc\Core\Option;
+use MyTheme\Inc\Helpers\StaticOptions;
 
 
 // Prevents direct access to the file.
@@ -19,9 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class ThemeOptions{
+class Theme_Options {
     private $option;
-    public function __construct( CoreOption $option_instance ) {
+    public function __construct( Option $option_instance ) {
         $this->option = $option_instance;
         add_action('after_setup_theme', [$this, 'theme_options_register']);
     }
@@ -546,45 +546,9 @@ class ThemeOptions{
             'icon'   => 'eicon-header',
             'subsection' => true,
             'fields' => array_merge(
-                array(
-                    array(
-                        'id' => 'header_desktop_heading',
-                        'title' => __('Header Desktop', 'mytheme'),
-                        'type'  => 'section',
-                        'indent' => true,
-                    ),
-                ),
-                HelpersOption::header_options(),
-                // array(
-                //     array(
-                //         'id'       => 'header_logo',
-                //         'type'     => 'media',
-                //         'title'    => __('Header Logo', 'mytheme'),
-                //         'default' => array(
-                //             'url' => get_template_directory_uri() . '/assets/img/site-logo.webp'
-                //         ),
-                //         'url'      => false,
-                //         'required' => ['header_mode', '=', 'default'],
-                //     ),
-                //     array(
-                //         'id' => 'header_mobile_heading',
-                //         'title' => __('Header Mobile', 'mytheme'),
-                //         'type'  => 'section',
-                //         'indent' => true,
-                //     ),
-                // ),
-                // Helpers::get_header_mobile_options(),
-                // array(
-                //     array(
-                //         'id'       => 'header_mobile_logo',
-                //         'type'     => 'media',
-                //         'title'    => __('Mobile Logo', 'mytheme'),
-                //         'default' => array(
-                //             'url'=> get_template_directory_uri() . '/assets/img/site-logo.webp'
-                //         ),
-                //         'url'      => false,
-                //     ),
-                // )
+                StaticOptions::header_options(), 
+                StaticOptions::header_sticky_options(),
+                StaticOptions::header_mobile_options(),
             ),
         ));
 
@@ -594,7 +558,7 @@ class ThemeOptions{
             'icon'  => 'eicon-site-title',
             'subsection' => true,
             'fields'     => array_merge(
-                HelpersOption::hero_options(),
+                StaticOptions::hero_options(),
             )
         ));
         
@@ -604,7 +568,7 @@ class ThemeOptions{
             'icon'   => 'eicon-footer',
             'subsection' => true,
             'fields' => array_merge(
-                HelpersOption::footer_options(),
+                StaticOptions::footer_options(),
             )
         ));
 

@@ -3,10 +3,10 @@
  * Handles integration with the PXL plugin.
  *
  * @package    MyTheme
- * @subpackage Inc\Integrations
+ * @subpackage Inc\Plugins
  */
 
-namespace MyTheme\Inc\Integrations\Redux;
+namespace MyTheme\Inc\Plugins\Redux;
 
 use \MyTheme\Inc\Core\Option;
 

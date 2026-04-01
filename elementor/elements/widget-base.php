@@ -1,20 +1,15 @@
 <?php
-namespace Mindverse\Elementor;
+namespace MyTheme\Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 use Elementor\Widget_Base;
-use Mindverse\Inc\Integrations\Elementor\Traits\Controls_Trait;
-use Mindverse\Inc\Integrations\Elementor\Traits\Group_Controls_Trait;
-use Mindverse\Inc\Integrations\Elementor\Traits\Css_Trait;
+// use MyTheme\Inc\Integrations\Elementor\Traits\Controls_Trait;
 
-use Mindverse\Inc\Integrations\Elementor\Elementor_Helpers;
+abstract class MyThemeWidgetBase extends Widget_Base {
 
-
-abstract class Mindverse_Widget_Base extends Widget_Base {
-
-    use Controls_Trait, Group_Controls_Trait, Css_Trait;
+    // use Controls_Trait;
 
     protected $config = [];
 
@@ -33,7 +28,7 @@ abstract class Mindverse_Widget_Base extends Widget_Base {
             'name'       => '',
             'title'      => '',
             'icon'       => 'eicon-code',
-            'categories' => [ 'mindverse-theme' ],
+            'categories' => [ 'mytheme-theme' ],
             'keywords'   => [],
             'style'      => [],
             'script'     => [],
@@ -61,11 +56,11 @@ abstract class Mindverse_Widget_Base extends Widget_Base {
         return false;
     }
 
-     /**
+    /**
      * Get the path to the render template for this widget
      */
     protected function get_template_path( $layout = '1' ) {
-        $name = str_replace( 'mindverse2', '', $this->get_name() );
+        $name = str_replace( 'mytheme', '', $this->get_name() );
         $name = str_replace( '_', '-', $name ); // ensure folder name consistency
         $template_name = "layout-{$layout}.php";
         return get_template_directory() . "/elementor/render/{$name}/{$template_name}";
@@ -80,11 +75,6 @@ abstract class Mindverse_Widget_Base extends Widget_Base {
         $layout = $settings['layout'] ?? 1;
 
         $template = $this->get_template_path( $layout );
-
-
-        if( !empty( $_wrapper_attrs ) ) {
-            $this->add_render_attribute('_wrapper', $_wrapper_attrs);
-        }
 
         if ( file_exists( $template ) ) {
             include $template;

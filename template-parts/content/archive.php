@@ -1,5 +1,4 @@
 <?php
-use \Mindverse\Inc\Integrations\Elementor\Elementor_Helpers;
 $post_id = get_the_ID();
 $img_width = null;
 $img_height = null;
@@ -30,7 +29,7 @@ $author_url = get_author_posts_url( $author_id );
                 <?php echo wp_trim_words( $post->post_excerpt, 20, $more = null); ?>
             </p>
             <div class="post-author">
-                <?php echo esc_html__( 'By', 'mindverse' ); ?>
+                <?php echo esc_html__( 'By', 'mytheme' ); ?>
                 <a href="<?php echo esc_url( $author_url ); ?>">
                     <?php echo esc_html( $author_name ); ?>
                 </a>

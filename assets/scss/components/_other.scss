@@ -1,0 +1,18 @@
+@use '../core.scss' as *;
+
+.body-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 99998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s linear, visibility 0.5s linear;
+    pointer-events: none;
+    cursor: pointer;
+    &.is-visible {
+        pointer-events: visible;
+        opacity: 1;
+        visibility: visible;
+    }
+}

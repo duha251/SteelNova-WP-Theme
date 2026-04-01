@@ -4,7 +4,7 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package MyTheme
+ * @package Mytheme
  * @author Case-Themes
  * @link https://mytheme.casethemes.net
  * @since 1.0.0

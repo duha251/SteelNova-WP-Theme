@@ -1,5 +1,5 @@
 {
-  "name": "mindverse",
+  "name": "mytheme",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development --config webpack.config.js",
     "build": "webpack --mode production --config webpack.config.js",
-    "zip": "git archive -o ../mindverse.zip HEAD"
+    "zip": "git archive -o ../mytheme.zip HEAD"
   },
   "keywords": [],
   "author": "",

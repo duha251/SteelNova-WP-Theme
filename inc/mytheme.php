@@ -7,26 +7,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 use MyTheme\Inc\Core\Setup;
 use MyTheme\Inc\Core\Option;
 use MyTheme\Inc\Frontend\Layout;
+use MyTheme\Inc\Frontend\Components;
 use MyTheme\Inc\Frontend\Enqueue;
 
-use MyTheme\Inc\Integrations\Pxlart\Hooks as PXL_Hooks; 
+use MyTheme\Inc\Plugins\Pxlart\Hooks as PXL_Hooks; 
 
 // Redux
-use MyTheme\Inc\Integrations\Redux\Hooks as Redux_Hooks;
-use MyTheme\Inc\Integrations\Redux\ThemeOptions;
-use MyTheme\Inc\Integrations\Redux\SingularOptions;
+use MyTheme\Inc\Plugins\Redux\Hooks as Redux_Hooks;
+use MyTheme\Inc\Plugins\Redux\Theme_Options;
+use MyTheme\Inc\Plugins\Redux\Page_Options;
 
 final class MyTheme {
 
     private static $instance = null;
     public $option;
     public $setup;
-    public $layout;
-    public $pxl_hooks;
+    public $component;
 
     private function __construct() {
         $this->register_autoloader();
-        $this->init_components();
+        $this->init_classes();
     }
 
     private function register_autoloader() {
@@ -43,20 +43,20 @@ final class MyTheme {
         return self::$instance;
     }
 
-    private function init_components() {
+    private function init_classes() {
         $this->setup  = new Setup();
         $this->option = new Option();
-        $this->layout = new Layout( $this->option );
-
+        $this->component = new Components( $this->option );
+        new Layout( $this->option );
         new Enqueue( $this->option, $this->get_theme_version() );
         if ( class_exists( 'Pxl_Elementor' ) ) {
-            $this->pxl_hooks = new PXL_Hooks( $this->option );
+            new PXL_Hooks( $this->option );
         }
 
         if ( class_exists( 'Redux' ) && is_admin()) {
             new Redux_Hooks( $this->option );
-            new ThemeOptions( $this->option ); 
-            new SingularOptions( $this->option );
+            new Theme_Options( $this->option ); 
+            new Page_Options( $this->option );
         }
     }
 
@@ -95,14 +95,16 @@ final class MyTheme {
             return;
         }
 
-        $relative_class = substr( $class_name, strlen( 'MyTheme\\Inc\\' ) );
-        $parts = explode( '\\', $relative_class );
+        $relative_class  = substr( $class_name, strlen( 'MyTheme\\Inc\\' ) );
+        $parts           = explode( '\\', $relative_class );
         $file_class_name = array_pop( $parts );
 
-        $file_name = strtolower( preg_replace( '/(?<!^)[A-Z]/', '-$0', $file_class_name ) ) . '.php';
-        $path_parts = array_map( 'strtolower', $parts );
+        $file_class_name = str_replace( '_', '-', $file_class_name );
+        $file_name       = strtolower( preg_replace( '/(?<!^)[A-Z]/', '-$0', $file_class_name ) ) . '.php';
+        $file_name       = str_replace( '--', '-', $file_name );
 
-        $path = get_template_directory() . '/inc/' . implode( '/', $path_parts ) . '/' . $file_name;
+        $path_parts = array_map( 'strtolower', $parts );
+        $path       = get_template_directory() . '/inc/' . implode( '/', $path_parts ) . '/' . $file_name;
 
         if ( file_exists( $path ) ) {
             require_once $path;

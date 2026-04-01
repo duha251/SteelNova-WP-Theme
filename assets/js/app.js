@@ -1,7 +1,10 @@
-import { setMainMinHeight } from "./helpers/layout.js";
+import * as Layout from "./ui/layout.js";
+import * as Events from "./ui/events.js";
+import * as Effects from "./ui/effects.js";
 
 document.addEventListener('DOMContentLoaded', function () {
-    setMainMinHeight();
+    Layout.setMainMinHeight();
+    Events.toggleDrawer();
 });
 
 

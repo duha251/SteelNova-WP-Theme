@@ -1,11 +1,11 @@
 <?php
- namespace MyTheme\Inc\Integrations\Pxlart;
+ namespace MyTheme\Inc\Plugins\Pxlart;
 
 /**
  * Handles integration with the Case-Addons plugin.
  *
  * @package    MyTheme
- * @subpackage Inc\Integrations
+ * @subpackage Inc\Plugins
  */
 
 use MyTheme\Inc\Core\Option;
@@ -100,7 +100,7 @@ class Hooks {
             'header-mobile'   => __('Header Mobile', 'mytheme'),
             'footer'          => __('Footer', 'mytheme'), 
             'mega-menu'       => __('Mega Menu', 'mytheme') ,
-            'hero-section'    => __('Hero Section', 'mytheme'), 
+            'hero'            => __('Hero', 'mytheme'), 
             'panel'           => __('Panel', 'mytheme'),
             // 'archive'      => __('Archive', 'mytheme')
             'page'            => __('Page', 'mytheme'),
