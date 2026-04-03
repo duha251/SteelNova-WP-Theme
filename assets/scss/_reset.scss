@@ -120,19 +120,23 @@ hr {
     padding: 0;
 }
 
-svg:not(.svg-origintal) {
-    circle[fill]:not([fill^="url("]) {
-        stroke: currentColor;
-        stroke-opacity: 1;
-    }
-    path[fill]:not([fill^="url("]), rect[fill]:not([fill^="url("]) {
-        fill: currentColor;
-        fill-opacity: 1;
-    }
-    path[stroke^="#"] {
-        stroke: currentColor;
-    }
 
+
+svg {
+    height: auto;
+    &:not(.svg-origintal) {
+        circle[fill]:not([fill^="url("]) {
+            stroke: currentColor;
+            stroke-opacity: 1;
+        }
+        path[fill]:not([fill^="url("]), rect[fill]:not([fill^="url("]) {
+            fill: currentColor;
+            fill-opacity: 1;
+        }
+        path[stroke^="#"] {
+            stroke: currentColor;
+        }
+    }
 }
 
 input, textarea {

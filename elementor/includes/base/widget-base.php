@@ -57,10 +57,10 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
         return false;
     }
 
-    protected function register_controls() {
-        // To be optionally implemented by child classes
-        $this->register_box_style_controls();
-    }
+    // protected function register_controls() {
+    //     // To be optionally implemented by child classes
+    //     $this->register_box_style_controls();
+    // }
 
     /**
      * Register Box Style Controls
@@ -70,9 +70,26 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'name' => 'section_box_style',
             'label' => __( 'Box Item', 'steelnova' ),
         ]);
+
+        $this->size([
+            'name' => 'box_width',
+            'label' => __( 'Box Width', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} [data-widget-type="single"]' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->size([
+            'name' => 'box_height',
+            'label' => __( 'Box Height', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} [data-widget-type="single"]' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
         $this->_start_controls_tabs([
             'name' => 'box_style_tabs',
         ]);
+
         // Tab Normal Start
         $this->_start_controls_tab([
             'name' => 'tab_normal',

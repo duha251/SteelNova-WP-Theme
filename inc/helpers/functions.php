@@ -56,3 +56,32 @@ if( ! function_exists( 'steelnova_print_elementor_icon' ) ) {
         \Elementor\Icons_Manager::render_icon( $icon_attrs, [ 'aria-hidden' => 'true' ] );
     }
 }
+
+if( ! function_exists( 'steelnove_get_elementor_link_attributes' ) ) {
+    function steelnove_get_elementor_link_attributes( $link ) {
+        if( !isset ($link['url'] ) || empty( $link['url'] ) ) {
+            return '';
+        }
+        $ouput = 'href="' . esc_url(trim($link['url'])) . '"';
+        if ($link['is_external']) {
+            $ouput .= ' target="_blank"';
+        }
+        if ($link['nofollow']) {
+            $ouput .= ' rel="nofollow"';
+        }
+        if (!empty($link['custom_attributes'])) {
+            $custom_attributes = explode(',', $link["custom_attributes"]);
+            foreach ($custom_attributes as $attr) {
+                list($key, $value) = explode('|', $attr);
+                $ouput .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
+            }
+        }
+        return $ouput;
+    }
+}
+
+if( ! function_exists( 'steelnove_get_elementor_link_attributes' ) ) {
+    function steelnove_print_elementor_link_attributes( $link ) {
+        pxl_print_html( steelnove_get_elementor_link_attributes( $link ) );
+    }
+}

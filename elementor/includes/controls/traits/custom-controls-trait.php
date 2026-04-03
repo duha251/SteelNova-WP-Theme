@@ -82,11 +82,34 @@ trait Custom_Controls_Trait {
             'tablet_extra_default' => [
                 'unit' => 'ms',
             ],
+            'laptop_default' => [
+                'unit' => 'ms',
+            ],
             'widescreen_default' => [
                 'unit' => 'ms',
             ],
             'default' => [
                 'unit' => 'ms',
+            ]
+        ];
+        $this->_register_control_helper(
+            'add_responsive_control', 
+            $args,
+            $defaults,
+            __FUNCTION__,
+        );
+    }
+
+    protected function size( $args = [], $range = ['min' => 0, 'max' => 1000] ) {
+        $defaults = [
+            'type' => 'slider',
+            'label' => __( 'Time', 'mindverse' ),
+            'size_units' => ['px', 'custom'],
+            'range' => [
+                'px' => $range,
+            ],
+            'default' => [
+                'unit' => 'px',
             ]
         ];
         $this->_register_control_helper(

@@ -11,9 +11,13 @@ if( $settings['layout_style'] != '0' ) {
 }
 
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
+$link_attrs = steelnove_get_elementor_link_attributes( $settings['link'] );
+$wrapper_tag = empty( $link_attrs ) ? 'div ' : 'a ';
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ); ?>>
+<<?php echo esc_attr( $wrapper_tag ); 
+    pxl_print_html( $link_attrs );
+    echo $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ); ?>>
     <?php if( !empty( $settings['icon'] ) ): ?>
         <div class="icon-text__icon box-icon">
             <?php steelnova_print_elementor_icon( $settings['icon'] ); ?>
@@ -22,4 +26,4 @@ $this->add_render_attribute( 'wrapper', $wrapper_attrs );
     <div class="icon-text__text">
         <?php echo esc_html( $settings['text'] ); ?>
     </div>
-</div>
+</<?php echo esc_attr( $wrapper_tag ); ?>>

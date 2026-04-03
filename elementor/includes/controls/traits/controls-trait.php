@@ -26,21 +26,23 @@ trait Controls_Trait {
      * Register helpers function 
      * Use with control group name = name + group_control_name
      */
-    protected function _register_control_helper( $elementor_method, $args, $defaults, $caller_function_name, $name_suffix = '' ) {
-    
+    protected function _register_control_helper( $elementor_method, $args, $defaults, $caller_function_name, $target = null) {
+        $target = $target ?: $this;
+
         if ( ! $this->validate_control_name($args, $caller_function_name) ) {
             return;
         }
 
         $prefix_name = $args['name']; 
+
         $elementor_method = isset($args['method']) && !empty($args['method']) ? $args['method'] : $elementor_method;
 
         if($elementor_method !== 'add_group_control') {
             unset($args['name']); 
 
-            $final_control_name = $prefix_name . $name_suffix;
+            $final_control_name = $prefix_name;
             
-            $this->{$elementor_method}(
+            $target->{$elementor_method}(
                 $final_control_name, 
                 array_merge($defaults, $args) 
             );
@@ -55,10 +57,10 @@ trait Controls_Trait {
         $control_type = $args['type']; 
         unset($args['type']);         
         
-        $args['name'] = $prefix_name . $name_suffix;
+        $args['name'] = $prefix_name;
 
         
-        $this->{$elementor_method}(
+        $target->{$elementor_method}(
             $control_type, 
             array_merge($defaults, $args)
         );
@@ -193,7 +195,7 @@ trait Controls_Trait {
     /**
      * Quick icon control
      */
-    protected function icons($args = []) { 
+    protected function icons( $args = [], $target = null ) { 
         $defaults = [
             'label' => __( 'Icon', 'steelnova' ), 
             'type' => Controls_Manager::ICONS,
@@ -206,7 +208,8 @@ trait Controls_Trait {
             'add_control', 
             $args,
             $defaults,
-            __FUNCTION__
+            __FUNCTION__,
+            $target
         );
     }
 
@@ -307,7 +310,7 @@ trait Controls_Trait {
     /**
      * Quick link url
      */
-    protected function url($args = []) {
+    protected function url($args = [], $target = null) {
         $defaults = [
             'label' => __( 'Link', 'steelnova' ),
             'type' => Controls_Manager::URL,
@@ -317,6 +320,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 

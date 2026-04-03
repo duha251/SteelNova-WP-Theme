@@ -5,16 +5,16 @@ use SteelNova\Elementor\Base\SteelNova_Widget_Base;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Widget_Icon_Text extends SteelNova_Widget_Base {
+class Widget_Social_Icons extends SteelNova_Widget_Base {
     /**
      * Get the widget information.
      */
     protected function widget_info() {
         return [
-            'name'       => 'steelnova-icon-text',
-            'title'      => __( 'CS Icon Text', 'steelnova' ),
-            'icon'       => 'eicon-icon-box',
-            'keywords'   => [ 'icon', 'text', 'header', 'steelnova', 'icon text' ],
+            'name'       => 'steelnova-social-icons',
+            'title'      => __( 'CS Social Icons', 'steelnova' ),
+            'icon'       => 'eicon-social-icons',
+            'keywords' => [ 'cs', 'casethemes', 'steelnova', 'social', 'social icon', 'social icons', 'icon', 'icons', 'share', 'social share', 'network', 'social network', 'facebook', 'twitter', 'instagram', 'linkedin', 'youtube', 'steelnova' ],
             'script'     => [],
         ];
     }
@@ -43,7 +43,7 @@ class Widget_Icon_Text extends SteelNova_Widget_Base {
         ]);
         $this->group_flex_css([
             'name' => 'flex_css',
-            'selector' => '{{WRAPPER}} .icon-text',
+            'selector' => '{{WRAPPER}} .social-icons',
         ]);
         $this->end_controls_section();
     }
@@ -56,19 +56,64 @@ class Widget_Icon_Text extends SteelNova_Widget_Base {
             'name' => 'section_content',
             'label' => __( 'Content', 'steelnova' ),
         ]);
+        $repeater = new \Elementor\Repeater();
+
         $this->icons([
             'name' => 'icon',
             'label' => __( 'Icon', 'steelnova' ),
-        ]);
-        $this->text([
-            'name' => 'text',
-            'label' => __( 'Text', 'steelnova' ),
-            'default' => __('Lorem ipsum dolor', 'steelnova')
-        ]);
+        ], $repeater);
+
         $this->url([
             'name' => 'link',
-            'separator' => 'before'
-        ]);        
+            'separator' => 'before',
+            'default' => [
+                'url' => '#'
+            ]
+        ], $repeater);
+        
+        $this->repeater([
+            'name'   => 'items',
+            'label'  => __('Social Icons', 'steelnova'),
+            'fields' => $repeater->get_controls(),
+            'default' => [
+                [
+                    'icon' => [
+                        'value' => [
+                            'url' => content_url( '/uploads/2026/04/facebook.svg' ),
+                            'id'  => 84,
+                        ],
+                        'library' => 'svg'
+                    ],
+                ],
+                [
+                    'icon' => [
+                        'value' => [
+                            'url' => content_url( '/uploads/2026/04/x.svg' ),
+                            'id'  => 87,
+                        ],
+                        'library' => 'svg'
+                    ],
+                ],
+                [
+                    'icon' => [
+                        'value' => [
+                            'url' => content_url( '/uploads/2026/04/telegram.svg' ),
+                            'id'  => 86,
+                        ],
+                        'library' => 'svg'
+                    ],
+                ],
+                [
+                    'icon' => [
+                        'value' => [
+                            'url' => content_url( '/uploads/2026/04/pinterest.svg' ),
+                            'id'  => 85,
+                        ],
+                        'library' => 'svg'
+                    ],
+                ]
+            ]
+        ]);
         $this->end_controls_section();
     }
 
