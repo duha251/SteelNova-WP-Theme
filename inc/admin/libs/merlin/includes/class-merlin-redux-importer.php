@@ -30,7 +30,7 @@ class Merlin_Redux_Importer {
 			if ( isset( $redux_framework->args['opt_name'] ) ) {
 				$redux_framework->set_options( $redux_options_data );
 
-				Merlin_Logger::get_instance()->debug( esc_html__( 'The Redux Framework data was imported' , 'mytheme'), $redux_item );
+				Merlin_Logger::get_instance()->debug( esc_html__( 'The Redux Framework data was imported' , 'steelnova'), $redux_item );
 			}
 		}
 

@@ -1,6 +1,6 @@
 <?php
 /**
-* The Mytheme_Admin initiate the theme admin
+* The SteelNova_Admin initiate the theme admin
 */
 
 if( !defined( 'ABSPATH' ) )
@@ -8,7 +8,7 @@ if( !defined( 'ABSPATH' ) )
 
 require_once get_template_directory() . '/inc/admin/libs/tgmpa/class-tgm-plugin-activation.php' ; 
 require_once get_template_directory() . '/inc/admin/admin-require-plugins.php'; 
-class Mytheme_Admin {
+class SteelNova_Admin {
 
 	public function __construct() {
 		add_action( 'init', [$this, 'init'], 7 ); 
@@ -46,7 +46,7 @@ class Mytheme_Admin {
 			'ajaxurl'        => admin_url( 'admin-ajax.php' ),
 			'wpnonce'        => wp_create_nonce( 'merlin_nonce' ),
 			'api_url' 		 => $pxl_server_info['api_url'],
-			'theme_slug'     => mytheme()->get_theme_slug(),
+			'theme_slug'     => steelnova()->get_theme_slug(),
 		));
 	}
 
@@ -102,12 +102,12 @@ class Mytheme_Admin {
 		 
 		global $submenu;
  
-		$submenu['pxlart'][0][0] = esc_html__( 'Dashboard', 'mytheme' );
+		$submenu['pxlart'][0][0] = esc_html__( 'Dashboard', 'steelnova' );
 
 		//remove_submenu_page( 'themes.php', 'tgmpa-install-plugins' );
 		remove_submenu_page( 'tools.php', 'redux-about' );
 	}
 }
  
-new Mytheme_Admin;
+new SteelNova_Admin;
 

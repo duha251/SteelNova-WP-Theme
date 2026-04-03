@@ -1,5 +1,5 @@
 <?php
-namespace Mytheme\Inc\Core;
+namespace SteelNova\Inc\Core;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

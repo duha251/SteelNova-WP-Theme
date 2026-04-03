@@ -20,14 +20,14 @@
 		<?php 
 		 
 		$dev_mode = (defined('DEV_MODE') && DEV_MODE);
-		if ( 'valid' != get_option( mytheme()->get_theme_slug().'_purchase_code_status', false ) && !$dev_mode ) :
+		if ( 'valid' != get_option( steelnova()->get_theme_slug().'_purchase_code_status', false ) && !$dev_mode ) :
 			
 			echo '<div class="error"><p>' .
-					sprintf( wp_kses_post( esc_html__( 'The %s theme needs to be registered. %sRegister Now%s', 'mytheme' ) ), mytheme()->get_theme_name(), '<a href="' . admin_url( 'admin.php?page=pxlart') . '">' , '</a>' ) . '</p></div>';
+					sprintf( wp_kses_post( esc_html__( 'The %s theme needs to be registered. %sRegister Now%s', 'steelnova' ) ), steelnova()->get_theme_name(), '<a href="' . admin_url( 'admin.php?page=pxlart') . '">' , '</a>' ) . '</p></div>';
 		elseif( !empty($plugin_requires) && sizeof($plugin_requires) >= 1 ):
 
 			echo '<div class="error"><p>';
-			echo sprintf( wp_kses_post( esc_html__( 'Make sure to activate required plugins prior to import a demo.', 'mytheme' ) ), mytheme()->get_theme_name(), '<a class="nt-atpli" href="' . admin_url( 'admin.php?page=pxlart-plugins') . '">' , '</a>' ) . '</p>';
+			echo sprintf( wp_kses_post( esc_html__( 'Make sure to activate required plugins prior to import a demo.', 'steelnova' ) ), steelnova()->get_theme_name(), '<a class="nt-atpli" href="' . admin_url( 'admin.php?page=pxlart-plugins') . '">' , '</a>' ) . '</p>';
 			echo '<ul class="plugin-not-active">';
 				foreach( $plugin_requires as $pr ){
 					echo '<li>'.$pr.'</li>';
@@ -39,11 +39,11 @@
 	
 		<header class="pxl-dsb-header">
 			<div class="pxl-dsb-header-inner">
-				<h4><?php esc_html_e( 'Import a Demo', 'mytheme' ); ?></h4>
-				<p><?php esc_html_e( 'Choose a pre-built website for starting a quick design process.', 'mytheme' ) ?></p>
+				<h4><?php esc_html_e( 'Import a Demo', 'steelnova' ); ?></h4>
+				<p><?php esc_html_e( 'Choose a pre-built website for starting a quick design process.', 'steelnova' ) ?></p>
 			</div>
 			<div class="pxl-msg pxl-dsb-notice">
-				<p><span><?php esc_html_e( 'Note:', 'mytheme' ); ?></span> <?php esc_html_e( 'Make sure to activate required plugins prior to import a demo.', 'mytheme' ) ?></p>
+				<p><span><?php esc_html_e( 'Note:', 'steelnova' ); ?></span> <?php esc_html_e( 'Make sure to activate required plugins prior to import a demo.', 'steelnova' ) ?></p>
 			</div>
 		</header>
 
@@ -76,10 +76,10 @@
 								<div class="pxl-dsb-overlay"></div>
 								<div class="pxl-btn-group">
 									<a href="#" id="import-id" data-import-id="<?php echo esc_attr( $i ); ?>" data-demo-id="<?php echo esc_attr( $id ); ?>" class="pxl-btn pxl-popup-import <?php echo esc_attr( $id ); ?>">
-										<span><?php esc_html_e( 'Import Demo', 'mytheme' ); ?></span>
+										<span><?php esc_html_e( 'Import Demo', 'steelnova' ); ?></span>
 									</a><br/>
 									<a target="_blank" href="<?php echo esc_url( $demo['preview'] ); ?>" class="pxl-preview-btn">
-										<span><?php esc_html_e( 'Preview Demo', 'mytheme' ); ?></span>
+										<span><?php esc_html_e( 'Preview Demo', 'steelnova' ); ?></span>
 										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
 									</a>
 								</div>
@@ -98,34 +98,34 @@
 			<div class="pxl-imp-popup-inner">
 				<span class="pxl-imp-popup-close"></span>
 				<div class="pxl-imp-popup-content">
-					<h4 style="text-align:center; margin-bottom: 30px;"><?php esc_html_e( 'Select all or a few', 'mytheme' ); ?></h4>
+					<h4 style="text-align:center; margin-bottom: 30px;"><?php esc_html_e( 'Select all or a few', 'steelnova' ); ?></h4>
 					<div class="pxl-row">
 						<div class="pxl-col pxl-col-6">
 							<span class="pxl-imp-opt">
 								<input id="pxl-imp-media" type="checkbox" value="import_media" checked="">
 								<label for="pxl-imp-media"></label>
-								<span><?php esc_html_e( 'Media Attachments', 'mytheme' ); ?></span>
+								<span><?php esc_html_e( 'Media Attachments', 'steelnova' ); ?></span>
 							</span>
 						</div>
 						<div class="pxl-col pxl-col-6">
 							<span class="pxl-imp-opt">
 								<input id="pxl-imp-content" type="checkbox" value="import_content" checked="">
 								<label for="pxl-imp-content"></label>
-								<span><?php esc_html_e( 'Content', 'mytheme' ); ?></span>
+								<span><?php esc_html_e( 'Content', 'steelnova' ); ?></span>
 							</span>
 						</div>
 						<div class="pxl-col pxl-col-6">
 							<span class="pxl-imp-opt">
 								<input id="pxl-imp-options" type="checkbox" value="import_theme_options" checked="">
 								<label for="pxl-imp-options"></label>
-								<span><?php esc_html_e( 'Theme Options', 'mytheme' ) ?></span>
+								<span><?php esc_html_e( 'Theme Options', 'steelnova' ) ?></span>
 							</span>
 						</div>
 						<div class="pxl-col pxl-col-6">
 							<span class="pxl-imp-opt">
 								<input id="pxl-imp-widgets" type="checkbox" value="import_widgets" checked="">
 								<label for="pxl-imp-widgets"></label>
-								<span><?php esc_html_e( 'Widgets', 'mytheme' ); ?></span>
+								<span><?php esc_html_e( 'Widgets', 'steelnova' ); ?></span>
 							</span>
 						</div>
 						<?php if(!empty($plugins['revslider'])): ?>
@@ -133,7 +133,7 @@
 							<span class="pxl-imp-opt">
 								<input id="pxl-imp-revslider" type="checkbox" value="import_slider" checked="">
 								<label for="pxl-imp-revslider"></label>
-								<span><?php esc_html_e( 'Revslider', 'mytheme' ); ?></span>
+								<span><?php esc_html_e( 'Revslider', 'steelnova' ); ?></span>
 							</span>
 						</div>
 							<?php endif; ?>
@@ -141,7 +141,7 @@
 							<span class="pxl-imp-opt">
 								<input id="pxl-imp-settings" type="checkbox" value="import_settings" checked="">
 								<label for="pxl-imp-settings"></label>
-								<span><?php esc_html_e( 'Settings', 'mytheme' ) ?></span>
+								<span><?php esc_html_e( 'Settings', 'steelnova' ) ?></span>
 							</span>
 						</div>
 					</div>
@@ -151,18 +151,18 @@
 								<span class="pxl-imp-opt-skip-posts" style="margin-bottom: 0; padding-left: 15px;">
 									<input id="pxl-imp-skip-posts-existen" name="skip_posts_existen" type="checkbox" value="skip-posts-existen">
 									<label for="pxl-imp-skip-posts-existen">
-									<span><?php esc_html_e( 'Skip the posts existen, ( Default clear all content ).', 'mytheme' ); ?></span>
+									<span><?php esc_html_e( 'Skip the posts existen, ( Default clear all content ).', 'steelnova' ); ?></span>
 									</label>
 								</span>
 							</div>
 							<div class="pxl-imp-crop">
 								<span class="pxl-imp-opt-crop" style="margin-bottom: 0; padding-left: 15px;">
 									<input id="pxl-imp-crop-img" name="crop-img" type="checkbox" value="crop_img" checked="">
-									<label for="pxl-imp-crop-img"><span><?php esc_html_e( 'Crop Image after import finish?', 'mytheme' ); ?></span></label>
+									<label for="pxl-imp-crop-img"><span><?php esc_html_e( 'Crop Image after import finish?', 'steelnova' ); ?></span></label>
 								</span>
 							</div>
 							<button class="pxl-import-btn" data-id="0">
-								<span><?php esc_html_e( 'Import Demo', 'mytheme' ); ?></span>
+								<span><?php esc_html_e( 'Import Demo', 'steelnova' ); ?></span>
 							</button>
 						</div>
 					</div>
@@ -172,11 +172,11 @@
 		</div>
 		<div class="pxl-progress-popup pxl-imp-popup-wrap">
 			<div class="pxl-imp-progress">
-				<h6><?php esc_html_e( 'Importing...', 'mytheme' ); ?></h6>
-				<div class="pxl-progress importing"><?php esc_html_e( 'Working', 'mytheme' )?> <span>.</span><span>.</span><span>.</span></div>
+				<h6><?php esc_html_e( 'Importing...', 'steelnova' ); ?></h6>
+				<div class="pxl-progress importing"><?php esc_html_e( 'Working', 'steelnova' )?> <span>.</span><span>.</span><span>.</span></div>
 				<div class="pxl-progressbar">
 					<div class="pxl-progressbar-inner" style="width: 0%">
-						<span class="pxl-loader pxl-progressbar-percentage"><?php esc_html_e( '0%', 'mytheme' ); ?></span>
+						<span class="pxl-loader pxl-progressbar-percentage"><?php esc_html_e( '0%', 'steelnova' ); ?></span>
 					</div>
 				</div>
 			</div>

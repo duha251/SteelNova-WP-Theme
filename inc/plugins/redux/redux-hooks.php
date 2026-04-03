@@ -2,13 +2,13 @@
 /**
  * Handles integration with the PXL plugin.
  *
- * @package    Mytheme
+ * @package    SteelNova
  * @subpackage Inc\Plugins
  */
 
-namespace Mytheme\Inc\Plugins\Redux;
+namespace SteelNova\Inc\Plugins\Redux;
 
-use \Mytheme\Inc\Core\Option;
+use \SteelNova\Inc\Core\Option;
 
 class Redux_Hooks {
     private $option;

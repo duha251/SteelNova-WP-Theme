@@ -1,12 +1,12 @@
 <?php
 /**
- * The Mytheme_Updater initiate the theme engine
+ * The SteelNova_Updater initiate the theme engine
  */
 
 if( !defined( 'ABSPATH' ) ) 
 	exit; // Exit if accessed directly
 	
-class Mytheme_Updater {
+class SteelNova_Updater {
 	
 	private $remote_api_url;
 	private $request_data;
@@ -22,7 +22,7 @@ class Mytheme_Updater {
 		$args = wp_parse_args( $args, array(
 			'remote_api_url' => 'http://api.casethemes.net/',
 			'request_data' => array(),
-			'theme_slug' => mytheme()->get_theme_slug(),
+			'theme_slug' => steelnova()->get_theme_slug(),
 			'item_name' => '',
 			'license' => '',
 			'version' => '',
@@ -69,7 +69,7 @@ class Mytheme_Updater {
 
 			echo '<div id="update-nag">';
 			printf(
-				wp_kses_post( esc_html__( '<strong>%1$s %2$s</strong> is available. <a href="%3$s" class="thickbox" title="%4s">Check out what\'s new</a> or <a href="%5$s"%6$s>update now</a>.', 'mytheme' ) ),
+				wp_kses_post( esc_html__( '<strong>%1$s %2$s</strong> is available. <a href="%3$s" class="thickbox" title="%4s">Check out what\'s new</a> or <a href="%5$s"%6$s>update now</a>.', 'steelnova' ) ),
 				$theme->get( 'Name' ),
 				$api_response->new_version,
 				'#TB_inline?width=640&amp;inlineId=' . $this->theme_slug . '_changelog',

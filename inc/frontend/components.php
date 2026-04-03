@@ -1,15 +1,15 @@
 <?php
-namespace Mytheme\Inc\Frontend;
+namespace SteelNova\Inc\Frontend;
 
 /**
  * Frontend Layout
  *
  * Handles layout structure for frontend.
  *
- * @package Mytheme
+ * @package SteelNova
  */
 
-use Mytheme\Inc\Core\Option;
+use SteelNova\Inc\Core\Option;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,8 +21,8 @@ class Components {
 
     public function __construct( Option $option_instance ) {
         $this->option = $option_instance;
-        add_action('mytheme_before_main_content', [$this, 'before_main_content_render']);
-        add_action('mytheme_after_main_content', [$this, 'after_main_content_render']);
+        add_action('steelnova_before_main_content', [$this, 'before_main_content_render']);
+        add_action('steelnova_after_main_content', [$this, 'after_main_content_render']);
     }
 
     public function before_main_content_render() {
@@ -107,7 +107,7 @@ class Components {
             <ul class="header-menu header-menu-empty">
                 <li>
                     <a href="<?php echo esc_url( admin_url( 'nav-menus.php' ) ); ?>">
-                        <?php echo esc_html__( 'Create New Menu', 'mytheme' ); ?>
+                        <?php echo esc_html__( 'Create New Menu', 'steelnova' ); ?>
                     </a>
                 </li>
             </ul>

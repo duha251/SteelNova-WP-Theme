@@ -8,7 +8,7 @@ module.exports = (env, argv) => {
     return {
         entry: {
             theme: path.resolve(__dirname, 'assets/scss/style.scss'),
-            // elementor: path.resolve(__dirname, 'elementor/assets/style.scss'),
+            elementor: path.resolve(__dirname, 'elementor/assets/scss/style.scss'),
             // woocommerce: path.resolve(__dirname, 'woocommerce/assets/scss/style.scss'),
         },
 
@@ -46,10 +46,8 @@ module.exports = (env, argv) => {
                         case 'theme':
                             return 'assets/css/style.min.css';
 
-                        // case 'elementor':
-                        //     return isProduction
-                        //         ? 'elementor/assets/style.min.css'
-                        //         : 'elementor/assets/style.css';
+                        case 'elementor':
+                            return 'elementor/assets/css/style.min.css';
 
                         // case 'woocommerce':
                         //     return isProduction

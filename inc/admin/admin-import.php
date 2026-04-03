@@ -1,12 +1,12 @@
 <?php
 /**
-* The Mytheme_Admin_Import class
+* The SteelNova_Admin_Import class
 */
 
 if( !defined( 'ABSPATH' ) )
 	exit; // Exit if accessed directly
 
-class Mytheme_Admin_Import extends Mytheme_Admin_Page {
+class SteelNova_Admin_Import extends SteelNova_Admin_Page {
 	protected $id = null;
 	protected $page_title = null;
 	protected $menu_title = null;
@@ -14,8 +14,8 @@ class Mytheme_Admin_Import extends Mytheme_Admin_Page {
 	public function __construct() {
 
 		$this->id = 'pxlart-import-demos';
-		$this->page_title = esc_html__( 'Import Demos', 'mytheme' );
-		$this->menu_title = esc_html__( 'Import Demos', 'mytheme' );
+		$this->page_title = esc_html__( 'Import Demos', 'steelnova' );
+		$this->menu_title = esc_html__( 'Import Demos', 'steelnova' );
 		$this->parent = 'pxlart';
 		//$this->position = '10';
 
@@ -23,7 +23,7 @@ class Mytheme_Admin_Import extends Mytheme_Admin_Page {
 	}
 
 	public function display() {
-		mytheme_get_template( 'inc/admin/views/admin-demos' );
+		steelnova_get_template( 'inc/admin/views/admin-demos' );
 	}
 
 
@@ -31,4 +31,4 @@ class Mytheme_Admin_Import extends Mytheme_Admin_Page {
 
 	}
 }
-new Mytheme_Admin_Import;
+new SteelNova_Admin_Import;

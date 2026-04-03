@@ -16,16 +16,16 @@
             <?php echo wp_kses_post($logo_html); ?>
         </div>
         <div class="header-searchform">
-            <?php mytheme()->component->get_search_form(); ?>
+            <?php steelnova()->component->get_search_form(); ?>
         </div>
         <hr class="header-divider">
         <div class="header-navigation">
             <?php  if( has_nav_menu('primary-mobile') ) {
-                mytheme()->component->get_navigation_menu(['theme_location' => 'primary-mobile']);
+                steelnova()->component->get_navigation_menu(['theme_location' => 'primary-mobile']);
             } elseif( has_nav_menu('primary') ) {
-                mytheme()->component->get_navigation_menu();
+                steelnova()->component->get_navigation_menu();
             } else {
-                mytheme()->component->get_navigation_menu(['menu' => 'empty']);
+                steelnova()->component->get_navigation_menu(['menu' => 'empty']);
             } ?>
         </div>
     </div>

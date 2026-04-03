@@ -1,5 +1,5 @@
 <?php
-namespace Mytheme\Inc\Helpers;
+namespace SteelNova\Inc\Helpers;
 
 class StaticOptions {
 
@@ -61,35 +61,35 @@ class StaticOptions {
         extract( $args );
 
         $mode_options = [
-            'default' => __('Default', 'mytheme'),
-            'builder' => __('Builder', 'mytheme'),
-            'hide'    => __('Hide', 'mytheme')
+            'default' => __('Default', 'steelnova'),
+            'builder' => __('Builder', 'steelnova'),
+            'hide'    => __('Hide', 'steelnova')
         ];
     
         if ( $scope === 'private' ) {
             unset($mode_options['default']);
-            $mode_options = ['inherit' => __('Inherit', 'mytheme')] + $mode_options;
+            $mode_options = ['inherit' => __('Inherit', 'steelnova')] + $mode_options;
         }
     
         return array(
 			array(
 				'id' => 'header_desktop_heading',
-				'title' => __('Header Desktop', 'mytheme'),
+				'title' => __('Header Desktop', 'steelnova'),
 				'type'  => 'section',
 				'indent' => true,
 			),
             array(
                 'id'      => $prefix_id.'header_mode',
                 'type'    => 'button_set',
-                'title'   => __( 'Header Mode', 'mytheme' ),
+                'title'   => __( 'Header Mode', 'steelnova' ),
                 'options' => $mode_options, 
                 'default' => $scope === 'private' ? 'inherit' : 'default'
             ),
             array(
                 'id'      => $prefix_id.'header_layout',
                 'type'    => 'select',
-                'title'   => __('Header Layout', 'mytheme'),
-                'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','mytheme'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
+                'title'   => __('Header Layout', 'steelnova'),
+                'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
                 'options' => self::get_templates_by_type('header'),
                 'select2'  => [ 'allowClear' => false ],
                 'required' => [ $prefix_id.'header_mode', '=', 'builder' ],
@@ -97,7 +97,7 @@ class StaticOptions {
             array(
                 'id'       => $prefix_id.'header_logo',
                 'type'     => 'media',
-                'title'    => __('Header Logo', 'mytheme'),
+                'title'    => __('Header Logo', 'steelnova'),
                 'default' => array(
                     'url' => get_template_directory_uri() . '/assets/imgs/logo.webp'
                 ),
@@ -115,35 +115,35 @@ class StaticOptions {
         extract( $args );
 
         $mode_options = [
-            'default' => __('Default', 'mytheme'),
-            'builder' => __('Builder', 'mytheme'),
-            'hide'    => __('Hide', 'mytheme')
+            'default' => __('Default', 'steelnova'),
+            'builder' => __('Builder', 'steelnova'),
+            'hide'    => __('Hide', 'steelnova')
         ];
     
         if ( $scope === 'private' ) {
             unset($mode_options['default']);
-            $mode_options = ['inherit' => __('Inherit', 'mytheme')] + $mode_options;
+            $mode_options = ['inherit' => __('Inherit', 'steelnova')] + $mode_options;
         }
     
         return array(
 			array(
 				'id' => 'header_sticky_heading',
-				'title' => __('Header Sticky', 'mytheme'),
+				'title' => __('Header Sticky', 'steelnova'),
 				'type'  => 'section',
 				'indent' => true,
 			),
             array(
                 'id'      => $prefix_id.'header_sticky_mode',
                 'type'    => 'button_set',
-                'title'   => __( 'Header Sticky Mode', 'mytheme' ),
+                'title'   => __( 'Header Sticky Mode', 'steelnova' ),
                 'options' => $mode_options, 
                 'default' => $scope === 'private' ? 'inherit' : 'default',
             ),
             array(
                 'id'      => $prefix_id.'header_sticky_layout',
                 'type'    => 'select',
-                'title'   => __('Header Sticky Layout', 'mytheme'),
-                'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','mytheme'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
+                'title'   => __('Header Sticky Layout', 'steelnova'),
+                'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
                 'options' => self::get_templates_by_type('header', 'sticky'),
                 'select2'  => [ 'allowClear' => false ],
                 'required' => [
@@ -153,10 +153,10 @@ class StaticOptions {
             array(
                 'id'      => $prefix_id.'header_sticky_display_on',
                 'type'    => 'button_set',
-                'title'   => __( 'Display on', 'mytheme' ),
+                'title'   => __( 'Display on', 'steelnova' ),
                 'options' => [
-                    'up'   => __('Scroll Up', 'mytheme'),
-                    'down'   => __('Scroll Down', 'mytheme'),
+                    'up'   => __('Scroll Up', 'steelnova'),
+                    'down'   => __('Scroll Down', 'steelnova'),
                 ], 
                 'default' => 'up',
                 'required' => [ $prefix_id.'header_sticky_mode', '!=', 'hide' ],
@@ -172,35 +172,35 @@ class StaticOptions {
         extract( $args );
 
         $mode_options = [
-			'default' => __('Default', 'mytheme'),
-            'builder' => __('Builder', 'mytheme'),
-            'hide'    => __('Hide', 'mytheme')
+			'default' => __('Default', 'steelnova'),
+            'builder' => __('Builder', 'steelnova'),
+            'hide'    => __('Hide', 'steelnova')
         ];
     
         if ( $scope === 'private' ) {
 			unset($mode_options['default']);
-            $mode_options = ['inherit' => __('Inherit', 'mytheme')] + $mode_options;
+            $mode_options = ['inherit' => __('Inherit', 'steelnova')] + $mode_options;
         }
     
         return array(
 			array(
 				'id' => 'header_mobile_heading',
-				'title' => __('Header Mobile', 'mytheme'),
+				'title' => __('Header Mobile', 'steelnova'),
 				'type'  => 'section',
 				'indent' => true,
 			),
             array(
                 'id'      => $prefix_id.'header_mobile_mode',
                 'type'    => 'button_set',
-                'title'   => __( 'Header Mobile Mode', 'mytheme' ),
+                'title'   => __( 'Header Mobile Mode', 'steelnova' ),
                 'options' => $mode_options, 
                 'default' => $scope === 'private' ? 'inherit' : 'default'
             ),
             array(
                 'id'      => $prefix_id.'header_mobile_layout',
                 'type'    => 'select',
-                'title'   => __('Header Mobile Layout', 'mytheme'),
-                'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','mytheme'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
+                'title'   => __('Header Mobile Layout', 'steelnova'),
+                'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
                 'options' => self::get_templates_by_type('header-mobile'),
                 'select2'  => [ 'allowClear' => false ],
                 'required' => [ $prefix_id.'header_mobile_mode', '=', 'builder' ],
@@ -208,7 +208,7 @@ class StaticOptions {
 					array(
                 'id'       => $prefix_id.'header_mobile_logo',
                 'type'     => 'media',
-                'title'    => __('Header Mobile Logo', 'mytheme'),
+                'title'    => __('Header Mobile Logo', 'steelnova'),
                 'default' => array(
                     'url' => get_template_directory_uri() . '/assets/imgs/logo.webp'
                 ),
@@ -227,35 +227,35 @@ class StaticOptions {
         extract( $args );
 
 		$mode_options = [
-			'default'   => __('Default', 'mytheme'),
-			'builder'   => __('Builder', 'mytheme'),
-			'hide'      => __('Hide', 'mytheme'),
+			'default'   => __('Default', 'steelnova'),
+			'builder'   => __('Builder', 'steelnova'),
+			'hide'      => __('Hide', 'steelnova'),
 		];
 
 		if( $scope === 'private' ) {
 			unset($mode_options['default']);
-			$mode_options = ['inherit' => __('Inherit', 'mytheme')] + $mode_options;
+			$mode_options = ['inherit' => __('Inherit', 'steelnova')] + $mode_options;
 		}
 
 		$final_options = array(
 			array(
 				'id' => $prefix_id.'_hero_heading',
-				'title' => __('Hero', 'mytheme'),
+				'title' => __('Hero', 'steelnova'),
 				'type'  => 'section',
 				'indent' => true,
 			),
 	        array(
 	            'id'      => $prefix_id.'_hero_mode',
 	            'type'    => 'button_set',
-	            'title'   => __( 'Hero Mode', 'mytheme' ),
+	            'title'   => __( 'Hero Mode', 'steelnova' ),
 	            'options' => $mode_options, 
                 'default' => ($scope === 'private') ? 'inherit' : 'default',
 	        ),
 	        array(
 	            'id'       => $prefix_id.'_hero_layout',
 	            'type'     => 'select',
-	            'title'    => __('Hero Layout', 'mytheme'),
-	            'desc'     => sprintf(__('Please create your layout before choosing. %sClick Here%s','mytheme'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
+	            'title'    => __('Hero Layout', 'steelnova'),
+	            'desc'     => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
 	            'options'  => self::get_templates_by_type( 'hero', 'page' ),
 	            'required' => [ $prefix_id.'_hero_mode', '=', 'builder' ],
 				'select2'  => [ 'allowClear' => false ],
@@ -273,35 +273,35 @@ class StaticOptions {
         extract( $args );
 
 		$mode_options = [
-			'default' => __('Default', 'mytheme'),
-			'builder' => __('Builder', 'mytheme'),
-			'hide'    => __('Hide', 'mytheme'),
+			'default' => __('Default', 'steelnova'),
+			'builder' => __('Builder', 'steelnova'),
+			'hide'    => __('Hide', 'steelnova'),
 		];
 
 		if ($scope === 'private') {
 			unset($mode_options['default']);
-			$mode_options = ['inherit' => __('Inherit', 'mytheme')] + $mode_options;
+			$mode_options = ['inherit' => __('Inherit', 'steelnova')] + $mode_options;
 		}
 
 		$final_options = [
             array(
                 'id' => $prefix_id.'footer_heading',
-                'title' => __('Footer', 'mytheme'),
+                'title' => __('Footer', 'steelnova'),
                 'type'  => 'section',
                 'indent' => true,
             ),
 			array(
 	            'id'      => $prefix_id.'footer_mode',
 	            'type'    => 'button_set',
-	            'title'   => __( 'Footer Mode', 'mytheme' ),
+	            'title'   => __( 'Footer Mode', 'steelnova' ),
 	            'options' => $mode_options, 
                 'default' => $scope === 'private' ? 'inherit' : 'default'
 	        ),
 	        array(
 				'id'      => $prefix_id.'footer_layout',
 				'type'    => 'select',
-				'title'   => __('Footer Layout', 'mytheme'),
-				'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','mytheme'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
+				'title'   => __('Footer Layout', 'steelnova'),
+				'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
 				'options' => self::get_templates_by_type('footer'),
 				'default' => 0,
 				'select2'  => [ 'allowClear' => false ],

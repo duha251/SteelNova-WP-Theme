@@ -4,9 +4,9 @@
  *
  * Displays all of the <head> section and everything up to <main>
  *
- * @package Mytheme
+ * @package SteelNova
  * @author Case-Themes
- * @link https://mytheme.casethemes.net
+ * @link https://steelnova.casethemes.net
  * @since 1.0.0
  */
 ?>
@@ -22,4 +22,4 @@
 </head>
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
-    <?php do_action( 'mytheme_before_main_content' ); ?>
+    <?php do_action( 'steelnova_before_main_content' ); ?>

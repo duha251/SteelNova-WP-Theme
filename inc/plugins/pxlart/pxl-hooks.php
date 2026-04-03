@@ -1,14 +1,14 @@
 <?php
- namespace Mytheme\Inc\Plugins\Pxlart;
+ namespace SteelNova\Inc\Plugins\Pxlart;
 
 /**
  * Handles integration with the Case-Addons plugin.
  *
- * @package    Mytheme
+ * @package    SteelNova
  * @subpackage Inc\Plugins
  */
 
-use Mytheme\Inc\Core\Option;
+use SteelNova\Inc\Core\Option;
 
 class Pxl_Hooks {
     private $option;
@@ -73,11 +73,11 @@ class Pxl_Hooks {
 	public function server_info( $infos ) {
 		return [
             'api_url' => 'https://api.casethemes.net/',
-            'docs_url' => 'https://doc.casethemes.net/mytheme/',
+            'docs_url' => 'https://doc.casethemes.net/steelnova/',
             'plugin_url' => 'https://api.casethemes.net/plugins/',
-            'demo_url' => 'https://mytheme.casethemes.net/',
+            'demo_url' => 'https://steelnova.casethemes.net/',
             'support_url' => 'https://casethemes.ticksy.com/',
-            'help_url' => 'https://doc.casethemes.net/mytheme',
+            'help_url' => 'https://doc.casethemes.net/steelnova',
             'email_support' => 'casethemesagency@gmail.com',
             'video_url' => '#'
 		];
@@ -96,15 +96,15 @@ class Pxl_Hooks {
     
     public function template_type_support( $type ) {
 		$extra_type = [
-            'header'          => __('Header Desktop', 'mytheme'),
-            'header-mobile'   => __('Header Mobile', 'mytheme'),
-            'footer'          => __('Footer', 'mytheme'), 
-            'mega-menu'       => __('Mega Menu', 'mytheme') ,
-            'hero'            => __('Hero', 'mytheme'), 
-            'panel'           => __('Panel', 'mytheme'),
-            // 'archive'      => __('Archive', 'mytheme')
-            'page'            => __('Page', 'mytheme'),
-            'section'         => __('Section', 'mytheme')
+            'header'          => __('Header Desktop', 'steelnova'),
+            'header-mobile'   => __('Header Mobile', 'steelnova'),
+            'footer'          => __('Footer', 'steelnova'), 
+            'mega-menu'       => __('Mega Menu', 'steelnova') ,
+            'hero'            => __('Hero', 'steelnova'), 
+            'panel'           => __('Panel', 'steelnova'),
+            // 'archive'      => __('Archive', 'steelnova')
+            'page'            => __('Page', 'steelnova'),
+            'section'         => __('Section', 'steelnova')
 		];
 		return $extra_type;
 	}
@@ -168,7 +168,7 @@ class Pxl_Hooks {
                     ),
                 ),
                 'labels'     => array(
-                    'add_new_item' => __('Add ', 'mytheme').ucwords($post_type),
+                    'add_new_item' => __('Add ', 'steelnova').ucwords($post_type),
                 ),
             );
         }
@@ -212,7 +212,7 @@ class Pxl_Hooks {
                         ),
                     ),
                     'labels'     => array(
-                        'add_new_item' => __('Add ', 'mytheme').ucwords($post_type). __(' Category', 'mytheme'),
+                        'add_new_item' => __('Add ', 'steelnova').ucwords($post_type). __(' Category', 'steelnova'),
                     ),
                 );
             }
@@ -222,8 +222,8 @@ class Pxl_Hooks {
             $taxonomies['career_tag'] = array(
                 'status'     => true,
                 'post_type'  => array('career'), 
-                'taxonomy'   => esc_html__('Career Tag', 'mytheme'), 
-                'taxonomies' => esc_html__('Tags', 'mytheme'), 
+                'taxonomy'   => esc_html__('Career Tag', 'steelnova'), 
+                'taxonomies' => esc_html__('Tags', 'steelnova'), 
                 'args'       => array(
                     'hierarchical'      => true,
                     'show_admin_column' => true,  
@@ -233,7 +233,7 @@ class Pxl_Hooks {
                     ),
                 ),
                 'labels'     => array(
-                    'menu_name' => esc_html__('Career Tags', 'mytheme'),
+                    'menu_name' => esc_html__('Career Tags', 'steelnova'),
                 ),
             );
         }

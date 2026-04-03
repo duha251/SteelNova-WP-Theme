@@ -2,14 +2,14 @@
 /**
  * Handles front-end scripts and styles.
  *
- * @package    Mytheme
+ * @package    SteelNova
  * @subpackage Inc\Frontend
  * @author     Case Theme
  */
 
-namespace Mytheme\Inc\Frontend;
+namespace SteelNova\Inc\Frontend;
 
-use Mytheme\Inc\Core\Option;
+use SteelNova\Inc\Core\Option;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -43,16 +43,16 @@ class Enqueue {
 	 * Enqueues theme stylesheets.
 	 */
     public function enqueue_styles() {
-        wp_enqueue_style('mytheme-style', get_template_directory_uri() . '/assets/css/style.min.css', [], $this->version);
-        wp_add_inline_style( 'mytheme-style', $this->render_inline_styles() );
-        wp_enqueue_style('mytheme-wp-block-style', get_template_directory_uri() . '/assets/css/wp-block.css', [], $this->version);
+        wp_enqueue_style('steelnova-style', get_template_directory_uri() . '/assets/css/style.min.css', [], $this->version);
+        wp_add_inline_style( 'steelnova-style', $this->render_inline_styles() );
+        wp_enqueue_style('steelnova-wp-block-style', get_template_directory_uri() . '/assets/css/wp-block.css', [], $this->version);
 
-        // wp_enqueue_style('mytheme-custom-style', get_template_directory_uri() . '/assets/css/custom-style.css', $this->version);
+        // wp_enqueue_style('steelnova-custom-style', get_template_directory_uri() . '/assets/css/custom-style.css', $this->version);
 
         // // Enquence Google Font
         $google_font_url = $this->get_google_fonts_url();
         if ( ! empty( $google_font_url ) ) {
-            wp_enqueue_style( 'mytheme-google-fonts', $google_font_url, [], $this->version );
+            wp_enqueue_style( 'steelnova-google-fonts', $google_font_url, [], $this->version );
         }
     }
 
@@ -63,7 +63,7 @@ class Enqueue {
 	 */
 	public function get_google_fonts_url() {
 		$fonts = [];
-		if ( 'off' !== _x( 'on', 'DM Sans font: on or off', 'mytheme' ) ) {
+		if ( 'off' !== _x( 'on', 'DM Sans font: on or off', 'steelnova' ) ) {
 			$fonts[] = 'DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000';
 		}
 		if ( empty( $fonts ) ) {
@@ -149,7 +149,7 @@ class Enqueue {
 
 	/**
 	 * Private helper to get style configurations.
-	 * This is the equivalent of the old mytheme_global_style_config().
+	 * This is the equivalent of the old steelnova_global_style_config().
 	 *
 	 * @param string $key The configuration key to retrieve.
 	 * @return array The configuration array.

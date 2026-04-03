@@ -27,7 +27,7 @@
 	    array_push(
 	        $system_info,
 	        [
-	            'title' => esc_attr__( 'Upload max file size (64MB)', 'mytheme' ),
+	            'title' => esc_attr__( 'Upload max file size (64MB)', 'steelnova' ),
 	            'status' => $upload_max_size_to_byte > 67108864
 	        ]
 	    );
@@ -40,7 +40,7 @@
 	    array_push(
 	        $system_info,
 	        [
-	            'title' => esc_attr__( 'Memory limit (256MB)', 'mytheme' ),
+	            'title' => esc_attr__( 'Memory limit (256MB)', 'steelnova' ),
 	            'status' => $memory_limit_to_byte >= 268435456,
 	        ]
 	    );
@@ -53,7 +53,7 @@
 	    array_push(
 	        $system_info,
 	        [
-	            'title' => esc_attr__( 'Post max size (64MB)', 'mytheme' ),
+	            'title' => esc_attr__( 'Post max size (64MB)', 'steelnova' ),
 	            'status' => $post_maxsite_to_byte >= 67108864,
 	        ]
 	    );
@@ -62,7 +62,7 @@
 	    array_push(
 	        $system_info,
 	        [
-	            'title' => esc_attr__( 'Max Execution Time (6s)', 'mytheme' ),
+	            'title' => esc_attr__( 'Max Execution Time (6s)', 'steelnova' ),
 	            'status' => ini_get( 'max_execution_time' ) >= 360,
 	        ]
 	    );
@@ -71,7 +71,7 @@
 	    array_push(
 	        $system_info,
 	        [
-	            'title' => esc_attr__( 'Max input vars (3000)', 'mytheme' ),
+	            'title' => esc_attr__( 'Max input vars (3000)', 'steelnova' ),
 	            'status' => ini_get( 'max_input_vars' ) >= 3000,
 	        ]
 	    );
@@ -85,9 +85,9 @@
 		<div class="pxl-iconbox">
 			<div class="pxl-icon-container">
 				<?php if ( $item['status'] ) : ?>
-					<img src="<?php echo esc_url(get_template_directory_uri() . '/inc/admin/assets/img/check.png'); ?>" alt="<?php esc_attr_e( 'Check', 'mytheme' ); ?>">
+					<img src="<?php echo esc_url(get_template_directory_uri() . '/inc/admin/assets/img/check.png'); ?>" alt="<?php esc_attr_e( 'Check', 'steelnova' ); ?>">
 				<?php else : ?>
-					<img src="<?php echo esc_url(get_template_directory_uri() . '/inc/admin/assets/img/crossed.png'); ?>" alt="<?php esc_attr_e( 'Un Check', 'mytheme' ); ?>">
+					<img src="<?php echo esc_url(get_template_directory_uri() . '/inc/admin/assets/img/crossed.png'); ?>" alt="<?php esc_attr_e( 'Un Check', 'steelnova' ); ?>">
 				<?php endif; ?>
 			</div>
 			<div class="pxl-iconbox-contents">

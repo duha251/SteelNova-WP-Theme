@@ -13,10 +13,6 @@
   box-sizing: inherit;
 }
 
-html {
-  box-sizing: border-box;
-}
-
 :root {
   --mt-box-size: 30px;
   --mt-background-color: var(--mt-primary-color);
@@ -138,7 +134,7 @@ svg:not(.svg-origintal) path[fill]:not([fill^="url("]), svg:not(.svg-origintal) 
   fill: currentColor;
   fill-opacity: 1;
 }
-svg:not(.svg-origintal) path[stroke^="#"], svg:not(.svg-origintal) path[stroke=black], svg:not(.svg-origintal) path[stroke=white] {
+svg:not(.svg-origintal) path[stroke^="#"] {
   stroke: currentColor;
 }
 
@@ -161,6 +157,12 @@ img {
   -o-object-fit: cover;
      object-fit: cover;
   height: auto;
+}
+
+.box-icon {
+  display: inline-flex;
+  gap: center;
+  align-items: center;
 }
 
 /** Layout */

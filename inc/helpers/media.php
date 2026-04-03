@@ -3,7 +3,7 @@
 /**
  * Crop an image from the Media Library to a custom size.
  */
-function mytheme_crop_image( $attachment_id, $width = null, $height = null, $crop = true) {
+function steelnova_crop_image( $attachment_id, $width = null, $height = null, $crop = true) {
     if (!$width || !$height) {
         return wp_get_attachment_url($attachment_id);
     }
@@ -51,8 +51,8 @@ function mytheme_crop_image( $attachment_id, $width = null, $height = null, $cro
 /**
  * Get image by size
  */
-function mytheme_get_image_by_size($attachment_id, $width = null, $height = null, $attrs = []) {
-    $image_url = $attachment_id === 0 ? \Elementor\Utils::get_placeholder_image_src() : mytheme_crop_image($attachment_id, $width, $height, true);
+function steelnova_get_image_by_size($attachment_id, $width = null, $height = null, $attrs = []) {
+    $image_url = $attachment_id === 0 ? \Elementor\Utils::get_placeholder_image_src() : steelnova_crop_image($attachment_id, $width, $height, true);
     if (!$image_url) {
         return '';
     }        
@@ -78,6 +78,6 @@ function mytheme_get_image_by_size($attachment_id, $width = null, $height = null
 /**
  * Display image by size
  */
-function mytheme_the_image_by_size($attachment_id, $width = null, $height = null, $attrs = []) {
-    echo wp_kses_post( mytheme_get_image_by_size($attachment_id, $width, $height, $attrs));
+function steelnova_the_image_by_size($attachment_id, $width = null, $height = null, $attrs = []) {
+    echo wp_kses_post( steelnova_get_image_by_size($attachment_id, $width, $height, $attrs));
 }

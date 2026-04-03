@@ -1,15 +1,15 @@
 <?php
-namespace Mytheme\Inc\Frontend;
+namespace SteelNova\Inc\Frontend;
 
 /**
  * Frontend Layout
  *
  * Handles layout structure for frontend.
  *
- * @package Mytheme
+ * @package SteelNova
  */
 
-use Mytheme\Inc\Core\Option;
+use SteelNova\Inc\Core\Option;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,8 +21,8 @@ class Layout {
 
     public function __construct( Option $option_instance ) {
         $this->option = $option_instance;
-        add_action('mytheme_before_main_content', [$this, 'before_main_content_render']);
-        add_action('mytheme_after_main_content', [$this, 'after_main_content_render']);
+        add_action('steelnova_before_main_content', [$this, 'before_main_content_render']);
+        add_action('steelnova_after_main_content', [$this, 'after_main_content_render']);
     }
 
     public function before_main_content_render() {
@@ -58,7 +58,7 @@ class Layout {
         );
 
         if( ! $is_builder ) {
-            $logo = $this->option->get_theme_option('header_logo', ['url'=> get_template_directory_uri() . '/assets/img/site-logo.webp']);
+            $logo = $this->option->get_theme_option('header_logo', ['url'=> get_template_directory_uri() . '/assets/imgs/logo.webp']);
             $logo_html = (!empty($logo['url'])) 
                 ? sprintf(
                     '<a href="%1$s" title="%2$s" rel="home"><img src="%3$s" alt="%2$s"/></a>',
@@ -67,12 +67,12 @@ class Layout {
                     esc_url( $logo['url'] )
                 ) : '';
 
-            mytheme_get_template('template-parts/header/desktop/default',[
+            steelnova_get_template('template-parts/header/desktop/default',[
                 'logo_html' => $logo_html
             ]);
             return;
         }
-        mytheme_get_template('template-parts/header/desktop/builder', [
+        steelnova_get_template('template-parts/header/desktop/builder', [
             'layout_id' => $layout_id,
         ]);
     }
@@ -100,7 +100,7 @@ class Layout {
         );
 
         if( ! $is_builder ) {
-            $logo = $this->option->get_theme_option('header_mobile_logo', ['url'=> get_template_directory_uri() . '/assets/img/site-logo.webp']);
+            $logo = $this->option->get_theme_option('header_mobile_logo', ['url'=> get_template_directory_uri() . '/assets/imgs/logo.webp']);
             $logo_html = (!empty($logo['url'])) 
                 ? sprintf(
                     '<a href="%1$s" title="%2$s" rel="home"><img src="%3$s" alt="%2$s"/></a>',
@@ -109,12 +109,12 @@ class Layout {
                     esc_url( $logo['url'] )
                 ) : '';
 
-            mytheme_get_template('template-parts/header/mobile/default',[
+            steelnova_get_template('template-parts/header/mobile/default',[
                 'logo_html' => $logo_html
             ]);
             return;
         }
-        mytheme_get_template('template-parts/header/mo/builder', [
+        steelnova_get_template('template-parts/header/mo/builder', [
             'layout_id' => $layout_id,
         ]);
     }
@@ -142,13 +142,13 @@ class Layout {
         );
 
         if( ! $is_builder ) {
-            mytheme_get_template('template-parts/hero/default',[
+            steelnova_get_template('template-parts/hero/default',[
                 'title' => 'Okokokok'
             ]);
             return;
         }
 
-        mytheme_get_template('template-parts/hero/builder', [
+        steelnova_get_template('template-parts/hero/builder', [
             'layout_id' => $layout_id,
         ]);
     }
@@ -174,11 +174,11 @@ class Layout {
         );
 
         if( ! $is_builder ) {
-            mytheme_get_template('template-parts/footer/default', []);
+            steelnova_get_template('template-parts/footer/default', []);
             return;
         }
 
-        mytheme_get_template('template-parts/footer/builder', [
+        steelnova_get_template('template-parts/footer/builder', [
             'layout_id' => $layout_id,
         ]);
     }

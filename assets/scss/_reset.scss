@@ -12,11 +12,6 @@
 	box-sizing: inherit;
 }
 
-
-html {
-	box-sizing: border-box;
-}
-
 :root {
     --mt-box-size: 30px;
     --mt-background-color: var(--mt-primary-color);
@@ -134,7 +129,7 @@ svg:not(.svg-origintal) {
         fill: currentColor;
         fill-opacity: 1;
     }
-    path[stroke^="#"], path[stroke="black"], path[stroke="white"] {
+    path[stroke^="#"] {
         stroke: currentColor;
     }
 

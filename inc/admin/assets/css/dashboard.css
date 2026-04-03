@@ -2299,8 +2299,8 @@ body.exiting .merlin__content--transition {
     margin-top: 0;
 }
 
-.mytheme_page_pxlart-svgs-manager svg path[fill]:not([fill^="url("]),
-.mytheme_page_pxlart-svgs-manager svg rect {
+.steelnova_page_pxlart-svgs-manager svg path[fill]:not([fill^="url("]),
+.steelnova_page_pxlart-svgs-manager svg rect {
     fill: currentColor;
     fill-opacity: 1;
 }
@@ -2322,3 +2322,11 @@ body.exiting .merlin__content--transition {
 .redux-field-container .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 40px;
 } */
+
+.redux-container .redux-main .redux-field-container {
+    padding: 20px 0 !important;
+}
+
+.postbox .redux_field_th {
+    padding: 20px 10px 20px 0 !important;
+}

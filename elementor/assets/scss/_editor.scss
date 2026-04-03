@@ -1,0 +1,31 @@
+@use '../../../assets/scss/core' as *;
+
+.elementor-editor-active {
+
+    .e-con.e-parent {
+        --container-default-padding-right: 0;
+        --container-default-padding-left: 0;
+    }
+
+    .elementor-element[data-nesting-level="0"] {
+        --container-default-padding-right: 15px;
+        --container-default-padding-left: 15px;
+    }
+
+    .header, .footer {
+        pointer-events: none;
+        opacity: 1;
+    }
+
+    .wow, [data-text-animation], [data-gsap-animation], [data-scrolling-effects] {
+        visibility: visible;
+    }
+    
+    #headerSticky {
+        display: none;
+    }
+
+    &.single-pxl-template {
+        background-color: #999;
+    }
+}

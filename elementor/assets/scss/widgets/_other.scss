@@ -1,0 +1,7 @@
+@use '../../../../assets/scss/core' as *;
+
+
+// Icon Text
+.icon-text {
+    @include d-flex(15px, center);
+}

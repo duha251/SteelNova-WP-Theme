@@ -17,7 +17,7 @@
  * To define imports, you just have to add the following code structure,
  * with your own values to your theme (using the 'merlin_import_files' filter).
  */
-function mytheme_merlin_import_files() {
+function steelnova_merlin_import_files() {
 	return array(
 		array(
 			'import_file_name'             => 'Demo Import 1',
@@ -31,9 +31,9 @@ function mytheme_merlin_import_files() {
 				),
 			),
 			'import_preview_image_url'     => get_template_directory() . '/merlin/preview_import_image1.jpg',
-			'import_notice'                => esc_html__( 'A special note for this import.', 'mytheme' ),
+			'import_notice'                => esc_html__( 'A special note for this import.', 'steelnova' ),
 			'preview_url'                  => '//www.example.com/my-demo-1',
 		)
 	);
 }
-add_filter( 'merlin_import_files', 'mytheme_merlin_import_files' );
+add_filter( 'merlin_import_files', 'steelnova_merlin_import_files' );

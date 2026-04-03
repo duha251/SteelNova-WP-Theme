@@ -1,7 +1,7 @@
 <?php
 
-if ( ! function_exists( 'mytheme_debug' ) ) {
-    function mytheme_debug( $data, $die = false, $label = null ) {
+if ( ! function_exists( 'steelnova_debug' ) ) {
+    function steelnova_debug( $data, $die = false, $label = null ) {
         echo '<pre style="
             background: #1e1e1e;
             color: #dcdcdc;
@@ -31,8 +31,8 @@ if ( ! function_exists( 'mytheme_debug' ) ) {
     }
 }
 
-if ( ! function_exists( 'mytheme_get_template' ) ) {
-    function mytheme_get_template( $slug, $args = [] ) {
+if ( ! function_exists( 'steelnova_get_template' ) ) {
+    function steelnova_get_template( $slug, $args = [] ) {
         $template_file = $slug . '.php';
         $template_path = locate_template( $template_file );
 
@@ -45,5 +45,14 @@ if ( ! function_exists( 'mytheme_get_template' ) ) {
         }
 
         include $template_path;
+    }
+}
+
+if( ! function_exists( 'steelnova_print_elementor_icon' ) ) {
+    function steelnova_print_elementor_icon( $icon_attrs = [] ) {
+        if( ! did_action( 'elementor/loaded' ) || empty( $icon_attrs ) ) {
+            return '';
+        }
+        \Elementor\Icons_Manager::render_icon( $icon_attrs, [ 'aria-hidden' => 'true' ] );
     }
 }

@@ -415,7 +415,7 @@ class Merlin {
 		wp_enqueue_script( 'pxlart-admin', get_template_directory_uri() . '/inc/admin/assets/js/admin.js', array( 'jquery'), false, true );
 
 		$texts = array(
-			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', 'mytheme' ),
+			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', 'steelnova' ),
 		);
 
 		// Localize the javascript.
@@ -543,7 +543,7 @@ class Merlin {
 
 		$this->steps = array(
 			'welcome' => array(
-				'name'    => esc_html__( 'Welcome', 'mytheme' ),
+				'name'    => esc_html__( 'Welcome', 'steelnova' ),
 				'view'    => array( $this, 'welcome' ),
 				'handler' => array( $this, 'welcome_handler' ),
 			),
@@ -551,7 +551,7 @@ class Merlin {
 
 		if ( $this->license_step_enabled ) {
 			$this->steps['license'] = array(
-				'name' => esc_html__( 'License', 'mytheme' ),
+				'name' => esc_html__( 'License', 'steelnova' ),
 				'view' => array( $this, 'license' ),
 			);
 		}
@@ -559,7 +559,7 @@ class Merlin {
 		// Show the plugin importer, only if TGMPA is included.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			$this->steps['plugins'] = array(
-				'name' => esc_html__( 'Plugins', 'mytheme' ),
+				'name' => esc_html__( 'Plugins', 'steelnova' ),
 				'view' => array( $this, 'plugins' ),
 			);
 		}
@@ -567,12 +567,12 @@ class Merlin {
 		// Show the content importer, only if there's demo content added.
 		 
 		$this->steps['content'] = array(
-			'name' => esc_html__( 'Content', 'mytheme' ),
+			'name' => esc_html__( 'Content', 'steelnova' ),
 			'view' => array( $this, 'content' ),
 		);
 
 		$this->steps['ready'] = array(
-			'name' => esc_html__( 'Ready', 'mytheme' ),
+			'name' => esc_html__( 'Ready', 'steelnova' ),
 			'view' => array( $this, 'ready' ),
 		);
 
@@ -729,7 +729,7 @@ class Merlin {
 		$next      = $strings['btn-next']; 
 		$paragraph = ! $is_theme_registered ? $strings['license%s'] : $strings['license-success%s'];
 		$install   = $strings['btn-license-activate']; 
-		$register = new Mytheme_Register;
+		$register = new SteelNova_Register;
 		?>
 
 		<?php 
@@ -872,8 +872,8 @@ class Merlin {
 								<span><?php echo esc_html( $plugin['name'] ); ?></span>
 
 								<span class="badge">
-									<span class="hint--top" aria-label="<?php esc_html_e( 'Required', 'mytheme' ); ?>">
-										<?php esc_html_e( 'Required', 'mytheme' ); ?>
+									<span class="hint--top" aria-label="<?php esc_html_e( 'Required', 'steelnova' ); ?>">
+										<?php esc_html_e( 'Required', 'steelnova' ); ?>
 									</span>
 								</span>
 							</label>
@@ -935,7 +935,7 @@ class Merlin {
 
 		<p><?php echo esc_html( $paragraph ); ?></p>
 
-		<?php mytheme_get_template( 'inc/admin/views/admin-demos' ); ?>
+		<?php steelnova_get_template( 'inc/admin/views/admin-demos' ); ?>
  
 		<footer class="merlin__content__footer" style="margin-top: 1em">
 
@@ -1086,7 +1086,7 @@ class Merlin {
 					'_wpnonce'      => wp_create_nonce( 'bulk-plugins' ),
 					'action'        => 'tgmpa-bulk-activate',
 					'action2'       => - 1,
-					'message'       => esc_html__( 'Activating', 'mytheme' ),
+					'message'       => esc_html__( 'Activating', 'steelnova' ),
 				);
 				break;
 			}
@@ -1102,7 +1102,7 @@ class Merlin {
 					'_wpnonce'      => wp_create_nonce( 'bulk-plugins' ),
 					'action'        => 'tgmpa-bulk-update',
 					'action2'       => - 1,
-					'message'       => esc_html__( 'Updating', 'mytheme' ),
+					'message'       => esc_html__( 'Updating', 'steelnova' ),
 				);
 				break;
 			}
@@ -1118,7 +1118,7 @@ class Merlin {
 					'_wpnonce'      => wp_create_nonce( 'bulk-plugins' ),
 					'action'        => 'tgmpa-bulk-install',
 					'action2'       => - 1,
-					'message'       => esc_html__( 'Installing', 'mytheme' ),
+					'message'       => esc_html__( 'Installing', 'steelnova' ),
 				);
 				break;
 			}
@@ -1126,13 +1126,13 @@ class Merlin {
  
 		if ( $json ) {
 			$json['hash']    = md5( serialize( $json ) );
-			$json['message'] = esc_html__( 'Installing', 'mytheme' );
+			$json['message'] = esc_html__( 'Installing', 'steelnova' );
 			wp_send_json( $json );
 		} else {
 			wp_send_json(
 				array(
 					'done'    => 1,
-					'message' => esc_html__( 'Success', 'mytheme' ),
+					'message' => esc_html__( 'Success', 'steelnova' ),
 				)
 			);
 		}

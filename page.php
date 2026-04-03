@@ -2,9 +2,9 @@
 /**
  * The template for displaying all pages
  *
- * @package Mytheme
+ * @package SteelNova
  * @author Case-Themes
- * @link https://mytheme.casethemes.net
+ * @link https://steelnova.casethemes.net
  * @since 1.0.0
  */
 ?>

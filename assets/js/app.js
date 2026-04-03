@@ -1,18 +1,33 @@
-import * as Layout from "./ui/layout.js";
-import * as Events from "./ui/events.js";
-import * as Effects from "./ui/effects.js";
+import { ready, onLoad, onResize } from "./core/dom.js";
+import { debounce, raf } from "./core/utils.js";
 
-document.addEventListener('DOMContentLoaded', function () {
-    Layout.setMainMinHeight();
-    Events.toggleDrawer();
+import { initDrawer } from "./components/drawer.js";
+
+import { setMainMinHeight } from "./components/layout.js";
+
+const initApp = (scope = document) => {
+    setMainMinHeight();
+};
+
+
+const refreshApp = (scope = document) => {
+    raf(() => {
+        setMainMinHeight();
+    });
+};
+
+ready(() => {
+    initApp(document);
+    initDrawer();
+});
+
+onLoad(() => {
+    refreshApp(document);
 });
 
 
-// let ready = (callback) => {
-//   if (document.readyState != "loading") callback();
-//   else document.addEventListener("DOMContentLoaded", callback);
-// }
-
-// ready(() => { 
-//   /* Làm gì đó khi DOM đã được tải hết */
-// });
+onResize(() => {    
+    debounce(() => { 
+        refreshApp(document);
+    }, 150)
+});

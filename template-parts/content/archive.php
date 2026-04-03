@@ -29,7 +29,7 @@ $author_url = get_author_posts_url( $author_id );
                 <?php echo wp_trim_words( $post->post_excerpt, 20, $more = null); ?>
             </p>
             <div class="post-author">
-                <?php echo esc_html__( 'By', 'mytheme' ); ?>
+                <?php echo esc_html__( 'By', 'steelnova' ); ?>
                 <a href="<?php echo esc_url( $author_url ); ?>">
                     <?php echo esc_html( $author_name ); ?>
                 </a>

@@ -1,13 +1,13 @@
 <?php
 /**
-* The Mytheme_Admin_Page base class
+* The SteelNova_Admin_Page base class
 */
 
 if( !defined( 'ABSPATH' ) )
 	exit; 
 
 
-class Mytheme_Admin_Page {
+class SteelNova_Admin_Page {
 
     public $parent = null;
 

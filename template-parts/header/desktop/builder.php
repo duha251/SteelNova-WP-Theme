@@ -2,7 +2,7 @@
 /**
  * Template part for displaying header builder by Elementor.
  *
- * @package Mytheme
+ * @package SteelNova
  */
 // HTML
 if($layout_id <= 0) {

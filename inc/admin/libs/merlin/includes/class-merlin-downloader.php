@@ -47,7 +47,7 @@ class Merlin_Downloader {
 			return $this->download_directory_path . $filename;
 		}
 
-		Merlin_Logger::get_instance()->error( esc_html__( 'The file was not able to save to disk, while trying to download it', 'mytheme' ), array( 'url' => $url, 'filename' => $filename ) );
+		Merlin_Logger::get_instance()->error( esc_html__( 'The file was not able to save to disk, while trying to download it', 'steelnova' ), array( 'url' => $url, 'filename' => $filename ) );
 
 		return false;
 	}
@@ -64,7 +64,7 @@ class Merlin_Downloader {
 		if ( empty( $url ) ) {
 			return new \WP_Error(
 				'missing_url',
-				esc_html__( 'Missing URL for downloading a file!', 'mytheme' )
+				esc_html__( 'Missing URL for downloading a file!', 'steelnova' )
 			);
 		}
 
@@ -82,7 +82,7 @@ class Merlin_Downloader {
 			return new \WP_Error(
 				'download_error',
 				sprintf(
-					__( 'An error occurred while fetching file from: %1$s%2$s%3$s!%4$sReason: %5$s - %6$s.', 'mytheme' ),
+					__( 'An error occurred while fetching file from: %1$s%2$s%3$s!%4$sReason: %5$s - %6$s.', 'steelnova' ),
 					'<strong>',
 					$url,
 					'</strong>',

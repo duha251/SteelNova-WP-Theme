@@ -132,7 +132,7 @@ class WXRImporter extends \WP_Importer {
 		}
 
 		if ( ! $status ) {
-			return new WP_Error( 'wxr_importer.cannot_parse', esc_html__( 'Could not open the file for parsing', 'mytheme' ) );
+			return new WP_Error( 'wxr_importer.cannot_parse', esc_html__( 'Could not open the file for parsing', 'steelnova' ) );
 		}
 
 		return $reader;
@@ -170,7 +170,7 @@ class WXRImporter extends \WP_Importer {
 
 					if ( version_compare( $this->version, self::MAX_WXR_VERSION, '>' ) ) {
 						$this->logger->warning( sprintf(
-							esc_html__( 'This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating.', 'mytheme' ),
+							esc_html__( 'This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating.', 'steelnova' ),
 							$this->version,
 							self::MAX_WXR_VERSION
 						) );
@@ -288,7 +288,7 @@ class WXRImporter extends \WP_Importer {
 
 					if ( version_compare( $this->version, self::MAX_WXR_VERSION, '>' ) ) {
 						$this->logger->warning( sprintf(
-							esc_html__( 'This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating.', 'mytheme' ),
+							esc_html__( 'This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating.', 'steelnova' ),
 							$this->version,
 							self::MAX_WXR_VERSION
 						) );
@@ -361,7 +361,7 @@ class WXRImporter extends \WP_Importer {
 
 					if ( version_compare( $this->version, self::MAX_WXR_VERSION, '>' ) ) {
 						$this->logger->warning( sprintf(
-							esc_html__( 'This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating.', 'mytheme' ),
+							esc_html__( 'This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating.', 'steelnova' ),
 							$this->version,
 							self::MAX_WXR_VERSION
 						) );
@@ -511,7 +511,7 @@ class WXRImporter extends \WP_Importer {
 	 */
 	protected function import_start( $file ) {
 		if ( ! is_file( $file ) ) {
-			return new WP_Error( 'wxr_importer.file_missing', esc_html__( 'The file does not exist, please try again.', 'mytheme' ) );
+			return new WP_Error( 'wxr_importer.file_missing', esc_html__( 'The file does not exist, please try again.', 'steelnova' ) );
 		}
 
 		// Suspend bunches of stuff in WP core
@@ -574,7 +574,7 @@ class WXRImporter extends \WP_Importer {
 	public function set_user_mapping( $mapping ) {
 		foreach ( $mapping as $map ) {
 			if ( empty( $map['old_slug'] ) || empty( $map['old_id'] ) || empty( $map['new_id'] ) ) {
-				$this->logger->warning( esc_html__( 'Invalid author mapping', 'mytheme' ) );
+				$this->logger->warning( esc_html__( 'Invalid author mapping', 'steelnova' ) );
 				$this->logger->debug( var_export( $map, true ) );
 				continue;
 			}
@@ -767,7 +767,7 @@ class WXRImporter extends \WP_Importer {
 		// Is this type even valid?
 		if ( ! $post_type_object ) {
 			$this->logger->warning( sprintf(
-				esc_html__( 'Failed to import "%s": Invalid post type %s', 'mytheme' ),
+				esc_html__( 'Failed to import "%s": Invalid post type %s', 'steelnova' ),
 				$data['post_title'],
 				$data['post_type']
 			) );
@@ -777,7 +777,7 @@ class WXRImporter extends \WP_Importer {
 		$post_exists = $this->post_exists( $data );
 		if ( $post_exists ) {
 			$this->logger->info( sprintf(
-				esc_html__( '%s "%s" already exists.', 'mytheme' ),
+				esc_html__( '%s "%s" already exists.', 'steelnova' ),
 				$post_type_object->labels->singular_name,
 				$data['post_title']
 			) );
@@ -869,7 +869,7 @@ class WXRImporter extends \WP_Importer {
 
 		if ( is_wp_error( $post_id ) ) {
 			$this->logger->error( sprintf(
-				esc_html__( 'Failed to import "%s" (%s)', 'mytheme' ),
+				esc_html__( 'Failed to import "%s" (%s)', 'steelnova' ),
 				$data['post_title'],
 				$post_type_object->labels->singular_name
 			) );
@@ -901,12 +901,12 @@ class WXRImporter extends \WP_Importer {
 		$this->mark_post_exists( $data, $post_id );
 
 		$this->logger->info( sprintf(
-			esc_html__( 'Imported "%s" (%s)', 'mytheme' ),
+			esc_html__( 'Imported "%s" (%s)', 'steelnova' ),
 			$data['post_title'],
 			$post_type_object->labels->singular_name
 		) );
 		$this->logger->debug( sprintf(
-			esc_html__( 'Post %d remapped to %d', 'mytheme' ),
+			esc_html__( 'Post %d remapped to %d', 'steelnova' ),
 			$original_id,
 			$post_id
 		) );
@@ -946,7 +946,7 @@ class WXRImporter extends \WP_Importer {
 								$this->mapping['term'][ $key ] = $term_id;
 							} else {
 								$this->logger->warning( sprintf(
-									esc_html__( 'Failed to import term: %s - %s', 'mytheme' ),
+									esc_html__( 'Failed to import term: %s - %s', 'steelnova' ),
 									esc_html( $taxonomy ),
 									esc_html( $term['name'] )
 								) );
@@ -1091,7 +1091,7 @@ class WXRImporter extends \WP_Importer {
 
 		$info = wp_check_filetype( $upload['file'] );
 		if ( ! $info ) {
-			return new WP_Error( 'attachment_processing_error', esc_html__( 'Invalid file type', 'mytheme' ) );
+			return new WP_Error( 'attachment_processing_error', esc_html__( 'Invalid file type', 'steelnova' ) );
 		}
 
 		$post['post_mime_type'] = $info['type'];
@@ -1590,7 +1590,7 @@ class WXRImporter extends \WP_Importer {
 		$user_id = wp_insert_user( wp_slash( $userdata ) );
 		if ( is_wp_error( $user_id ) ) {
 			$this->logger->error( sprintf(
-				esc_html__( 'Failed to import user "%s"', 'mytheme' ),
+				esc_html__( 'Failed to import user "%s"', 'steelnova' ),
 				$userdata['user_login']
 			) );
 			$this->logger->debug( $user_id->get_error_message() );
@@ -1611,11 +1611,11 @@ class WXRImporter extends \WP_Importer {
 		$this->mapping['user_slug'][ $original_slug ] = $user_id;
 
 		$this->logger->info( sprintf(
-			esc_html__( 'Imported user "%s"', 'mytheme' ),
+			esc_html__( 'Imported user "%s"', 'steelnova' ),
 			$userdata['user_login']
 		) );
 		$this->logger->debug( sprintf(
-			esc_html__( 'User %d remapped to %d', 'mytheme' ),
+			esc_html__( 'User %d remapped to %d', 'steelnova' ),
 			$original_id,
 			$user_id
 		) );
@@ -1780,7 +1780,7 @@ class WXRImporter extends \WP_Importer {
 		$result = wp_insert_term( $data['name'], $data['taxonomy'], $termdata );
 		if ( is_wp_error( $result ) ) {
 			$this->logger->warning( sprintf(
-				esc_html__( 'Failed to import %s %s', 'mytheme' ),
+				esc_html__( 'Failed to import %s %s', 'steelnova' ),
 				$data['taxonomy'],
 				$data['name']
 			) );
@@ -1819,12 +1819,12 @@ class WXRImporter extends \WP_Importer {
 		}
 
 		$this->logger->info( sprintf(
-			esc_html__( 'Imported "%s" (%s)', 'mytheme' ),
+			esc_html__( 'Imported "%s" (%s)', 'steelnova' ),
 			$data['name'],
 			$data['taxonomy']
 		) );
 		$this->logger->debug( sprintf(
-			esc_html__( 'Term %d remapped to %d', 'mytheme' ),
+			esc_html__( 'Term %d remapped to %d', 'steelnova' ),
 			$original_id,
 			$term_id
 		) );
@@ -1883,7 +1883,7 @@ class WXRImporter extends \WP_Importer {
 
 				if ( is_wp_error( $result ) ) {
 					$this->logger->warning( sprintf(
-						esc_html__( 'Failed to add metakey: %s, metavalue: %s to term_id: %d', 'mytheme' ),
+						esc_html__( 'Failed to add metakey: %s, metavalue: %s to term_id: %d', 'steelnova' ),
 						$key,
 						$value,
 						$term_id
@@ -1892,7 +1892,7 @@ class WXRImporter extends \WP_Importer {
 				}
 				else {
 					$this->logger->debug( sprintf(
-						esc_html__( 'Meta for term_id %d : %s => %s ; successfully added!', 'mytheme' ),
+						esc_html__( 'Meta for term_id %d : %s => %s ; successfully added!', 'steelnova' ),
 						$term_id,
 						$key,
 						$value
@@ -1944,7 +1944,7 @@ class WXRImporter extends \WP_Importer {
 			return new WP_Error(
 				'import_file_error',
 				sprintf(
-					esc_html__( 'Remote server returned %1$d %2$s for %3$s', 'mytheme' ),
+					esc_html__( 'Remote server returned %1$d %2$s for %3$s', 'steelnova' ),
 					$code,
 					get_status_header_desc( $code ),
 					$url
@@ -1961,18 +1961,18 @@ class WXRImporter extends \WP_Importer {
 		//
 		// if ( isset( $headers['content-length'] ) && $filesize !== (int) $headers['content-length'] ) {
 		// 	unlink( $upload['file'] );
-		// 	return new WP_Error( 'import_file_error', esc_html__( 'Remote file is incorrect size', 'mytheme' ) );
+		// 	return new WP_Error( 'import_file_error', esc_html__( 'Remote file is incorrect size', 'steelnova' ) );
 		// }
 
 		if ( 0 === $filesize ) {
 			unlink( $upload['file'] );
-			return new WP_Error( 'import_file_error', esc_html__( 'Zero size file downloaded', 'mytheme' ) );
+			return new WP_Error( 'import_file_error', esc_html__( 'Zero size file downloaded', 'steelnova' ) );
 		}
 
 		$max_size = (int) $this->max_attachment_size();
 		if ( ! empty( $max_size ) && $filesize > $max_size ) {
 			unlink( $upload['file'] );
-			$message = sprintf( esc_html__( 'Remote file is too large, limit is %s', 'mytheme' ), size_format( $max_size ) );
+			$message = sprintf( esc_html__( 'Remote file is too large, limit is %s', 'steelnova' ), size_format( $max_size ) );
 			return new WP_Error( 'import_file_error', $message );
 		}
 
@@ -1997,7 +1997,7 @@ class WXRImporter extends \WP_Importer {
 			$this->logger->debug( sprintf(
 				// Note: title intentionally not used to skip extra processing
 				// for when debug logging is off
-				esc_html__( 'Running post-processing for post %d', 'mytheme' ),
+				esc_html__( 'Running post-processing for post %d', 'steelnova' ),
 				$post_id
 			) );
 
@@ -2010,12 +2010,12 @@ class WXRImporter extends \WP_Importer {
 					$data['post_parent'] = $this->mapping['post'][ $parent_id ];
 				} else {
 					$this->logger->warning( sprintf(
-						esc_html__( 'Could not find the post parent for "%s" (post #%d)', 'mytheme' ),
+						esc_html__( 'Could not find the post parent for "%s" (post #%d)', 'steelnova' ),
 						get_the_title( $post_id ),
 						$post_id
 					) );
 					$this->logger->debug( sprintf(
-						esc_html__( 'Post %d was imported with parent %d, but could not be found', 'mytheme' ),
+						esc_html__( 'Post %d was imported with parent %d, but could not be found', 'steelnova' ),
 						$post_id,
 						$parent_id
 					) );
@@ -2029,12 +2029,12 @@ class WXRImporter extends \WP_Importer {
 					$data['post_author'] = $this->mapping['user_slug'][ $author_slug ];
 				} else {
 					$this->logger->warning( sprintf(
-						esc_html__( 'Could not find the author for "%s" (post #%d)', 'mytheme' ),
+						esc_html__( 'Could not find the author for "%s" (post #%d)', 'steelnova' ),
 						get_the_title( $post_id ),
 						$post_id
 					) );
 					$this->logger->debug( sprintf(
-						esc_html__( 'Post %d was imported with author "%s", but could not be found', 'mytheme' ),
+						esc_html__( 'Post %d was imported with author "%s", but could not be found', 'steelnova' ),
 						$post_id,
 						$author_slug
 					) );
@@ -2060,7 +2060,7 @@ class WXRImporter extends \WP_Importer {
 			// Do we have updates to make?
 			if ( empty( $data ) ) {
 				$this->logger->debug( sprintf(
-					esc_html__( 'Post %d was marked for post-processing, but none was required.', 'mytheme' ),
+					esc_html__( 'Post %d was marked for post-processing, but none was required.', 'steelnova' ),
 					$post_id
 				) );
 				continue;
@@ -2071,7 +2071,7 @@ class WXRImporter extends \WP_Importer {
 			$result = wp_update_post( $data, true );
 			if ( is_wp_error( $result ) ) {
 				$this->logger->warning( sprintf(
-					esc_html__( 'Could not update "%s" (post #%d) with mapped data', 'mytheme' ),
+					esc_html__( 'Could not update "%s" (post #%d) with mapped data', 'steelnova' ),
 					get_the_title( $post_id ),
 					$post_id
 				) );
@@ -2116,12 +2116,12 @@ class WXRImporter extends \WP_Importer {
 			update_post_meta( $post_id, '_menu_item_object_id', wp_slash( $menu_object ) );
 		} else {
 			$this->logger->warning( sprintf(
-				esc_html__( 'Could not find the menu object for "%s" (post #%d)', 'mytheme' ),
+				esc_html__( 'Could not find the menu object for "%s" (post #%d)', 'steelnova' ),
 				get_the_title( $post_id ),
 				$post_id
 			) );
 			$this->logger->debug( sprintf(
-				esc_html__( 'Post %d was imported with object "%d" of type "%s", but could not be found', 'mytheme' ),
+				esc_html__( 'Post %d was imported with object "%d" of type "%s", but could not be found', 'steelnova' ),
 				$post_id,
 				$menu_object_id,
 				$menu_item_type
@@ -2143,11 +2143,11 @@ class WXRImporter extends \WP_Importer {
 					$data['comment_parent'] = $this->mapping['comment'][ $parent_id ];
 				} else {
 					$this->logger->warning( sprintf(
-						esc_html__( 'Could not find the comment parent for comment #%d', 'mytheme' ),
+						esc_html__( 'Could not find the comment parent for comment #%d', 'steelnova' ),
 						$comment_id
 					) );
 					$this->logger->debug( sprintf(
-						esc_html__( 'Comment %d was imported with parent %d, but could not be found', 'mytheme' ),
+						esc_html__( 'Comment %d was imported with parent %d, but could not be found', 'steelnova' ),
 						$comment_id,
 						$parent_id
 					) );
@@ -2161,11 +2161,11 @@ class WXRImporter extends \WP_Importer {
 					$data['user_id'] = $this->mapping['user'][ $author_id ];
 				} else {
 					$this->logger->warning( sprintf(
-						esc_html__( 'Could not find the author for comment #%d', 'mytheme' ),
+						esc_html__( 'Could not find the author for comment #%d', 'steelnova' ),
 						$comment_id
 					) );
 					$this->logger->debug( sprintf(
-						esc_html__( 'Comment %d was imported with author %d, but could not be found', 'mytheme' ),
+						esc_html__( 'Comment %d was imported with author %d, but could not be found', 'steelnova' ),
 						$comment_id,
 						$author_id
 					) );
@@ -2182,7 +2182,7 @@ class WXRImporter extends \WP_Importer {
 			$result = wp_update_comment( wp_slash( $data ) );
 			if ( empty( $result ) ) {
 				$this->logger->warning( sprintf(
-					esc_html__( 'Could not update comment #%d with mapped data', 'mytheme' ),
+					esc_html__( 'Could not update comment #%d with mapped data', 'steelnova' ),
 					$comment_id
 				) );
 				continue;
@@ -2213,7 +2213,7 @@ class WXRImporter extends \WP_Importer {
 			// Basic check.
 			if( empty( $termid ) || ! is_numeric( $termid ) ) {
 				$this->logger->warning( sprintf(
-					esc_html__( 'Faulty term_id provided in terms-to-be-remapped array %s', 'mytheme' ),
+					esc_html__( 'Faulty term_id provided in terms-to-be-remapped array %s', 'steelnova' ),
 					$termid
 					) );
 				continue;
@@ -2223,7 +2223,7 @@ class WXRImporter extends \WP_Importer {
 
 			if( empty( $term_taxonomy ) ){
 				$this->logger->warning( sprintf(
-					esc_html__( 'No taxonomy provided in terms-to-be-remapped array for term #%d', 'mytheme' ),
+					esc_html__( 'No taxonomy provided in terms-to-be-remapped array for term #%d', 'steelnova' ),
 					$term_id
 					) );
 				continue;
@@ -2233,7 +2233,7 @@ class WXRImporter extends \WP_Importer {
 
 			if ( empty( $parent_slug ) ) {
 				$this->logger->warning( sprintf(
-					esc_html__( 'No parent_slug identified in remapping-array for term: %d', 'mytheme' ),
+					esc_html__( 'No parent_slug identified in remapping-array for term: %d', 'steelnova' ),
 					$term_id
 					) );
 				continue;
@@ -2241,7 +2241,7 @@ class WXRImporter extends \WP_Importer {
 
 			if ( ! isset( $this->mapping['term_slug'][ $parent_slug ] ) || ! is_numeric( $this->mapping['term_slug'][ $parent_slug ] ) ) {
 				$this->logger->warning( sprintf(
-					esc_html__( 'The term(%d)"s parent_slug (%s) is not found in the remapping-array.', 'mytheme' ),
+					esc_html__( 'The term(%d)"s parent_slug (%s) is not found in the remapping-array.', 'steelnova' ),
 					$term_id,
 					$parent_slug
 					) );
@@ -2255,7 +2255,7 @@ class WXRImporter extends \WP_Importer {
 
 			if ( empty( $termattributes ) ) {
 				$this->logger->warning( sprintf(
-					esc_html__( 'No data returned by get_term_by for term_id #%d', 'mytheme' ),
+					esc_html__( 'No data returned by get_term_by for term_id #%d', 'steelnova' ),
 					$term_id
 					) );
 				continue;
@@ -2274,7 +2274,7 @@ class WXRImporter extends \WP_Importer {
 
 			if ( is_wp_error( $result ) ) {
 			$this->logger->warning( sprintf(
-					esc_html__( 'Could not update "%s" (term #%d) with mapped data', 'mytheme' ),
+					esc_html__( 'Could not update "%s" (term #%d) with mapped data', 'steelnova' ),
 					$termattributes['name'],
 					$term_id
 				) );
@@ -2284,7 +2284,7 @@ class WXRImporter extends \WP_Importer {
 			// Clear out our temporary meta key.
 			delete_term_meta( $term_id, '_wxr_import_parent' );
 			$this->logger->debug( sprintf(
-				esc_html__( 'Term %d was successfully updated with parent %d', 'mytheme' ),
+				esc_html__( 'Term %d was successfully updated with parent %d', 'steelnova' ),
 				$term_id,
 				$mapped_parent
 			) );
@@ -2319,7 +2319,7 @@ class WXRImporter extends \WP_Importer {
 			return;
 		}
 
-		$this->logger->info( esc_html__( 'Starting remapping of featured images', 'mytheme' ) );
+		$this->logger->info( esc_html__( 'Starting remapping of featured images', 'steelnova' ) );
 
 		// Cycle through posts that have a featured image.
 		foreach ( $this->featured_images as $post_id => $value ) {
@@ -2328,7 +2328,7 @@ class WXRImporter extends \WP_Importer {
 
 				// Only update if there's a difference.
 				if ( $new_id !== $value ) {
-					$this->logger->info( sprintf( esc_html__( 'Remapping featured image ID %d to new ID %d for post ID %d', 'mytheme' ), $value, $new_id, $post_id ) );
+					$this->logger->info( sprintf( esc_html__( 'Remapping featured image ID %d to new ID %d for post ID %d', 'steelnova' ), $value, $new_id, $post_id ) );
 
 					update_post_meta( $post_id, '_thumbnail_id', $new_id );
 				}

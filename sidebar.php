@@ -2,7 +2,7 @@
 /**
  * Sidebar template file
  * 
- * @package Mytheme
+ * @package SteelNova
  */
 
 if ( class_exists( 'WooCommerce' ) && ( is_product_category() || is_shop() || is_product() ) ) {

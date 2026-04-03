@@ -1,12 +1,12 @@
 <?php
 /**
- * The Mytheme_Register initiate the theme engine
+ * The SteelNova_Register initiate the theme engine
  */
 
 if( !defined( 'ABSPATH' ) ) 
 	exit; // Exit if accessed directly
 
-class Mytheme_Register {
+class SteelNova_Register {
 
 	/**
 	 * Variables required for the theme updater
@@ -30,8 +30,8 @@ class Mytheme_Register {
 	public function __construct( $config = array(), $strings = array() ) {
 		$config = wp_parse_args( $config, array(
 			'remote_api_url' => 'http://api.casethemes.net/',
-			'theme_slug'     => mytheme()->get_theme_slug(),
-			'theme_name'     => mytheme()->get_theme_name(),
+			'theme_slug'     => steelnova()->get_theme_slug(),
+			'theme_name'     => steelnova()->get_theme_name(),
 			'version'        => '',
 			'author'         => 'Pixelart team',
 			'renew_url'      => ''
@@ -76,12 +76,12 @@ class Mytheme_Register {
 			return;
 		}
 
-		if ( !class_exists( 'Mytheme_Updater' ) ) {
+		if ( !class_exists( 'SteelNova_Updater' ) ) {
 			// Load our custom theme updater
-			mytheme_get_template( 'inc/admin/updater/updater-class' );
+			steelnova_get_template( 'inc/admin/updater/updater-class' );
 		}
 
-		new Mytheme_Updater(
+		new SteelNova_Updater(
 			array(
 				'remote_api_url' => $this->remote_api_url,
 				'version' 		 => $this->version,
@@ -111,11 +111,11 @@ class Mytheme_Register {
 	}
 	
 	function admin_error() {
-		echo '<div class="error"><p>' . sprintf( wp_kses_post( esc_html__( 'The %s theme needs to be registered. %sRegister Now%s', 'mytheme' ) ), mytheme()->get_theme_name(), '<a href="' . admin_url( 'admin.php?page=pxlart') . '">' , '</a>' ) . '</p></div>';
+		echo '<div class="error"><p>' . sprintf( wp_kses_post( esc_html__( 'The %s theme needs to be registered. %sRegister Now%s', 'steelnova' ) ), steelnova()->get_theme_name(), '<a href="' . admin_url( 'admin.php?page=pxlart') . '">' , '</a>' ) . '</p></div>';
 	}
 	
 	function admin_notice() {
-		echo '<div class="notice"><p>'.esc_html__( 'Purchase code is invalid. Need a license for activation', 'mytheme' ).'</p></div>';
+		echo '<div class="notice"><p>'.esc_html__( 'Purchase code is invalid. Need a license for activation', 'steelnova' ).'</p></div>';
 	}
 	
 
@@ -124,13 +124,13 @@ class Mytheme_Register {
 		if ( ! $purchase_code ){
 			?>
 			<div class="pxl-dsb-box-head-inner">
-				<h6><?php echo esc_html__( 'Register License', 'mytheme' ) ?></h6>
+				<h6><?php echo esc_html__( 'Register License', 'steelnova' ) ?></h6>
 			</div>
 			<?php 
 			$this->form();
 			?>
 			<div class="pxl-dsb-box-foot">
-				<a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-" target="_blank"><?php esc_html_e( 'Can’t find your purchase code?', 'mytheme' ); ?></a>
+				<a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-" target="_blank"><?php esc_html_e( 'Can’t find your purchase code?', 'steelnova' ); ?></a>
 			</div>
 			<?php 
 		}else{  
@@ -153,26 +153,26 @@ class Mytheme_Register {
 		if ( false === $license_data->success ) {
 			switch ( $license_data->error ) {
 				case 'missing':
-					$message = esc_html__( 'This appears to be an invalid license key. Please try again or contact support.', 'mytheme' );
+					$message = esc_html__( 'This appears to be an invalid license key. Please try again or contact support.', 'steelnova' );
 				break;
 				case 'item_name_mismatch':
-					$message = sprintf( esc_html__( 'This appears to be an invalid license key for %s.', 'mytheme' ), $this->theme_name );
+					$message = sprintf( esc_html__( 'This appears to be an invalid license key for %s.', 'steelnova' ), $this->theme_name );
 				break;
 				case 'license_exists':
-					$message = esc_html__( 'Your license is not active for this URL.', 'mytheme' );
+					$message = esc_html__( 'Your license is not active for this URL.', 'steelnova' );
 				break;
 				default:
-					$message = esc_html__( 'An error occurred, please try again.', 'mytheme' );
+					$message = esc_html__( 'An error occurred, please try again.', 'steelnova' );
 				break;
 			}
 			?>
 			<div class="pxl-dsb-confirmation fail">
-				<h6><?php echo esc_html__( 'Active false', 'mytheme' ) ?></h6>
-				<p><?php echo wp_kses_post( $message ) ?> <a href="<?php echo esc_url($pxl_server_info['docs_url']) ?>" target="_blank"><?php echo esc_html__( 'our help center', 'mytheme' ) ?></a> or <a href="<?php echo esc_url($pxl_server_info['support_url']) ?>" target="_blank"><?php echo esc_html__( 'submit a ticket', 'mytheme' ) ?></a></p>
+				<h6><?php echo esc_html__( 'Active false', 'steelnova' ) ?></h6>
+				<p><?php echo wp_kses_post( $message ) ?> <a href="<?php echo esc_url($pxl_server_info['docs_url']) ?>" target="_blank"><?php echo esc_html__( 'our help center', 'steelnova' ) ?></a> or <a href="<?php echo esc_url($pxl_server_info['support_url']) ?>" target="_blank"><?php echo esc_html__( 'submit a ticket', 'steelnova' ) ?></a></p>
 			</div>
 			<?php $this->form(); ?>
 			<div class="pxl-dsb-box-foot">
-				<a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-" target="_blank"><?php esc_html_e( 'Can’t find your purchase code?', 'mytheme' ); ?></a>
+				<a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-" target="_blank"><?php esc_html_e( 'Can’t find your purchase code?', 'steelnova' ); ?></a>
 			</div>
 			<?php 
 		}else{
@@ -181,14 +181,14 @@ class Mytheme_Register {
 				?>
 				<div class="pxl-dsb-box-head"> 
 					<div class="pxl-dsb-confirmation success">
-						<h6><?php echo esc_html__( 'Thanks for the verification!', 'mytheme' ) ?></h6>
-						<p><?php echo esc_html__( 'You can now enjoy and build great websites. Looking for help? Visit', 'mytheme' ) ?> <a href="<?php echo esc_url($pxl_server_info['support_url']) ?>" target="_blank"><?php echo esc_html__( 'submit a ticket', 'mytheme' ) ?></a>.</p>
+						<h6><?php echo esc_html__( 'Thanks for the verification!', 'steelnova' ) ?></h6>
+						<p><?php echo esc_html__( 'You can now enjoy and build great websites. Looking for help? Visit', 'steelnova' ) ?> <a href="<?php echo esc_url($pxl_server_info['support_url']) ?>" target="_blank"><?php echo esc_html__( 'submit a ticket', 'steelnova' ) ?></a>.</p>
 					</div> 
 
 					<div class="pxl-dsb-deactive">
 						<form method="POST" action="<?php echo admin_url( 'admin.php?page=pxlart' )?>">
 							<input type="hidden" name="action" value="removekey"/>
-							<button class="btn button" type="submit"><?php esc_html_e( 'Remove Purchase Code', 'mytheme' ) ?></button>
+							<button class="btn button" type="submit"><?php esc_html_e( 'Remove Purchase Code', 'steelnova' ) ?></button>
 						</form>
 					</div> 
 				</div> 
@@ -197,10 +197,10 @@ class Mytheme_Register {
 					wp_redirect(admin_url('admin.php?page=pxlart-setup&step=plugins'));
 			}
 			else {
-		        $message = esc_html__( 'Response return null.', 'mytheme' ); ?>
+		        $message = esc_html__( 'Response return null.', 'steelnova' ); ?>
 		        <div class="pxl-dsb-confirmation fail">
-		          <h6><?php echo esc_html__( 'Active false', 'mytheme' ) ?></h6>
-		          <p><?php echo wp_kses_post( $message ) ?> <a href="<?php echo esc_url($pxl_server_info['docs_url']) ?>" target="_blank"><?php echo esc_html__( 'our help center', 'mytheme' ) ?></a> or <a href="<?php echo esc_url($pxl_server_info['support_url']) ?>" target="_blank"><?php echo esc_html__( 'submit a ticket', 'mytheme' ) ?></a></p>
+		          <h6><?php echo esc_html__( 'Active false', 'steelnova' ) ?></h6>
+		          <p><?php echo wp_kses_post( $message ) ?> <a href="<?php echo esc_url($pxl_server_info['docs_url']) ?>" target="_blank"><?php echo esc_html__( 'our help center', 'steelnova' ) ?></a> or <a href="<?php echo esc_url($pxl_server_info['support_url']) ?>" target="_blank"><?php echo esc_html__( 'submit a ticket', 'steelnova' ) ?></a></p>
 		        </div>
 		        <?php $this->form(); ?>
 		    <?php }
@@ -223,8 +223,8 @@ class Mytheme_Register {
 		?>
 		<form action="options.php" method="post" class="pxl-dsb-register-form">
 			<?php settings_fields( $this->theme_slug . '-license' ); ?>
-			<input id="<?php echo esc_attr($this->theme_slug)?>_purchase_code" name="<?php echo esc_attr($this->theme_slug)?>_purchase_code" type="text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php esc_attr_e( 'Enter your purchase code', 'mytheme' ); ?>">
-			<input type="submit" class="res-purchase-code" value="<?php esc_attr_e( 'Register your purchase code', 'mytheme' ) ?>">
+			<input id="<?php echo esc_attr($this->theme_slug)?>_purchase_code" name="<?php echo esc_attr($this->theme_slug)?>_purchase_code" type="text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php esc_attr_e( 'Enter your purchase code', 'steelnova' ); ?>">
+			<input type="submit" class="res-purchase-code" value="<?php esc_attr_e( 'Register your purchase code', 'steelnova' ) ?>">
 		</form>
 		<?php
 	}
@@ -332,4 +332,4 @@ class Mytheme_Register {
 	
 }
 
-new Mytheme_Register;
+new SteelNova_Register;

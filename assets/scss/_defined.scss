@@ -1,0 +1,5 @@
+@use 'core.scss' as *;
+
+.box-icon {
+    @include d-inline-flex(null center, center);
+}

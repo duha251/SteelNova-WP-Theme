@@ -1,11 +1,11 @@
 <?php
-use Mytheme\Inc\Admin\Mytheme_Admin_Plugins;
+use SteelNova\Inc\Admin\SteelNova_Admin_Plugins;
 
 $installed_plugins = get_plugins();
 $plugins = TGM_Plugin_Activation::$instance->plugins;
 $status_ins = false;
 $status_act = false;
-$btn_text = esc_html__('Install All', 'mytheme');
+$btn_text = esc_html__('Install All', 'steelnova');
 foreach( $plugins as $plugin ){
 	$file_path = $plugin['file_path'];
 	if( !isset( $installed_plugins[ $file_path ] ) ) {
@@ -21,41 +21,41 @@ foreach( $plugins as $plugin ){
 	}
 }
 
-$merlin_setup = get_option( 'merlin_' . mytheme()->get_theme_slug() . '_completed' );
+$merlin_setup = get_option( 'merlin_' . steelnova()->get_theme_slug() . '_completed' );
  
 if( $status_ins && $status_act)
-	$btn_text = esc_html__('Install & Active All', 'mytheme');
+	$btn_text = esc_html__('Install & Active All', 'steelnova');
 else if($status_ins && !$status_act)
-	$btn_text = esc_html__('Install All', 'mytheme');
+	$btn_text = esc_html__('Install All', 'steelnova');
 else if(!$status_ins && $status_act)
-	$btn_text = esc_html__('Active All', 'mytheme');
+	$btn_text = esc_html__('Active All', 'steelnova');
 ?>
 <main>
 
 	<div class="pxl-dashboard-wrap">
 
-		<?php mytheme_get_template( 'inc/admin/views/admin-tabs' ); ?>
+		<?php steelnova_get_template( 'inc/admin/views/admin-tabs' ); ?>
 
 		<?php 
 		 
 		$dev_mode = (defined('DEV_MODE') && DEV_MODE);
 		 
-		if ( 'valid' != get_option( mytheme()->get_theme_slug() .'_purchase_code_status', false ) && !$dev_mode ) :
+		if ( 'valid' != get_option( steelnova()->get_theme_slug() .'_purchase_code_status', false ) && !$dev_mode ) :
 			
 			echo '<div class="error"><p>' .
-					sprintf( wp_kses_post( esc_html__( 'The %s theme needs to be registered. %sRegister Now%s', 'mytheme' ) ), mytheme()->get_theme_name(), '<a href="' . admin_url( 'admin.php?page=pxlart') . '">' , '</a>' ) . '</p></div>';
+					sprintf( wp_kses_post( esc_html__( 'The %s theme needs to be registered. %sRegister Now%s', 'steelnova' ) ), steelnova()->get_theme_name(), '<a href="' . admin_url( 'admin.php?page=pxlart') . '">' , '</a>' ) . '</p></div>';
 		else: ?>
 	
 		<header class="pxl-dsb-header admin-plugin">
 			<div class="pxl-dsb-header-inner">
-				<h4><?php esc_html_e( 'Install Plugins', 'mytheme' ); ?></h4>
+				<h4><?php esc_html_e( 'Install Plugins', 'steelnova' ); ?></h4>
 				<?php if(!$merlin_setup && ($status_ins || $status_act)): 
 					echo '<span class="pxl-install-all-plugin">'.$btn_text.'</span>';
 					?>
 				<?php endif; ?>
 				
 			</div> 
-			<p><?php esc_html_e( 'Make sure to activate required plugins prior to import a demo.', 'mytheme' ); ?></p> 
+			<p><?php esc_html_e( 'Make sure to activate required plugins prior to import a demo.', 'steelnova' ); ?></p> 
 		</header>
 		  
 		<div class="pxl-solid-wrap">
@@ -78,7 +78,7 @@ else if(!$status_ins && $status_act)
 					elseif( !is_plugin_inactive( $file_path ) ) {
 						$status = 'active';
 						$class = ' pxl-dsb-plugin-active';
-						// $display_status = esc_html__( 'Active:', 'mytheme' );
+						// $display_status = esc_html__( 'Active:', 'steelnova' );
 					}
 			?>
 				<div class="pxl-col pxl-col-3">

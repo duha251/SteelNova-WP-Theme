@@ -52,7 +52,7 @@ class Importer extends WXRImporter {
 		}
 
 		if ( ! class_exists( 'XMLReader' ) ) {
-			$this->logger->critical( esc_html__( 'The XMLReader class is missing! Please install the XMLReader PHP extension on your server', 'mytheme' ) );
+			$this->logger->critical( esc_html__( 'The XMLReader class is missing! Please install the XMLReader PHP extension on your server', 'steelnova' ) );
 
 			return false;
 		}
@@ -65,7 +65,7 @@ class Importer extends WXRImporter {
 		}
 
 		if ( ! $status ) {
-			$this->logger->error( esc_html__( 'Could not open the XML file for parsing!', 'mytheme' ) );
+			$this->logger->error( esc_html__( 'Could not open the XML file for parsing!', 'steelnova' ) );
 
 			return false;
 		}
@@ -245,7 +245,7 @@ class Importer extends WXRImporter {
 		$result = $this->import_start( $file );
 
 		if ( is_wp_error( $result ) ) {
-			$this->logger->error( esc_html__( 'Content import start error: ', 'mytheme' ) . $result->get_error_message() );
+			$this->logger->error( esc_html__( 'Content import start error: ', 'steelnova' ) . $result->get_error_message() );
 
 			return false;
 		}
@@ -277,7 +277,7 @@ class Importer extends WXRImporter {
 
 					if ( version_compare( $this->version, self::MAX_WXR_VERSION, '>' ) ) {
 						$this->logger->warning( sprintf(
-							__( 'This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating.', 'mytheme' ),
+							__( 'This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating.', 'steelnova' ),
 							$this->version,
 							self::MAX_WXR_VERSION
 						) );
@@ -501,7 +501,7 @@ class Importer extends WXRImporter {
 			) );
 
 			// Add message to log file.
-			$this->logger->info( esc_html__( 'New AJAX call!', 'mytheme' ) );
+			$this->logger->info( esc_html__( 'New AJAX call!', 'steelnova' ) );
 
 			// Set the current importer state, so it can be continued on the next AJAX call.
 			$this->set_current_importer_data();

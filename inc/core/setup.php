@@ -1,10 +1,10 @@
 <?php
- namespace Mytheme\Inc\Core;
+ namespace SteelNova\Inc\Core;
 
 /**
  * Handles core theme setup and registrations.
  *
- * @package    Mytheme
+ * @package    SteelNova
  * @subpackage Inc\Setup
  */
 
@@ -21,7 +21,7 @@ class Setup {
 	 */
 	public function theme_setup() {
 		// Make theme available for translation.
-		load_theme_textdomain( 'mytheme', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'steelnova', get_template_directory() . '/languages' );
 
 		// Custom Header
 		add_theme_support( 'custom-header' );
@@ -39,8 +39,8 @@ class Setup {
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus([
-			'primary'=> __( 'Primary', 'mytheme' ),
-			'primary-mobile' => __( 'Primary Mobile', 'mytheme' ),
+			'primary'=> __( 'Primary', 'steelnova' ),
+			'primary-mobile' => __( 'Primary Mobile', 'steelnova' ),
 		]);
 
 		// Add theme support for selective refresh for widgets.
@@ -100,7 +100,7 @@ class Setup {
 	 */
 	public function widgets_init() {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Blog Sidebar', 'mytheme' ),
+			'name'          => esc_html__( 'Blog Sidebar', 'steelnova' ),
 			'id'            => 'sidebar-blog',
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
@@ -110,7 +110,7 @@ class Setup {
 		
 		if ( class_exists( 'Woocommerce' ) ) {
 			register_sidebar( array(
-				'name'          => esc_html__( 'Shop Sidebar', 'mytheme' ),
+				'name'          => esc_html__( 'Shop Sidebar', 'steelnova' ),
 				'id'            => 'sidebar-shop',
 				'before_widget' => '<section id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</section>',
@@ -127,12 +127,12 @@ class Setup {
 		// Custom style for Gutenberg block.
 		register_block_style( 'core/quote', [
 			'name'  => 'fancy-quote',
-			'label' => __( 'Fancy Quote', 'mytheme' ),
+			'label' => __( 'Fancy Quote', 'steelnova' ),
 		] );
 		// Register block pattern
-		register_block_pattern( 'mytheme/hero-section', [
-			'title'       => __( 'Hero Section', 'mytheme' ),
-			'description' => __( 'A full-width hero banner with text.', 'mytheme' ),
+		register_block_pattern( 'steelnova/hero-section', [
+			'title'       => __( 'Hero Section', 'steelnova' ),
+			'description' => __( 'A full-width hero banner with text.', 'steelnova' ),
 			'content'     => "<!-- wp:cover --> ... <!-- /wp:cover -->",
 		] );
 	}

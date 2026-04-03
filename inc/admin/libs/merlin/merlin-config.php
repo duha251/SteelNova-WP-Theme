@@ -36,68 +36,68 @@ $wizard = new Merlin(
 		'ready_big_button_url' => home_url( '/' ), // Link for the big button on the ready step.
 	),
 	$strings = array(
-		'admin-menu'               => esc_html__( 'Setup Wizard', 'mytheme' ),
+		'admin-menu'               => esc_html__( 'Setup Wizard', 'steelnova' ),
 
 		/* translators: 1: Title Tag 2: Theme Name 3: Closing Title Tag */
-		'title%s%s%s%s'            => esc_html__( '%1$s%2$s Themes &lsaquo; Theme Setup: %3$s%4$s', 'mytheme' ),
-		'return-to-dashboard'      => esc_html__( 'Return to the dashboard', 'mytheme' ),
-		'ignore'                   => esc_html__( 'Disable this wizard', 'mytheme' ),
+		'title%s%s%s%s'            => esc_html__( '%1$s%2$s Themes &lsaquo; Theme Setup: %3$s%4$s', 'steelnova' ),
+		'return-to-dashboard'      => esc_html__( 'Return to the dashboard', 'steelnova' ),
+		'ignore'                   => esc_html__( 'Disable this wizard', 'steelnova' ),
 
-		'btn-skip'                 => esc_html__( 'Skip', 'mytheme' ),
-		'btn-next'                 => esc_html__( 'Next', 'mytheme' ),
-		'btn-start'                => esc_html__( 'Start', 'mytheme' ),
-		'btn-no'                   => esc_html__( 'Cancel', 'mytheme' ),
-		'btn-plugins-install'      => esc_html__( 'Install', 'mytheme' ),
-		'btn-child-install'        => esc_html__( 'Install', 'mytheme' ),
-		'btn-content-install'      => esc_html__( 'Install', 'mytheme' ),
-		'btn-import'               => esc_html__( 'Import', 'mytheme' ),
-		'btn-license-activate'     => esc_html__( 'Activate', 'mytheme' ),
-		'btn-license-skip'         => esc_html__( 'Later', 'mytheme' ),
-
-		/* translators: Theme Name */
-		'license-header'         => esc_html__( 'Activate Theme', 'mytheme' ),
-		'license-header2'         => esc_html__( 'Activate Your Theme', 'mytheme' ),
-		/* translators: Theme Name */
-		'license-header-success%s' => esc_html__( '%s is Activated', 'mytheme' ),
-		/* translators: Theme Name */
-		'license%s'                => esc_html__( 'Please add your Envato purchase code to confirm the purchase.', 'mytheme' ),
-		'license-label'            => esc_html__( 'License key', 'mytheme' ),
-		'license-success%s'        => esc_html__( 'The theme is already registered, so you can go to the next step!', 'mytheme' ),
-		'license-json-success%s'   => esc_html__( 'Your theme is activated! Remote updates and theme support are enabled.', 'mytheme' ),
-		'license-tooltip'          => esc_html__( 'Need help?', 'mytheme' ),
+		'btn-skip'                 => esc_html__( 'Skip', 'steelnova' ),
+		'btn-next'                 => esc_html__( 'Next', 'steelnova' ),
+		'btn-start'                => esc_html__( 'Start', 'steelnova' ),
+		'btn-no'                   => esc_html__( 'Cancel', 'steelnova' ),
+		'btn-plugins-install'      => esc_html__( 'Install', 'steelnova' ),
+		'btn-child-install'        => esc_html__( 'Install', 'steelnova' ),
+		'btn-content-install'      => esc_html__( 'Install', 'steelnova' ),
+		'btn-import'               => esc_html__( 'Import', 'steelnova' ),
+		'btn-license-activate'     => esc_html__( 'Activate', 'steelnova' ),
+		'btn-license-skip'         => esc_html__( 'Later', 'steelnova' ),
 
 		/* translators: Theme Name */
-		'welcome-header%s'         => esc_html__( 'Let\'s Get You Started', 'mytheme' ),
-		'welcome-header-success%s' => esc_html__( 'Hi. Welcome back', 'mytheme' ),
-		'welcome%s'                => esc_html__( 'Thanks for purchasing theme! You can now register your product to install plugins, import demos and unlock exlusive features.', 'mytheme' ),
-		'welcome-success%s'        => esc_html__( 'You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.', 'mytheme' ),
+		'license-header'         => esc_html__( 'Activate Theme', 'steelnova' ),
+		'license-header2'         => esc_html__( 'Activate Your Theme', 'steelnova' ),
+		/* translators: Theme Name */
+		'license-header-success%s' => esc_html__( '%s is Activated', 'steelnova' ),
+		/* translators: Theme Name */
+		'license%s'                => esc_html__( 'Please add your Envato purchase code to confirm the purchase.', 'steelnova' ),
+		'license-label'            => esc_html__( 'License key', 'steelnova' ),
+		'license-success%s'        => esc_html__( 'The theme is already registered, so you can go to the next step!', 'steelnova' ),
+		'license-json-success%s'   => esc_html__( 'Your theme is activated! Remote updates and theme support are enabled.', 'steelnova' ),
+		'license-tooltip'          => esc_html__( 'Need help?', 'steelnova' ),
 
-		'child-header'             => esc_html__( 'Install Child Theme', 'mytheme' ),
-		'child-header-success'     => esc_html__( 'You\'re good to go!', 'mytheme' ),
-		'child'                    => esc_html__( 'Let\'s build & activate a child theme so you may easily make theme changes.', 'mytheme' ),
-		'child-success%s'          => esc_html__( 'Your child theme has already been installed and is now activated, if it wasn\'t already.', 'mytheme' ),
-		'child-action-link'        => esc_html__( 'Learn about child themes', 'mytheme' ),
-		'child-json-success%s'     => esc_html__( 'Awesome. Your child theme has already been installed and is now activated.', 'mytheme' ),
-		'child-json-already%s'     => esc_html__( 'Awesome. Your child theme has been created and is now activated.', 'mytheme' ),
+		/* translators: Theme Name */
+		'welcome-header%s'         => esc_html__( 'Let\'s Get You Started', 'steelnova' ),
+		'welcome-header-success%s' => esc_html__( 'Hi. Welcome back', 'steelnova' ),
+		'welcome%s'                => esc_html__( 'Thanks for purchasing theme! You can now register your product to install plugins, import demos and unlock exlusive features.', 'steelnova' ),
+		'welcome-success%s'        => esc_html__( 'You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.', 'steelnova' ),
 
-		'plugins-header'           => esc_html__( 'Install Plugins', 'mytheme' ),
-		'plugins-header-success'   => esc_html__( 'Plugins are all installed', 'mytheme' ),
-		'plugins'                  => esc_html__( 'Let\'s install some essential WordPress plugins to get you started.', 'mytheme' ),
-		'plugins-success%s'        => esc_html__( 'The required WordPress plugins are all installed and up to date. Press "Next" to continue the setup wizard.', 'mytheme' ),
-		'plugins-action-link'      => esc_html__( 'View Plugins', 'mytheme' ),
+		'child-header'             => esc_html__( 'Install Child Theme', 'steelnova' ),
+		'child-header-success'     => esc_html__( 'You\'re good to go!', 'steelnova' ),
+		'child'                    => esc_html__( 'Let\'s build & activate a child theme so you may easily make theme changes.', 'steelnova' ),
+		'child-success%s'          => esc_html__( 'Your child theme has already been installed and is now activated, if it wasn\'t already.', 'steelnova' ),
+		'child-action-link'        => esc_html__( 'Learn about child themes', 'steelnova' ),
+		'child-json-success%s'     => esc_html__( 'Awesome. Your child theme has already been installed and is now activated.', 'steelnova' ),
+		'child-json-already%s'     => esc_html__( 'Awesome. Your child theme has been created and is now activated.', 'steelnova' ),
 
-		'import-header'            => esc_html__( 'Import a Demo', 'mytheme' ),
-		'import'                   => esc_html__( 'Choose a demo for importing to your website', 'mytheme' ),
-		'import-action-link'       => esc_html__( 'Advanced', 'mytheme' ),
+		'plugins-header'           => esc_html__( 'Install Plugins', 'steelnova' ),
+		'plugins-header-success'   => esc_html__( 'Plugins are all installed', 'steelnova' ),
+		'plugins'                  => esc_html__( 'Let\'s install some essential WordPress plugins to get you started.', 'steelnova' ),
+		'plugins-success%s'        => esc_html__( 'The required WordPress plugins are all installed and up to date. Press "Next" to continue the setup wizard.', 'steelnova' ),
+		'plugins-action-link'      => esc_html__( 'View Plugins', 'steelnova' ),
 
-		'ready-header'             => esc_html__( 'You\'re Ready!', 'mytheme' ),
+		'import-header'            => esc_html__( 'Import a Demo', 'steelnova' ),
+		'import'                   => esc_html__( 'Choose a demo for importing to your website', 'steelnova' ),
+		'import-action-link'       => esc_html__( 'Advanced', 'steelnova' ),
+
+		'ready-header'             => esc_html__( 'You\'re Ready!', 'steelnova' ),
 
 		/* translators: Theme Author */
-		'ready%s'                  => esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.', 'mytheme' ),
-		'ready-action-link'        => esc_html__( 'Extras', 'mytheme' ),
-		'ready-big-button'         => esc_html__( 'View your website', 'mytheme' ),
-		'ready-link-1'             => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', $pxl_server_info['docs_url'], esc_html__( 'Help center', 'mytheme' ) ),
-		'ready-link-2'             => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', $pxl_server_info['email_support'], esc_html__( 'Get Theme Support', 'mytheme' ) ),
-		'ready-link-3'             => sprintf( '<a href="%1$s">%2$s</a>', admin_url( 'admin.php?page=pxlart-theme-options' ), esc_html__( 'Theme Options', 'mytheme' ) ),
+		'ready%s'                  => esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.', 'steelnova' ),
+		'ready-action-link'        => esc_html__( 'Extras', 'steelnova' ),
+		'ready-big-button'         => esc_html__( 'View your website', 'steelnova' ),
+		'ready-link-1'             => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', $pxl_server_info['docs_url'], esc_html__( 'Help center', 'steelnova' ) ),
+		'ready-link-2'             => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', $pxl_server_info['email_support'], esc_html__( 'Get Theme Support', 'steelnova' ) ),
+		'ready-link-3'             => sprintf( '<a href="%1$s">%2$s</a>', admin_url( 'admin.php?page=pxlart-theme-options' ), esc_html__( 'Theme Options', 'steelnova' ) ),
 	)
 );

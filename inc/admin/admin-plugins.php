@@ -6,7 +6,7 @@
 if( !defined( 'ABSPATH' ) )
 	exit; 
 
-class Mytheme_Admin_Plugins extends Mytheme_Admin_Page {
+class SteelNova_Admin_Plugins extends SteelNova_Admin_Page {
 	protected $id = null;
 	protected $page_title = null;
 	protected $menu_title = null;
@@ -15,8 +15,8 @@ class Mytheme_Admin_Plugins extends Mytheme_Admin_Page {
 	public function __construct() {
 
 		$this->id = 'pxlart-plugins';
-		$this->page_title = esc_html__( 'Install Plugins', 'mytheme' );
-		$this->menu_title = esc_html__( 'Install Plugins', 'mytheme' );
+		$this->page_title = esc_html__( 'Install Plugins', 'steelnova' );
+		$this->menu_title = esc_html__( 'Install Plugins', 'steelnova' );
 		$this->parent = 'pxlart';
 
 		parent::__construct();
@@ -24,7 +24,7 @@ class Mytheme_Admin_Plugins extends Mytheme_Admin_Page {
 
 	public function display() {
 		$admin_controller = $this; 
-		mytheme_get_template( 'inc/admin/views/admin-plugins', [ 'admin_controller' => $admin_controller ] );
+		steelnova_get_template( 'inc/admin/views/admin-plugins', [ 'admin_controller' => $admin_controller ] );
 	}
 
 	public function tgmpa_plugin_action( $plugin, $status ) {
@@ -36,7 +36,7 @@ class Mytheme_Admin_Plugins extends Mytheme_Admin_Page {
 		switch( $status ) {
 			case 'not-installed':
 				$btn_class = 'white';
-				$btn_text = esc_html_x( 'Install', 'Plugin installation page.', 'mytheme' );
+				$btn_text = esc_html_x( 'Install', 'Plugin installation page.', 'steelnova' );
 
 				$nonce_url = wp_nonce_url(
 					add_query_arg(
@@ -55,7 +55,7 @@ class Mytheme_Admin_Plugins extends Mytheme_Admin_Page {
 
 			case 'installed':
 				$btn_class = 'success';
-				$btn_text = esc_html_x( 'Activate', 'Plugin installation page.', 'mytheme' );
+				$btn_text = esc_html_x( 'Activate', 'Plugin installation page.', 'steelnova' );
 
 				$nonce_url = wp_nonce_url(
 					add_query_arg(
@@ -73,7 +73,7 @@ class Mytheme_Admin_Plugins extends Mytheme_Admin_Page {
 
 			case 'active':
 				$btn_class = 'danger';
-				$btn_text = esc_html_x( 'Deactivate', 'Plugin installation page.', 'mytheme' );
+				$btn_text = esc_html_x( 'Deactivate', 'Plugin installation page.', 'steelnova' );
 
 				$nonce_url = wp_nonce_url(
 					add_query_arg(
@@ -101,7 +101,7 @@ class Mytheme_Admin_Plugins extends Mytheme_Admin_Page {
 			'pxl-deactivate',
 			'pxl-deactivate-nonce'
 		);
-		$btn_text_active = esc_html_x( 'Deactivate', 'Plugin installation page.', 'mytheme' );
+		$btn_text_active = esc_html_x( 'Deactivate', 'Plugin installation page.', 'steelnova' );
 
 		printf(
 			'<a class="pxl-button '.$sts_cls.'" href="%4$s" title="%2$s %1$s" data-deactive-url="%5$s" data-text-active="%6$s"><span>%2$s</span></a>',
@@ -109,4 +109,4 @@ class Mytheme_Admin_Plugins extends Mytheme_Admin_Page {
 		);
 	}
 }
-new Mytheme_Admin_Plugins;
+new SteelNova_Admin_Plugins;

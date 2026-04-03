@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class Mytheme_Admin_User {
+class SteelNova_Admin_User {
 
-    private $meta_key = 'mytheme_user_avatar_id';
+    private $meta_key = 'steelnova_user_avatar_id';
 
     public function __construct() {
         add_action( 'show_user_profile', [ $this, 'render_avatar_field' ] );
@@ -35,21 +35,21 @@ class Mytheme_Admin_User {
         $avatar_id = get_user_meta( $user->ID, $this->meta_key, true );
         $preview_url = $avatar_id ? wp_get_attachment_image_url( $avatar_id, 'thumbnail' ) : '';
         ?>
-        <div class="mytheme-avatar-section">
-            <h3><?php esc_html_e( 'Mytheme Custom Profile', 'mytheme' ); ?></h3>
+        <div class="steelnova-avatar-section">
+            <h3><?php esc_html_e( 'SteelNova Custom Profile', 'steelnova' ); ?></h3>
             <table class="form-table">
                 <tr>
-                    <th><label for="mytheme_custom_avatar"><?php esc_html_e( 'Profile Picture', 'mytheme' ); ?></label></th>
+                    <th><label for="steelnova_custom_avatar"><?php esc_html_e( 'Profile Picture', 'steelnova' ); ?></label></th>
                     <td>
                         <div id="avatar-preview-wrapper" style="margin-bottom: 10px;">
                             <?php if ( $preview_url ) : ?>
                                 <img src="<?php echo esc_url( $preview_url ); ?>" style="width: 90px; height: 90px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc;">
                             <?php endif; ?>
                         </div>
-                        <input type="hidden" name="mytheme_user_avatar_id" id="mytheme_user_avatar_id" value="<?php echo esc_attr( $avatar_id ); ?>" />
-                        <button type="button" class="button" id="mv_upload_btn"><?php esc_html_e( 'Choose Image', 'mytheme' ); ?></button>
-                        <button type="button" class="button" id="mv_remove_btn" style="<?php echo ! $avatar_id ? 'display:none;' : ''; ?>"><?php esc_html_e( 'Remove', 'mytheme' ); ?></button>
-                        <p class="description"><?php esc_html_e( 'This image will be used as a priority over Gravatar.', 'mytheme' ); ?></p>
+                        <input type="hidden" name="steelnova_user_avatar_id" id="steelnova_user_avatar_id" value="<?php echo esc_attr( $avatar_id ); ?>" />
+                        <button type="button" class="button" id="mv_upload_btn"><?php esc_html_e( 'Choose Image', 'steelnova' ); ?></button>
+                        <button type="button" class="button" id="mv_remove_btn" style="<?php echo ! $avatar_id ? 'display:none;' : ''; ?>"><?php esc_html_e( 'Remove', 'steelnova' ); ?></button>
+                        <p class="description"><?php esc_html_e( 'This image will be used as a priority over Gravatar.', 'steelnova' ); ?></p>
                     </td>
                 </tr>
             </table>
@@ -64,7 +64,7 @@ class Mytheme_Admin_User {
                     mv_frame = wp.media({ title: 'Select Custom Avatar', multiple: false });
                     mv_frame.on('select', function(){
                         var selection = mv_frame.state().get('selection').first().toJSON();
-                        $('#mytheme_user_avatar_id').val(selection.id);
+                        $('#steelnova_user_avatar_id').val(selection.id);
                         var thumb = selection.sizes.thumbnail ? selection.sizes.thumbnail.url : selection.url;
                         $('#avatar-preview-wrapper').html('<img src="'+thumb+'" style="width:90px; height:90px; object-fit:cover; border-radius:50%; border:1px solid #ccc;">');
                         $('#mv_remove_btn').show();
@@ -72,7 +72,7 @@ class Mytheme_Admin_User {
                     mv_frame.open();
                 });
                 $('#mv_remove_btn').on('click', function(){
-                    $('#mytheme_user_avatar_id').val('');
+                    $('#steelnova_user_avatar_id').val('');
                     $('#avatar-preview-wrapper').empty();
                     $(this).hide();
                 });
@@ -84,8 +84,8 @@ class Mytheme_Admin_User {
     public function save_avatar_field( $user_id ) {
         if ( ! current_user_can( 'edit_user', $user_id ) ) return;
         
-        if ( isset( $_POST['mytheme_user_avatar_id'] ) ) {
-            update_user_meta( $user_id, $this->meta_key, sanitize_text_field( $_POST['mytheme_user_avatar_id'] ) );
+        if ( isset( $_POST['steelnova_user_avatar_id'] ) ) {
+            update_user_meta( $user_id, $this->meta_key, sanitize_text_field( $_POST['steelnova_user_avatar_id'] ) );
         }
     }
 
@@ -124,12 +124,12 @@ class Mytheme_Admin_User {
      * Display Fields Social Link by Redux Framework
      */
     public function display_user_social_fields( $user ) {
-        $social_list = mytheme()->get_theme_option('user_social_name', []);
+        $social_list = steelnova()->get_theme_option('user_social_name', []);
         if ( empty( $social_list ) ) {
             return;
         };
         ?>
-        <h3><?php _e('Mytheme Social Networks', 'mytheme'); ?></h3>
+        <h3><?php _e('SteelNova Social Networks', 'steelnova'); ?></h3>
         <table class="form-table">
             <?php foreach ( $social_list as $social ) : 
                 $id = sanitize_title($social); 
@@ -141,7 +141,7 @@ class Mytheme_Admin_User {
                         <input type="url" name="<?php echo esc_attr( $meta_key ); ?>" id="<?php echo esc_attr( $meta_key ); ?>" 
                             value="<?php echo esc_attr( get_the_author_meta( $meta_key, $user->ID ) ); ?>" 
                             class="regular-text" /><br />
-                        <span class="description"><?php printf( __('Enter your %s URL profile', 'mytheme'), $social ); ?></span>
+                        <span class="description"><?php printf( __('Enter your %s URL profile', 'steelnova'), $social ); ?></span>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -157,7 +157,7 @@ class Mytheme_Admin_User {
              return false;
         };
 
-        $social_list = mytheme()->get_theme_option('user_social_name', []);
+        $social_list = steelnova()->get_theme_option('user_social_name', []);
 
         foreach ( $social_list as $social ) {
             $id = sanitize_title($social); 
@@ -170,4 +170,4 @@ class Mytheme_Admin_User {
     }
 }
 
-new Mytheme_Admin_User();
+new SteelNova_Admin_User();
