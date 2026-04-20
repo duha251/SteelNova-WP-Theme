@@ -1,0 +1,47 @@
+@use '../../../../assets/scss/core' as *;
+
+.steelnova-accordion {
+    &.has-divider {
+        .steelnova-accordion__item + .steelnova-accordion__item {
+            border-top: thin solid #DCE2E1;
+        }
+    }
+    &__item {
+        cursor: pointer;
+        padding: 18px 0px;
+        &.is-active {
+            .icon-plus {
+                background-color: #FF5B1B;
+                color: #FFF;
+                &::after {
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+            }
+        }
+    }
+    &__header {
+        @include d-flex(30px, null, space-between);
+    }
+    &__icon {
+        flex-shrink: 0;
+        @include round-box(30px, 4px);
+        background-color: #E7ECEB;
+        color: #0A1119;
+        &.icon-plus {
+            transition: .3s ease;
+            &::before, &::after {
+                width: 13px;
+                height: 1px;
+            }
+        }
+    }
+    &__content {
+        height: 0;
+        overflow: hidden;
+        transition: height 500ms ease;
+        > p {
+            padding-top: 21px;
+            cursor: default;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 <?php
 namespace SteelNova\Inc\Helpers;
 
-class StaticOptions {
+class Static_Options {
 
 	public static function get_templates_by_type($template_type = 'df', $meta_type = null){
 		$post_list = ['' => 'None'];
@@ -220,8 +220,11 @@ class StaticOptions {
 
 	public static function hero_options( $args = [] ){
         $args = array_merge([
-            'scope' => 'global',
+            'scope'     => 'global',
             'prefix_id' => '', 
+            'meta_key'  => 'page',    
+            'title'     => '',
+            'note'      => '',
         ], $args );
 
         extract( $args );
@@ -239,28 +242,45 @@ class StaticOptions {
 
 		$final_options = array(
 			array(
-				'id' => $prefix_id.'_hero_heading',
+				'id' => $prefix_id.'hero_heading',
 				'title' => __('Hero', 'steelnova'),
 				'type'  => 'section',
 				'indent' => true,
 			),
 	        array(
-	            'id'      => $prefix_id.'_hero_mode',
+	            'id'      => $prefix_id.'hero_mode',
 	            'type'    => 'button_set',
 	            'title'   => __( 'Hero Mode', 'steelnova' ),
 	            'options' => $mode_options, 
                 'default' => ($scope === 'private') ? 'inherit' : 'default',
 	        ),
 	        array(
-	            'id'       => $prefix_id.'_hero_layout',
+	            'id'       => $prefix_id.'hero_layout',
 	            'type'     => 'select',
 	            'title'    => __('Hero Layout', 'steelnova'),
 	            'desc'     => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
-	            'options'  => self::get_templates_by_type( 'hero', 'page' ),
-	            'required' => [ $prefix_id.'_hero_mode', '=', 'builder' ],
+	            'options'  => self::get_templates_by_type( 'hero', $meta_key ),
+	            'required' => [ $prefix_id.'hero_mode', '=', 'builder' ],
 				'select2'  => [ 'allowClear' => false ],
 	        ),
 	    ); 
+        if( $scope === 'private' ) {
+            $final_options[] = array(
+                'id'       => $prefix_id.'hero_title',
+                'type'     => 'text',
+                'title'    => __('Hero Title', 'steelnova'),
+                'required' => [ $prefix_id.'hero_mode', '!=', 'hide' ],
+                'default'  => $title
+            );
+        }
+        $final_options[] = array(
+            'id'       => $prefix_id.'hero_note',
+            'type'     => 'textarea',
+            'title'    => __('Hero Note', 'steelnova'),
+            'required' => [ $prefix_id.'hero_mode', '!=', 'hide' ],
+            'default'  => $note
+        );
+
 		return $final_options;
 	}
 
@@ -305,9 +325,197 @@ class StaticOptions {
 				'options' => self::get_templates_by_type('footer'),
 				'default' => 0,
 				'select2'  => [ 'allowClear' => false ],
-				'required' => ['footer_mode', '=', 'builder'],
+				'required' => [ $prefix_id.'footer_mode', '=', 'builder'],
 	        ),
 		];
 		return $final_options;
 	}
+
+    public static function breadcrumnb_options( $args = [] ) {
+        $args = array_merge([
+            'scope' => 'global',
+            'prefix_id' => '', 
+        ], $args );
+
+        extract( $args );
+
+        $final_options = array(
+            array(
+                'id'       => 'show_home_label',
+                'type'     => 'button_set',
+                'title'    => __('Home Label Display', 'steelnova'),
+                'options'  => [
+                    '1'    => __('Show' , 'steelnova'),
+                    '0'    => __('Hide', 'steelnova'),
+                ],
+                'default'  => '1',
+            ),
+            array(
+                'id'       => 'home_label_text',
+                'type'     => 'text',
+                'title'    => __('Home Label Text', 'steelnova'),
+                'default'  => __('Home', 'steelnova'),
+                'required' => [ 'show_home_label', '=', '1' ]
+            ),
+            array(
+                'id'       => 'show_page_label',
+                'type'     => 'button_set',
+                'title'    => __('Page Label Display', 'steelnova'),
+                'options'  => [
+                    '1'    => __('Show' , 'steelnova'),
+                    '0'    => __('Hide', 'steelnova'),
+                ],
+                'default'  => '1',
+            ),
+            array(
+                'id'       => 'page_label_text',
+                'type'     => 'text',
+                'title'    => __('Page Label Text', 'steelnova'),
+                'default'  => __('Pages', 'steelnova'),
+                'required' => [ 'show_page_label', '=', '1' ]
+            )
+        );
+
+        if( $scope === 'private' ) {
+            $final_options = [
+                array(
+                    'id' => $prefix_id . 'breadcrumb_heading',
+                    'title' => __('Breadcrumb', 'steelnova'),
+                    'type'  => 'section',
+                    'indent' => true,
+                ),
+                array(
+                    'id'      => $prefix_id . 'breadcrumb_text_mode',
+                    'type'    => 'button_set',
+                    'title'   => __( 'Label Mode', 'steelnova' ),
+                    'options' => [
+                        'default'   => __( 'Default', 'steelnova' ),
+                        'custom'    => __( 'Custom', 'steelnova' ),
+                    ], 
+                    'default' => 'default',
+                ),
+                array(
+                    'id' => $prefix_id . 'breadcrumb_label_text',
+                    'title' => __('Label Text', 'steelnova'),
+                    'type'  => 'text',
+                    'required' => [ $prefix_id . 'breadcrumb_text_mode', '=', 'custom' ]
+                ),
+            ];
+        }
+
+        return $final_options;
+    }
+
+
+    public static function get_navigation_menu_options() {
+        $menus = get_terms( 'nav_menu', array( 'hide_empty' => false ) );
+        $pxl_menus = '';
+        if ( is_array( $menus ) && ! empty( $menus ) ) {
+            $pxl_menus = array(
+                '' => __('Default', 'steelnova')
+            );
+            foreach ( $menus as $value ) {
+                if ( is_object( $value ) && isset( $value->name, $value->slug ) ) {
+                    $pxl_menus[ $value->slug ] = $value->name;
+                }
+            }
+        }
+        return $pxl_menus;
+    }
+
+    public static function get_wpcf7_options() {
+        $forms = [ 0  => 'Choose Form' ];
+        if ( class_exists( 'WPCF7' ) ) {
+            $cf7_posts = get_posts([
+                'post_type'      => 'wpcf7_contact_form',
+                'posts_per_page' => -1,
+                'post_status'    => 'publish'
+            ]);
+
+            if ( ! empty( $cf7_posts ) ) {
+                foreach ( $cf7_posts as $form ) {
+                    $forms[ $form->ID ] = $form->post_title;
+                }
+            } 
+        }
+        return $forms;
+    }
+
+    public static function title_html_tag_options( $has_default = false ) {
+        if(  $has_default ) {
+            return [
+                ''    => __( 'Default', 'steelnova' ),
+                'h1'  => __( 'H1', 'steelnova' ),
+                'h2'  => __( 'H2', 'steelnova' ),
+                'h3'  => __( 'H3', 'steelnova' ),
+                'h4'  => __( 'H4', 'steelnova' ),
+                'h5'  => __( 'H5', 'steelnova' ),
+                'h6'  => __( 'H6', 'steelnova' ),
+                'p'   => __( 'Paragraph', 'steelnova' ),
+                'div' => __( 'Div', 'steelnova' ),
+                'span'=> __( 'Span', 'steelnova' ),
+            ];
+        }
+        return [
+            'h1'  => __( 'H1', 'steelnova' ),
+            'h2'  => __( 'H2', 'steelnova' ),
+            'h3'  => __( 'H3', 'steelnova' ),
+            'h4'  => __( 'H4', 'steelnova' ),
+            'h5'  => __( 'H5', 'steelnova' ),
+            'h6'  => __( 'H6', 'steelnova' ),
+            'p'   => __( 'Paragraph', 'steelnova' ),
+            'div' => __( 'Div', 'steelnova' ),
+            'span'=> __( 'Span', 'steelnova' ),
+        ];
+    }
+
+    public static function text_align_css_options() {
+        return [
+            'left' =>  [
+                'title' => __('Left', 'steelnova'),
+                'icon' => 'eicon-text-align-left',
+            ],
+            'center' =>  [
+                'title' => __('Center', 'steelnova'),
+                'icon' => 'eicon-text-align-center',
+            ],
+            'right' =>  [
+                'title' => __('Right', 'steelnova'),
+                'icon' => 'eicon-text-align-right',
+            ],
+            'justify' =>  [
+                'title' => __('Justify', 'steelnova'),
+                'icon' => 'eicon-text-align-justify',
+            ],
+        ];
+    }
+
+    public static function wpcf7_form_options() {
+        $forms = [ 0  => 'Choose Form' ];
+
+        if ( class_exists( 'WPCF7' ) ) {
+            $cf7_posts = get_posts([
+                'post_type'      => 'wpcf7_contact_form',
+                'posts_per_page' => -1,
+                'post_status'    => 'publish'
+            ]);
+
+            if ( ! empty( $cf7_posts ) ) {
+                foreach ( $cf7_posts as $form ) {
+                    $forms[ $form->ID ] = $form->post_title;
+                }
+            } 
+        }
+        return $forms;
+    }
+
+    public static function object_fit_css_options() {
+        return [
+            ''        => __('Default', 'steelnova'),
+            'cover'   => __('Cover', 'steelnova'),
+            'contain' => __('Contain', 'steelnova'),
+            'fill'    => __('Fill', 'steelnova'),
+            'none'    => __('None', 'steelnova'),
+        ];
+    }
 }

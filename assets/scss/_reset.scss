@@ -13,43 +13,44 @@
 }
 
 :root {
-    --mt-box-size: 30px;
-    --mt-background-color: var(--mt-primary-color);
-    --mt-background-color-hover: var(--mt-secondary-color);
-    --mt-animation-duration: .3s;
-    --mt-animation-name: none;
-    --mt-transition-duration: .3s;
-    --mt-rotate: 0deg;
-    --mt-translate-x: 0px;
-    --mt-translate-y: 0px;
-    --mt-spacing-inline: 30px;
-    --mt-spacing-block: 30px;
-    --mt-highlight-color: #B0FF4E;
-    --mt-line-color: rgba(0, 0, 0, .15);
-    --mt-height: 1px;
-    --mt-border-style: solid;
-    --mt-border-color: #000;
-    --mt-color: #000;
-    --mt-columns-1: 100%;
-    --mt-columns-2: 50%;
-    --mt-columns-3: 33.333333333%;
-    --mt-columns-4: 25%;
-    --mt-columns-5: 20%;
-    --mt-columns-6: 16.666666666%;
-    --mt-width: 100%;
-    --mt-height: 100%;
-    --mt-grid-size: 50%;
-    --mt-line-thickness: 1px;
-    --mt-angle: 0deg;
-    --mt-gap: 15px;
+    --steelnova-box-size: 30px;
+    --steelnova-background-color: var(--steelnova-primary-color);
+    --steelnova-background-color-hover: var(--steelnova-secondary-color);
+    --steelnova-animation-duration: .3s;
+    --steelnova-animation-name: none;
+    --steelnova-transition-duration: .3s;
+    --steelnova-rotate: 0deg;
+    --steelnova-translate-x: 0px;
+    --steelnova-translate-y: 0px;
+    --steelnova-column-gap: 30px;
+    --steelnova-row-gap: 30px;
+    --steelnova-highlight-color: #B0FF4E;
+    --steelnova-line-color: rgba(0, 0, 0, .15);
+    --steelnova-height: 1px;
+    --steelnova-border-style: solid;
+    --steelnova-border-color: #000;
+    --steelnova-color: #000;
+    --steelnova-columns-1: 100%;
+    --steelnova-columns-2: 50%;
+    --steelnova-columns-3: 33.333333333%;
+    --steelnova-columns-4: 25%;
+    --steelnova-columns-5: 20%;
+    --steelnova-columns-6: 16.666666666%;
+    --steelnova-width: 100%;
+    --steelnova-height: 100%;
+    --steelnova-column: 33.3332%;
+    --steelnova-line-thickness: 1px;
+    --steelnova-angle: 0deg;
+    --steelnova-gap: 15px;
+    --steelnova-container: 1300px;
 }
 
 body {
-    background-color: var(--mt-body-bg-color, transparent);
-    font-family: var(--mt-primary-font), sans-serif;
+    background-color: var(--steelnova-body-bg-color, transparent);
+    font-family: var(--steelnova-primary-font), sans-serif;
     font-size: 16px;
-    line-height: 1.5;
-    color: #626262;
+    line-height: 1.625;
+    color: #4B535D;
     font-weight: 400;
     letter-spacing: 0;
     margin: 0;
@@ -63,49 +64,37 @@ body {
 
 a {
     cursor: pointer;
-    color: var(--mt-link-color);
+    color: var(--steelnova-link-color);
     text-decoration: none;
     @include transition;
     &:hover {
-        color: var(--mt-link-hover-color);
+        color: var(--steelnova-link-hover-color);
     }
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: var(--mt-heading-color);
-    font-family: var(--mt-heading-font);
+    color: var(--steelnova-heading-color);
+    font-family: var(--steelnova-heading-font);
     font-weight: 600;
 }
 
 h1 {
-    font-size: 70px;
-    line-height: 1.288571;
-    letter-spacing: -2.8px;
+    @include h1;
 }
 h2 {
-    font-size: 40px;
-    line-height: 1.3;
-    letter-spacing: -1.6px;
+    @include h2;
 }
 h3 {
-    font-size: 24px;
-    line-height: 1.08333;
-    letter-spacing: -0.96px;
+    @include h3;
 }
 h4 {
-    font-size: 20px;
-    line-height: 1;
-    letter-spacing: 0;
+    @include h4;
 }
 h5 {
-    font-size: 18px;
-    line-height: 1.22222;
-    letter-spacing: -0.72px;
+    @include h5;
 }
 h6 {
-    font-size: 16px;
-    line-height: 1.25;
-    letter-spacing: -0.64px;
+    @include h6;
 }
 
 ul, ol {
@@ -119,8 +108,6 @@ hr {
     margin: 0;
     padding: 0;
 }
-
-
 
 svg {
     height: auto;
@@ -140,6 +127,8 @@ svg {
 }
 
 input, textarea {
+    box-sizing: border-box;
+    width: 100%;
     margin: 0;
     padding: 0;
     border: none;

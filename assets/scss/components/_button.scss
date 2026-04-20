@@ -1,6 +1,6 @@
 @use '../core.scss' as *;
 
-button, .button {
+button, .cs-button {
     position: relative;
     @include d-inline-flex(15px, center, center);
     cursor: pointer;
@@ -9,8 +9,24 @@ button, .button {
     white-space: nowrap;
     @include transition;
     color: var(--mt-link-color);
+    .button-icon {
+        @include d-inline-flex(null, center, center);
+    }
 }
 
-.button-hamburger {
+.cs-button--hamburger {
     background-color: transparent;
+}
+
+.cs-button--disable {
+    cursor: not-allowed;
+}
+
+.cs-button--primary {
+    height: 54px;
+    @include text-button-3;
+    background-color: #FF5B1B;
+    color: #FFF;
+    padding-inline: 30px;
+    border-radius: 8px;
 }

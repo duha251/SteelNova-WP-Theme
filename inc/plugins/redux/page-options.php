@@ -12,7 +12,7 @@ namespace SteelNova\Inc\Plugins\Redux;
  */
 
 use \SteelNova\Inc\Core\Option;
-use SteelNova\Inc\Helpers\StaticOptions;
+use SteelNova\Inc\Helpers\Static_Options;
 
 // Prevents direct access to the file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -56,7 +56,6 @@ class Page_Options {
                                     'mega-menu'    => __('Mega Menu', 'steelnova'), 
                                     'hero'         => __('Hero', 'steelnova'), 
                                     'panel'        => __('Panel', 'steelnova'),
-                                    'page'         => __('Page', 'steelnova'),
                                     'section'      => __('Section', 'steelnova')
                                 ],
                                 'select2'  => array(
@@ -108,6 +107,30 @@ class Page_Options {
                 'priority' => 'default',
                 'sections'  => $this->page_options(),
             ],
+            'post'    => [
+                'opt_name'            => 'pxl_post_options',
+                'display_name'        => __('Post Settings', 'steelnova' ),
+                'show_options_object' => false,
+                'context'  => 'advanced',
+                'priority' => 'default',
+                'sections'  => $this->single_blog_options(),
+            ],
+            'service' => [
+                'opt_name'            => 'pxl_service_options',
+                'display_name'        => __('Service Settings', 'steelnova' ),
+                'show_options_object' => false,
+                'context'  => 'advanced',
+                'priority' => 'default',
+                'sections'  => $this->single_service_options(),
+            ],
+            'project' => [
+                'opt_name'            => 'pxl_project_options',
+                'display_name'        => __('Project Settings', 'steelnova' ),
+                'show_options_object' => false,
+                'context'  => 'advanced',
+                'priority' => 'default',
+                'sections'  => $this->single_project_options(),
+            ],
             // Team
             'team' => [
                 'opt_name'            => 'pxl_team_options',
@@ -129,24 +152,16 @@ class Page_Options {
                 'title'  => __( 'Header', 'steelnova' ),
                 'icon'   => 'eicon-header',
                 'fields' => array_merge(
-                    StaticOptions::header_options( [ 'scope' => 'private' ] ),
-                    StaticOptions::header_sticky_options( [ 'scope' => 'private' ] ),
+                    Static_Options::header_options( [ 'scope' => 'private' ] ),
+                    Static_Options::header_sticky_options( [ 'scope' => 'private' ] ),
                 ),
             ],
             // Hero Section
             'hero' => [
-                'title'  => __( 'Hero Section', 'steelnova' ),
+                'title'  => __( 'Hero', 'steelnova' ),
                 'icon'   => 'eicon-archive-title',
                 'fields' => array_merge(
-                    array(
-                        // array(
-                        //     'id' => 'hero_section_heading',
-                        //     'title' => __('Hero Section', 'steelnova'),
-                        //     'type'  => 'section',
-                        //     'indent' => true,
-                        // ),
-                    ),
-                    // Helpers::get_page_hero_options('page', 'private'),
+                    Static_Options::hero_options( [ 'scope' => 'private' ] ),
                 ),
             ],
             // Footer
@@ -154,38 +169,13 @@ class Page_Options {
                 'title'  => __( 'Footer', 'steelnova' ),
                 'icon'   => 'eicon-footer',
                 'fields' => array_merge(
-                    array(
-                        array(
-                            'id' => 'footer_heading',
-                            'title' => __('Footer', 'steelnova'),
-                            'type'  => 'section',
-                            'indent' => true,
-                        ),
-                    ),
-                    // Helpers::get_footer_options('private'),
+                    Static_Options::footer_options( [ 'scope' => 'private' ] ),
                 )
             ],
             'breadcrumb' => [
                 'title'  => __('Breadcrumb', 'steelnova'),
                 'icon'   => 'eicon-animated-headline',
-                'fields' => array(
-                    array(
-                        'id' => 'breadcrumb_heading',
-                        'title' => __('Breadcrumb', 'steelnova'),
-                        'type'  => 'section',
-                        'indent' => true,
-                    ),
-                    array(
-                        'id'      => 'breadcrumb_mode',
-                        'type'    => 'button_set',
-                        'title'   => __( 'Breadcrumb Mode', 'steelnova' ),
-                        'options' => [
-                            'default'   => __( 'Default', 'steelnova' ),
-                            'custom'    => __( 'Custom', 'steelnova' ),
-                        ], 
-                        'default' => 'default',
-                    ),
-                ) 
+                'fields' => Static_Options::breadcrumnb_options( ['scope' => 'private'] )
             ],
             'appearance' => [
                 'title'  => __( 'Appearance', 'steelnova' ),
@@ -304,6 +294,21 @@ class Page_Options {
                     ),
                 )
             ],
+            'editor' => [
+                'title'  => __( 'Editor', 'steelnova' ),
+                'icon'   => 'eicon-text-field',
+                'fields' => [
+                    array(
+                        'id'       => 'css_editor',
+                        'type'     => 'ace_editor',
+                        'title'    => esc_html__('CSS Code', 'steelnova'),
+                        'subtitle' => esc_html__('Paste your CSS code here.', 'steelnova'),
+                        'mode'     => 'css',
+                        'theme'    => 'monokai',
+                        'desc'     => 'Possible modes can be found at https://ace.c9.io/.',
+                    )
+                ]
+            ]
         ];
     }
 
@@ -356,7 +361,7 @@ class Page_Options {
                                 'id'       => 'social_icon',
                                 'type'     => 'media', 
                                 'url'      => true,
-                                'title'    => esc_html__('Social Icon', 'steelnova'),
+                                'title'    => __('Social Icon', 'steelnova'),
                             ),
                             array(
                                 'id'    => 'social_link',
@@ -365,6 +370,129 @@ class Page_Options {
                                 'default' => '#'
                             ),
                         ),
+                    )
+                ]
+            ],
+            'editor' => [
+                'title'  => __( 'Editor', 'steelnova' ),
+                'icon'   => 'eicon-text-field',
+                'fields' => [
+                    array(
+                        'id'       => 'css_editor',
+                        'type'     => 'ace_editor',
+                        'title'    => esc_html__('CSS Code', 'steelnova'),
+                        'subtitle' => esc_html__('Paste your CSS code here.', 'steelnova'),
+                        'mode'     => 'css',
+                        'theme'    => 'monokai',
+                        'desc'     => 'Possible modes can be found at https://ace.c9.io/.',
+                    )
+                ]
+            ]
+        ];
+    }
+
+    function single_service_options() {
+        return [
+            'info' => [
+                'title'  => __( 'Info', 'steelnova' ),
+                'icon'   => 'eicon-text-field',
+                'fields' => [
+                    array(
+                        'id'    => 'service_icon',
+                        'type'  => 'media',
+                        'url'   => true,
+                        'title' => __('Icon', 'steelnova'),
+                    ),
+
+                    array(
+                        'id'=>'service_features',
+                        'type' => 'multi_text',
+                        'title' => __('Features', 'steelnova'),
+                        'add_text' => __('Add Feature', 'steelnova'),
+                    ),
+                ],
+             ],
+        ];
+    }
+
+    function single_blog_options() {
+        return [
+            'editor' => [
+                'title'  => __( 'Editor', 'steelnova' ),
+                'icon'   => 'eicon-text-field',
+                'fields' => [
+                    array(
+                        'id'       => 'css_editor',
+                        'type'     => 'ace_editor',
+                        'title'    => esc_html__('CSS Code', 'steelnova'),
+                        'subtitle' => esc_html__('Paste your CSS code here.', 'steelnova'),
+                        'mode'     => 'css',
+                        'theme'    => 'monokai',
+                        'desc'     => 'Possible modes can be found at https://ace.c9.io/.',
+                    )
+                ]
+            ]
+        ];
+    }
+
+    function single_project_options() {
+        return [
+            'gallery' => [
+                'title'  => __( 'Gallery', 'steelnova' ),
+                'icon'   => 'eicon-text-field',
+                'fields' => [
+                    array(
+                        'id'       => 'project_gallery',
+                        'type'     => 'gallery',
+                        'title'    => esc_html__('Add/Edit Gallery', 'steelnova'),
+                    ),
+                ],
+            ],
+            'info' => [
+                'title'  => __( 'Info', 'steelnova' ),
+                'icon'   => 'eicon-text-field',
+                'fields' => [
+                    array(
+                        'id'       => 'project_info',
+                        'type'     => 'repeater',
+                        'title'    => __('Info', 'steelnova'),
+                        'full_width' => true, 
+                        'sortable' => true,
+                        'group_values' => true,
+                        'bind_title' => 'info_label',
+                        'fields'   => array(
+                            array(
+                                'id'       => 'info_icon',
+                                'type'     => 'media', 
+                                'url'      => true,
+                                'title'    => __('Info Icon', 'steelnova'),
+                            ),
+                            array(
+                                'id'    => 'info_label',
+                                'type'  => 'text',
+                                'title' => __('Info Label', 'steelnova'),
+                            ),
+                            array(
+                                'id'    => 'info_text',
+                                'type'  => 'text',
+                                'title' => __('Info Text', 'steelnova'),
+                            ),
+                        ),
+                    )
+                ]
+            ],
+            'editor' => [
+                'title'  => __( 'Editor', 'steelnova' ),
+                'icon'   => 'eicon-text-field',
+                'fields' => [
+                    array(
+                        'id'       => 'css_editor',
+                        'type'     => 'ace_editor',
+                        'title'    => esc_html__('CSS Code', 'steelnova'),
+                        'subtitle' => esc_html__('Paste your CSS code here.', 'steelnova'),
+                        'mode'     => 'css',
+                        'theme'    => 'monokai',
+                        'desc'     => 'Possible modes can be found at https://ace.c9.io/.',
                     )
                 ]
             ]

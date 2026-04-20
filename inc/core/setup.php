@@ -101,12 +101,12 @@ class Setup {
 	public function widgets_init() {
 		register_sidebar( array(
 			'name'          => esc_html__( 'Blog Sidebar', 'steelnova' ),
-			'id'            => 'sidebar-blog',
+			'id'            => 'sidebar-post',
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h3 class="widget-title heading-title title-underline-highlight">',
+			'before_title'  => '<h3 class="widget-title">',
 			'after_title'   => '</h3>',
-		) );
+		));
 		
 		if ( class_exists( 'Woocommerce' ) ) {
 			register_sidebar( array(
@@ -114,7 +114,7 @@ class Setup {
 				'id'            => 'sidebar-shop',
 				'before_widget' => '<section id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</section>',
-				'before_title'  => '<h3 class="widget-title heading-title title-underline-highlight">',
+				'before_title'  => '<h3 class="widget-title">',
 				'after_title'   => '</h3>',
 			) );
 		}

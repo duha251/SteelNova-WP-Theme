@@ -1,0 +1,59 @@
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./elementor/assets/scss/widgets/icon-box.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+.icon-box {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.icon-box__title > a {
+  color: inherit;
+}
+.icon-box__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-box__content {
+  display: inline-flex;
+  gap: 5px;
+  flex-direction: column;
+}
+.icon-box[data-layout_style="2"] {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 30px;
+}
+.icon-box[data-layout_style="2"] .icon-box__icon {
+  --mt-box-size: 50px;
+  width: var(--mt-box-size);
+  height: var(--mt-box-size);
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  color: #FF5B1B;
+}
+.icon-box[data-layout_style="2"] .icon-box__icon::before {
+  content: "";
+  --mt-box-size: 30px;
+  width: var(--mt-box-size);
+  min-width: var(--mt-box-size);
+  height: var(--mt-box-size);
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.icon-box[data-layout_style="2"] .icon-box__title {
+  color: #FFF;
+}
+.icon-box[data-layout_style="2"] .icon-box__content {
+  gap: 10px;
+}
+.icon-box[data-layout_style="2"] .icon-box__description {
+  color: #FFF;
+  line-height: 1.625;
+}
+
+/*# sourceMappingURL=icon-box.min.css.map*/

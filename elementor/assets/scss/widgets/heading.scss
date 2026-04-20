@@ -1,0 +1,30 @@
+@use '../../../../assets/scss/core' as *;
+
+.heading {
+    &__title {
+        display: block;
+    }
+    &__subtitle {
+        @include d-inline-flex(10px, center);
+        &-icon {
+            @include d-inline-flex(null, center, center);
+        }
+        &--primary {
+            // border: thin solid rgba($color: #FFFFFF, $alpha: .15);
+            border-radius: 100px;
+            padding: 14px 22px;
+            gap: 6px;
+            color:#FFF;
+            font-family: Inter;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 1;
+            background-color: #121512;
+            margin-bottom: 15px;
+            .heading__subtitle-icon {
+                color: #FF5B1B;
+            }
+        }
+    }
+}

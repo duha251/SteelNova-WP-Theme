@@ -25,6 +25,7 @@ class Enqueue {
 
     public function __construct( Option $option_instance, $theme_version) {
         $this->option = $option_instance;
+
 		$this->version = $theme_version;
 		add_action( 'wp_enqueue_scripts', [$this, 'enqueue_assets'] );
 	}
@@ -34,8 +35,19 @@ class Enqueue {
 		$this->enqueue_scripts();
     }
 
+
     public function enqueue_scripts() {
         // wp_enqueue_script('jquery'); 
+		// Comment
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+            wp_enqueue_script( 'comment-reply' );
+        }
+		// Libraries
+		wp_register_script('swiper-bundle', get_template_directory_uri() . '/assets/js/libraries/swiper-bundle.min.js', [], '12.1.3', true);
+		wp_register_script('gsap', get_template_directory_uri() . '/assets/js/libraries/gsap.min.js', [], '3.14.2', true);
+		wp_register_script('ScrollTrigger', get_template_directory_uri() . '/assets/js/libraries/ScrollTrigger.min.js', ['gsap'], '3.14.2', true);
+
+		// Appply defer and module attributes to the main app.js script
 		wp_enqueue_script_module('app', get_template_directory_uri() . '/assets/js/app.js', [], $this->version, []);
     }
 
@@ -46,33 +58,28 @@ class Enqueue {
         wp_enqueue_style('steelnova-style', get_template_directory_uri() . '/assets/css/style.min.css', [], $this->version);
         wp_add_inline_style( 'steelnova-style', $this->render_inline_styles() );
         wp_enqueue_style('steelnova-wp-block-style', get_template_directory_uri() . '/assets/css/wp-block.css', [], $this->version);
-
-        // wp_enqueue_style('steelnova-custom-style', get_template_directory_uri() . '/assets/css/custom-style.css', $this->version);
-
+		
         // // Enquence Google Font
         $google_font_url = $this->get_google_fonts_url();
         if ( ! empty( $google_font_url ) ) {
-            wp_enqueue_style( 'steelnova-google-fonts', $google_font_url, [], $this->version );
+            wp_enqueue_style( 'steelnova-google-fonts', $google_font_url, [], null );
         }
     }
 
-    /**
+	/**
 	 * Generates the Google Fonts URL.
 	 *
-	 * @return string The final Google Fonts URL.
+	 * @return string
 	 */
 	public function get_google_fonts_url() {
 		$fonts = [];
-		if ( 'off' !== _x( 'on', 'DM Sans font: on or off', 'steelnova' ) ) {
-			$fonts[] = 'DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000';
-		}
-		if ( empty( $fonts ) ) {
-			return '';
-		}
-		$query_string     = implode( '&family=', $fonts );
-		$google_fonts_url = 'https://fonts.googleapis.com/css2?family=' . $query_string . '&display=swap';
 
-		return $google_fonts_url;
+		$fonts[] = 'Public+Sans:ital,wght@0,100..900;1,100..900';
+		$fonts[] = 'Inter:ital,wght@0,100..900;1,100..900';
+		$fonts[] = 'Plus+Jakarta+Sans:wght@200..800';
+		$fonts[] = 'DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000';
+
+		return 'https://fonts.googleapis.com/css2?family=' . implode('&family=', $fonts) . '&display=swap';
 	}
 
 	/**
@@ -86,7 +93,8 @@ class Enqueue {
 		$linear_gradient_colors    = $this->get_style_config( 'linear_gradient' );
 		$theme_typography = $this->get_style_config( 'theme_typography' );
 		$spacing_block    = $this->get_style_config( 'spacing_block' );
-
+		$css_editor = $this->option->get_option('css_editor', '');
+		
 		$breakpoints = [
 			'xs' => '575px',
 			'sm' => '767px',
@@ -100,49 +108,53 @@ class Enqueue {
 		$container_unit = $matches[2] ?? 'px';
 
 		ob_start();
-			echo ':root{';
-				foreach ( $theme_colors as $color => $value ) {
-					printf( '--mt-%1$s-color: %2$s;', esc_attr( $color ), esc_attr( $value ) );
-				}
-				foreach ( $link_colors as $color => $value ) {
-					printf( '--mt-link-%1$s: %2$s;', esc_attr( $color ), esc_attr( $value ) );
-				}
-				foreach ( $linear_gradient_colors as $color => $value ) {
-					printf( '--mt-linear-color-%1$s: %2$s;', esc_attr( $color ), esc_attr( $value ) );
-				}
-				foreach ( $theme_typography as $font => $value ) {
-					$font_family = is_array( $value) ? $value['font-family'] : $value;
-					printf( '--mt-%1$s-font: %2$s;', esc_attr( $font ), esc_attr( $font_family ) );
-				}
-				printf( '--mt-container: %1$s;', esc_attr( $container_size . $container_unit ) );
-			echo '}';
 
-			foreach ( $spacing_block as $breakpoint_key => $value ) {
-				$pd_top = ( $value['padding-top'] ?? '' ) ;
-				$pd_bottom = ( $value['padding-bottom'] ?? '')  ;
-				if( !empty( $pd_top ) ) {
-					if( !empty( $breakpoint_key ) ) {
-						printf( 
-							'@media screen and (max-width: %1$s) { #main .inner { padding-top: %2$s; } }', 
-							esc_attr( $breakpoints[$breakpoint_key] ),
-							esc_attr( $pd_top ),
-						);
-					}else {
-						printf( '#main .inner { padding-top: %1$s; }', esc_attr( $pd_top ) );
-					}
-				}
-				if( !empty( $pd_bottom ) ) {
-					if( !empty( $breakpoint_key ) ) {
-						printf( 
-							'@media screen and (max-width: %1$s) { #main .inner { padding-bottom: %2$s; } }', 
-							esc_attr( $breakpoints[$breakpoint_key] ),
-							esc_attr( $pd_bottom )
-						);
-					}else {
-						printf( '#main .inner { padding-bottom: %1$s; }', esc_attr( $pd_bottom ) );
-					}
+		echo ':root{';
+			foreach ( $theme_colors as $color => $value ) {
+				printf( '--steelnova-%1$s-color: %2$s;', esc_attr( $color ), esc_attr( $value ) );
+			}
+			foreach ( $link_colors as $color => $value ) {
+				printf( '--steelnova-link-%1$s: %2$s;', esc_attr( $color ), esc_attr( $value ) );
+			}
+			foreach ( $linear_gradient_colors as $color => $value ) {
+				printf( '--steelnova-linear-color-%1$s: %2$s;', esc_attr( $color ), esc_attr( $value ) );
+			}
+			foreach ( $theme_typography as $font => $value ) {
+				$font_family = is_array( $value) ? $value['font-family'] : $value;
+				printf( '--steelnova-%1$s-font: %2$s;', esc_attr( $font ), esc_attr( $font_family ) );
+			}
+			printf( '--steelnova-container: %1$s;', esc_attr( $container_size . $container_unit ) );
+		echo '}';
+
+		foreach ( $spacing_block as $breakpoint_key => $value ) {
+			$pd_top = ( $value['padding-top'] ?? '' ) ;
+			$pd_bottom = ( $value['padding-bottom'] ?? '')  ;
+			if( !empty( $pd_top ) ) {
+				if( !empty( $breakpoint_key ) ) {
+					printf( 
+						'@media screen and (max-width: %1$s) { #main .inner { padding-top: %2$s; } }', 
+						esc_attr( $breakpoints[$breakpoint_key] ),
+						esc_attr( $pd_top ),
+					);
+				}else {
+					printf( '#main .inner { padding-top: %1$s; }', esc_attr( $pd_top ) );
 				}
 			}
+			if( !empty( $pd_bottom ) ) {
+				if( !empty( $breakpoint_key ) ) {
+					printf( 
+						'@media screen and (max-width: %1$s) { #main .inner { padding-bottom: %2$s; } }', 
+						esc_attr( $breakpoints[$breakpoint_key] ),
+						esc_attr( $pd_bottom )
+					);
+				}else {
+					printf( '#main .inner { padding-bottom: %1$s; }', esc_attr( $pd_bottom ) );
+				}
+			}
+		}
+		if( !empty( $css_editor ) ) {
+			pxl_print_html( $css_editor );
+		}
 
 		return ob_get_clean();
 	}
@@ -161,7 +173,7 @@ class Enqueue {
 				'secondary' => $this->option->get_option( 'secondary_color', '#000' ),
 				'third'     => $this->option->get_option( 'third_color', '#EDDD5E' ),
 				'body-background'   => $this->option->get_option( 'body_bg_color', '#FFF' ),
-				'heading'   => $this->option->get_option( 'heading_color', '#060F16' ),
+				'heading'   => $this->option->get_option( 'heading_color', '#0A1119' ),
 			],
 			'link'             => [
 				'color'       => $this->option->get_option( 'link_color', [ 'regular' => '#000' ] )['regular'],
@@ -169,10 +181,10 @@ class Enqueue {
 			],
 			'linear_gradient' => $this->option->get_option( 'linear_gradient_color', [ 'from' => '#000', 'to' => '#FFF' ] ),
 			'theme_typography' => [
-				'primary'   => $this->option->get_option( 'primary_font', 'DM Sans' ),
+				'primary'   => $this->option->get_option( 'primary_font', 'Public Sans' ),
                 'secondary' => $this->option->get_option( 'secondary_font', 'DM Sans' ),
-                'third'     => $this->option->get_option( 'third_font', 'DM Sans' ),
-                'heading'   => $this->option->get_option( 'heading_font', 'DM Sans' ),
+                'text'     => $this->option->get_option( 'text_font', 'Public Sans' ),
+                'heading'   => $this->option->get_option( 'heading_font', 'Plus Jakarta Sans' ),
 			],
 			'spacing_block' => [
 				''          =>  $this->option->get_theme_option( 'spacing_block'   , [ 'padding-top' => '', 'padding-bottom' => '' ] ),

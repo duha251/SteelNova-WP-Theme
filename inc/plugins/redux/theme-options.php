@@ -11,7 +11,7 @@
 namespace SteelNova\Inc\Plugins\Redux;
 
 use \SteelNova\Inc\Core\Option;
-use SteelNova\Inc\Helpers\StaticOptions;
+use SteelNova\Inc\Helpers\Static_Options;
 
 
 // Prevents direct access to the file.
@@ -310,15 +310,15 @@ class Theme_Options {
                     'text-align'  => false,
                 ),
                 array(
-                    'id'          => 'third_font',
+                    'id'          => 'text_font',
                     'type'        => 'typography',
-                    'title'       => __('Third Font', 'steelnova'),
+                    'title'       => __('Text Font', 'steelnova'),
                     'google'      => false,
                     'font-backup' => false,
                     'all_styles'  => false,
                     'line-height'  => false,
-                    'font-size'  => false,
-                    'color'  => false,
+                    'font-size'   => false,
+                    'color'       => false,
                     'font-style'  => false,
                     'font-weight'  => false,
                     'text-align'  => false,
@@ -333,117 +333,10 @@ class Theme_Options {
                     'line-height' => false,
                     'font-size'   => false,
                     'font-style'  => false,
-                    'font-weight' => true,
+                    'font-weight' => false,
                     'text-align'  => false,
                     'color'       => false,
                     'output'      => array('h1', '.h1', 'h2', '.h2', 'h3', '.h3', 'h4', '.h4', 'h5', '.h5', 'h6', '.h6'),
-                ),
-                array(
-                    'id'          => 'font_heading_h1',
-                    'type'        => 'typography',
-                    'title'       => __('Heading H1', 'steelnova'),
-                    'google'      => false,
-                    'font-backup' => false,
-                    'all_styles'  => true,
-                    'text-align'  => false,
-                    'line-height' => true,
-                    'font-size'   => true,
-                    'font-backup' => false,
-                    'font-style'  => false,
-                    'output'      => array('h1', '.h1'),
-                    'units'       => 'px',
-                    'font-family' => false,
-                    'color' => false
-                ),
-        
-                array(
-                    'id'          => 'font_heading_h2',
-                    'type'        => 'typography',
-                    'title'       => __('Heading H2', 'steelnova'),
-                    'google'      => true,
-                    'font-backup' => true,
-                    'all_styles'  => true,
-                    'text-align'  => false,
-                    'line-height' => true,
-                    'font-size'   => true,
-                    'font-backup' => false,
-                    'font-style'  => false,
-                    'output'      => array('h2', '.h2'),
-                    'units'       => 'px',
-                    'font-family' => false,
-                    'color' => false
-                ),
-        
-                array(
-                    'id'          => 'font_heading_h3',
-                    'type'        => 'typography',
-                    'title'       => __('Heading H3', 'steelnova'),
-                    'google'      => true,
-                    'font-backup' => true,
-                    'all_styles'  => true,
-                    'text-align'  => false,
-                    'line-height' => true,
-                    'font-size'   => true,
-                    'font-backup' => false,
-                    'font-style'  => false,
-                    'output'      => array('h3', '.h3'),
-                    'units'       => 'px',
-                    'font-family' => false,
-                    'color' => false
-                ),
-        
-                array(
-                    'id'          => 'font_heading_h4',
-                    'type'        => 'typography',
-                    'title'       => __('Heading H4', 'steelnova'),
-                    'google'      => true,
-                    'font-backup' => true,
-                    'all_styles'  => true,
-                    'text-align'  => false,
-                    'line-height' => true,
-                    'font-size'   => true,
-                    'font-backup' => false,
-                    'font-style'  => false,
-                    'output'      => array('h4', '.h4'),
-                    'units'       => 'px',            
-                    'font-family' => false,
-                    'color' => false
-                ),
-        
-                array(
-                    'id'          => 'font_heading_h5',
-                    'type'        => 'typography',
-                    'title'       => __('Heading H5', 'steelnova'),
-                    'google'      => true,
-                    'font-backup' => true,
-                    'all_styles'  => true,
-                    'text-align'  => false,
-                    'line-height' => true,
-                    'font-size'   => true,
-                    'font-backup' => false,
-                    'font-style'  => false,
-                    'output'      => array('h5', '.h5'),
-                    'units'       => 'px',
-                    'font-family' => false,
-                    'color' => false
-                ),
-        
-                array(
-                    'id'          => 'font_heading_h6',
-                    'type'        => 'typography',
-                    'title'       => __('Heading H6', 'steelnova'),
-                    'google'      => true,
-                    'font-backup' => true,
-                    'all_styles'  => true,
-                    'text-align'  => false,
-                    'line-height' => true,
-                    'font-size'   => true,
-                    'font-backup' => false,
-                    'font-style'  => false,
-                    'output'      => array('h6', '.h6'),
-                    'units'       => 'px',
-                    'font-family' => false,
-                    'color' => false
                 ),
             )
         ));
@@ -546,9 +439,9 @@ class Theme_Options {
             'icon'   => 'eicon-header',
             'subsection' => true,
             'fields' => array_merge(
-                StaticOptions::header_options(), 
-                StaticOptions::header_sticky_options(),
-                StaticOptions::header_mobile_options(),
+                Static_Options::header_options(), 
+                Static_Options::header_sticky_options(),
+                Static_Options::header_mobile_options(),
             ),
         ));
 
@@ -557,9 +450,17 @@ class Theme_Options {
             'title' => __('Hero', 'steelnova'),
             'icon'  => 'eicon-site-title',
             'subsection' => true,
-            'fields'     => array_merge(
-                StaticOptions::hero_options(),
-            )
+            'fields'     => Static_Options::hero_options([ 
+                'note'  => __( 'We are a dedicated company focused on delivering reliable solutions through expertise, innovation, and a client-first approach.', 'steelnova' ) 
+            ]),
+        ));
+
+        // Breadcrumb
+        \Redux::setSection($opt_name, array(
+            'title' => __('Breadcrumb', 'steelnova'),
+            'icon'  => 'eicon-ellipsis-h',
+            'subsection' => true,
+            'fields'     => Static_Options::breadcrumnb_options()
         ));
         
         // Footer
@@ -568,286 +469,200 @@ class Theme_Options {
             'icon'   => 'eicon-footer',
             'subsection' => true,
             'fields' => array_merge(
-                StaticOptions::footer_options(),
+                Static_Options::footer_options(),
             )
         ));
 
-        // // Pages Settings
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('Pages', 'steelnova'),
-        //     'icon'  => 'eicon-progress-tracker',
-        //     'fields'     => array(
-        //     )
-        // ));
-        // \Redux::setSection($opt_name, array(
-        //     'title'  => __('404 Error', 'steelnova'),
-        //     'icon'   => 'eicon-error-404',
-        //     'subsection' => true,
-        //     'fields' => array_merge(
-        //         array(
-
-        //             array(
-        //                 'id'       => '404_page_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Template', 'steelnova'),
-        //                 // 'options'  => Helpers::get_templates_by_type('page'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id' => '404_header_heading',
-        //                 'title' => __('Header', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'       => '404_page_show_header',
-        //                 'type'     => 'switch',
-        //                 'title'    => __('Show Header', 'steelnova'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'      => '404_page_header_layout',
-        //                 'type'    => 'select',
-        //                 'title'   => __('Header Layout', 'steelnova'),
-        //                 'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
-        //                 // 'options' => Helpers::get_templates_by_type('header'),
-        //                 'select2'  => [ 'allowClear' => true ],
-        //                 'required' => ['404_page_show_header', '=', '1'],
-        //             ),
-        //             array(
-        //                 'id' => '404_header_mobile_heading',
-        //                 'title' => __('Header Mobile', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'       => '404_page_show_header_mobile',
-        //                 'type'     => 'switch',
-        //                 'title'    => __('Show Header', 'steelnova'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'      => '404_page_header_mobile_layout',
-        //                 'type'    => 'select',
-        //                 'title'   => __('Header Layout', 'steelnova'),
-        //                 'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
-        //                 // 'options' => Helpers::get_templates_by_type('header-mobile'),
-        //                 'select2'  => [ 'allowClear' => true ],
-        //                 'required' => ['404_page_show_header_mobile', '=', '1'],
-        //             ),      
-        //             array(
-        //                 'id' => '404_footer_heading',
-        //                 'title' => __('Footer', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'       => '404_page_show_footer',
-        //                 'type'     => 'switch',
-        //                 'title'    => __('Show Footer', 'steelnova'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'      => '404_page_footer_layout',
-        //                 'type'    => 'select',
-        //                 'title'   => __('Footer Layout', 'steelnova'),
-        //                 'desc'    => sprintf(__('Please create your layout before choosing. %sClick Here%s','steelnova'),'<a href="' . esc_url( admin_url( 'edit.php?post_type=pxl-template' ) ) . '">','</a>'),
-        //                 // 'options' => Helpers::get_templates_by_type('footer'),
-        //                 'select2'  => [ 'allowClear' => true ],
-        //                 'required' => ['404_page_show_footer', '=', '1'],
-        //             ),
-        //             // array(
-        //             //     'id' => '404_hero_heading',
-        //             //     'title' => __('Hero Section', 'steelnova'),
-        //             //     'type'  => 'section',
-        //             //     'indent' => true,
-        //             // ),
-        //         ),
-        //         // Helpers::get_page_hero_options('404_page'),
-        //     )
-        // ));
+        // Pages Settings
+        \Redux::setSection($opt_name, array(
+            'title' => __('Pages', 'steelnova'),
+            'icon'  => 'eicon-progress-tracker',
+            'fields'     => array(
+            )
+        ));
+        \Redux::setSection($opt_name, array(
+            'title'  => __('404 Not Found', 'steelnova'),
+            'icon'   => 'eicon-error-404',
+            'subsection' => true,
+            'fields' => array_merge(
+                array(
+                    array(
+                        'id'       => '404_template',
+                        'type'     => 'select',
+                        'title'    => __('Template', 'steelnova'),
+                        'options'  => Static_Options::get_templates_by_type('section'),
+                        'default'  => '',
+                    ),
+                    array(
+                        'id' => '404_header_heading',
+                        'title' => __('Header', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                ),
+                Static_Options::header_options( [ 'scope' => 'private', 'prefix_id' =>'404_' ] ), 
+                Static_Options::header_mobile_options( [ 'scope' => 'private', 'prefix_id' =>'404_' ] ),
+                Static_Options::hero_options([ 
+                    'scope' => 'private', 
+                    'prefix_id' =>'404_', 
+                    'meta_key' => 'page', 
+                    'title' => __('404 Not Found!'), 
+                    'note'  => __( 'We are a dedicated company focused on delivering reliable solutions through expertise, innovation, and a client-first approach.', 'steelnova' ) 
+                ]), 
+                Static_Options::footer_options( [ 'scope' => 'private', 'prefix_id' =>'404_' ] ), 
+            )
+        ));
             
-        // // Blog
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('Blog', 'steelnova'),
-        //     'icon'  => 'eicon-post',
-        // ));
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('Archive', 'steelnova'),
-        //     'icon'  => 'eicon-archive-posts',
-        //     'subsection' => true,
-        //     'fields'     => array_merge(
-        //         array(
-        //             array(
-        //                 'id'       => 'archive_standard_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Archive Template', 'steelnova'),
-        //                 // 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'       => 'archive_standard_before_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Page Before Template', 'steelnova'),
-        //                 // 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'       => 'archive_standard_after_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Page After Template', 'steelnova'),
-        //                 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //         ),
-        //         Helpers::get_page_hero_options('blog'),
-        //         Helpers::get_breadcrumb_option('blog'),
-        //         array(
-        //             array(
-        //                 'id' => 'blog_sidebar_mode_heading',
-        //                 'title' => esc_html__('Sidebar', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'      => 'blog_sidebar_mode',
-        //                 'type'    => 'button_set',
-        //                 'title'   => __( 'Sidebar Mode', 'steelnova' ),
-        //                 'options' => [
-        //                     'none' => __('None', 'steelnova'),
-        //                     'left' => __('Left', 'steelnova'),
-        //                     'right' => __('Right', 'steelnova'),
-        //                 ], 
-        //                 'default' => 'none',
-        //             ),
-        //             array(
-        //                 'id' => 'blog_css_heading',
-        //                 'title' => esc_html__('Custom Layout', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'             => 'blog_content_spacing',
-        //                 'type'           => 'spacing',
-        //                 'right'          => false,
-        //                 'left'           => false,
-        //                 'mode'           => 'padding',
-        //                 'units'          => array( 'px' ),
-        //                 'units_extended' => 'false',
-        //                 'title'          => esc_html__( 'Spacing Top/Bottom', 'steelnova' ),
-        //                 'default'        => array(
-        //                     'padding-top'    => '',
-        //                     'padding-bottom' => '',
-        //                     'units'          => 'px',
-        //                 )
-        //             ), 
-        //             array(
-        //                 'id'             => 'blog_container_width',
-        //                 'type'           => 'dimensions',
-        //                 'units'          => array('px'), 
-        //                 'units_extended' => 'false',
-        //                 'title'          => __('Container Width', 'steelnova'),
-        //                 'width'          => true, 
-        //                 'height'         => false,
-        //             ),
-        //         )
-        //     )
-        // ));
+        // Blog
+        \Redux::setSection($opt_name, array(
+            'title' => __('Blog', 'steelnova'),
+            'icon'  => 'eicon-post',
+        ));
+        \Redux::setSection($opt_name, array(
+            'title' => __('Archive Blog', 'steelnova'),
+            'icon'  => 'eicon-archive-posts',
+            'subsection' => true,
+            'fields'     => array_merge(
+                array(
+                    array(
+                        'id'       => 'archive_standard_template_id',
+                        'type'     => 'select',
+                        'title'    => __('Archive Template', 'steelnova'),
+                        'options'  => Static_Options::get_templates_by_type('section'),
+                        'default'  => '',
+                    ),
+                    array(
+                        'id' => 'blog_sidebar_mode_heading',
+                        'title' => esc_html__('Sidebar', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                    array(
+                        'id'      => 'blog_sidebar_mode',
+                        'type'    => 'button_set',
+                        'title'   => __( 'Sidebar Mode', 'steelnova' ),
+                        'options' => [
+                            'none' => __('None', 'steelnova'),
+                            'left' => __('Left', 'steelnova'),
+                            'right' => __('Right', 'steelnova'),
+                        ], 
+                        'default' => 'none',
+                    ),
+                ),
+            )
+        ));
 
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('Single Post', 'steelnova'),
-        //     'icon'  => 'eicon-single-posts',
-        //     'subsection' => true,
-        //     'fields'     => array_merge(
-        //         array(
-        //             array(
-        //                 'id' => 'single_post_layout_heading',
-        //                 'title' => esc_html__('Layout', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'       => 'single_post_header_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Post Header Template', 'steelnova'),
-        //                 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'       => 'single_post_footer_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Post Footer Template', 'steelnova'),
-        //                 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'       => 'single_post_before_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Page Before Template', 'steelnova'),
-        //                 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'       => 'single_post_after_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Page After Template', 'steelnova'),
-        //                 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //         ),
-        //         Helpers::get_page_hero_options('post'),
-        //         Helpers::get_breadcrumb_option('single_post'),
-        //         array(
-        //             array(
-        //                 'id' => 'single_post_sidebar_mode_heading',
-        //                 'title' => esc_html__('Sidebar', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'      => 'single_post_sidebar_mode',
-        //                 'type'    => 'button_set',
-        //                 'title'   => __( 'Sidebar Mode', 'steelnova' ),
-        //                 'options' => [
-        //                     'none' => __('None', 'steelnova'),
-        //                     'left' => __('Left', 'steelnova'),
-        //                     'right' => __('Right', 'steelnova'),
-        //                 ], 
-        //                 'default' => 'none',
-        //             ),
-        //             array(
-        //                 'id' => 'single_post_css_heading',
-        //                 'title' => esc_html__('Custom Layout', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'             => 'single_post_content_spacing',
-        //                 'type'           => 'spacing',
-        //                 'right'          => false,
-        //                 'left'           => false,
-        //                 'mode'           => 'padding',
-        //                 'units'          => array( 'px' ),
-        //                 'units_extended' => 'false',
-        //                 'title'          => esc_html__( 'Spacing Top/Bottom', 'steelnova' ),
-        //                 'default'        => array(
-        //                     'padding-top'    => '',
-        //                     'padding-bottom' => '',
-        //                     'units'          => 'px',
-        //                 )
-        //             ), 
-        //             array(
-        //                 'id'             => 'single_post_container_width',
-        //                 'type'           => 'dimensions',
-        //                 'units'          => array('px'), 
-        //                 'units_extended' => 'false',
-        //                 'title'          => __('Container Width', 'steelnova'),
-        //                 'width'          => true, 
-        //                 'height'         => false,
-        //             ),
-        //         )
-        //     )
-        // ));
+        \Redux::setSection($opt_name, array(
+            'title' => __('Single Post', 'steelnova'),
+            'icon'  => 'eicon-single-posts',
+            'subsection' => true,
+            'fields'     => array_merge(
+                array(
+                    array(
+                        'id' => 'single_post_layout_heading',
+                        'title' => esc_html__('Layout', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                    array(
+                        'id'       => 'single_post_header_template_id',
+                        'type'     => 'select',
+                        'title'    => __('Post Header Template', 'steelnova'),
+                        'options'  => Static_Options::get_templates_by_type('section'),
+                        'default'  => '',
+                    ),
+                    array(
+                        'id'       => 'single_post_footer_template_id',
+                        'type'     => 'select',
+                        'title'    => __('Post Footer Template', 'steelnova'),
+                        'options'  => Static_Options::get_templates_by_type('section'),
+                        'default'  => '',
+                    ),
+                    array(
+                        'id' => 'single_post_sidebar_mode_heading',
+                        'title' => esc_html__('Sidebar', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                    array(
+                        'id'      => 'single_post_sidebar_mode',
+                        'type'    => 'button_set',
+                        'title'   => __( 'Sidebar Mode', 'steelnova' ),
+                        'options' => [
+                            'none' => __('None', 'steelnova'),
+                            'left' => __('Left', 'steelnova'),
+                            'right' => __('Right', 'steelnova'),
+                        ], 
+                        'default' => 'none',
+                    ),
+                ),
+                Static_Options::breadcrumnb_options( [ 'scope' => 'private', 'prefix_id' =>'single_post_' ] ),
+                Static_Options::header_options( [ 'scope' => 'private', 'prefix_id' =>'single_post_' ] ), 
+                Static_Options::header_mobile_options( [ 'scope' => 'private', 'prefix_id' =>'single_post_' ] ),
+                Static_Options::hero_options([ 
+                    'scope' => 'private', 
+                    'prefix_id' =>'single_post_', 
+                    'meta_key' => 'single', 
+                    'title' => '', 
+                    'note'  => __( 'Stay informed with the latest updates from SteelNova, including company announcements, project highlights, technological advancements, and important developments shaping the modern manufacturing industry', 'steelnova' ) 
+                ]), 
+                Static_Options::footer_options( [ 'scope' => 'private', 'prefix_id' =>'single_post_' ] ), 
+            )
+        ));
+
+
+        \Redux::setSection($opt_name, array(
+            'title' => __('Project', 'steelnova'),
+            'icon'  => 'eicon-post',
+        ));
+        \Redux::setSection($opt_name, array(
+            'title' => __('Archive Project', 'steelnova'),
+            'icon'  => 'eicon-archive-posts',
+            'subsection' => true,
+            'fields'     => array_merge(
+            )
+        ));
+
+        \Redux::setSection($opt_name, array(
+            'title' => __('Single Project', 'steelnova'),
+            'icon'  => 'eicon-single-posts',
+            'subsection' => true,
+            'fields'     => array_merge(
+                array(
+                    array(
+                        'id' => 'single_project_layout_heading',
+                        'title' => esc_html__('Layout', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                    array(
+                        'id'       => 'single_project_header_template_id',
+                        'type'     => 'select',
+                        'title'    => __('Project Header Template', 'steelnova'),
+                        'options'  => Static_Options::get_templates_by_type('section'),
+                        'default'  => '',
+                    ),
+                    array(
+                        'id'       => 'single_project_footer_template_id',
+                        'type'     => 'select',
+                        'title'    => __('Project Footer Template', 'steelnova'),
+                        'options'  => Static_Options::get_templates_by_type('section'),
+                        'default'  => '',
+                    ),
+                ),
+                Static_Options::breadcrumnb_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ),
+                Static_Options::header_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ), 
+                Static_Options::header_mobile_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ),
+                Static_Options::hero_options([ 
+                    'scope' => 'private', 
+                    'prefix_id' =>'single_project_', 
+                    'meta_key' => 'single', 
+                    'title' => 'Production Line Development <br> for Apex Industrial Group', 
+                    'note'  => __( 'SteelNova designed and installed a high efficiency production line that improved manufacturing <br> workflow, increased output capacity, reduced operational downtime.', 'steelnova' ) 
+                ]), 
+                Static_Options::footer_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ), 
+            )
+        ));
 
         // // Team Settings
         // \Redux::setSection($opt_name, array(
@@ -925,86 +740,93 @@ class Theme_Options {
         //     ),
         // ));
 
-        // // Team Settings
-        // \Redux::setSection($opt_name, array(
-        //     'title'      => __('Career', 'steelnova'),
-        //     'icon'       => 'eicon-posts-ticker',
-        //     'subsection' => false,
-        //     'fields'     => array(),
-        // ));
+        // Services Settings
+        \Redux::setSection($opt_name, array(
+            'title'      => __('Service', 'steelnova'),
+            'icon'       => 'eicon-posts-ticker',
+            'subsection' => false,
+            'fields'     => array(),
+        ));
+
+        \Redux::setSection($opt_name, array(
+            'title'      => __('Archive Service', 'steelnova'),
+            'icon'       => 'eicon-posts-ticker',
+            'subsection' => true,
+            'fields'     => array(
+                array(
+                    'id'    => 'service_status',
+                    'type'  => 'switch',
+                    'title' => __('Status', 'steelnova'),
+                    'default' => true,
+                ),
+                array(
+                    'id'    => 'service_label',
+                    'type'  => 'text',
+                    'title' => __('Label', 'steelnova'),
+                    'default' => __('Service', 'steelnova')
+                ),
+                array(
+                    'id'       => 'service_archive_templates_id',
+                    'type'     => 'select',
+                    'title'    => __('Page Before Template', 'steelnova'),
+                    'options'  => Static_Options::get_templates_by_type('section'),
+                    'default'  => '',
+                ),
+            ),
+        ));
 
         // \Redux::setSection($opt_name, array(
-        //     'title'      => __('Archive Career', 'steelnova'),
-        //     'icon'       => 'eicon-posts-ticker',
-        //     'subsection' => true,
-        //     'fields'     => array(
-        //         array(
-        //             'id'    => 'career_status',
-        //             'type'  => 'switch',
-        //             'title' => __('Status', 'steelnova'),
-        //             'default' => true,
-        //         ),
-        //         array(
-        //             'id'    => 'career_label',
-        //             'type'  => 'text',
-        //             'title' => __('Label', 'steelnova'),
-        //             'default' => __('Career', 'steelnova')
-        //         ),
-        //     ),
-        // ));
-
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('Single Career', 'steelnova'),
+        //     'title' => __('Single Service', 'steelnova'),
         //     'icon'  => 'eicon-single-posts',
         //     'subsection' => true,
         //     'fields'     => array_merge(
         //         array(
         //             array(
-        //                 'id' => 'single_career_layout_heading',
+        //                 'id' => 'single_service_layout_heading',
         //                 'title' => esc_html__('Layout', 'steelnova'),
         //                 'type'  => 'section',
         //                 'indent' => true,
         //             ),
         //             array(
-        //                 'id'       => 'single_career_header_template_id',
+        //                 'id'       => 'single_service_header_template_id',
         //                 'type'     => 'select',
         //                 'title'    => __('Post Header Template', 'steelnova'),
         //                 'options'  => Helpers::get_templates_by_type('section'),
         //                 'default'  => '',
         //             ),
         //             array(
-        //                 'id'       => 'single_career_footer_template_id',
+        //                 'id'       => 'single_service_footer_template_id',
         //                 'type'     => 'select',
         //                 'title'    => __('Post Footer Template', 'steelnova'),
         //                 'options'  => Helpers::get_templates_by_type('section'),
         //                 'default'  => '',
         //             ),
         //             array(
-        //                 'id'       => 'single_career_before_template_id',
+        //                 'id'       => 'single_service_before_template_id',
         //                 'type'     => 'select',
         //                 'title'    => __('Page Before Template', 'steelnova'),
         //                 'options'  => Helpers::get_templates_by_type('section'),
         //                 'default'  => '',
         //             ),
         //             array(
-        //                 'id'       => 'single_career_after_template_id',
+        //                 'id'       => 'single_service_after_template_id',
         //                 'type'     => 'select',
         //                 'title'    => __('Page After Template', 'steelnova'),
         //                 'options'  => Helpers::get_templates_by_type('section'),
         //                 'default'  => '',
         //             ),
         //         ),
-        //         Helpers::get_page_hero_options('career'),
-        //         Helpers::get_breadcrumb_option('single_career'),
+        //         Helpers::get_page_hero_options('service'),
+        //         Helpers::get_breadcrumb_option('single_service'),
         //         array(
         //             array(
-        //                 'id' => 'single_career_css_heading',
+        //                 'id' => 'single_service_css_heading',
         //                 'title' => esc_html__('Custom Layout', 'steelnova'),
         //                 'type'  => 'section',
         //                 'indent' => true,
         //             ),
         //             array(
-        //                 'id'             => 'single_career_content_spacing',
+        //                 'id'             => 'single_service_content_spacing',
         //                 'type'           => 'spacing',
         //                 'right'          => false,
         //                 'left'           => false,
@@ -1019,7 +841,7 @@ class Theme_Options {
         //                 )
         //             ), 
         //             array(
-        //                 'id'             => 'single_career_container_width',
+        //                 'id'             => 'single_service_container_width',
         //                 'type'           => 'dimensions',
         //                 'units'          => array('px'), 
         //                 'units_extended' => 'false',
@@ -1197,117 +1019,60 @@ class Theme_Options {
         //     )
         // ));
         
-        // // Post Type Settings
-        // \Redux::setSection($opt_name, array(
-        //     'title'      => __('Post Types', 'steelnova'),
-        //     'icon'       => 'eicon-posts-ticker',
-        //     'subsection' => false,
-        //     'fields'     => array(
-        //         array(
-        //             'id'       => 'pxl_post_types',
-        //             'type'     => 'repeater',
-        //             'title'    => __('Add Post Type', 'steelnova'),
-        //             'full_width' => true, 
-        //             'sortable' => false,
-        //             'group_values' => false,
-        //             'bind_title' => 'pxl_post_type',
-        //             'init_empty' => true,
-        //             'fields'   => array(
-        //                 array(
-        //                     'id'    => 'pxl_post_type_status',
-        //                     'type'  => 'switch',
-        //                     'title' => __('Post Type Status', 'steelnova'),
-        //                     'default' => '0',
-        //                 ),
-        //                 array(
-        //                     'id'    => 'pxl_post_type',
-        //                     'type'  => 'text',
-        //                     'title' => __('Post Type Name', 'steelnova'),
-        //                     'placeholder' => __('Ex: Project', 'steelnova'),
-        //                 ),
-        //                 array(
-        //                     'id'    => 'pxl_post_type_label',
-        //                     'type'  => 'text',
-        //                     'title' => __('Post Type Label', 'steelnova'),
-        //                     'placeholder' => __('Ex: Projects', 'steelnova'),
-        //                 ),
-        //                 array(
-        //                     'id'    => 'pxl_post_type_slug',
-        //                     'type'  => 'text',
-        //                     'title' => __('Post Type Slug', 'steelnova'),
-        //                     'placeholder' => __('Ex: projects', 'steelnova'),
-        //                 ),
-        //                 array(
-        //                     'id' => 'pxl_on_category',
-        //                     'title' => esc_html__('Enable Category', 'steelnova'),
-        //                     'type'  => 'switch',
-        //                     'description' => __('When category is enable. The category will be automatically created with the structure post_type_name + "_category"', 'steelnova'),
-        //                     // 'default' => true,
-        //                 ),
-        //                 array(
-        //                     'id'    => 'pxl_category_label',
-        //                     'type'  => 'text',
-        //                     'title' => __('Category Label', 'steelnova'),
-        //                     'placeholder' => __('Ex: Categories', 'steelnova'),
-        //                     'required' => ['pxl_on_category', '=', true]
-        //                 ),
-        //             ),
-        //         )
-        //     ),
-        // ));
+       
 
-        // /**
-        //  * User Settings
-        //  */
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('User Socials', 'steelnova'),
-        //     'icon'  => 'eicon-single-posts',
-        //     'subsection' => false,
-        //     'fields'     => array(
-        //         array(
-        //             'id'       => 'user_socials',
-        //             'type'     => 'repeater',
-        //             'title'    => __('User Social', 'steelnova'),
-        //             'full_width' => true, 
-        //             'sortable' => false,
-        //             'group_values' => false,
-        //             'bind_title' => 'user_social_name',
-        //             'init_empty' => true,
-        //             'fields'   => array(
-        //                 array(
-        //                     'id' => 'user_social_name',
-        //                     'type' => 'text',
-        //                     'title' => __('Social Media Name', 'steelnova'),
-        //                     'placeholder' => __('Ex: Facebook', 'steelnova'),
-        //                 ),
-        //                 array(
-        //                     'id'    => 'user_social_icon',
-        //                     'type'  => 'media',
-        //                     'title' => __('Social Media Icon', 'steelnova'),    
-        //                     'url'      => false,
-        //                 ),
-        //             ),
-        //             'default' => [
-        //                 [
-        //                     'user_social_name' => 'Facebook',
-        //                     'user_social_icon' => [ 'url' => content_url('default-assets/imgs/socials/facebook.png') ],
-        //                 ],
-        //                 [
-        //                     'user_social_name' => 'Twitter',
-        //                     'user_social_icon' => [ 'url' => content_url('default-assets/imgs/socials/twitter.png') ],
-        //                 ],
-        //                 [
-        //                     'user_social_name' => 'Instagram',
-        //                     'user_social_icon' => [ 'url' => content_url('default-assets/imgs/socials/instagram.png') ],
-        //                 ],
-        //                 [
-        //                     'user_social_name' => 'LinkedIn',
-        //                     'user_social_icon' => [ 'url' => content_url('default-assets/imgs/socials/linkedin.png') ],
-        //                 ]
-        //             ]
-        //         )
-        //     )
-        // ));
+        /**
+         * User Settings
+         */
+        \Redux::setSection($opt_name, array(
+            'title' => __('User Socials', 'steelnova'),
+            'icon'  => 'eicon-single-posts',
+            'subsection' => false,
+            'fields'     => array(
+                array(
+                    'id'       => 'user_socials',
+                    'type'     => 'repeater',
+                    'title'    => __('User Social', 'steelnova'),
+                    // 'full_width' => true, 
+                    // 'sortable' => false,
+                    'group_values' => false,
+                    // 'bind_title' => 'user_social_name',
+                    // 'init_empty' => true,
+                    'fields'   => array(
+                        array(
+                            'id' => 'user_social_name',
+                            'type' => 'text',
+                            'title' => __('Social Media Name', 'steelnova'),
+                            'placeholder' => __('Ex: Facebook', 'steelnova'),
+                        ),
+                        array(
+                            'id'    => 'user_social_icon',
+                            'type'  => 'media',
+                            'title' => __('Social Media Icon', 'steelnova'),    
+                            'url'      => false,
+                        ),
+                    ),
+                    'default' => [
+                        [
+                            'user_social_name' => 'Facebook',
+                            'user_social_icon' => [ 'url' => content_url('default-assets/imgs/socials/facebook.png') ],
+                        ],
+                        [
+                            'user_social_name' => 'Twitter',
+                            'user_social_icon' => [ 'url' => content_url('default-assets/imgs/socials/twitter.png') ],
+                        ],
+                        [
+                            'user_social_name' => 'Instagram',
+                            'user_social_icon' => [ 'url' => content_url('default-assets/imgs/socials/instagram.png') ],
+                        ],
+                        [
+                            'user_social_name' => 'LinkedIn',
+                            'user_social_icon' => [ 'url' => content_url('default-assets/imgs/socials/linkedin.png') ],
+                        ]
+                    ]
+                )
+            )
+        ));
 
     }
 }

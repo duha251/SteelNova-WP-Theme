@@ -1,0 +1,20 @@
+@use '../../../../assets/scss/core' as *;
+
+.steelnova-wpcf7 {
+    .wpcf7 {
+        &-form {
+            display: flex;
+        }
+        
+    }
+    .wpcf7-form-control-wrap {
+        display: inline-flex;
+        width: 100%;
+        input, textarea, select {
+            width: 100%;
+        }
+    }
+    label {
+        display: block;
+    }
+}

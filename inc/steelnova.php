@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use SteelNova\Inc\Core\Setup;
 use SteelNova\Inc\Core\Option;
+use SteelNova\Inc\Core\Post_Manager;
 
 use SteelNova\Inc\Frontend\Layout;
 use SteelNova\Inc\Frontend\Components;
@@ -29,13 +30,17 @@ final class SteelNova {
     public $option;
     public $setup;
     public $component;
+    public $post_manager;
+    public $customize;
 
     private function __construct() {
         $this->register_autoloader();
+        // add_action('init', [$this, 'init_classes']);
         $this->init_classes();
     }
 
     private function register_autoloader() {
+        require_once get_template_directory() . '/inc/helpers/media.php';
         require_once get_template_directory() . '/inc/helpers/functions.php';
         spl_autoload_register( [ $this, 'load_class' ] );
     }
@@ -48,13 +53,14 @@ final class SteelNova {
         return self::$instance;
     }
 
-    private function init_classes() {
+    public function init_classes() {
         $this->setup  = new Setup();
         $this->option = new Option();
         $this->component = new Components( $this->option );
-        new Layout( $this->option );
+        $this->post_manager = new Post_Manager( $this->component );
+        new Layout( $this->option, $this->component );
         new Enqueue( $this->option, $this->get_theme_version() );
-        new Customize( $this->option );
+        $this->customize = new Customize( $this->option );
         if ( class_exists( 'Pxl_Elementor' ) ) {
             new Pxl_Hooks( $this->option );
         }

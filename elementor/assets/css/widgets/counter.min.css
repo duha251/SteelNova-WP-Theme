@@ -1,0 +1,48 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./elementor/assets/scss/widgets/counter.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.counter {
+  display: flex;
+  align-items: center;
+}
+.counter__number {
+  display: inline-block;
+}
+.counter__number-suffix, .counter__number-prefix {
+  display: inline-block;
+}
+
+.counter-box {
+  display: inline-flex;
+  gap: 15px;
+}
+.counter-box__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.counter-box[data-layout="2"] {
+  gap: 24px;
+  color: #FFF;
+}
+.counter-box[data-layout="2"] .counter-box__icon {
+  height: 67px;
+}
+.counter-box[data-layout="2"] .counter-box__number {
+  font-family: var(--steelnova-heading-font);
+  font-size: 57px;
+  font-weight: 600;
+  line-height: 1.17544;
+  margin-bottom: 20px;
+}
+.counter-box[data-layout="2"] .counter-box__title {
+  color: #FFF;
+  margin-bottom: 10px;
+}
+.counter-box[data-layout="2"] .counter-box__description {
+  font-family: var(--steelnova-text-font);
+  font-size: 14px;
+  line-height: 1.71429;
+}
+
+/*# sourceMappingURL=counter.min.css.map*/

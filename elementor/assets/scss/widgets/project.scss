@@ -1,0 +1,36 @@
+@use '../../../../assets/scss/core' as *;
+
+.project {
+    position: relative;
+    &__featured-image {
+        position: relative;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+    }
+    &__title {
+        > a {
+            color: inherit;
+        }
+    }
+}
+
+.projects-grid[data-layout="1"] {
+    --steelnova-row-gap: 12px;
+    --steelnova-column-gap: 0px;
+    --steelnova-column: 100%;
+    .project {
+        @include d-flex(12px);
+        background-color: #0A1119;
+        &.revert {
+            flex-direction: row-reverse;
+        }
+        &__featured-image {
+            flex: 0 1 calc( 50% - 6px );
+        }
+        &__content {
+            flex: 0 1 calc( 50% - 6px );
+        }
+    }
+}

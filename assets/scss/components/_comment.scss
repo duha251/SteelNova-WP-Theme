@@ -1,0 +1,118 @@
+@use '../core.scss' as *;
+
+
+#comment {
+    .comment-wrapper {
+        .comment-title {
+            margin-bottom: 30px;
+        }
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 57px;
+        }
+    }
+    .divider {
+        height: 1px;
+        width: 100%;
+        background-color: #DCDCDC;
+        margin-block: 43px 54px;
+    }
+    .comment {
+        position: relative;
+        &__inner {
+
+        }
+        &__user {
+            @include d-flex(34px, center);
+            margin-bottom: 22px;
+            padding-right: 113px;
+            &-image {
+                @include round-box(60px);
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            &-name {
+                color: var(--steelnova-heading-color);
+                @include h6;
+                margin-bottom: 3px;
+            }
+        }
+        &__date {
+            font-family: "Public Sans";
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.39286;
+            text-transform: capitalize;
+        }
+        &__content {
+            font-family: 'Inter';
+            font-size: 13.9px;
+            line-height: 1.8705;
+            font-weight: 400;
+        }
+        .comment-reply-link {
+            position: absolute;
+            right: 0;
+            top: 0;
+            @include d-inline-flex(9px, center);
+            background-color: #121512;
+            color: #FFF;
+            border-radius: 6px;
+            color: var(--White, #FFF);
+            font-family: 'Inter';
+            font-size: 13.5px;
+            font-weight: 400;
+            line-height: 36px;
+            padding-inline: 21px;
+        }
+        .children {
+            margin-top: 57px;
+            .comment {
+                margin-left: 90px;
+            }
+        }
+    }
+
+    .comment-respond {
+        .comment-reply-title {
+            @include h4;
+        }
+        .comment-form {
+            @include d-flex(15px 14px);
+            margin-top: 50px;
+            flex-wrap: wrap;
+            .form-control {
+                flex: 0 1 calc( 50% - 7px );
+                > input, textarea {
+                    padding: 18px 26px 18px 21px;
+                    border: thin solid #DCDCDC;
+                    border-radius: 5px;
+                    @include paragraph-5;
+                    color: var(--steelnova-text-color, #4B535D);
+                }
+                textarea {
+                    height: 264px;
+                }
+            }
+            .logged-in-as, .form-control--full {
+                flex: 0 1 100%;
+            }
+            .form-control--full {
+                order: 1;
+            }
+            .comment-form-cookies-consent {
+                order: 2;
+                #wp-comment-cookies-consent {
+                    width: fit-content;
+                }
+            }
+            .form-submit {
+                order: 3;
+            }
+        }
+    }
+}

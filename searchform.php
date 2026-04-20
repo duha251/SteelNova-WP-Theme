@@ -11,9 +11,17 @@
  * @since 1.0.0
  * @version 1.0.0
  */
-$template_file = ( $args['template'] ?? 'default' );
-$template_path = "template-parts/searchform/{$template_file}";
-if ( locate_template( $template_path.'.php' ) ) {
-    steelnova_get_template( $template_path, [] );
-} 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
+extract( $args );
+
+$template_file = ( ( $template ?? 'default' ) ?: 'default' );
+
+steelnova_get_template( 'template-parts/searchform/'.$template_file, [
+    'placeholder' => $placeholder ?? '',
+    'btn_text' => $btn_text ?? '',
+    'btn_icon' => $btn_icon ?? '',
+]);
 ?>

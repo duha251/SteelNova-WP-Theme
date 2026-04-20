@@ -57,15 +57,10 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
         return false;
     }
 
-    // protected function register_controls() {
-    //     // To be optionally implemented by child classes
-    //     $this->register_box_style_controls();
-    // }
-
     /**
      * Register Box Style Controls
      */
-    protected function register_box_style_controls( $args = [] ) {
+    protected function register_box_style_controls() {
         $this->start_style_section([
             'name' => 'section_box_style',
             'label' => __( 'Box Item', 'steelnova' ),
@@ -133,6 +128,69 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
         $this->end_controls_section();
     }
 
+    protected function register_steelnova_extra_controls() {
+        $this->start_controls_section(
+            'my_custom_layout_section',
+            [
+                'label'   => __( 'Extra Options', 'steelnova' ),
+                'tab'     => 'steelnova_extra',
+            ]
+        );
+        $this->select([
+            'name' => '_overflow',
+            'label' => __('Overflow', 'steelnova'),
+            'options' => [
+                '' => __('Default', 'steelnova'),
+                'hidden' => __('Hidden', 'steelnova'),
+                'auto' => __('Auto', 'steelnova'),
+            ],
+            'selectors' => [
+                '{{WRAPPER}}' => 'overflow: {{VALUE}};'
+            ]
+        ]);
+        $this->group_width([
+            'name' => '_width',
+            'label' => __( 'CSS Width', 'steelnova' ),
+            'selector' => '{{WRAPPER}}',
+            'separator' => 'before',
+            'fields_options' => [
+                'steelnova_max_width' => [
+                    'selectors' => [
+                        '{{SELECTOR}}' => 'max-width: {{SIZE}}{{UNIT}} !important;',
+                    ],
+                ],
+            ],
+        ]);
+        $this->group_height([
+            'name' => '_height',
+            'label' => __( 'CSS Height', 'steelnova' ),
+            'selector' => '{{WRAPPER}}',
+        ]);
+        $this->group_position([
+            'name' => '_position',
+            'label' => __( 'Position', 'steelnova' ),
+            'separator' => 'before',
+            'selector' => '{{WRAPPER}}',
+        ]);
+        $this->number([
+            'name' => 'steelnova_z_index',
+            'label' => __( 'Z-Index', 'steelnova' ),
+            'min' => -9999,
+            'max' => 9999,
+            'step' => 1,
+            'selectors' => [
+                '{{WRAPPER}}' => 'z-index: {{VALUE}};',
+            ],
+        ]);
+
+        $this->group_css_filter([
+            'name' => 'css_filter',
+            'separator' => 'before',
+            'selector' => '{{WRAPPER}}',
+        ]);
+        $this->end_controls_section();
+    }
+
     /**
      * Get the path to the render template for this widget
      */
@@ -147,6 +205,8 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
 
         return get_template_directory() . "/elementor/includes/widgets/{$name}/render/{$layout}";
     }
+
+
     /**
      * Default render logic shared by all child widgets
      */

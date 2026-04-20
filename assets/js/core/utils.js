@@ -25,3 +25,11 @@ export const throttle = (fn, limit = 100) => {
 export const raf = (callback) => {
     return requestAnimationFrame(callback);
 };
+
+export const showOverlay = () => {
+    document.querySelector('.body__overlay').classList.add("is-visible");
+}
+
+export const hideOverlay = () => {
+    document.querySelector('.body__overlay').classList.remove("is-visible");
+}

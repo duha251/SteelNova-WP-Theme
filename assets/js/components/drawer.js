@@ -1,11 +1,10 @@
-
 let isDrawerBound = false;
 let currentPanel = null;
 
 const SELECTORS = {
-    toggle: ".button-toggle, .button-hamburger",
-    close: ".button-close, .body-overlay",
-    overlay: ".body-overlay",
+    toggle: ".cs-button--toggle, .cs-button--hamburger",
+    close: ".cs-button--close, .body__overlay",
+    overlay: ".body__overlay",
 };
 
 const getPanelSelector = (trigger) => {
@@ -38,15 +37,11 @@ const getPanelElement = (trigger) => {
 };
 
 const showOverlays = () => {
-    document.querySelectorAll(SELECTORS.overlay).forEach((overlay) => {
-        overlay.classList.add("is-visible");
-    });
+    document.querySelector(SELECTORS.overlay).classList.add("is-visible");
 };
 
 const hideOverlays = () => {
-    document.querySelectorAll(SELECTORS.overlay).forEach((overlay) => {
-        overlay.classList.remove("is-visible");
-    });
+    document.querySelector(SELECTORS.overlay).classList.remove("is-visible");
 };
 
 export const closeDrawer = (panel = currentPanel) => {

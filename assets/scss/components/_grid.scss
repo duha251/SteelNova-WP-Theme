@@ -1,0 +1,54 @@
+@use '../core.scss' as *;
+
+.grid {
+    width: 100%;
+    &__inner {
+        display: flex;
+        flex-wrap: wrap;
+        margin-inline: calc( -1 * ( var(--steelnova-column-gap) / 2 ) );
+        margin-block: calc( -1 * ( var(--steelnova-row-gap) / 2 ) );
+    }
+    &__item {
+        flex: 0 1 var(--steelnova-column);
+        padding-inline: calc( var(--steelnova-column-gap) / 2 );
+        padding-block: calc( var(--steelnova-row-gap) / 2 );
+        transform-origin: center;
+        &.grid__item--fluid {
+            --steelnova-column: 100%;
+        }
+    }
+
+    &.is-loading {
+        pointer-events: none;
+        filter: blur(1px);
+        animation: pulseFade 2.5s ease-in-out infinite;
+    }
+}
+
+.grid-pagination {
+    @include d-flex(10px, center, center);
+    margin-top: 105px;
+    .page-numbers {
+        @include d-inline-flex(null, center, center);
+        @include round-box(34px);
+        color: #060F16;
+        font-weight: 600;
+        letter-spacing: -0.64px;
+        background-color: #FFF;
+        &:hover , &.current {
+            background-color: #A8FFBB;
+        }
+    }
+    @media #{$max-lg} {
+        margin-top: 85px;
+    }
+    @media #{$max-sm} {
+        margin-top: 65px;
+    }
+
+    &--isotope, &--filter {
+        .grid__item {
+            width: var(--steelnova-column);
+        }
+    }
+}

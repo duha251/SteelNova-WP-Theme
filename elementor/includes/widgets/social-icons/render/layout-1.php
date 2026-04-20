@@ -3,19 +3,33 @@ if ( empty( $settings['items'] ) ) {
     printf( '<div style="color:red;">Items not found.</div>' );
     return;
 }
+
+$wrapper_attrs = array_merge( 
+    [
+        'class' => 'icon-text',
+    ], 
+    $wrapper_attrs
+);
+
 ?>
 
-<div class="socials-icon">
+<div class="social-icons">
     <?php foreach ( $settings['items'] as $i => $social ) : ?>
         <?php
-        $item_key = 'item-' . $i;
-        $this->add_render_attribute( $item_key, 'class', 'social-icon__link' );
-        if ( ! empty( $social['link']['url'] ) ) {
-            $this->add_link_attributes( $item_key, $social['link'] );
-        }
+            $item_key = 'item-' . $i;
+            $item_attrs = [
+                'class' => 'social-icons__link elementor-repeater-item-'.$social['_id']
+            ];
+            if( !empty( $settings['icon_hover_style'] ) ) {
+                $item_attrs['data-hover'] = $settings['icon_hover_style'];
+            }
+            $this->add_render_attribute( $item_key, $item_attrs);
+            if ( ! empty( $social['link']['url'] ) ) {
+                $this->add_link_attributes( $item_key, $social['link'] );
+            }
         ?>
         <a <?php echo $this->get_render_attribute_string( $item_key ); ?>>
-            <?php steelnova_print_elementor_icon( $social['icon'] ); ?>
+            <?php steelnova_elementor_print_icon( $social['icon'] ); ?>
         </a>
     <?php endforeach; ?>
 </div>

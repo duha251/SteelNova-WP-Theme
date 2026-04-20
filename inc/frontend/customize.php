@@ -133,38 +133,36 @@ class Customize {
 		}
 		?>
 		<<?php echo ''.$tag ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?>">
-		<?php if ( 'div' != $args['style'] ) : ?>
-			<div id="div-comment-<?php comment_ID() ?>" class="comment-box">
-			<?php endif; ?>
-				<div class="comment-inner">
-					<?php if ($args['avatar_size'] != 0) : ?> 
-						<div class="comment-image">
-							<?php echo get_avatar($comment, 90); ?>
+			<div class="comment__inner">
+				<?php comment_reply_link( array_merge( $args, array(
+					'add_below' => $add_below,
+					'depth'     => $depth,
+					'max_depth' => $args['max_depth'],
+					'reply_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none">
+									<path d="M4.27777 2.44443V0L0 4.27777L4.27777 8.55554V6.05C7.33333 6.05 9.47223 7.02777 11 9.16667C10.3889 6.1111 8.55556 3.05557 4.27777 2.44443Z" fill="white"/>
+									</svg>Reply',
+				) ) ); ?>
+				<div class="comment__user">
+					<?php if ($args['avatar_size'] != 0) : 
+					?> 
+						<div class="comment__user-image">
+							<?php steelnova_print_user_avatar($comment->user_id, 90); ?>
 						</div>
 					<?php endif; ?>
-					<div class="comment-content">
-						<div class="comment-header">
-							<div class="comment-user">
-								<?php printf( '%s', get_comment_author_link() ); ?>
-							</div>
-							<span class="comment-date">
-								<?php echo get_comment_date('d F Y'); ?>
-							</span>
+					<div class="comment-user__content">
+						<div class="comment__user-name">
+							<?php printf( '%s', get_comment_author_link() ); ?>
 						</div>
-						<div class="comment-text"><?php comment_text(); ?></div>
-						<div class="comment-reply">
-							<?php comment_reply_link( array_merge( $args, array(
-								'add_below' => $add_below,
-								'depth'     => $depth,
-								'max_depth' => $args['max_depth'],
-								'reply_text' => 'Reply',
-							) ) ); ?>
-						</div>
+						<span class="comment__date">
+							<?php echo get_comment_date('d F Y'); ?>
+						</span>
 					</div>
 				</div>
-			<?php if ( 'div' != $args['style'] ) : ?>
+				<div class="comment__content">
+					<?php comment_text(); ?>
+				</div>
 			</div>
-		<?php endif;
+		<?php
 	}
 
 }

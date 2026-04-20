@@ -1,0 +1,28 @@
+@use 'core.scss' as *;
+
+
+.error404 {
+    #main {
+        text-align: center;
+        .inner {
+            @include site-spacing-block;
+        }
+    }
+    &__title {
+        color: #000;
+        @include d1;
+        margin-bottom: 5px;
+    }
+    &__subtitle {
+        color: #000;
+        @include h3;
+    }
+}
+
+.blog {
+    #main {
+        .inner {
+            @include site-spacing-block;
+        }
+    }
+}

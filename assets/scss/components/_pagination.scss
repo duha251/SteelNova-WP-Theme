@@ -1,0 +1,17 @@
+@use '../core.scss' as *;
+
+.steelnova-pagination {
+    @include d-flex(10px, null, center);
+    margin-top: 101px;
+    .page-numbers {
+        @include round-box(50px, 6px);
+        @include d-inline-flex(null, center, center);
+        background-color: transparent;
+        @include h6;
+        color: #4B535D;
+        &.current, &:hover {
+            background-color: #FF5B1B;
+            color: #FFF;
+        }
+    }
+}

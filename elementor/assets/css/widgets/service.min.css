@@ -1,0 +1,83 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./elementor/assets/scss/widgets/service.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.service {
+  background-color: rgba(250, 245, 237, 0.5);
+  border-radius: 10px;
+  border: thin solid #F7EBD7;
+}
+.service__featured-image {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.service__heading {
+  display: flex;
+  gap: 15px;
+  padding: 12px;
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: 0 11px 68px 0 rgba(137, 151, 186, 0.15);
+  position: absolute;
+  left: 21px;
+  right: 21px;
+  bottom: 1px;
+}
+.service__icon {
+  --mt-box-size: 50px;
+  width: var(--mt-box-size);
+  min-width: var(--mt-box-size);
+  height: var(--mt-box-size);
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF5B1B;
+  color: #FFF;
+}
+.service .divider {
+  width: 1px;
+  height: 50px;
+  background-color: #DCDCDC;
+}
+.service__title {
+  font-family: var(--steelnova-heading-font);
+  font-weight: 600;
+  line-height: 1.375;
+  align-self: center;
+}
+.service__content {
+  margin: 0 13px 22px 13px;
+  padding: 30px;
+  background-color: #FFF;
+}
+.service__features {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  margin-bottom: 22.5px;
+}
+.service__features li {
+  color: #4B535D;
+  font-family: "DM Sans";
+  font-size: 15px;
+  line-height: 1.5;
+  display: inline-flex;
+  gap: 13.5px;
+  align-items: center;
+}
+.service__button {
+  font-family: var(--steelnova-text-font);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: #FFF;
+  border-radius: 6px;
+  padding-inline: 16px;
+  height: 46px;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #121512;
+}
+
+/*# sourceMappingURL=service.min.css.map*/

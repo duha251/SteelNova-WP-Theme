@@ -81,91 +81,130 @@
     }
 }
 
-@mixin site-spacing-block($desktop: 120px, $tablet: 105px, $mobile: 90px){
+@mixin site-spacing-block($desktop: 140px, $laptop: 120px, $mobile: 100px){
     padding-block: $desktop;
+    @media #{$max-lg} {
+        padding-block: $laptop;
+    }
+    @media #{$max-sm} {
+        padding-block: $mobile;
+    }
 }
 
-@mixin text-b2 {
-    font-family: var(--mt-secondary-font);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 0.83333;
-    letter-spacing: 1px;
+@mixin h1 {
+    font-family: var(--steelnova-heading-font);
+    // font-size: 76.8px;
+    font-size: clamp(2.5rem, 2.04rem + 2.3vw, 4.8rem);
+    font-weight: 600;
+    line-height: 1.13021;
+    letter-spacing: -2.8px;
 }
 
-@mixin text-b3 {
-    font-family: 'Inter';
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.15556; 
+@mixin h2 {
+    font-family: var(--steelnova-heading-font);
+    font-size: 57px;
+    font-weight: 600;
+    line-height: 1.17544;
 }
 
-@mixin text-p1 {
-    font-family: "Golos Text";
-    font-size: 15px;
-    line-height: 1.53;
+@mixin h3 {
+    font-family: var(--steelnova-heading-font);
+    // font-size: 47px;
+    font-size: clamp(1.625rem, 1.3625rem + 1.3125vw, 2.9375rem);
+    font-weight: 600;
+    line-height: 1.21277;
 }
 
-@mixin text-fin-p1 {
-    font-family: var(--mt-primary-font);
+@mixin h4 {
+    font-family: var(--steelnova-heading-font);
+    // font-size: 30px;
+    font-size: clamp(1.875rem, 1.9904rem + -0.5128vw, 1.375rem);
+    font-weight: 600;
+    line-height: 1.33333;
+    letter-spacing: -1px;
+}
+
+@mixin h5 {
+    font-family: var(--steelnova-heading-font);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.36364;
+}
+
+@mixin h6 {
+    font-family: var(--steelnova-heading-font);
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
+    line-height: 1.4;
 }
 
-@mixin text-fin-p2 {
-    font-family: 'Inter';
-    font-size: 16px;
-    font-weight: 500;
+@mixin h7 {
+    font-family: var(--steelnova-heading-font);
+    font-weight: 600;
     line-height: 1.625;
-    letter-spacing: -0.32px;
 }
 
-@mixin text-p2 {
-    font-family: var(--mt-primary-font);
+@mixin h8 {
+    font-family: var(--steelnova-heading-font);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.41667;
+}
+
+@mixin text-button-1 {
+    font-family: var(--steelnova-text-font);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1.57143;
+    font-weight: 600;
+    line-height: 1;
 }
 
-@mixin text-fin-p3 {
-    font-family: var(--mt-primary-font);
+@mixin text-button-3 {
+    font-family: var(--steelnova-text-font);
     font-size: 15px;
-    font-weight: 500;
-    line-height: 1.53;
+    font-weight: 600;
+    line-height: 1.7333333; 
 }
 
-@mixin text-p4 {
-    font-family: var(--mt-primary-font);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.1667;
+@mixin paragraph-1 {
+    font-family: var(--steelnova-text-font);
+    font-size: 19px;
+    line-height: 1.47368;
 }
 
-@mixin text-fin-button {
-    font-family: var(--mt-primary-font);
-	font-size: 15px;
-	font-weight: 500;
-	line-height: 1.38667;
-}
-
-@mixin text-fin-button-2 {
-    font-family: var(--mt-primary-font);
+@mixin paragraph-2 {
+    font-family: var(--steelnova-text-font);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1.3;
-    letter-spacing: -0.28px;
+    line-height: 1.71429;
 }
 
-@mixin absolute-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+@mixin paragraph-3 {
+    font-family: var(--steelnova-text-font);
+    font-size: 17px;
+    line-height: 1.64706;
 }
 
-@mixin text-gradient( $gradient: linear-gradient(to right, #BB7AE6 0%, #2563EB 27%, #FFFFFF 100%) ) {
-    background: $gradient;
-    -webkit-background-clip: text; 
-    background-clip: text;
-    color: transparent;
+@mixin paragraph-4 {
+    line-height: 1.625;
+}
+
+@mixin paragraph-5 {
+    font-family: var(--steelnova-text-font);
+    font-size: 14px;
+    line-height: 1.71429;
+}
+
+@mixin d1 {
+    font-family: "Plus Jakarta Sans";
+    // font-size: 248px;
+    font-size: clamp(4rem, 1.3462rem + 11.7949vw, 15.5rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -1.92px;
+}
+
+@mixin subheading-2 {
+    font-family: "Public Sans";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.39286;
 }

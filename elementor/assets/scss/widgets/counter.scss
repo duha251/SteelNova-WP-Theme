@@ -1,0 +1,39 @@
+@use '../../../../assets/scss/core' as *;
+
+// Counter
+.counter {
+    @include d-flex(null, center); 
+    &__number {
+        display: inline-block;
+        &-suffix, &-prefix {
+            display: inline-block;
+        }
+    }
+}
+
+
+// Counter Box
+.counter-box {
+    @include d-inline-flex(15px);
+    &__icon {
+        @include d-inline-flex(null, center, center);
+    }
+    &[data-layout="2"] {
+        gap: 24px;
+        color: #FFF;
+        .counter-box__icon {
+            height: 67px;
+        }
+        .counter-box__number {
+            @include h2;
+            margin-bottom: 20px;
+        }
+        .counter-box__title {
+            color: #FFF;
+            margin-bottom: 10px;
+        }
+        .counter-box__description {
+            @include paragraph-5;
+        }
+    }
+}

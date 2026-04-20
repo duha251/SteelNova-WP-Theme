@@ -1,5 +1,23 @@
 @use 'core.scss' as *;
 
-.box-icon {
+.boicon-x {
     @include d-inline-flex(null center, center);
+}
+
+.box-icon {
+    @include d-inline-flex(null, center, center);
+}
+
+.categories {
+    @include d-flex(5px);
+    flex-wrap: wrap;
+    > a {
+        @include d-inline-flex(5px, center);
+    }
+}
+
+.divider {
+    display: block;
+    height: 1px;
+    width: 100%;
 }

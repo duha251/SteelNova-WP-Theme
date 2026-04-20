@@ -52,10 +52,14 @@ function steelnova_crop_image( $attachment_id, $width = null, $height = null, $c
  * Get image by size
  */
 function steelnova_get_image_by_size($attachment_id, $width = null, $height = null, $attrs = []) {
-    $image_url = $attachment_id === 0 ? \Elementor\Utils::get_placeholder_image_src() : steelnova_crop_image($attachment_id, $width, $height, true);
-    if (!$image_url) {
+    $is_placeholder = $attachment_id === 0;
+    $image_url = $is_placeholder ? \Elementor\Utils::get_placeholder_image_src() : steelnova_crop_image($attachment_id, $width, $height, true);
+    if ( !$image_url ) {
         return '';
     }        
+    if( $is_placeholder ) {
+        $attrs['class'] = 'placeholder-image';
+    }
     if (empty($attrs['alt'])) {
         $attrs['alt'] = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
         $attrs['alt'] = !empty($attrs['alt']) ? $attrs['alt'] : get_the_title($attachment_id);
@@ -78,6 +82,41 @@ function steelnova_get_image_by_size($attachment_id, $width = null, $height = nu
 /**
  * Display image by size
  */
-function steelnova_the_image_by_size($attachment_id, $width = null, $height = null, $attrs = []) {
+function steelnova_print_image_by_size($attachment_id, $width = null, $height = null, $attrs = []) {
     echo wp_kses_post( steelnova_get_image_by_size($attachment_id, $width, $height, $attrs));
+}
+
+
+/**
+ * Get SVG Content By Image SVG
+ */
+function steelnova_get_svg_content( $url ) { 
+    if ( empty( $url ) ) {
+        return '';
+    }
+
+    $content = '';
+    
+    if ( pathinfo( $url, PATHINFO_EXTENSION ) === 'svg' ) {
+        $upload_dir = wp_upload_dir();
+        $base_url   = $upload_dir['baseurl'];
+        $base_dir   = $upload_dir['basedir'];
+        
+        // Chuyển URL thành Path vật lý trên server
+        $path = wp_normalize_path( str_replace( $base_url, $base_dir, $url ) );
+        
+        // Sử dụng hàm PHP thuần thay vì WP_Filesystem
+        if ( file_exists( $path ) ) {
+            $content = file_get_contents( $path );
+        }
+    } else {
+        $attachment_id = attachment_url_to_postid( $url );
+        $content = steelnova_get_image_by_size( $attachment_id, null, null, [] );
+    }
+
+    return $content;
+}
+
+function steelnova_print_svg_content( $url ) {
+    pxl_print_html(steelnova_get_svg_content( $url ));
 }

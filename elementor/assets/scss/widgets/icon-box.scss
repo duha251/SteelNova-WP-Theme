@@ -1,0 +1,47 @@
+@use '../../../../assets/scss/core' as *;
+
+.icon-box {
+    @include d-flex(15px, center);
+    &__title {
+        > a {
+            color: inherit;
+        }
+    }
+    &__icon {
+        @include d-inline-flex(null, center, center);
+    }
+    &__content {
+        @include d-inline-flex(5px);
+        flex-direction: column;
+    }
+    &[data-layout_style="2"] {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 30px;
+        .icon-box__icon {
+            @include box-size(50px);
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: relative;
+            color: #FF5B1B;
+            &::before {
+                content: '';
+                @include round-box(30px);
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background-color: rgba($color: #FFF, $alpha: .1);
+            }
+        }
+        .icon-box__title {
+            color: #FFF;
+        }
+        .icon-box__content {
+            gap: 10px;
+        }
+        .icon-box__description {
+            color: #FFF;
+            line-height: 1.625;
+        }
+    }
+}

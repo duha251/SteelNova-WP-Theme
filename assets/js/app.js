@@ -3,6 +3,11 @@ import { debounce, raf } from "./core/utils.js";
 
 import { initDrawer } from "./components/drawer.js";
 
+import { initVideoPopup } from "./components/video-popup.js";
+
+
+
+
 import { setMainMinHeight } from "./components/layout.js";
 
 const initApp = (scope = document) => {
@@ -19,6 +24,7 @@ const refreshApp = (scope = document) => {
 ready(() => {
     initApp(document);
     initDrawer();
+    initVideoPopup();
 });
 
 onLoad(() => {

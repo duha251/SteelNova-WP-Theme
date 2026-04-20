@@ -10,8 +10,9 @@
  * @since 1.0.0
  */
 
-require_once get_template_directory() . '/inc/steelnova.php';
 
 if ( is_admin() ){ 
 	require_once get_template_directory() . '/inc/admin/admin-init.php'; 
 }
+	
+require_once get_template_directory() . '/inc/steelnova.php';

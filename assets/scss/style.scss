@@ -1,16 +1,26 @@
 @use 'variables';
 @use 'reset';
 @use 'defined';
+@use 'hover';
+@use 'single';
+@use 'pages';
 
 /** Layout */
-@use 'sections/site_main';
-@use 'sections/header';
-@use 'sections/hero';
-@use 'sections/footer';
+@use 'layout/site_main';
+@use 'layout/header';
+@use 'layout/hero';
+@use 'layout/footer';
 
 /** Components */
+@use 'components/grid';
 @use 'components/menu';
 @use 'components/button';
 @use 'components/drawer';
 @use 'components/icon';
+@use 'components/comment';
+@use 'components/pagination';
 @use 'components/other';
+
+
+/** Admin */
+@use 'admin';

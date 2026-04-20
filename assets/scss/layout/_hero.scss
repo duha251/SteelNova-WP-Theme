@@ -1,0 +1,27 @@
+@use '../core.scss' as *;
+
+body {
+    &:has(.header-transparent) {
+        .hero {
+            &[data-layout="default"] {
+                .inner {
+                    @include site-spacing-block( $desktop: 220px 140px )
+                }
+            }
+        }
+    }
+}
+
+.hero {
+    &[data-layout="default"] {
+        background-color: #D9D9D9;
+        padding-inline: 15px;
+        text-align: center;
+        .hero-title {
+            display: block;
+            width: 100%;
+            -ms-word-wrap: break-word;
+            word-wrap: break-word;
+        }
+    }
+}

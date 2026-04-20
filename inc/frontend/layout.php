@@ -18,9 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Layout {
 
     private $option;
+    private $component;
 
-    public function __construct( Option $option_instance ) {
+    public function __construct( Option $option_instance, Components $component_instance ) {
         $this->option = $option_instance;
+        $this->component = $component_instance;
         add_action('steelnova_before_main_content', [$this, 'before_main_content_render']);
         add_action('steelnova_after_main_content', [$this, 'after_main_content_render']);
     }
@@ -36,13 +38,14 @@ class Layout {
     }
 
     public function get_header() {
-        $prefix_id = '';
+        $prefix_id = steelnova_get_prefix_id_option();
+
         $mode = $this->option->get_option( $prefix_id.'header_mode', 'default');
         $layout_id = $this->option->get_option( $prefix_id.'header_layout', 0);
 
         if( $mode === 'inherit' ) {
-            $mode = $this->option->get_theme_option( $prefix_id.'header_mode', 'hide');
-            $layout_id = $this->option->get_theme_option( $prefix_id.'header_layout', 0);
+            $mode = $this->option->get_theme_option( 'header_mode', 'hide');
+            $layout_id = $this->option->get_theme_option( 'header_layout', 0);
         }
 
         if( $mode === 'hide' || ( $mode === 'builder' && $layout_id === 0 ) ) {
@@ -51,8 +54,8 @@ class Layout {
 
         $is_builder = (
             $mode === 'builder' &&
-            is_numeric($layout) &&
-            $layout > 0 &&
+            is_numeric($layout_id) &&
+            $layout_id > 0 &&
             class_exists('Pxltheme_Core') &&
             class_exists('\Elementor\Plugin')
         );
@@ -78,13 +81,14 @@ class Layout {
     }
 
     public function get_header_mobile() {
-        $prefix_id = '';
+        $prefix_id = steelnova_get_prefix_id_option();
+
         $mode = $this->option->get_option( $prefix_id.'header_mobile_mode', 'default');
         $layout_id = $this->option->get_option( $prefix_id.'header_mobile_layout', 0);
 
         if( $mode === 'inherit' ) {
-            $mode = $this->option->get_theme_option( $prefix_id.'header_mobile_mode', 'hide');
-            $layout_id = $this->option->get_theme_option( $prefix_id.'header_mobile_layout', 0);
+            $mode = $this->option->get_theme_option( 'header_mobile_mode', 'hide');
+            $layout_id = $this->option->get_theme_option( 'header_mobile_layout', 0);
         }
 
         if( $mode === 'hide' || ( $mode === 'builder' && $layout_id === 0 ) ) {
@@ -120,14 +124,17 @@ class Layout {
     }
 
     public function get_hero() {
-        $prefix_id = '';
+        $prefix_id = steelnova_get_prefix_id_option();
+
+
         $mode = $this->option->get_option( $prefix_id.'hero_mode', 'default');
         $layout_id = $this->option->get_option( $prefix_id.'hero_layout', 0);
 
         if( $mode === 'inherit' ) {
-            $mode = $this->option->get_theme_option( $prefix_id.'hero_mode', 'hide');
-            $layout_id = $this->option->get_theme_option( $prefix_id.'hero_layout', 0);
+            $mode = $this->option->get_theme_option( 'hero_mode', 'hide');
+            $layout_id = $this->option->get_theme_option( 'hero_layout', 0);
         }
+
 
         if( $mode === 'hide' || ( $mode === 'builder' && $layout_id === 0 ) ) {
             return '';
@@ -135,15 +142,16 @@ class Layout {
 
         $is_builder = (
             $mode === 'builder' &&
-            is_numeric($layout) &&
-            $layout > 0 &&
+            is_numeric($layout_id) &&
+            $layout_id > 0 &&
             class_exists('Pxltheme_Core') &&
             class_exists('\Elementor\Plugin')
         );
 
         if( ! $is_builder ) {
             steelnova_get_template('template-parts/hero/default',[
-                'title' => 'Okokokok'
+                'title' => $this->component->get_hero_title(),
+                'note'  => $this->component->get_hero_note()
             ]);
             return;
         }
@@ -154,8 +162,11 @@ class Layout {
     }
 
     public function get_footer() {
-        $mode   = $this->option->get_option('footer_mode', 'inherit');
-        $layout_id_id = $this->option->get_option('footer_layout', 'hide');
+        $prefix_id = steelnova_get_prefix_id_option();
+        
+        $mode   = $this->option->get_option($prefix_id . 'footer_mode', 'inherit');
+        $layout_id = $this->option->get_option($prefix_id . 'footer_layout', 'hide');
+
 
         if ( $mode === 'inherit' ) {
             $mode   = $this->option->get_theme_option('footer_mode', '');

@@ -1,0 +1,50 @@
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./elementor/assets/scss/widgets/accordion.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+.steelnova-accordion.has-divider .steelnova-accordion__item + .steelnova-accordion__item {
+  border-top: thin solid #DCE2E1;
+}
+.steelnova-accordion__item {
+  cursor: pointer;
+  padding: 18px 0px;
+}
+.steelnova-accordion__item.is-active .icon-plus {
+  background-color: #FF5B1B;
+  color: #FFF;
+}
+.steelnova-accordion__item.is-active .icon-plus::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.steelnova-accordion__header {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+.steelnova-accordion__icon {
+  flex-shrink: 0;
+  --mt-box-size: 30px;
+  width: var(--mt-box-size);
+  min-width: var(--mt-box-size);
+  height: var(--mt-box-size);
+  border-radius: 4px;
+  background-color: #E7ECEB;
+  color: #0A1119;
+}
+.steelnova-accordion__icon.icon-plus {
+  transition: 0.3s ease;
+}
+.steelnova-accordion__icon.icon-plus::before, .steelnova-accordion__icon.icon-plus::after {
+  width: 13px;
+  height: 1px;
+}
+.steelnova-accordion__content {
+  height: 0;
+  overflow: hidden;
+  transition: height 500ms ease;
+}
+.steelnova-accordion__content > p {
+  padding-top: 21px;
+  cursor: default;
+}
+
+/*# sourceMappingURL=accordion.min.css.map*/

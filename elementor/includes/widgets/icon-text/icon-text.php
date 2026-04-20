@@ -13,7 +13,7 @@ class Widget_Icon_Text extends SteelNova_Widget_Base {
         return [
             'name'       => 'steelnova-icon-text',
             'title'      => __( 'CS Icon Text', 'steelnova' ),
-            'icon'       => 'eicon-icon-box',
+            'icon'       => 'eicon-tel-field',
             'keywords'   => [ 'icon', 'text', 'header', 'steelnova', 'icon text' ],
             'script'     => [],
         ];
@@ -31,6 +31,8 @@ class Widget_Icon_Text extends SteelNova_Widget_Base {
         $this->register_box_style_controls();
         $this->register_icon_style_controls();
         $this->register_text_style_controls();
+        // Steelnova Controls
+        $this->register_steelnova_extra_controls();
     }
 
     /**
@@ -60,9 +62,10 @@ class Widget_Icon_Text extends SteelNova_Widget_Base {
             'name' => 'icon',
             'label' => __( 'Icon', 'steelnova' ),
         ]);
-        $this->text([
+        $this->textarea([
             'name' => 'text',
             'label' => __( 'Text', 'steelnova' ),
+            'rows' => 5,
             'default' => __('Lorem ipsum dolor', 'steelnova')
         ]);
         $this->url([

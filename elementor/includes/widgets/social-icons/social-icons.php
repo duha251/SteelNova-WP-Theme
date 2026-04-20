@@ -28,9 +28,7 @@ class Widget_Social_Icons extends SteelNova_Widget_Base {
         // Content Controls
         $this->register_content_controls();
         // Style Controls
-        $this->register_box_style_controls();
         $this->register_icon_style_controls();
-        $this->register_text_style_controls();
     }
 
     /**
@@ -69,6 +67,16 @@ class Widget_Social_Icons extends SteelNova_Widget_Base {
             'default' => [
                 'url' => '#'
             ]
+        ], $repeater);
+
+        $this->size([
+            'name' => 'icon_size',
+            'label' => __( 'Icon Size', 'steelnova' ),
+            'separator' => 'before',
+            'selectors' => [
+                '{{WRAPPER}} .social-icons .social-icons__link{{CURRENT_ITEM}}' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .social-icons .social-icons__link{{CURRENT_ITEM}} svg' => 'width: {{SIZE}}{{UNIT}};',
+            ],
         ], $repeater);
         
         $this->repeater([
@@ -123,14 +131,14 @@ class Widget_Social_Icons extends SteelNova_Widget_Base {
     protected function register_icon_style_controls( $args = [] ) {
         $this->start_style_section([
             'name' => 'section_icon_style',
-            'label' => __( 'Icon', 'steelnova' ),
+            'label' => __( 'Socials Icon', 'steelnova' ),
         ]);
         $this->size([
             'name' => 'icon_size',
             'label' => __( 'Icon Size', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-text .icon-text__icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .icon-text .icon-text__icon svg' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .social-icons .social-icons__link' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .social-icons .social-icons__link svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
@@ -138,14 +146,14 @@ class Widget_Social_Icons extends SteelNova_Widget_Base {
             'label' => __( 'Box Width', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .icon-text .icon-text__icon' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .social-icons .social-icons__link' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
             'name' => 'box_icon_height',
             'label' => __( 'Box Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-text .icon-text__icon' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .social-icons .social-icons__link' => 'height: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->_start_controls_tabs([
@@ -160,16 +168,16 @@ class Widget_Social_Icons extends SteelNova_Widget_Base {
             'name' => 'icon_color',
             'label' => __( 'Icon Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-text .icon-text__icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .social-icons .social-icons__link' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'icon_background',
-            'selector' => '{{WRAPPER}} .icon-text .icon-text__icon',
+            'selector' => '{{WRAPPER}} .social-icons .social-icons__link',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css',
-            'selector' => '{{WRAPPER}} .icon-text .icon-text__icon',
+            'selector' => '{{WRAPPER}} .social-icons .social-icons__link',
         ]);
         $this->end_controls_tab();
 
@@ -187,76 +195,42 @@ class Widget_Social_Icons extends SteelNova_Widget_Base {
         ]);
         $this->group_background([
             'name' => 'icon_background_hover',
-            'selector' => '{{WRAPPER}} .icon-text .icon-text__icon:not(.background-gradient):hover,
-                           {{WRAPPER}} .icon-text .icon-text__icon:not(.background-gradient):before',
+            'selector' => '{{WRAPPER}} .social-icons .social-icons__link:not(.background-gradient):hover,
+                           {{WRAPPER}} .social-icons .social-icons__link:not(.background-gradient):before',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css_hover',
-            'selector' => '{{WRAPPER}} .icon-text .icon-text__icon:not(.background-gradient):hover',
+            'selector' => '{{WRAPPER}} .social-icons .social-icons__link:not(.background-gradient):hover',
         ]);
+        $this->select([
+            'name' => 'icon_hover_style',
+            'label' => __('Hover Style', 'steelnova'),
+            'separator' => 'before',
+            'options' => [
+                ''    => __('None', 'steelnova'),
+                'fillScale'  => __('Fill Scale', 'steelnova'),
+                'fillReveal' => __('Fill Reveal', 'steelnova'),
+            ],
+        ]);
+        // $this->select([
+        //     'name' => 'icon_before_transform_origin',
+        //     'label' => __('Transform Origin', 'steelnova'),
+        //     'options' => [
+        //         ''       => __('Center', 'steelnova'),
+        //         'top'    => __('Top', 'steelnova'),
+        //         'right'  => __('Right', 'steelnova'),
+        //         'bottom' => __('Bottom', 'steelnova'),
+        //         'left'   => __('Left', 'steelnova'),
+        //     ],
+        //     'selectors' => [
+        //         '{{WRAPPER}} .social-icons .social-icons__link:before' => 'transform-origin: {{VALUE}};'
+        //     ]
+        // ]);
         $this->time([
             'name' => 'icon_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
-            'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .icon-text .icon-text__icon' => 'transition-duration: {{SIZE}}{{UNIT}};',
-            ],
-        ]);
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
-        $this->end_controls_section();
-    }
-
-    /**
-     * Register Text Style Controls
-     */
-    protected function register_text_style_controls( $args = [] ) {
-        $this->start_style_section([
-            'name' => 'section_text_style',
-            'label' => __( 'Text', 'steelnova' ),
-        ]);
-        $this->group_typography([
-            'name' => 'text_typography',
-            'selector' => '{{WRAPPER}} .icon-text .icon-text__text',
-        ]);
-
-        $this->_start_controls_tabs([
-            'name' => 'text_style_tabs',
-        ]);
-
-        // Tab Normal Start
-        $this->_start_controls_tab([
-            'name' => 'text_tab_normal',
-            'label' => __( 'Normal', 'steelnova' ),
-        ]);
-        $this->color([
-            'name' => 'text_color',
-            'label' => __( 'Text Color', 'steelnova' ),
-            'selectors' => [
-                '{{WRAPPER}} .icon-text .icon-text__text' => 'color: {{VALUE}};',
-            ],
-        ]);
-        $this->end_controls_tab();
-
-        // Tab Hover Start
-        $this->_start_controls_tab([
-            'name' => 'text_tab_hover',
-            'label' => __( 'Hover', 'steelnova' ),
-        ]);
-        $this->color([
-            'name' => 'text_color_hover',
-            'label' => __( 'Text Color', 'steelnova' ),
-            'selectors' => [
-                '{{WRAPPER}} .icon-text:hover .icon-text__text' => 'color: {{VALUE}};',
-            ],
-        ]);
-        $this->time([
-            'name' => 'text_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
-            'separator' => 'before',
-            'selectors' => [
-                '{{WRAPPER}} .icon-text .icon-text__text' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .social-icons .social-icons__link' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();

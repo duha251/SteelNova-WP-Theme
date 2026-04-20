@@ -1,4 +1,302 @@
-@use 'editor';
+@use '../../../assets/scss/core' as *;
 
 
-@use 'widgets/other';
+// Icon Text
+.icon-text {
+    @include d-flex(15px, center);
+    &__icon {
+        @include d-inline-flex(null, center, center);
+    }
+}
+
+// Social Icons
+.social-icons {
+    @include d-flex(15px);
+    &__link {
+        @include d-inline-flex(null, center, center);
+        > svg, i {
+            position: relative;
+        }
+    }
+}
+
+// Site Logo
+.site-logo {
+    img {
+        object-fit: contain;
+    }
+    .placeholder-image {
+        height: 46px;
+    }
+}
+
+// Divider 
+.divider {
+    width: 100%;
+    border-color: currentColor;
+    &.divider-horizontal {
+        border-top-width: thin;
+        border-top-style: solid;
+        height: 1px;
+    }
+    &.divider-vertical {
+        border-left-width: thin;
+        border-left-style: solid;
+        width: 1px;
+    }
+}
+
+// List
+.list {
+    @include d-flex(15px);
+    flex-direction: column;
+    &__item {
+        @include d-inline-flex(5px, center);
+        &-icon {
+            @include d-inline-flex(null, center, center);
+        }
+    }
+}
+
+// Image Gallery
+.image-gallery {
+    &__item {
+        display: inline-flex;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+// Image
+.image-wrapper {
+    display: inline-flex;
+}
+
+// Icon 
+.icon-wrapper {
+    @include d-inline-flex(null, center, center);
+}
+
+// Background 
+.steelnova-background {
+    width: 100%;
+    height: 100%;
+}
+
+// Countdown
+.steelnova-countdown {
+    @include d-flex(20px);
+    color: #FF5B1B;
+    &__timer {
+        @include d-inline-flex(null, center);
+        flex-direction: column;
+        .unit {
+            @include paragraph-2;
+            color: #FFF;
+            text-transform: uppercase
+        }
+    }
+    &__timer .value, &__separator {
+        @include h1;
+    }
+}
+
+// Search Form
+.steelnova-search-form {
+    position: relative;
+    width: 100%;
+    &__form {
+        @include d-flex(15px, center);
+    }
+    &__field {
+        padding: 14px 55px 14px 25px;
+        border-radius: 100px;
+        background: rgba( #FFF, .2 );
+        backdrop-filter: blur(5px);
+        @include paragraph-5;
+        color: #FFF;
+    }
+    &__submit {
+        position: absolute;
+        top: 3px;
+        right: 5px;
+        @include round-box(46px);
+        color: #0A1119;
+        background-color: #FFF;
+    }
+}
+
+// Breadcrumb
+.steelnova-breadcrumb {
+    color: #FFF;
+    @include d-inline-flex(8px, center);
+    @include text-button-1;
+    padding: 17px 25px;
+    border-radius: 100px;
+    background-color: #FF5B1B;
+    .separator {
+        line-height: 0;
+    }
+    > a {
+        color: inherit;
+    }
+}
+
+// Post Meta
+.cs-post-meta {
+    @include d-flex(30px 50px);
+    flex-wrap: wrap;
+    &__item {
+        @include d-inline-flex(14.5px);
+        &-icon {
+            @include round-box(50px, 5px);
+            border: thin solid #DCDCDC;
+            color: #0A1119;
+        }
+        &-label {
+            display: block;
+            @include paragraph-5;
+            color: #4B535D;
+        }
+        &-value {
+            @include h7;
+            color: #0A1119;
+            > a {
+                color: inherit;
+            }
+        }
+    }
+}
+
+// Post Tags
+.steelnova-post-tags {
+    @include d-flex(10px, null, null);
+    flex-wrap: wrap;
+    a {
+        padding: 12px 24px;
+        background-color: #121512;
+        border-radius: 6px;
+        color: rgba(#FFF, 0.8);
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.66667;
+        letter-spacing: 0.72px;
+        text-transform: uppercase;
+    }
+}
+
+// Post Social Share
+.steelnova-post-social-share {
+    @include d-flex(15px, center);
+    &__label {
+        color: var(--steelnova-heading-color);
+        vertical-align: middle;
+        @include h7;
+    }
+    &__list {
+        @include d-inline-flex(8px);
+    }
+    &__link {
+        @include round-box(46px);
+        @include d-inline-flex(null, center, center);
+        background-color: #0A1119;
+        color: #FFF;
+    }
+}
+
+// Post Author
+.steelnova-post-author {
+    @include d-flex(28px);
+    &__avatar {
+        @include round-box(133px);
+        flex-shrink: 0;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__name {
+        @include h8;
+        color: var(--steelnova-heading-color);
+        margin-bottom: 13px;
+    }
+    &__bio {
+        @include paragraph-5;
+        margin-bottom: 13px;
+    }
+    &__socials {
+        @include d-inline-flex(33px);
+        > a {
+            color: #121512;
+        }
+    }
+}
+
+// Naviagtion Carousel
+.cs-navigation-carousel {
+    pointer-events: none;
+    @include d-flex(30px);
+    &__button {
+        @include round-box(50px);
+        @include d-inline-flex(null, center, center);
+        background-color: rgba( #FFF, .18 );
+        pointer-events: visible;
+        color: #FFF;
+        &:hover {
+            background-color: #FFF;
+            color: #4B535D;
+        }
+    }
+}
+
+// Project Image Gallery 
+.cs-project-image-garelly {
+    border-radius: 20px;
+    .carousel__item {
+        height: auto;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Post Navigation
+.cs-post-navigation {
+    @include d-flex(null, center, space-between);
+    &__button {
+        height: 60px;
+        padding-inline: 20px 40px;
+        background-color: #FFF;
+        border: thin solid #FAF5ED;
+        border-radius: 100px;
+        color: #0A1119;
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        gap: 40px;
+        flex-shrink: 0;
+        .cs-button__icon {
+            display: inline-flex;
+            align-items: center;
+            width: 35px;
+            height: 32px;
+            border-right: thin solid #DCDCDC;
+        }
+        &--next {
+            .cs-button__icon {
+                border-left: thin solid #DCDCDC;
+                border-right: none;
+                justify-content: end;
+            }
+        }
+    }
+    .divider {
+        flex-grow: 1;
+        background-color: #DCDCDC;
+    }
+}

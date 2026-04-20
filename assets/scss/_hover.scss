@@ -1,0 +1,41 @@
+@use 'core.scss' as *;
+
+
+[data-hover="fillScale"] {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: red;
+        border-radius: inherit;
+        transform-origin: center center;
+        scale: 0;
+        transition: scale 300ms ease;
+    }
+    &:hover {
+        &::before {
+            scale: 1;
+        }
+    }
+}
+
+[data-hover="fillReveal"] {
+    position: relative;
+    overflow: hidden;
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        transform-origin: bottom;
+        background-color: red;
+        border-radius: inherit;
+        transform: scaleY(0);
+        transition: transform 300ms ease;
+    }
+    &:hover {
+        &::before {
+            transform: scaleY(1);
+        }
+    }
+}

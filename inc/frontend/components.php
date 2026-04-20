@@ -35,7 +35,7 @@ class Components {
 
     public function get_body_overlay() {
         ?>
-        <div class="body-overlay"></div>
+        <div class="body__overlay"></div>
         <?php
     }
 
@@ -117,10 +117,202 @@ class Components {
     /**
      * Display searchform
      */
-    public function get_search_form( $template = '' ) {
+    public function get_search_form( $template = '', $args = [] ) {
         if( empty( $template ) ) {
             $template = 'default';
         }
-        get_search_form( [ 'template' => $template ] );
+        get_search_form( array_merge( [ 'template' => $template ], $args ) );
+    }
+
+    /**
+     * Get hero title
+     */
+    public function get_hero_title() {
+        $prefix_id = steelnova_get_prefix_id_option();
+
+        $title = $this->option->get_option( $prefix_id . 'hero_title', '');
+        if( empty( $title ) ) {
+            $title = $this->get_title();
+        }
+        return $title;
+    }
+
+    /**
+     * Get hero title
+     */
+    public function get_hero_note() {
+        $prefix_id = steelnova_get_prefix_id_option();
+
+        $note = $this->option->get_option( $prefix_id . 'hero_note', '');
+        return $note;
+    }
+
+    /**
+     * 
+     */
+    public function get_title() {
+        $title = get_the_title();
+
+        if (is_404()) {
+            $title = '404';
+        } elseif (is_archive()) {
+            if (is_category() || is_tax()) {
+                $term = get_queried_object();
+                if ($term && !is_wp_error($term)) {
+                    $title = $term->name;
+                }
+            } elseif ( is_post_type_archive() ) {
+                $post_type = get_post_type_object(get_post_type());
+                if ($post_type) {
+                    $title = $post_type->labels->name;
+                }
+            }
+        }
+
+        return $title;
+    }
+
+    /**
+     * Get Bre
+     */
+    public function get_breadcrumb( $args = [] ) {
+        $args = array_merge([
+            'separator' => '<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none">
+                                <path d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z" fill="white"/>
+                            </svg>'
+        ], $args);
+        extract( $args );
+
+        $show_home_label = (bool)$this->option->get_option('show_home_label', '');
+        $show_page_label = (bool)$this->option->get_option('show_page_label', '');
+
+        
+        $separator = ' <span class="separator">'. $separator .'</span> ';
+        $breadcrumb = [];
+
+        $prefix_id = steelnova_get_prefix_id_option();
+
+        $current_label_mode = $this->option->get_option($prefix_id . 'breadcrumb_text_mode', '');
+        // Home
+        if( $show_home_label ) {
+            $home_label_text = $this->option->get_option('home_label_text', '');
+            $breadcrumb[] = '<a href="' . home_url() . '">' . $home_label_text . '</a>';
+        }
+
+        if( $show_page_label ) {
+            $page_label_text = $this->option->get_option('page_label_text', '');
+            $breadcrumb[] = '<span>'. $page_label_text .'</span>';
+        }
+
+        $label_text = $current_label_mode === 'custom' 
+        ? $this->option->get_option($prefix_id . 'breadcrumb_label_text', '')
+        : $this->get_title();
+                
+        $breadcrumb[] = '<span>' . $label_text . '</span>';
+
+        return implode($separator, $breadcrumb);
+    }
+
+    /**
+     * 
+     */
+    public function get_current_page($link){
+        $parts = parse_url($link);
+        if( !isset($parts['query']) ) return $link;
+        
+        parse_str($parts['query'], $query_vars);
+        
+        $current_page = 1;
+        if(isset($query_vars['page'])){
+            $current_page = $query_vars['page'];
+        } elseif(isset($query_vars['paged'])){
+            $current_page = $query_vars['paged'];
+        }
+        
+        return '#' . $current_page;
+    }
+
+    /**
+     * Get Pagination HTML
+     * * @param WP_Query $query
+     * @param bool $ajax
+     * @return string
+     */
+    public function get_pagination( $query = null, $ajax = false ) {
+        if ( $ajax ) {
+            add_filter( 'paginate_links', array( $this, 'get_current_page' ) );
+        }
+
+        if ( empty( $query ) ) {
+            $query = $GLOBALS['wp_query'];
+        }
+
+        // Luôn trả về chuỗi rỗng thay vì null để tránh lỗi PHP 8.1+
+        if ( empty( $query->max_num_pages ) || $query->max_num_pages < 2 ) {
+            return '';
+        }
+
+        $paged = $query->get( 'paged' );
+        if ( ! $paged ) {
+            $paged = $query->get( 'page' );
+        }
+        $paged = $paged ? intval( $paged ) : 1;
+
+        $pagenum_link = html_entity_decode( get_pagenum_link() );
+        $query_args   = array();
+        $url_parts    = explode( '?', $pagenum_link );
+
+        if ( isset( $url_parts[1] ) ) {
+            wp_parse_str( $url_parts[1], $query_args );
+        }
+
+        unset( $query_args['elementor-preview'], $query_args['ver'] );
+
+        $pagenum_link = remove_query_arg( array_keys( $query_args ), $pagenum_link );
+        $pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
+
+        $prev_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M6.4092 10.8639C6.57239 10.7073 6.66406 10.4949 6.66406 10.2735C6.66406 10.052 6.57239 9.83964 6.4092 9.68304L2.10028 5.54922L6.4092 1.41541C6.56776 1.2579 6.6555 1.04695 6.65352 0.827986C6.65154 0.609021 6.55999 0.399564 6.39859 0.244727C6.2372 0.0898905 6.01887 0.0020628 5.79063 0.000160217C5.56239 -0.00174236 5.3425 0.0824327 5.17832 0.234555L0.253969 4.9588C0.0907769 5.1154 -0.000898838 5.32778 -0.000898838 5.54922C-0.000898838 5.77066 0.0907769 5.98304 0.253969 6.13965L5.17832 10.8639C5.34157 11.0204 5.56294 11.1084 5.79376 11.1084C6.02458 11.1084 6.24595 11.0204 6.4092 10.8639Z" fill="currentColor"/></svg>';
+        $next_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13" fill="none">
+                        <path d="M-0.000161171 1.05973L1.06084 -0.000272751L6.83984 5.77673C6.93299 5.86929 7.00692 5.97937 7.05737 6.10062C7.10782 6.22187 7.13379 6.3519 7.13379 6.48323C7.13379 6.61455 7.10782 6.74458 7.05737 6.86583C7.00692 6.98708 6.93299 7.09716 6.83984 7.18973L1.06084 12.9697L0.000838757 11.9097L5.42484 6.48473L-0.000161171 1.05973Z" fill="#0A1119"/>
+                    </svg>';
+
+        $paginate_links_args = array(
+            'base'               => $ajax ? '%_%' : $pagenum_link,
+            'format'             => $ajax ? '?page=%#%' : 'page/%#%/',
+            'total'              => $query->max_num_pages,
+            'current'            => $paged,
+            'mid_size'           => 1,
+            'add_args'           => array_map( 'urlencode', $query_args ),
+            'prev_text'          => $prev_svg, 
+            'next_text'          => $next_svg, 
+            'before_page_number' => '<span>',
+            'after_page_number'  => '</span>',
+        );
+
+        $links = paginate_links( $paginate_links_args );
+
+        if ( $links ) {
+            // Thêm số 0 phía trước các con số (01, 02...)
+            // $links = preg_replace_callback( '/>(\d+)</', function( $matches ) {
+            //     return '>' . sprintf( '%02d', $matches[1] ) . '<';
+            // }, $links );
+
+            $ajax_class = $ajax ? ' ajax' : '';
+            
+            // Khai báo bộ lọc HTML cho phép SVG
+            $allowed_html = wp_kses_allowed_html( 'post' );
+            $allowed_html['svg']  = array( 'xmlns' => true, 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true );
+            $allowed_html['path'] = array( 'd' => true, 'fill' => true );
+
+            ob_start();
+            ?>
+            <div class="steelnova-pagination<?php echo esc_attr( $ajax_class ); ?>">
+                <?php echo wp_kses( $links, $allowed_html ); ?>
+            </div>
+            <?php
+            return ob_get_clean();
+        }
+
+        return '';
     }
 }

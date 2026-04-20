@@ -3,7 +3,7 @@
     <div class="header-logo">
         <?php echo wp_kses_post($logo_html); ?>
     </div>
-    <button class="button-hamburger" data-target=".header-drawer">
+    <button class="cs-button--hamburger" data-target=".header-drawer">
         <span class="hamburger-icon">
             <span class="line line-1"></span>
             <span class="line line-2"></span>
@@ -11,7 +11,7 @@
         </span>
     </button>
     <div class="drawer header-drawer">
-        <button class="button-close"><span class="x-icon"></span></button>
+        <button class="button-close"><span class="icon-x"></span></button>
         <div class="header-logo">
             <?php echo wp_kses_post($logo_html); ?>
         </div>

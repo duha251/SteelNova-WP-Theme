@@ -103,7 +103,6 @@ class Pxl_Hooks {
             'hero'            => __('Hero', 'steelnova'), 
             'panel'           => __('Panel', 'steelnova'),
             // 'archive'      => __('Archive', 'steelnova')
-            'page'            => __('Page', 'steelnova'),
             'section'         => __('Section', 'steelnova')
 		];
 		return $extra_type;
@@ -125,46 +124,44 @@ class Pxl_Hooks {
      * Register post types
      */
     function register_post_types( $postypes ) {
-        $post_types = $this->option->get_theme_option('pxl_post_type', []);
-        $post_type_labels = $this->option->get_theme_option('pxl_post_type_label', []);
-        $post_type_slugs = $this->option->get_theme_option('pxl_post_type_slug', []);
-        $post_type_status = $this->option->get_theme_option('pxl_post_type_status', []);
 
-        $team_label = $this->option->get_theme_option('team_label', 'Team');;
-        $team_status = $this->option->get_theme_option('team_status', true);
-
-        array_unshift($post_types, 'team');
-        array_unshift($post_type_labels, $team_label);
-        array_unshift($post_type_slugs, 'team');
-        array_unshift($post_type_status, $team_status);
-
-        $career_label = $this->option->get_theme_option('career_label', 'Career');
-        $career_status = $this->option->get_theme_option('career_status', true);
-
-        array_unshift($post_types, 'career');
-        array_unshift($post_type_labels, $career_label);
-        array_unshift($post_type_slugs, 'career');
-        array_unshift($post_type_status, $career_status);
-
-        $post_type_status = array_map('boolval', $post_type_status);
+        $post_types = [
+            'member' => [
+                'status'     => true,
+                'item_name'  => __('Member', 'steelnova'),
+                'items_name' => __('Members', 'steelnova'),
+                'slug'       => 'team',
+            ],
+            'service' => [
+                'status'     => true,
+                'item_name'  => __('Service', 'steelnova'),
+                'items_name' => __('Services', 'steelnova'),
+                'slug'       => 'services',
+            ],
+            'project' => [
+                'status'     => true,
+                'item_name'  => __('Project', 'steelnova'),
+                'items_name' => __('Projects', 'steelnova'),
+                'slug'       => 'projects',
+            ]
+        ];
 
         if( !is_array( $post_types ) || empty( $post_types ) ) {
             return [];
         }
 
-        foreach( $post_types as $i => $post_type ) {
-            $sanitize_text = sanitize_title( $post_type );
+        foreach( $post_types as $post_type => $params ) {
             if( empty( $post_type ) ) {
                 continue;
             }
-            $postypes[$sanitize_text] = array(
-                'status'     => (bool)$post_type_status,
-                'item_name'  => $post_type_labels[$i],
-                'items_name' => $post_type_labels[$i],
+            $postypes[$post_type] = array(
+                'status'     => $params['status'],
+                'item_name'  => $params['items_name'],
+                'items_name' => $params['items_name'],
                 'args'       => array(
                     'has_archive' => false,
-                    'rewrite'             => array(
-                        'slug'       => sanitize_title( $post_type_slugs[$i] ),
+                    'rewrite'     => array(
+                        'slug'    => $params['slug'],
                     ),
                 ),
                 'labels'     => array(
@@ -180,64 +177,18 @@ class Pxl_Hooks {
      * Resgister taxonomies
      */
     function register_taxonomies( $taxonomies ) {
-        $on_category = $this->option->get_theme_option('pxl_on_category', []); 
-        $category_labels = $this->option->get_theme_option('pxl_category_label', []);
-        $post_types = $this->option->get_theme_option('pxl_post_type', []);
-        $career_status = $this->option->get_theme_option('career_status', true);
-
-        // Xử lý career đồng bộ
-        if( $career_status ) {
-            array_unshift($post_types, 'career');
-            array_unshift($category_labels, 'Categories');
-            array_unshift($on_category, true); 
-        }
-
-        if( !is_array( $post_types ) || empty( $post_types ) ) {
-            return $taxonomies;
-        }
-
-        foreach( $post_types as $i => $post_type ) {
-            if( isset($on_category[$i]) && $on_category[$i] ) {
-                $sanitize_text = sanitize_title( $post_type.'_category' );
-                $taxonomies[$sanitize_text] = array(
-                    'status'     => true,
-                    'post_type'  => [ sanitize_title( $post_type ) ],
-                    'taxonomy'   => !empty($category_labels[$i]) ? $category_labels[$i] : ucwords($post_type).' Category',
-                    'taxonomies' => !empty($category_labels[$i]) ? $category_labels[$i] : ucwords($post_type).' Categories',
-                    'args'       => array(
-                        'hierarchical' => true, 
-                        'show_in_rest' => true,
-                        'rewrite'      => array(
-                            'slug' => sanitize_title( $post_type.'-category' )
-                        ),
-                    ),
-                    'labels'     => array(
-                        'add_new_item' => __('Add ', 'steelnova').ucwords($post_type). __(' Category', 'steelnova'),
-                    ),
-                );
-            }
-        }
-
-        if( $career_status ) {
-            $taxonomies['career_tag'] = array(
-                'status'     => true,
-                'post_type'  => array('career'), 
-                'taxonomy'   => esc_html__('Career Tag', 'steelnova'), 
-                'taxonomies' => esc_html__('Tags', 'steelnova'), 
-                'args'       => array(
-                    'hierarchical'      => true,
-                    'show_admin_column' => true,  
-                    'show_in_rest'      => true, 
-                    'rewrite'           => array(
-                        'slug' => 'career-tag'
-                    ),
+        $taxonomies['project-category'] = array(
+            'status'     => true,
+            'post_type'  => array( 'project' ),
+            'taxonomy'   => 'Project Category',
+            'taxonomies' => 'Project Categories',
+            'args'       => array(
+                'rewrite'             => array(
+                    'slug'       => 'project-category'
                 ),
-                'labels'     => array(
-                    'menu_name' => esc_html__('Career Tags', 'steelnova'),
-                ),
-            );
-        }
-
+            ),
+            'labels'     => array()
+        );
         return $taxonomies;
     }
 

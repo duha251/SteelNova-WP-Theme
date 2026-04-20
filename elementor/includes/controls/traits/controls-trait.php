@@ -59,7 +59,6 @@ trait Controls_Trait {
         
         $args['name'] = $prefix_name;
 
-        
         $target->{$elementor_method}(
             $control_type, 
             array_merge($defaults, $args)
@@ -147,23 +146,41 @@ trait Controls_Trait {
     }
 
     /**
-     * Quick start controls tab normal
+     * Quick start \Controls_Manager::TAB_SteelNova section
      */
-    public function _start_controls_tabs( $args = [] ) {
-        $defaults = [];
+    protected function start_steelnova_section( $args = [], $target = null ) {
+        $defaults = [
+            'tab' => 'steelnova_extra',
+        ];
 
         $this->_register_control_helper(
-            'start_controls_tabs', 
+            'start_controls_section', 
             $args,                    
             $defaults,                
-            __FUNCTION__    
+            __FUNCTION__,
+            $target    
         );
     }
 
     /**
      * Quick start controls tab normal
      */
-    public function _start_controls_tab( $args = [] ) {
+    public function _start_controls_tabs( $args = [], $target = null ) {
+        $defaults = [];
+
+        $this->_register_control_helper(
+            'start_controls_tabs', 
+            $args,                    
+            $defaults,                
+            __FUNCTION__, 
+            $target    
+        );
+    }
+
+    /**
+     * Quick start controls tab normal
+     */
+    public function _start_controls_tab( $args = [], $target = null ) {
         $defaults = [
             'label' => __('Tab', 'steelnova')
         ];
@@ -172,7 +189,8 @@ trait Controls_Trait {
             'start_controls_tab', 
             $args,                    
             $defaults,                
-            __FUNCTION__    
+            __FUNCTION__,
+            $target   
         );
     }
 
@@ -291,7 +309,7 @@ trait Controls_Trait {
     /**
      * Quick media control
      */
-    protected function media( $args = [] ) {
+    protected function media( $args = [], $target = null) {
         $defaults = [
             'label' => __( 'Media', 'steelnova' ),
             'type' => Controls_Manager::MEDIA,
@@ -304,6 +322,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
@@ -312,7 +331,7 @@ trait Controls_Trait {
      */
     protected function url($args = [], $target = null) {
         $defaults = [
-            'label' => __( 'Link', 'steelnova' ),
+            'label' => __( 'Link URL', 'steelnova' ),
             'type' => Controls_Manager::URL,
         ];
         $this->_register_control_helper(
@@ -327,7 +346,7 @@ trait Controls_Trait {
     /**
      * Quick text control
      */
-    protected function text( $args = [] ) {
+    protected function text( $args = [], $target = null ) {
         $defaults = [
             'label' => __( 'Text', 'steelnova' ),
             'type' => Controls_Manager::TEXT,
@@ -338,13 +357,14 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
     /**
      * Quick Select Controls
      */
-    protected function select( $args = [] ) {
+    protected function select( $args = [], $target = null) {
         $defaults = [
             'label' => __( 'Select', 'steelnova' ),
             'type' => Controls_Manager::SELECT,
@@ -355,13 +375,14 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
     /**
      * Quick Select2 Controls
      */
-    protected function select2( $args = [] ) {
+    protected function select2( $args = [], $target = null ) {
         $defaults = [
             'label' => __( 'Select 2', 'steelnova' ),
             'type' => Controls_Manager::SELECT2,
@@ -372,13 +393,14 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
     /**
      * Quick textare control 
      */
-    protected function textarea($args = []) {
+    protected function textarea($args = [], $target = null) {
         $defaults = [
             'label' => __( 'Textarea', 'steelnova' ),
             'type' => Controls_Manager::TEXTAREA,
@@ -389,6 +411,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
@@ -429,7 +452,7 @@ trait Controls_Trait {
     /**
      * Quick text editor
      */
-    protected function text_editor( $args = [] ) {
+    protected function wysiwyg( $args = [] ) {
         $defaults = [
             'label' => __( 'Text Editor', 'steelnova' ),
             'type' => 'wysiwyg',
@@ -493,7 +516,7 @@ trait Controls_Trait {
         );
     } 
 
-    protected function number( $args = [] ) {
+    protected function number( $args = [], $target = null ) {
         $defaults = [
             'type' => 'number',
             'label' => __( 'Number', 'steelnova' ),
@@ -503,6 +526,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     } 
 
@@ -540,6 +564,74 @@ trait Controls_Trait {
             __FUNCTION__,
         );
     }
+
+    /**
+     * GALLERY
+     */
+    protected function gallery( $args = [] ) {
+        $defaults = [
+            'type' => 'gallery',
+            'label' => __( 'Image Gallery', 'steelnova' ),
+        ];
+        $this->_register_control_helper(
+            'add_control', 
+            $args,
+            $defaults,
+            __FUNCTION__,
+        );
+    }
+
+    /**
+     * DATE TIME
+     */
+    protected function date_time( $args = [] ) {
+        $defaults = [
+            'label' => __( 'Date & Time', 'steelnova' ),
+            'type' => 'date_time',
+        ];
+        $this->_register_control_helper(
+            'add_control', 
+            $args,
+            $defaults,
+            __FUNCTION__,
+        );
+    }
+
+    /**
+     * GAPS
+     */
+    protected function gaps( $args = [] ) {
+        $defaults = [
+            'type' => Controls_Manager::GAPS,
+            'label' => __( 'Gaps', 'steelnova' ),
+            'size_units' => ['px', 'custom'],
+            'default' => [
+				'unit' => 'px',
+			],
+            'conversion_map' => [
+				'old_key' => 'size',
+				'new_key' => 'column',
+			],
+			'upgrade_conversion_map' => [
+				'old_key' => 'size',
+				'new_keys' => [ 'column', 'row' ],
+			],
+            'validators' => [
+				'Number' => [
+					'min' => 0,
+				],
+			],
+        ];
+        $this->_register_control_helper(
+            'add_responsive_control', 
+            $args,
+            $defaults,
+            __FUNCTION__,
+        );
+    }
+
+
+    
 
     /**
      * Quick group typography control
@@ -586,7 +678,7 @@ trait Controls_Trait {
     /**
      * Quick group Filter control
      */ 
-    protected function group_background( $args = [] ) {
+    protected function group_background( $args = [], $target = null ) {
         $args['type'] = \Elementor\Group_Control_Background::get_type();
         $defaults = [];
         $this->_register_control_helper(
@@ -594,13 +686,14 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
     /**
      * Quick group Filter control
      */ 
-    protected function group_css_filter( $args = [] ) {
+    protected function group_css_filter( $args = [], $target = null ) {
         $args['type'] = \Elementor\Group_Control_Css_Filter::get_type();
         $defaults = [];
         $this->_register_control_helper(
@@ -608,6 +701,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
@@ -650,6 +744,51 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+        );
+    }
+
+    /**
+     * Quick group position css control
+     */ 
+    protected function group_position($args = []) {
+        $args['type'] = \SteelNova\Elementor\Controls\Group_Control_Position::get_type();
+        $defaults = [];
+        $this->_register_control_helper(
+            'add_group_control',
+            $args,
+            $defaults,
+            __FUNCTION__,
+        );
+    }
+
+    /**
+     * Quick group width css control
+     */ 
+    protected function group_width($args = [], $target = null ) {
+        $args['type'] = \SteelNova\Elementor\Controls\Group_Control_Width::get_type();
+        $defaults = [];
+        $this->_register_control_helper(
+            'add_group_control',
+            $args,
+            $defaults,
+            __FUNCTION__,
+            $target
+        );
+    }
+
+    
+    /**
+     * Quick group height css control
+     */ 
+    protected function group_height($args = [], $target = null ) {
+        $args['type'] = \SteelNova\Elementor\Controls\Group_Control_Height::get_type();
+        $defaults = [];
+        $this->_register_control_helper(
+            'add_group_control',
+            $args,
+            $defaults,
+            __FUNCTION__,
+            $target
         );
     }
 
