@@ -7,7 +7,7 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 
 
 $wrapper_attrs_tmp = [
-    'class' => 'steelnova-wpcf7',
+    'class' => 'cs-wpcf7',
 ];
 $wrapper_attrs = array_merge( $wrapper_attrs_tmp, $wrapper_attrs );
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );

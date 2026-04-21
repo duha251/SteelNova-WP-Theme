@@ -45,7 +45,7 @@ $display_args = [
 
 
 $wrapper_attrs = [
-    'class' => 'grid projects-grid is-post-type-project',
+    'class' => 'grid cs-projects-grid is-post-type-project',
     'data-layout'   => $layout,
 ];
 
@@ -70,7 +70,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
     <?php endif; ?>
     <?php if( $settings['grid_load_type'] === 'load_more' ) : ?>
         <div class="grid__loadmore ajax">
-            <button class="cs-button cs-button--primary button--loadmore" data-current-page="1">
+            <button class="cs-button cs-button--primary cs-button--loadmore" data-current-page="1">
                 <span class="cs-button__text"><?php echo esc_html__('Load More', 'steelnova'); ?></span>
             </button>
         </div>

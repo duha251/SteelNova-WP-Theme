@@ -649,6 +649,31 @@ class Theme_Options {
                         'options'  => Static_Options::get_templates_by_type('section'),
                         'default'  => '',
                     ),
+                    array(
+                        'id' => 'single_project_sidebar_mode_heading',
+                        'title' => esc_html__('Sidebar', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                    array(
+                        'id'      => 'single_project_sidebar_mode',
+                        'type'    => 'button_set',
+                        'title'   => __( 'Sidebar Mode', 'steelnova' ),
+                        'options' => [
+                            'none'  => __('None', 'steelnova'),
+                            'left'  => __('Left', 'steelnova'),
+                            'right' => __('Right', 'steelnova'),
+                        ], 
+                        'default' => 'none',
+                    ),
+                    array(
+                        'id'       => 'single_project_sidebar_template_id',
+                        'type'     => 'select',
+                        'title'    => __('Sidebar Template', 'steelnova'),
+                        'options'  => Static_Options::get_templates_by_type('sidebar'),
+                        'default'  => '',
+                        'required' => ['single_project_sidebar_mode', '!=', 'none']
+                    ),
                 ),
                 Static_Options::breadcrumnb_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ),
                 Static_Options::header_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ), 

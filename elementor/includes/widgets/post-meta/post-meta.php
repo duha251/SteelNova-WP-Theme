@@ -16,6 +16,7 @@ class Widget_Post_Meta extends SteelNova_Widget_Base {
             'icon'       => 'eicon-meta-data',
             'keywords' => [ 'cs', 'casethemes', 'steelnova', 'post meta', 'meta', 'post information', 'social', 'social icon', 'social icons', 'icon', 'icons', 'share', 'social share', 'network', 'social network', 'facebook', 'twitter', 'instagram', 'linkedin', 'youtube', 'pinterest', 'telegram', 'author', 'date', 'category', 'tags' ],
             'script'     => [],
+            'style'      => ['steelnova-widget-post-meta']
         ];
     }
 
@@ -25,20 +26,45 @@ class Widget_Post_Meta extends SteelNova_Widget_Base {
     public function register_controls() {
         // Layout Controls
         $this->register_layout_controls();
+        $this->register_layout_style_controls();
         // Content Controls
         $this->register_content_controls();
         // Style Controls
         $this->register_icon_style_controls();
         $this->register_title_style_controls();
         $this->register_desc_style_controls();
+    } 
+
+    protected function register_layout_controls() {
+        $this->start_layout_section([ 
+            'name' => 'section_layout', 
+            'label' => __('Layout', 'steelnova')
+        ]);
+        $this->visual_choice([
+            'name' => 'layout',
+            'label' => __('Layout', 'steelnova'),
+            'columns' => '1',
+            'options' => [
+                '1' => [
+                    'title' => esc_attr__( 'Post Meta 1', 'steelnova' ),
+                    'image' => content_url('/uploads/widget-layout/post-meta-1.webp'),
+                ],
+                '2' => [
+                    'title' => esc_attr__( 'Post Meta 2', 'steelnova' ),
+                    'image' => content_url('/uploads/widget-layout/post-meta-2.webp'),
+                ],
+            ],
+            'default' => '1',
+        ]);
+        $this->end_controls_section();
     }
 
     /**
      * Register Layout Controls.
      */
-    protected function register_layout_controls() {
+    protected function register_layout_style_controls() {
         $this->start_layout_section([
-            'name' => 'section_layout',
+            'name' => 'section_layout_style',
             'label' => __( 'Layout', 'steelnova' ),
         ]);
         $this->group_flex_css([
@@ -69,12 +95,18 @@ class Widget_Post_Meta extends SteelNova_Widget_Base {
         $this->icons([
             'name' => 'icon',
             'label' => __( 'Icon', 'steelnova' ),
+            'condition' => [
+                'meta_type!' => ['project_info']
+            ]
         ], $repeater);
 
         $this->text([
             'name'  => 'label',
             'label' => __( 'Label', 'steelnova' ),
-            'default' => __('Label', 'steelnova')
+            'default' => __('Label', 'steelnova'),
+            'condition' => [
+                'meta_type!' => ['project_info']
+            ]
         ], $repeater);
 
         $this->select([

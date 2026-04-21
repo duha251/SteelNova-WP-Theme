@@ -7,7 +7,7 @@ if ( empty( $settings['items'] ) ) {
 $wrapper_attrs = array_merge( 
     [
         'class' => 'cs-post-meta',
-        'data-layout' => '1'
+        'data-layout' => '2'
     ], 
     $wrapper_attrs
 );
@@ -38,8 +38,8 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
                 <div class="cs-post-meta__item-content">
                     <?php if( !empty( $item['label'] ) ) : ?>
                         <span class="cs-post-meta__item-label">
-                            <?php echo esc_html( $item['label'] ); ?>
-                        </span>
+                            <?php echo esc_html( $item['label'] . ' -' ); ?>
+                        </span> 
                     <?php endif; ?>
                     <span class="cs-post-meta__item-value">
                         <?php echo steelnova_get_post_meta_data( $item['meta_type'] ); ?>
@@ -70,7 +70,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
                             <div class="cs-post-meta__item-content">
                                 <?php if( !empty( $label ) ) : ?>
                                     <span class="cs-post-meta__item-label">
-                                        <?php echo esc_html( $label ); ?>
+                                        <?php echo esc_html( $label . ' -' ); ?>
                                     </span>
                                 <?php endif; ?>
                                 <span class="cs-post-meta__item-value">

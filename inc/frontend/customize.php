@@ -45,8 +45,8 @@ class Customize {
 		$classes[] = '';
 		$body_custom_class = $this->option->get_page_option('body_custom_class', '');
 		$sidebar_pos_class = steelnova()->get_theme_option('blog_sidebar_mode', 'none');
-		if( is_singular('post') ) {
-			$sidebar_pos_class = steelnova()->get_theme_option('single_post_sidebar_mode', 'none');
+		if( is_single() ) {
+			$sidebar_pos_class = steelnova()->get_theme_option('single_'.get_post_type().'_sidebar_mode', 'none');
 		}elseif ( class_exists( 'Woocommerce' ) && is_shop() ) {
 			$sidebar_pos_class = steelnova()->get_theme_option('shop_sidebar_mode', 'none');
 		}
@@ -59,13 +59,7 @@ class Customize {
 		if( !empty( $sidebar_pos_class ) ) {
 			$classes[] .= 'sidebar-position-'.$sidebar_pos_class;
 		}
-		// $is_dark_mode = 
-		$request_uri = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL) ?? '';	
 
-		$is_dark_mode = isset($_GET['dark']) || strpos($request_uri, 'dark') !== false;
-		if ( $is_dark_mode ) {
-			$classes[] = 'dark-page';
-		}
 		return $classes;
 	}
 

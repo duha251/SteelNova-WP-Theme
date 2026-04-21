@@ -306,7 +306,7 @@ class Components {
 
             ob_start();
             ?>
-            <div class="steelnova-pagination<?php echo esc_attr( $ajax_class ); ?>">
+            <div class="cs-pagination<?php echo esc_attr( $ajax_class ); ?>">
                 <?php echo wp_kses( $links, $allowed_html ); ?>
             </div>
             <?php

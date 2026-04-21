@@ -99,6 +99,7 @@ class Pxl_Hooks {
             'header'          => __('Header Desktop', 'steelnova'),
             'header-mobile'   => __('Header Mobile', 'steelnova'),
             'footer'          => __('Footer', 'steelnova'), 
+            'sidebar'         => __('Sidebar', 'steelnova'),
             'mega-menu'       => __('Mega Menu', 'steelnova') ,
             'hero'            => __('Hero', 'steelnova'), 
             'panel'           => __('Panel', 'steelnova'),
@@ -131,18 +132,22 @@ class Pxl_Hooks {
                 'item_name'  => __('Member', 'steelnova'),
                 'items_name' => __('Members', 'steelnova'),
                 'slug'       => 'team',
+                'menu_position' => 6, 
             ],
             'service' => [
                 'status'     => true,
                 'item_name'  => __('Service', 'steelnova'),
                 'items_name' => __('Services', 'steelnova'),
                 'slug'       => 'services',
+                'menu_position' => 6, 
+                'menu_icon' => 'dashicons-portfolio',
             ],
             'project' => [
                 'status'     => true,
                 'item_name'  => __('Project', 'steelnova'),
                 'items_name' => __('Projects', 'steelnova'),
                 'slug'       => 'projects',
+                'menu_position' => 6, 
             ]
         ];
 

@@ -28,3 +28,16 @@
         }
     }
 }
+
+.title--underline {
+    position: relative;
+    &::after {
+        content: '';
+        display: block;
+        width: 34px;
+        height: 3px;
+        border-radius: 30px;
+        margin-top: 10px;
+        background-color: #FF5B1B;
+    }
+}

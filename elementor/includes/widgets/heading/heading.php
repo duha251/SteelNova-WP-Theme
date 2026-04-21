@@ -104,6 +104,15 @@ class Widget_Heading extends SteelNova_Widget_Base {
             'name'  => 'section_title_content',
             'label' => __( 'Title', 'steelnova' ),
         ]);
+        $this->select([
+            'name' => 'title_style',
+            'label' => __('Title Style', 'steelnova'),
+            'options' => [
+                ''    => __('Default', 'steelnova'),
+                'underline'    => __('Underline', 'steelnova'),
+            ],
+            'default' => ''
+        ]);
         $this->textarea([
             'name'    => 'title_text',
             'label'   => __( 'Title Text', 'steelnova' ),

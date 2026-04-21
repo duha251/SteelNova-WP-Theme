@@ -2,10 +2,10 @@
 
 $post_type = get_post_type();
 
-$post_header_template_id = (int) steelnova()->get_theme_option('single_' . $post_type . '_header_template_id', 0);
-$post_footer_template_id = (int) steelnova()->get_theme_option('single_' . $post_type . '_footer_template_id', 0);
+$post_header_template_id = (int) steelnova()->get_option('single_' . $post_type . '_header_template_id', 0);
+$post_footer_template_id = (int) steelnova()->get_option('single_' . $post_type . '_footer_template_id', 0);
 
-$sidebar_mode = steelnova()->get_theme_option('single_post_sidebar_mode', 'none');
+$sidebar_mode = steelnova()->get_option('single_'.$post_type.'_sidebar_mode', 'none');
 if( isset( $_GET['sidebar'] ) ) {
     $sidebar_mode = $_GET['sidebar'];
 }

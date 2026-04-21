@@ -259,19 +259,19 @@ img {
 .single.single-post.has-sidebar #main .container {
   max-width: 1300px;
 }
-.single.single-project, .single.single-member {
+.single.single-project, .single.single-member, .single.single-service {
   --steelnova-container: 100%;
 }
-.single.single-project #main .inner, .single.single-member #main .inner {
+.single.single-project #main .inner, .single.single-member #main .inner, .single.single-service #main .inner {
   padding-block: 140px;
 }
 @media screen and (max-width: 1199px) {
-  .single.single-project #main .inner, .single.single-member #main .inner {
+  .single.single-project #main .inner, .single.single-member #main .inner, .single.single-service #main .inner {
     padding-block: 120px;
   }
 }
 @media screen and (max-width: 767px) {
-  .single.single-project #main .inner, .single.single-member #main .inner {
+  .single.single-project #main .inner, .single.single-member #main .inner, .single.single-service #main .inner {
     padding-block: 100px;
   }
 }
@@ -1101,13 +1101,13 @@ button:hover .hamburger-icon .line-3:after {
   order: 3;
 }
 
-.steelnova-pagination {
+.cs-pagination {
   display: flex;
   gap: 10px;
   justify-content: center;
   margin-top: 101px;
 }
-.steelnova-pagination .page-numbers {
+.cs-pagination .page-numbers {
   --mt-box-size: 50px;
   width: var(--mt-box-size);
   min-width: var(--mt-box-size);
@@ -1123,7 +1123,7 @@ button:hover .hamburger-icon .line-3:after {
   line-height: 1.4;
   color: #4B535D;
 }
-.steelnova-pagination .page-numbers.current, .steelnova-pagination .page-numbers:hover {
+.cs-pagination .page-numbers.current, .cs-pagination .page-numbers:hover {
   background-color: #FF5B1B;
   color: #FFF;
 }

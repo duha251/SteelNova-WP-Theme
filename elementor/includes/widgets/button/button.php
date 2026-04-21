@@ -146,19 +146,19 @@ class Widget_Button extends SteelNova_Widget_Base {
             'name' => 'btn_width',
             'label' => __( 'Button Width', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .button' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-button' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
             'name' => 'btn_height',
             'label' => __( 'Button Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .button' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-button' => 'height: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->group_typography([
             'name' => 'btn_typography',
-            'selector' => '{{WRAPPER}} .button',
+            'selector' => '{{WRAPPER}} .cs-button',
             'separator' => 'before'
         ]);
         $this->_start_controls_tabs([
@@ -173,16 +173,16 @@ class Widget_Button extends SteelNova_Widget_Base {
             'name' => 'btn_color',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .button' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-button' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'btn_background',
-            'selector' => '{{WRAPPER}} .button',
+            'selector' => '{{WRAPPER}} .cs-button',
         ]);
         $this->group_box_css([
             'name' => 'btn_box_css',
-            'selector' => '{{WRAPPER}} .button',
+            'selector' => '{{WRAPPER}} .cs-button',
         ]);
         $this->end_controls_tab();
 
@@ -195,17 +195,17 @@ class Widget_Button extends SteelNova_Widget_Base {
             'name' => 'btn_color_hover',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .button:hover' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-button:hover' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'btn_background_hover',
-            'selector' => '{{WRAPPER}} .button:not(.background-gradient):hover,
-                           {{WRAPPER}} .button:not(.background-gradient):before',
+            'selector' => '{{WRAPPER}} .cs-button:not(.background-gradient):hover,
+                           {{WRAPPER}} .cs-button:not(.background-gradient):before',
         ]);
         $this->group_box_css([
             'name' => 'btn_box_css_hover',
-            'selector' => '{{WRAPPER}} .button:hover',
+            'selector' => '{{WRAPPER}} .cs-button:hover',
         ]);
         $this->select([
             'name' => 'btn_hover_style',
@@ -219,7 +219,7 @@ class Widget_Button extends SteelNova_Widget_Base {
             'name' => 'btn_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .button' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-button' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();

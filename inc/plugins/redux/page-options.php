@@ -53,6 +53,7 @@ class Page_Options {
                                     'header'       => __('Header Desktop', 'steelnova'),
                                     'header-mobile'=> __('Header Mobile', 'steelnova'),
                                     'footer'       => __('Footer', 'steelnova'), 
+                                    'sidebar'      => __('Sidebar', 'steelnova'),
                                     'mega-menu'    => __('Mega Menu', 'steelnova'), 
                                     'hero'         => __('Hero', 'steelnova'), 
                                     'panel'        => __('Panel', 'steelnova'),

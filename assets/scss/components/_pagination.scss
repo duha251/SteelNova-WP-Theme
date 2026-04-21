@@ -1,6 +1,6 @@
 @use '../core.scss' as *;
 
-.steelnova-pagination {
+.cs-pagination {
     @include d-flex(10px, null, center);
     margin-top: 101px;
     .page-numbers {

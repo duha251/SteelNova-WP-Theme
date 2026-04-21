@@ -143,31 +143,6 @@
     }
 }
 
-// Post Meta
-.cs-post-meta {
-    @include d-flex(30px 50px);
-    flex-wrap: wrap;
-    &__item {
-        @include d-inline-flex(14.5px);
-        &-icon {
-            @include round-box(50px, 5px);
-            border: thin solid #DCDCDC;
-            color: #0A1119;
-        }
-        &-label {
-            display: block;
-            @include paragraph-5;
-            color: #4B535D;
-        }
-        &-value {
-            @include h7;
-            color: #0A1119;
-            > a {
-                color: inherit;
-            }
-        }
-    }
-}
 
 // Post Tags
 .steelnova-post-tags {

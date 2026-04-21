@@ -31,4 +31,17 @@
   color: #FF5B1B;
 }
 
+.title--underline {
+  position: relative;
+}
+.title--underline::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 3px;
+  border-radius: 30px;
+  margin-top: 10px;
+  background-color: #FF5B1B;
+}
+
 /*# sourceMappingURL=heading.min.css.map*/

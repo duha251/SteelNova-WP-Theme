@@ -1,0 +1,67 @@
+
+@use '../../../../assets/scss/core' as *;
+
+.cs-post-meta {
+    @include d-flex(30px 50px);
+    flex-wrap: wrap;
+    &__item {
+        @include d-inline-flex(14.5px);
+    }
+}
+
+.cs-post-meta[data-layout="1"] {
+    .cs-post-meta {
+        &__item {
+            gap: 14.5px;
+            &-icon {
+                @include round-box(50px, 5px);
+                border: thin solid #DCDCDC;
+                color: #0A1119;
+            }
+            &-label {
+                display: block;
+                @include paragraph-5;
+                color: #4B535D;
+            }
+            &-value {
+                @include h7;
+                color: #0A1119;
+                > a {
+                    color: inherit;
+                }
+            }
+        }
+    }
+}
+
+.cs-post-meta[data-layout="2"] {
+    gap: 19px;
+    flex-direction: column;
+    .cs-post-meta {
+        &__item {
+            gap: 10px;
+            align-items: center;
+            padding: 5px;
+            background-color: #FAF5ED;
+            border-radius: 200px;
+            &-icon {
+                @include round-box(50px);
+                color: #FFF;
+                background-color: #121512;
+            }
+            &-content {
+                @include d-flex( 10px );
+            }
+            &-label {
+                @include subheading-2;
+                color: #0A1119;
+                line-height: 1;
+                white-space: nowrap;
+            }
+            &-value {
+                @include paragraph-5;
+                line-height: 1;
+            }
+        }
+    }
+}

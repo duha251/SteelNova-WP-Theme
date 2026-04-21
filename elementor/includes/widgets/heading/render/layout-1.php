@@ -36,7 +36,7 @@ $this->add_render_attribute('subtitle', $subtitle_attrs);
             </span>
         </div>
     <?php endif; ?>
-    <<?php echo esc_attr( $settings['title_tag'] ); ?> class="heading__title">
+    <<?php echo esc_attr( $settings['title_tag'] ); ?> class="heading__title<?php if( !empty( $settings['title_style'] ) ) { echo esc_attr( ' title--'. $settings['title_style'] ); } ?>">
         <?php echo esc_html( $settings['title_text'] ); ?>
     </<?php echo esc_attr( $settings['title_tag'] ); ?>>
 </div>

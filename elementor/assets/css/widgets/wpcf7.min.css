@@ -1,17 +1,17 @@
 /*!*****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./elementor/assets/scss/widgets/wpcf7.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************************/
-.steelnova-wpcf7 .wpcf7-form {
+.cs-wpcf7 .wpcf7-form {
   display: flex;
 }
-.steelnova-wpcf7 .wpcf7-form-control-wrap {
+.cs-wpcf7 .wpcf7-form-control-wrap {
   display: inline-flex;
   width: 100%;
 }
-.steelnova-wpcf7 .wpcf7-form-control-wrap input, .steelnova-wpcf7 .wpcf7-form-control-wrap textarea, .steelnova-wpcf7 .wpcf7-form-control-wrap select {
+.cs-wpcf7 .wpcf7-form-control-wrap input, .cs-wpcf7 .wpcf7-form-control-wrap textarea, .cs-wpcf7 .wpcf7-form-control-wrap select {
   width: 100%;
 }
-.steelnova-wpcf7 label {
+.cs-wpcf7 label {
   display: block;
 }
 
