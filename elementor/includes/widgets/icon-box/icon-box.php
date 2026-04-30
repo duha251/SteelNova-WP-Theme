@@ -49,13 +49,13 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
         ]);
         $this->group_flex_css([
             'name' => 'flex_css',
-            'selector' => '{{WRAPPER}} .icon-box',
+            'selector' => '{{WRAPPER}} .cs-icon-box',
         ]);
         $this->size([
             'name' => 'title_spacing',
             'label' => __('Title Spacing', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .icon-box__content' => 'gap: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-icon-box__content' => 'gap: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->end_controls_section();
@@ -139,8 +139,8 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'name' => 'icon_size',
             'label' => __( 'Icon Size', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .icon-box .icon-box__icon svg' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
@@ -148,14 +148,14 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'label' => __( 'Box Width', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__icon' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
             'name' => 'box_icon_height',
             'label' => __( 'Box Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__icon' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon' => 'height: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->_start_controls_tabs([
@@ -170,16 +170,16 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'name' => 'icon_color',
             'label' => __( 'Icon Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'icon_background',
-            'selector' => '{{WRAPPER}} .icon-box .icon-box__icon',
+            'selector' => '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css',
-            'selector' => '{{WRAPPER}} .icon-box .icon-box__icon',
+            'selector' => '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon',
         ]);
         $this->end_controls_tab();
 
@@ -192,24 +192,24 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'name' => 'icon_color_hover',
             'label' => __( 'Icon Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-box:hover .icon-text__icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-icon-box:hover .icon-text__icon' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'icon_background_hover',
-            'selector' => '{{WRAPPER}} .icon-box .icon-box__icon:not(.background-gradient):hover,
-                           {{WRAPPER}} .icon-box .icon-box__icon:not(.background-gradient):before',
+            'selector' => '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon:not(.background-gradient):hover,
+                           {{WRAPPER}} .cs-icon-box .cs-icon-box__icon:not(.background-gradient):before',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css_hover',
-            'selector' => '{{WRAPPER}} .icon-box .icon-box__icon:not(.background-gradient):hover',
+            'selector' => '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon:not(.background-gradient):hover',
         ]);
         $this->time([
             'name' => 'icon_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__icon' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__icon' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -228,7 +228,7 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'title_typography',
-            'selector' => '{{WRAPPER}} .icon-box .icon-box__title',
+            'selector' => '{{WRAPPER}} .cs-icon-box .cs-icon-box__title',
         ]);
 
         $this->_start_controls_tabs([
@@ -244,7 +244,7 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'name' => 'title_color',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__title' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__title' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -258,7 +258,7 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'name' => 'title_color_hover',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-box:hover .icon-box__title' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-icon-box:hover .cs-icon-box__title' => 'color: {{VALUE}};',
             ],
         ]);
         $this->time([
@@ -266,7 +266,7 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__title' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__title' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -285,7 +285,7 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'desc_typography',
-            'selector' => '{{WRAPPER}} .icon-box .icon-box__description',
+            'selector' => '{{WRAPPER}} .cs-icon-box .cs-icon-box__description',
         ]);
 
         $this->_start_controls_tabs([
@@ -301,7 +301,7 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'name' => 'desc_color',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__description' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__description' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -315,7 +315,7 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'name' => 'desc_color_hover',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-box:hover .icon-box__description' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-icon-box:hover .cs-icon-box__description' => 'color: {{VALUE}};',
             ],
         ]);
         $this->time([
@@ -323,7 +323,7 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .icon-box .icon-box__description' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__description' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();

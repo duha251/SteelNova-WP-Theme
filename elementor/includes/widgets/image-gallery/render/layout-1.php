@@ -15,7 +15,7 @@ $img_width = $settings['img_size']['width'] ?: null;
 $img_height = $settings['img_size']['height'] ?: null;
 ?>
 
-<div class="grid image-gallery">
+<div class="grid cs-image-gallery">
     <div class="grid__inner">
         <?php foreach( $settings['imgs'] as $i => $img ) : 
             $item_tag = 'span';
@@ -23,7 +23,7 @@ $img_height = $settings['img_size']['height'] ?: null;
             $link_attrs = '';
             if( $settings['action'] === 'link' ) {
                 $item_tag = 'a';
-                $item_class = ' image-gallery__item--link';
+                $item_class = 'cs-image-gallery__item--link';
                 $link_attrs = steelnova_elementor_get_link_attributes([
                     'url' => '#',
                     'target'    => '_blank',
@@ -32,7 +32,7 @@ $img_height = $settings['img_size']['height'] ?: null;
                 ]);
             }elseif( $settings['action'] === 'lightbox' ) {
                 $item_tag = 'a';
-                $item_class = ' image-gallery__item--lightbox';
+                $item_class = ' cs-image-gallery__item--lightbox';
                 $link_attrs = steelnova_elementor_get_link_attributes([
                     'url' => $img['url'],
                     'is_external' => '',
@@ -41,9 +41,9 @@ $img_height = $settings['img_size']['height'] ?: null;
             }
         ?>
             <div class="grid__item">
-                <<?php echo esc_attr($item_tag); ?> <?php pxl_print_html( $link_attrs ); ?> class="image-gallery__item<?php echo esc_attr($item_class); ?>">
+                <<?php echo esc_attr($item_tag); ?> <?php pxl_print_html( $link_attrs ); ?> class="cs-image-gallery__item<?php echo esc_attr($item_class); ?>">
                     <?php steelnova_print_image_by_size( $img['id'], $img_width, $img_height, [
-                        'class' => 'image-gallery__image'
+                        'class' => 'cs-image-gallery__image'
                     ]); ?>
                 </<?php echo esc_attr($item_tag); ?>>
             </div>

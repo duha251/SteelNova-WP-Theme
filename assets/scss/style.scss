@@ -4,6 +4,7 @@
 @use 'hover';
 @use 'single';
 @use 'pages';
+@use 'animation';
 
 /** Layout */
 @use 'layout/site_main';
@@ -19,8 +20,10 @@
 @use 'components/icon';
 @use 'components/comment';
 @use 'components/pagination';
+@use 'components/sidebar';
 @use 'components/other';
 
 
 /** Admin */
 @use 'admin';
+

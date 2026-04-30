@@ -222,38 +222,4 @@ class Widget_Testimonial_Carousel extends SteelNova_Widget_Base {
         $this->end_controls_section();
     }
 
-    /**
-     * Register Grid Source Content Controls
-     */
-    protected function register_post_display_settings_controls() {        
-        $this->start_settings_section([ 
-            'name' => 'section_display_settings', 
-            'label' => __('Display', 'steelnova') 
-        ]);
-        $this->select([
-            'name' => 'title_tag',
-            'label' => __('Title HTML Tag', 'steelnova'),
-            'options' => Static_Options::title_html_tag_options( true ),
-            'separator' => 'before',
-            'default' => ''
-        ]);
-
-        $this->switcher([
-            'name' => 'show_button',
-            'label' => __('Show Button', 'steelnova'),
-            'default' => 'yes',
-            'condition' => [
-                'layout' => ['1']
-            ]
-        ]);
-        $this->text([
-            'name' => 'button_text',
-            'label' => __('Button Text', 'steelnova'),
-            'condition' => [
-                'layout' => ['1'],
-                'show_button' => 'yes', 
-            ]
-        ]);
-        $this->end_controls_section();
-    }
 }

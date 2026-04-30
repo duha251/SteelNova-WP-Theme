@@ -77,8 +77,8 @@ class Components {
                 \Elementor\Icons_Manager::render_icon( $args['menu_icon'], [ 'aria-hidden' => 'true' ] );
                 $menu_icon .= ob_get_clean();
             }else {
-                $menu_icon .= '<svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 8" fill="none">
-                                    <path d="M10.1094 0L5.78125 4.32812L1.4375 0L0 1.4375L5.76562 7.5L11.5469 1.4375L10.1094 0Z" fill="white"/>
+                $menu_icon .= '<svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none">
+                                    <path d="M9.925 -0.000133557L10.8083 0.884033L5.99417 5.69987C5.91703 5.77749 5.8253 5.8391 5.72425 5.88114C5.62321 5.92318 5.51485 5.94482 5.40542 5.94482C5.29598 5.94482 5.18762 5.92318 5.08658 5.88114C4.98554 5.8391 4.89381 5.77749 4.81667 5.69987L2.21214e-07 0.884032L0.883334 0.000699082L5.40417 4.5207L9.925 -0.000133557Z" fill="#0A1119"/>
                                 </svg>';
             }
             $menu_icon .= '</span>';
@@ -129,8 +129,8 @@ class Components {
      */
     public function get_hero_title() {
         $prefix_id = steelnova_get_prefix_id_option();
-
         $title = $this->option->get_option( $prefix_id . 'hero_title', '');
+
         if( empty( $title ) ) {
             $title = $this->get_title();
         }
@@ -247,7 +247,6 @@ class Components {
             $query = $GLOBALS['wp_query'];
         }
 
-        // Luôn trả về chuỗi rỗng thay vì null để tránh lỗi PHP 8.1+
         if ( empty( $query->max_num_pages ) || $query->max_num_pages < 2 ) {
             return '';
         }
@@ -292,21 +291,16 @@ class Components {
         $links = paginate_links( $paginate_links_args );
 
         if ( $links ) {
-            // Thêm số 0 phía trước các con số (01, 02...)
-            // $links = preg_replace_callback( '/>(\d+)</', function( $matches ) {
-            //     return '>' . sprintf( '%02d', $matches[1] ) . '<';
-            // }, $links );
 
             $ajax_class = $ajax ? ' ajax' : '';
             
-            // Khai báo bộ lọc HTML cho phép SVG
             $allowed_html = wp_kses_allowed_html( 'post' );
             $allowed_html['svg']  = array( 'xmlns' => true, 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true );
             $allowed_html['path'] = array( 'd' => true, 'fill' => true );
 
             ob_start();
             ?>
-            <div class="cs-pagination<?php echo esc_attr( $ajax_class ); ?>">
+            <div class="pagination<?php echo esc_attr( $ajax_class ); ?>">
                 <?php echo wp_kses( $links, $allowed_html ); ?>
             </div>
             <?php
@@ -314,5 +308,9 @@ class Components {
         }
 
         return '';
+    }
+
+    public function get_sidebar() {
+        
     }
 }

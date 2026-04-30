@@ -51,7 +51,6 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
 ?>
 <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
     <?php if( $settings['show_layout_feature'] === 'yes' && !empty($posts) ) : 
-        // Lấy 4 bài đầu tiên ra khỏi $posts
         $firstFourPosts = array_splice($posts, 0, 4);
         
         $mainPost = $firstFourPosts[0];
@@ -110,9 +109,10 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
             </div>
 
         </div>
-    <?php endif; ?>
+    <?php endif; 
+    ?>
 
-    <?php if( !empty( $post ) ) : ?>
+    <?php if( !empty( $posts ) ) : ?>
         <div class="grid__inner posts-grid__more">
             <?php foreach( $posts as $post ) : ?>
                 <div class="grid__item">

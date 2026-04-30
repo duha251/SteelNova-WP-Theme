@@ -94,7 +94,7 @@ class Widget_Image_Gallery extends SteelNova_Widget_Base {
             'name' => 'box_img_max_w',
             'label' => __( 'Max Width', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .image-gallery .image-gallery__item ' => 'max-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-image-gallery .cs-image-gallery__item ' => 'max-width: {{SIZE}}{{UNIT}};',
             ],
         ]);
 
@@ -110,16 +110,16 @@ class Widget_Image_Gallery extends SteelNova_Widget_Base {
         $this->opacity([
             'name' => 'img_opacity',
             'selectors' => [
-                '{{WRAPPER}} .image-gallery .image-gallery__image' => 'opacity: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-image-gallery .cs-image-gallery__image' => 'opacity: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->group_css_filter([
             'name' => 'img_css_filter',
-            'selector' => '{{WRAPPER}} .image-gallery .image-gallery__image'
+            'selector' => '{{WRAPPER}} .cs-image-gallery .cs-image-gallery__image'
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css',
-            'selector' => '{{WRAPPER}} .image-gallery .image-gallery__image',
+            'selector' => '{{WRAPPER}} .cs-image-gallery .cs-image-gallery__image',
         ]);
         $this->end_controls_tab();
 
@@ -131,22 +131,22 @@ class Widget_Image_Gallery extends SteelNova_Widget_Base {
         $this->opacity([
             'name' => 'img_opacity_hover',
             'selectors' => [
-                '{{WRAPPER}} .image-gallery .image-gallery__image:hover' => 'opacity: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-image-gallery .cs-image-gallery__image:hover' => 'opacity: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->group_css_filter([
             'name' => 'img_css_filter_hover',
-            'selector' => '{{WRAPPER}} .image-gallery .image-gallery__image:hover'
+            'selector' => '{{WRAPPER}} .cs-image-gallery .cs-image-gallery__image:hover'
         ]);
         $this->group_box_css([
             'name' => 'img_css_hover',
-            'selector' => '{{WRAPPER}} .image-gallery .image-gallery__image:hover',
+            'selector' => '{{WRAPPER}} .cs-image-gallery .cs-image-gallery__image:hover',
         ]);
         $this->time([
             'name' => 'img_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .image-gallery .image-gallery__image' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-image-gallery .cs-image-gallery__image' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();

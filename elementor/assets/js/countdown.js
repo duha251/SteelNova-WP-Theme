@@ -2,12 +2,12 @@
     "use strict";
 
     function initCountdown($scope, $) {
-        let $countdown = $scope.find('.steelnova-countdown');
+        let $countdown = $scope.find('.cs-countdown');
 
         if (!$countdown.length) return;
-        if ($countdown.hasClass('steelnova-countdown--initialized')) return;
+        if ($countdown.hasClass('cs-countdown--initialized')) return;
 
-        $countdown.addClass('steelnova-countdown--initialized');
+        $countdown.addClass('cs-countdown--initialized');
 
         function formatTime(num) {
             num = Math.max(0, parseInt(num, 10) || 0);

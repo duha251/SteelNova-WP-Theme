@@ -6,6 +6,9 @@
         a {
             @include d-inline-flex;
         }
+        .menu-link-inner {
+            @include d-inline-flex;
+        }
     }
 }
 
@@ -30,8 +33,6 @@
                         display: inline-flex;
                         .chevron-icon {
                             @include transition(.3s, linear, transform);
-                            width: 8px;
-                            height: auto;
                         }
                     }
                 }

@@ -29,11 +29,11 @@ extract( $display_args );
             </a>
         </<?php echo esc_attr( $title_tag ); ?>>
         <?php if( $show_btn == true ) : ?>
-            <a href="<?php echo esc_url( get_permalink() ); ?>" class="button">
-                <span class="buton__text">
+            <a href="<?php echo esc_url( get_permalink() ); ?>" class="cs-button cs-button--learn-details">
+                <span class="cs-buton__text">
                     <?php echo esc_html( $btn_text ); ?>
                 </span>
-                <span class="button__icon">
+                <span class="cs-button__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
                         <path d="M4.49501 0.209212C4.77396 -0.0697375 5.22611 -0.0697375 5.50506 0.209212L9.79083 4.49498C10.0697 4.77393 10.0697 5.2261 9.79083 5.50504L5.50506 9.79083C5.22612 10.0697 4.77395 10.0697 4.49501 9.79083C4.21607 9.51183 4.21608 9.05975 4.49501 8.78075L7.56143 5.71431H0.714291C0.319817 5.71431 2.91512e-05 5.39448 0 5.00002C2.30094e-08 4.60552 0.319799 4.28572 0.714291 4.28572H7.56143L4.49501 1.21927C4.21607 0.940333 4.21608 0.488164 4.49501 0.209212Z" fill="#0A1119"/>
                     </svg>

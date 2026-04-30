@@ -23,5 +23,6 @@ steelnova_get_template( 'template-parts/searchform/'.$template_file, [
     'placeholder' => $placeholder ?? '',
     'btn_text' => $btn_text ?? '',
     'btn_icon' => $btn_icon ?? '',
+    'post_type' => $post_type ?? ''
 ]);
 ?>

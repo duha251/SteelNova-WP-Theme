@@ -1,6 +1,4 @@
-import { showOverlay, hideOverlay } from "../core/utils.js";
-
-export const initVideoPopup = () => {
+const initVideoPopup = () => {
     const body = document.body;
 
     const getEmbedUrl = (url) => {

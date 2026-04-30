@@ -2,7 +2,7 @@
 
 $wrapper_attrs = array_merge( 
     [
-        'class' => 'steelnova-post-tags',
+        'class' => 'cs-post-tags',
     ], 
     $wrapper_attrs
 );

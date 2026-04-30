@@ -1,6 +1,6 @@
 @use '../../../../assets/scss/core' as *;
 
-.testimonial {
+.cs-testimonial {
     position: relative;
     &__author {
         @include d-flex(15px);
@@ -16,23 +16,33 @@
     }
 }
 
-.testimonial-carousel[data-layout="1"] {
+.cs-testimonial-carousel[data-layout="1"] {
     .carousel__item {
         height: auto;
     }
-    .testimonial {
+    .cs-testimonial {
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        padding: 52px 45px 50px;
+        padding: 52px 49px 52px;
         border-radius: 20px;
         height: 100%;
+        @media #{$max-lg} {
+            padding: 50px 35px 50px;
+        }
+        @media #{$max-lg} {
+            padding: 45px 30px 45px;
+        }
+        @media #{$max-xs} {
+            padding: 30px;
+        }
         &::before {
             content: '';
             position: absolute;
             inset: 0;
             background-color: #FFF;
             z-index: 0;
+            pointer-events: none;
             clip-path: polygon(
                 0% 0%,                     
                 calc(100% - 87px) 0%,    
@@ -58,20 +68,23 @@
         }
         &__rating {
             position: relative;
-            gap: 7px;
+            gap: 10px;
             color: #0A1119;
-            margin-bottom: 50px;
+            margin-bottom: 57px;
+            @media #{$max-sm} {
+                margin-bottom: 50px;
+            }
             &-label {
                 @include h7;
             }
-            &-star {
-
-            }
+        }
+        .cs-stars {
+            gap: 8px;
         }
         &__content {
             position: relative;
             @include paragraph-1;
-            margin-bottom: 30px;
+            margin-bottom: 33px;
         }
         .divider {
             position: relative;
@@ -79,22 +92,23 @@
             width: 100%;
             background-color: #DCDCDC;
             margin-top: auto;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         &__author {
             position: relative;
-            gap: 19px;
+            gap: 18px;
             &-image {
                 @include round-box(61px);
             }
             &-name {
-                color: var(--steelnova-heading-color);
+                color: var(--cs-heading-color);
                 @include h6;
-                margin-bottom: 7px
+                margin-bottom: 8px
             }
             &-title {
                 @include text-button-1;
-                padding: 5px 10px;
+                font-size: 13px;
+                padding: 7px 6px;
                 color: #4B535D;
                 background-color: #FAF5ED;
             }
@@ -102,37 +116,37 @@
     }
 }
 
-.testimonial-carousel[data-layout="2"] {
+.cs-testimonial-carousel[data-layout="2"] {
     @include d-flex(18px);
     @media #{$max-sm} { 
         flex-wrap: wrap;
         gap: 0;
     }
     > .swiper {
-        &.testimonial-carousel__content {
-            flex: 0 0 calc( 49.5% - 9px );
+        &.cs-testimonial-carousel__content {
+            flex: 0 0 calc( 50% - 9px );
             border-radius: 0 20px 20px 0;
             background-color: #0A1119;
         }
-        &.testimonial-carousel__images {
-            flex: 0 0 calc( 50.5% - 9px );
+        &.cs-testimonial-carousel__images {
+            flex: 0 0 calc( 50% - 9px );
             border-radius: 20px 0 0 20px;
             img {
                 height: 100%;
             }
         }
         @media #{$max-sm} {
-            &.testimonial-carousel__content {
+            &.cs-testimonial-carousel__content {
                 flex: 0 0 100%;
                 border-radius: 0 0 20px 20px;
             }
-            &.testimonial-carousel__images {
+            &.cs-testimonial-carousel__images {
                 border-radius: 20px 20px 0 0;
                 flex: 0 0 100%;
             }
         }
     }
-    .testimonial {
+    .cs-testimonial {
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -173,13 +187,10 @@
             @include paragraph-1;
             // margin-bottom: 80px;
             margin: auto 0;
-            @media #{$max-md} {
-                font-size: 18px;
-            }
         }
         &__author {
             gap: 22px;
-            padding: 30px 145px 40px 40px;
+            padding: 29px 145px 43px 40px;
             @media #{$max-lg} {
                 padding: 30px 145px 30px 30px;
             }
@@ -195,7 +206,7 @@
             &-name {
                 @include h7;
                 color: #FFF;
-                margin-bottom: 8px;
+                margin-bottom: 9px;
             }
             &-title {
                 @include text-button-1;

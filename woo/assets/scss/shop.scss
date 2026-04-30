@@ -1,0 +1,69 @@
+@use '../../../assets/scss/core' as *;
+
+.woocommerce-shop {
+    &.has-sidebar {
+        .content-area {
+            flex: 0 1 870px;
+        }
+        .sidebar-area {
+            flex: 0 1 392px;
+        }
+    }
+    .content-area {
+        &__header {
+            @include d-flex(15px 30px, center, space-between);
+            margin-bottom: 34px;
+            &-left {
+                @include d-inline-flex( 34px );
+                .woocommerce-result-count {
+                    color: #0A1119;
+                    margin: 0
+                }
+                .buttons {
+                    @include d-inline-flex(10px);
+                    .cs-button {
+                        color: #DCDCDC;
+                        background-color: transparent;
+                        padding: 0;
+                        &:hover, &.is-active {
+                            color: #FF5B1B;
+                        }
+                    }
+                }
+            }
+            &-right {
+                .woocommerce-ordering {
+                    margin: 0;
+                }
+            }
+        } 
+    }
+    .nice-select {
+        min-width: 316px;
+        padding-inline: 21px;
+        height: 54px;
+        color: #0A1119;
+        @include d-flex(null, center);
+        font-size: 16px;
+        &::after {
+            width: 8px;
+            height: 8px;
+            border-width: 1px;
+            border-color: currentColor;
+            right: 20px;
+            margin-top: -6px;
+        }
+        .list {
+            min-width: 100%;
+            margin-top: 1px;
+        }
+    }
+    .pagination {
+        margin-top: 121px;
+    }
+}
+
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product span.price {
+    @include h7;
+    color: #4B535D;
+}

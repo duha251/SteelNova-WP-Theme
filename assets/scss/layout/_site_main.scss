@@ -10,7 +10,49 @@
 
 }
 
+
+#main {
+    overflow-x: clip;
+    max-width: 100%;
+}
+
 .container {
-    max-width: var(--steelnova-container, 1300px);
+    max-width: var(--cs-container, 1300px);
     margin: 0 auto;
+}
+
+
+.elementor-page:not(.has-sidebar) {
+    #main {
+        --cs-container: 100%;
+        padding: 0;
+        .inner {
+            padding: 0;
+        }
+    }
+}
+
+body {
+    &.has-sidebar {
+        #main {
+            padding-inline: 15px;
+            .inner {
+                @include site-spacing-block;
+                @include d-flex(30px, null, space-between);
+            }
+            .container {
+                max-width: var(--cs-container, 1300px);
+            }
+            .sidebar-area {
+                min-width: 320px;
+            }
+        }
+    }
+    &.sidebar-position-left {
+        #main {
+            .inner {
+                flex-direction: row-reverse;
+            }
+        }
+    }
 }

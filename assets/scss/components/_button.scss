@@ -12,7 +12,11 @@ button, .cs-button {
     .button-icon {
         @include d-inline-flex(null, center, center);
     }
+    .cs-button__icon {
+        @include d-inline-flex(null, center, center);
+    }
 }
+
 
 .cs-button--hamburger {
     background-color: transparent;
@@ -29,4 +33,5 @@ button, .cs-button {
     color: #FFF;
     padding-inline: 30px;
     border-radius: 8px;
+    gap: 11px;
 }

@@ -71,7 +71,7 @@ class Post_Manager {
 		$options = [];
 		$args = array(
             'taxonomy'    => $taxonomy,  
-			'hide_empty'  => false,    
+			'hide_empty'  => true,    
 			'orderby'     => 'name',    
 			'order'       => 'ASC'
         );
@@ -85,6 +85,23 @@ class Post_Manager {
 		return $options;
 	}
 
+    public function get_cpt_tag_list( $taxonomy = 'post_tag' ) {
+		$options = [];
+		$args = array(
+            'taxonomy'    => $taxonomy,  
+			'hide_empty'  => true,    
+			'orderby'     => 'name',    
+			'order'       => 'ASC'
+        );
+        $tags = get_terms($args);
+
+		if ( ! is_wp_error( $tags ) && ! empty( $tags ) ) {
+			foreach ( $tags as $category ) {
+				$options[ $category->term_id ] = $category->name;
+			}
+		}
+		return $options;
+	}
     /**
      * 
      */
@@ -110,9 +127,40 @@ class Post_Manager {
             'order'            => 'DESC', 
             'paged'            => $paged,    
             'suppress_filters' => false,   
+            'query_type'       => '',
         ];
 
         $args = array_merge( $default_args, $custom_args );
+
+        if ( !empty($args['query_type']) ) {
+
+            switch ($args['query_type']) {
+
+                case 'popular':
+                    $args['orderby'] = 'comment_count';
+                    $args['order']   = 'DESC';
+                    break;
+
+                case 'featured':
+                    $args['meta_query'][] = [
+                        'key'     => 'is_featured',
+                        'value'   => '1',
+                        'compare' => '='
+                    ];
+                    break;
+
+                case 'random':
+                    $args['orderby'] = 'rand';
+                    break;
+
+                case 'recent':
+                    $args['orderby'] = 'date';
+                    $args['order']   = 'DESC';
+                    break;
+            }
+        }
+
+        unset($args['query_type']);
 
         $query = new \WP_Query( $args );
 

@@ -1,0 +1,98 @@
+[data-loop-animation="smoke"] {
+    position: relative;
+    overflow: visible;
+
+    &::before,
+    &::after,
+    .smoke {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -100px;
+        pointer-events: none;
+        border-radius: 50%;
+        opacity: 0;
+        filter: blur(36px);
+        transform: translate(-50%, 0) scale(0.7);
+
+        /* 🔥 core khói đậm */
+        background: radial-gradient(
+            circle,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.98) 20%,
+            rgba(10, 10, 10, 0.9) 40%,
+            rgba(25, 25, 25, 0.75) 60%,
+            rgba(50, 50, 50, 0.45) 75%,
+            rgba(80, 80, 80, 0.18) 88%,
+            transparent 100%
+        );
+
+        animation: smoke-rise 6s linear infinite;
+    }
+
+    /* 🔥 layer 1 */
+    &::before {
+        width: 180px;
+        height: 180px;
+        margin-left: -35px;
+        animation-delay: 0s;
+    }
+
+    /* 🔥 layer 2 */
+    &::after {
+        width: 220px;
+        height: 220px;
+        margin-left: 28px;
+        animation-delay: 2s;
+    }
+
+    /* 🔥 layer 3 */
+    .smoke {
+        width: 200px;
+        height: 200px;
+        margin-left: -5px;
+        animation-delay: 4s;
+    }
+
+}
+
+@keyframes smoke-rise {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -10px) scale(0.7);
+    }
+
+    /* 🔥 lên nhanh và đậm */
+    6% {
+        opacity: 0.95;
+    }
+
+    20% {
+        opacity: 0.85;
+        transform: translate(calc(-50% - 25px), -120px) scale(1);
+    }
+
+    45% {
+        opacity: 0.75;
+        transform: translate(calc(-50% + 30px), -260px) scale(1.5);
+    }
+
+    70% {
+        opacity: 0.55;
+        transform: translate(calc(-50% - 20px), -420px) scale(2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(calc(-50% + 15px), -650px) scale(2.6);
+    }
+}
+
+@keyframes pulseFade {
+  0%, 100% {
+    opacity: 1; 
+  }
+  50% {
+    opacity: 0.75;
+  }
+}

@@ -79,13 +79,13 @@ class Widget_Countdown extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'timer_typography',
-            'selector' => '{{WRAPPER}} .steelnova-countdown .steelnova-countdown__timer .value',
+            'selector' => '{{WRAPPER}} .cs-countdown .cs-countdown__timer .value',
         ]);
         $this->color([
             'name' => 'timer_color',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-countdown .steelnova-countdown__timer .value' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-countdown .cs-countdown__timer .value' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_section();
@@ -101,13 +101,13 @@ class Widget_Countdown extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'unit_typography',
-            'selector' => '{{WRAPPER}} .steelnova-countdown .steelnova-countdown__timer .unit',
+            'selector' => '{{WRAPPER}} .cs-countdown .cs-countdown__timer .unit',
         ]);
         $this->color([
             'name' => 'unit_color',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-countdown .steelnova-countdown__timer .unit' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-countdown .cs-countdown__timer .unit' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_section();
@@ -123,13 +123,13 @@ class Widget_Countdown extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'separator_typography',
-            'selector' => '{{WRAPPER}} .steelnova-countdown .steelnova-countdown__separator',
+            'selector' => '{{WRAPPER}} .cs-countdown .cs-countdown__separator',
         ]);
         $this->color([
             'name' => 'separator_color',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-countdown .steelnova-countdown__separator' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-countdown .cs-countdown__separator' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_section();

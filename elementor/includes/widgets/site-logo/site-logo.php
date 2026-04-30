@@ -26,6 +26,8 @@ class Widget_Site_Logo extends SteelNova_Widget_Base {
     public function register_controls() {
         // Content Controls
         $this->register_content_controls();
+        // Steelnova Controls
+        $this->register_steelnova_extra_controls();
     }
 
     /**
@@ -46,12 +48,12 @@ class Widget_Site_Logo extends SteelNova_Widget_Base {
         $this->group_width([
             'name' => 'image_width',
             'label' => __( 'Logo Width', 'steelnova' ),
-            'selector' => '{{WRAPPER}} .site-logo .site-logo__image',
+            'selector' => '{{WRAPPER}} .cs-site-logo .cs-site-logo__image',
         ]);
         $this->group_height([
             'name' => 'image_height',
             'label' => __( 'Logo Height', 'steelnova' ),
-            'selector' => '{{WRAPPER}} .site-logo .site-logo__image',
+            'selector' => '{{WRAPPER}} .cs-site-logo .cs-site-logo__image',
         ]);
         $this->select([
             'name' => 'oj_fit',
@@ -59,7 +61,7 @@ class Widget_Site_Logo extends SteelNova_Widget_Base {
             'options' => Static_Options::object_fit_css_options(),
             'default' => '',
             'selectors' => [
-                '{{WRAPPER}} .site-logo .site-logo__image' => 'object-fit: {{VALUE}};'
+                '{{WRAPPER}} .cs-site-logo .cs-site-logo__image' => 'object-fit: {{VALUE}};'
             ]
         ]);
         $this->url([

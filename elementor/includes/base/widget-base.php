@@ -65,61 +65,56 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'name' => 'section_box_style',
             'label' => __( 'Box Item', 'steelnova' ),
         ]);
-
-        $this->size([
-            'name' => 'box_width',
+        $this->group_width([
+            'name' => '_box_width',
             'label' => __( 'Box Width', 'steelnova' ),
-            'selectors' => [
-                '{{WRAPPER}} [data-widget-type="single"]' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
-            ],
+            'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]',
         ]);
-        $this->size([
-            'name' => 'box_height',
-            'label' => __( 'Box Height', 'steelnova' ),
-            'selectors' => [
-                '{{WRAPPER}} [data-widget-type="single"]' => 'height: {{SIZE}}{{UNIT}};',
-            ],
+        $this->group_height([
+            'name' => '_box_width',
+            'label' => __( 'Box Width', 'steelnova' ),
+            'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]',
         ]);
 
         $this->_start_controls_tabs([
-            'name' => 'box_style_tabs',
+            'name' => '_box_style_tabs',
         ]);
 
         // Tab Normal Start
         $this->_start_controls_tab([
-            'name' => 'tab_normal',
+            'name' => '_tab_normal',
             'label' => __( 'Normal', 'steelnova' ),
         ]);
         $this->group_background([
-            'name' => 'background',
-            'selector' => '{{WRAPPER}} [data-widget-type="single"]',
+            'name' => '_background',
+            'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]',
         ]);
         $this->group_box_css([
-            'name' => 'box_css',
-            'selector' => '{{WRAPPER}} [data-widget-type="single"]',
+            'name' => '_box_css',
+            'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]',
         ]);
         $this->end_controls_tab();
 
         // Tab Hover Start
         $this->_start_controls_tab([
-            'name' => 'tab_hover',
+            'name' => '_tab_hover',
             'label' => __( 'Hover', 'steelnova' ),
         ]);
         $this->group_background([
-            'name' => 'background_hover',
-            'selector' => '{{WRAPPER}} [data-widget-type="single"]:not(.background-gradient):hover,
-                           {{WRAPPER}} [data-widget-type="single"]:not(.background-gradient):before',
+            'name' => '_background_hover',
+            'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]:not(.background-gradient):hover,
+                           {{WRAPPER}} [data-widget-cat="steelnova"]:not(.background-gradient):before',
         ]);
         $this->group_box_css([
-            'name' => 'box_css_hover',
-            'selector' => '{{WRAPPER}} [data-widget-type="single"]:not(.background-gradient):hover',
+            'name' => '_box_css_hover',
+            'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]:not(.background-gradient):hover',
         ]);
         $this->time([
-            'name' => 'box_transition_duration',
+            'name' => '_box_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} [data-widget-type="single"]' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} [data-widget-cat="steelnova"]' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -187,6 +182,46 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'name' => 'css_filter',
             'separator' => 'before',
             'selector' => '{{WRAPPER}}',
+        ]);
+        $this->end_controls_section();
+    }
+
+    /**
+     * Register Loop Animation Controls.
+     */
+    protected function register_loop_animation_controls() {
+        $this->start_content_section([
+            'name' => 'section_loop_animation_content',
+            'label' => __( 'Loop Animation', 'steelnova' ),
+        ]);
+        $this->select([
+            'name' => 'loop_anim',
+            'label' => __('Loop Animation', 'steelnova'),
+            'default' => '',
+            'options' => [
+                ''    => __('None', 'steelnova'),
+                'smoke' => __('Smoke', 'steelnova'),
+            ]
+        ]);
+        $this->time([
+            'name' => 'loop_anim_duration',
+            'label' => __('Animation Duration', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} [data-loop-animation]' => 'animation-duration: {{SIZE}}{{UNIT}}; -webkit-animation-duration: {{SIZE}}{{UNIT}};'
+            ],
+            'condition' => [
+                'loop_anim!' => ''
+            ]
+        ]);
+        $this->time([
+            'name' => 'loop_anim_delay',
+            'label' => __('Animation Delay', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} [data-loop-animation]' => 'animation-delay: {{SIZE}}{{UNIT}}; -webkit-animation-delay: {{SIZE}}{{UNIT}};'
+            ],
+            'condition' => [
+                'loop_anim!' => ''
+            ]
         ]);
         $this->end_controls_section();
     }

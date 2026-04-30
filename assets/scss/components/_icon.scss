@@ -114,16 +114,19 @@
 }
 
 .icon-plus {
+	--cs-width: 16px;
+	--cs-height: 2px;
     display: inline-block;
     position: relative;
+
     &:before, &::after {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
         display: inline-block;
-        width: 16px;
-        height: 2px;
+        width: var(--cs-width);
+        height: var(--cs-height);
         background-color: currentColor;
         transform: translate(-50%, -50%);
         @include transition(.5s, ease, width, transform);
@@ -135,5 +138,18 @@
 
 .icon-dot {
 	@include round-box(4px);
-	background-color: var(--steelnova-primary-color);
+	background-color: var(--cs-primary-color);
+}
+
+.icon-minus {
+	--cs-width: 16px;
+	--cs-height: 2px;
+	position: relative;
+	&::before {
+		content: '';
+        width: var(--cs-width);
+        height: var(--cs-height);
+		display: inline-block;
+		background-color: currentColor;
+	}
 }

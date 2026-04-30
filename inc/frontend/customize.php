@@ -44,20 +44,29 @@ class Customize {
 	function body_classes( $classes ) {   
 		$classes[] = '';
 		$body_custom_class = $this->option->get_page_option('body_custom_class', '');
-		$sidebar_pos_class = steelnova()->get_theme_option('blog_sidebar_mode', 'none');
-		if( is_single() ) {
-			$sidebar_pos_class = steelnova()->get_theme_option('single_'.get_post_type().'_sidebar_mode', 'none');
-		}elseif ( class_exists( 'Woocommerce' ) && is_shop() ) {
-			$sidebar_pos_class = steelnova()->get_theme_option('shop_sidebar_mode', 'none');
+		$sidebar_pos_class = '';
+		if( is_home() ) {
+			$sidebar_pos_class = steelnova()->get_theme_option('blog_sidebar_mode', '');
+		}elseif ( is_single() ) {
+			$sidebar_pos_class = steelnova()->get_option('single_'.get_post_type().'_sidebar_mode', '');
+		}elseif ( class_exists( 'WooCommerce' ) && is_shop() ) {
+			$sidebar_pos_class = steelnova()->get_theme_option('shop_sidebar_mode', '');
 		}
+		
 		if( isset( $_GET['sidebar'] ) ) {
 			$sidebar_pos_class = $_GET['sidebar'];
 		}
+
+
+		if( !empty( $sidebar_pos_class ) ) {
+			$classes[] .= ' sidebar-position-'.$sidebar_pos_class;
+			if( $sidebar_pos_class !== 'none' ) {
+				$classes[] .= ' has-sidebar';
+			}
+		}
+
 		if( !empty($body_custom_class) ) {
 			$classes[] .= ' '.$body_custom_class;
-		}
-		if( !empty( $sidebar_pos_class ) ) {
-			$classes[] .= 'sidebar-position-'.$sidebar_pos_class;
 		}
 
 		return $classes;
@@ -126,7 +135,7 @@ class Customize {
 			$add_below = 'div-comment';
 		}
 		?>
-		<<?php echo ''.$tag ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?>">
+		<<?php echo ''.$tag ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="div-comment-<?php comment_ID() ?>">
 			<div class="comment__inner">
 				<?php comment_reply_link( array_merge( $args, array(
 					'add_below' => $add_below,

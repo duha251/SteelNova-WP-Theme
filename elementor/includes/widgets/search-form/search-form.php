@@ -46,14 +46,14 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
         ]);
         $this->group_flex_css([
             'name' => 'flex_css',
-            'selector' => '{{WRAPPER}} .steelnova-search-form',
+            'selector' => '{{WRAPPER}} .cs-search-form',
         ]);
 
         // Button Position
         $this->group_position([
             'name' => 'button_position',
             'separator' => 'before',
-            'selector' =>'{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit',
+            'selector' =>'{{WRAPPER}} .cs-search-form .cs-search-form__submit',
             'fields_options' => [
                 'position' => [
                     'label' => __('Button Position', 'steelnova'),
@@ -75,6 +75,18 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'placeholder',
             'label' => __('Placeholder', 'steelnova'),
             'default' => __('Search Here..', 'steelnova'),
+        ]);
+        $this->select([
+            'name' => 'post_type',
+            'label' => __('Search Post Type', 'steelnova'),
+            'options' => [
+                ''        => __('All', 'steelnova'),
+                'post'    => __('Post', 'steelnova'),
+                'service' => __('Service', 'steelnova'),
+                'project' => __('Project', 'steelnova'),
+                'product' => __('Product', 'steelnova'),
+            ],
+            'default' => 'post'
         ]);
         $this->text([
             'name' => 'btn_text',
@@ -102,19 +114,19 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'label' => __('Label Spacing', 'steelnova'),
             'size_units' => [ 'px', 'custom' ],
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__label' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__label' => 'margin-bottom: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->group_typography([
             'name' => 'label_typography',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__label',
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__label',
         ]);
         $this->color([
             'name' => 'label_color',
             'label' => __('Text Color', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__label' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__label' => 'color: {{VALUE}};',
             ]
         ]);
         $this->end_controls_section();
@@ -132,12 +144,12 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'input_height',
             'label' => __('Field Height', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field' => 'height: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-search-form .cs-search-form__field' => 'height: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->group_typography([
             'name' => 'input_typography',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field',
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__field',
         ]);
         $this->start_controls_tabs( 'input_tabs' );
 
@@ -150,17 +162,17 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'input_color',
             'label' => __('Text Color', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__field' => 'color: {{VALUE}};',
             ]
         ]);
         $this->group_background([
             'name' => 'input_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field',
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__field',
         ]);
         $this->group_box_css([
             'name' => 'input_',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field'
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__field'
         ]);
         $this->end_controls_tab();
 
@@ -173,33 +185,33 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'input_hover_color',
             'label' => __('Text Color', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field:hover' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__field:hover' => 'color: {{VALUE}};',
             ]
         ]);
         // Background 
         $this->group_background([
 			'name' => 'input_hover_background',
 			'types' => [ 'classic', 'gradient' ],
-			'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field:hover',
+			'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__field:hover',
 		]);
         // Border Color 
         $this->color([
 			'name' => 'input_hover_border_color',
 			'label' => __( 'Border Color', 'steelnova' ),
 			'selectors' => [
-				'{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field:hover' => 'border-color: {{VALUE}}',
+				'{{WRAPPER}} .cs-search-form .cs-search-form__field:hover' => 'border-color: {{VALUE}}',
 			],
 		]);
         $this->group_box_css([
             'name' => 'input_hover',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field:hover'
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__field:hover'
         ]);
         $this->time([
             'name' => 'input_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-search-form .cs-search-form__field' => 'transition-duration: {{SIZE}}{{UNIT}};'
             ],
         ]);
         $this->end_controls_tab();
@@ -213,24 +225,24 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'input_focus_color',
             'label' => __('Text Color', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field:focus' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__field:focus' => 'color: {{VALUE}};',
             ]
         ]);
         $this->group_background([
 			'name' => 'input_focus_background',
 			'types' => [ 'classic', 'gradient' ],
-			'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field:focus',
+			'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__field:focus',
 		]);
         $this->color([
 			'name' => 'input_focus_border_color',
 			'label' => __( 'Border Color', 'steelnova' ),
 			'selectors' => [
-				'{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field:focus' => 'border-color: {{VALUE}}',
+				'{{WRAPPER}} .cs-search-form .cs-search-form__field:focus' => 'border-color: {{VALUE}}',
 			],
 		]);
         $this->group_box_css([
             'name' => 'input_focus',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__field:focus'
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__field:focus'
         ]);
         $this->end_controls_tab();
 
@@ -250,19 +262,27 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'btn_width',
             'label' => __( 'Button Width', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__submit' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
             'name' => 'btn_height',
             'label' => __( 'Button Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__submit' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->size([
+            'name' => 'icon_size',
+            'label' => __( 'Icon Size', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-search-form .cs-search-form__submit .cs-button__icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__submit .cs-button__icon svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->group_typography([
             'name' => 'btn_typography',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit',
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__submit',
             'separator' => 'before'
         ]);
         $this->_start_controls_tabs([
@@ -277,16 +297,16 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'btn_color',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__submit' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'btn_background',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit',
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__submit',
         ]);
         $this->group_box_css([
             'name' => 'btn_box_css',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit',
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__submit',
         ]);
         $this->end_controls_tab();
 
@@ -299,17 +319,17 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'btn_color_hover',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit:hover' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__submit:hover' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'btn_background_hover',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit:not(.background-gradient):hover,
-                           {{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit:not(.background-gradient):before',
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__submit:not(.background-gradient):hover,
+                           {{WRAPPER}} .cs-search-form .cs-search-form__submit:not(.background-gradient):before',
         ]);
         $this->group_box_css([
             'name' => 'btn_box_css_hover',
-            'selector' => '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit:hover',
+            'selector' => '{{WRAPPER}} .cs-search-form .cs-search-form__submit:hover',
         ]);
         $this->select([
             'name' => 'btn_hover_style',
@@ -323,7 +343,7 @@ class Widget_Search_Form extends SteelNova_Widget_Base {
             'name' => 'btn_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .steelnova-search-form .steelnova-search-form__submit' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-search-form .cs-search-form__submit' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();

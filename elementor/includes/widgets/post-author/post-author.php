@@ -13,6 +13,7 @@ class Widget_Post_Author extends SteelNova_Widget_Base {
             'title'      => __( 'CS Post Author', 'steelnova' ),
             'icon'       => 'eicon-user-circle-o',
             'keywords'   => [ 'steelnova', 'author', 'post' ],
+            'style'      => ['steelnova-widget-post-author']
         ];
     }
 
@@ -20,8 +21,36 @@ class Widget_Post_Author extends SteelNova_Widget_Base {
      * Register All Controls
      */
     protected function register_controls() {
+        $this->register_layout_controls();
         // Content
         $this->register_content_controls();
+    }
+
+    /**  
+     * Register Layout Controls
+    */
+    protected function register_layout_controls() {
+        $this->start_layout_section([ 
+            'name' => 'section_layout', 
+            'label' => __('Layout', 'steelnova')
+        ]);
+        $this->visual_choice([
+            'name' => 'layout',
+            'label' => __('Layout', 'steelnova'),
+            'columns' => '1',
+            'options' => [
+                '1' => [
+                    'title' => esc_attr__( 'Post Author 1', 'steelnova' ),
+                    'image' => content_url('/uploads/widget-layout/testimonial-1.webp'),
+                ],
+                '2' => [
+                    'title' => esc_attr__( 'Post Author 2', 'steelnova' ),
+                    'image' => content_url('/uploads/widget-layout/testimonial-1.webp'),
+                ],
+            ],
+            'default' => '1',
+        ]);
+        $this->end_controls_section();
     }
 
     /**

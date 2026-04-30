@@ -130,20 +130,109 @@ class Page_Options {
                 'show_options_object' => false,
                 'context'  => 'advanced',
                 'priority' => 'default',
-                'sections'  => $this->single_project_options(),
+                'sections'  => array_merge(
+                    // $this->common_options(),
+                    $this->single_project_options(),
+                ) 
             ],
-            // Team
-            'team' => [
+            // Member
+            'member' => [
                 'opt_name'            => 'pxl_team_options',
-                'display_name'        => __('Team Settings', 'steelnova' ),
+                'display_name'        => __('Member Settings', 'steelnova' ),
                 'show_options_object' => false,
                 'context'  => 'advanced',
                 'priority' => 'default',
-                'sections'  => $this->single_team_options(),
+                'sections'  => $this->single_member_options(),
             ],
         ];
 
         $metabox->add_meta_data( $panels );
+    }
+
+    function common_options() {
+        return [
+            'layout' => [
+                'title' => __('Layout', 'steelnova'),
+                'icon'  => '',
+                'fields' => [
+                    array(
+                        'id'             => 'container_width',
+                        'type'           => 'dimensions',
+                        'units'          => array('px', '%'), 
+                        'units_extended' => 'false',
+                        'title'          => __( 'Container Width', 'steelnova' ),
+                        'height'         => false,
+                        'width'          => true, 
+                    ),
+                    array(
+                        'id'           => 'spacing_block_heading',
+                        'title'          => __('Spacing Block', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                    array(
+                        'id'             => 'spacing_block',
+                        'title'          => esc_html__('Spacing Block', 'steelnova'),
+                        'type'           => 'spacing',
+                        'mode'           => 'padding',
+                        'units'          => array('px'),
+                        'units_extended' => 'false',
+                        'left'           => false,
+                        'right'          => false,
+                    ),
+                    array(
+                        'id'             => 'spacing_block_xl',
+                        'title'          => esc_html__('Spacing Block ( < 1400px )', 'steelnova'),
+                        'type'           => 'spacing',
+                        'mode'           => 'padding',
+                        'units'          => array('px'),
+                        'units_extended' => 'false',
+                        'left'           => false,
+                        'right'          => false,
+                    ),
+                    array(
+                        'id'             => 'spacing_block_lg',
+                        'title'          => esc_html__('Spacing Block ( < 1200px )', 'steelnova'),
+                        'type'           => 'spacing',
+                        'mode'           => 'padding',
+                        'units'          => array('px'),
+                        'units_extended' => 'false',
+                        'left'           => false,
+                        'right'          => false,
+                    ),
+                    array(
+                        'id'             => 'spacing_block_md',
+                        'title'          => esc_html__('Spacing Block ( < 992px )', 'steelnova'),
+                        'type'           => 'spacing',
+                        'mode'           => 'padding',
+                        'units'          => array('px'),
+                        'units_extended' => 'false',
+                        'left'           => false,
+                        'right'          => false,
+                    ),
+                    array(
+                        'id'             => 'spacing_block_sm',
+                        'title'          => esc_html__('Spacing Block ( < 768px )', 'steelnova'),
+                        'type'           => 'spacing',
+                        'mode'           => 'padding',
+                        'units'          => array('px'),
+                        'units_extended' => 'false',
+                        'left'           => false,
+                        'right'          => false,
+                    ),
+                    array(
+                        'id'             => 'spacing_block_xs',
+                        'title'          => esc_html__('Spacing Block ( < 576px )', 'steelnova'),
+                        'type'           => 'spacing',
+                        'mode'           => 'padding',
+                        'units'          => array('px'),
+                        'units_extended' => 'false',
+                        'left'           => false,
+                        'right'          => false,
+                    )
+                ]
+            ]
+        ];
     }
 
     function page_options() {
@@ -313,32 +402,32 @@ class Page_Options {
         ];
     }
 
-    function single_team_options() {
+    function single_member_options() {
         return [
             'info' => [
                 'title'  => __( 'Info', 'steelnova' ),
                 'icon'   => 'eicon-text-field',
                 'fields' => [
                     array(
-                        'id'    => 'team_role',
+                        'id'    => 'member_role',
                         'type'  => 'text',
                         'title' => __('Role', 'steelnova'),
                         'placeholder' => __('CEO', 'steelnova')
                     ),
                     array(
-                        'id'    => 'team_email',
+                        'id'    => 'member_email',
                         'type'  => 'text',
                         'title' => __('Email', 'steelnova'),
                         'placeholder' => __('info@gmail.com', 'steelnova')
                     ),
                     array(
-                        'id'    => 'team_phone_number',
+                        'id'    => 'member_phone_number',
                         'type'  => 'text',
                         'title' => __('Phone Number', 'steelnova'),
                         'placeholder' => __('+84260325111', 'steelnova')
                     ),
                     array(
-                        'id'    => 'team_address',
+                        'id'    => 'member_address',
                         'type'  => 'text',
                         'title' => __('Address', 'steelnova'),
                         'placeholder' => __('25/26 Hai Ba Trung street, Ha Noi, Viet Nam', 'steelnova')
@@ -350,13 +439,13 @@ class Page_Options {
                 'icon'   => 'eicon-text-field',
                 'fields' => [
                     array(
-                        'id'       => 'team_socials',
+                        'id'       => 'member_socials',
                         'type'     => 'repeater',
                         'title'    => __('Socials', 'steelnova'),
                         'full_width' => true, 
                         'sortable' => true,
                         'group_values' => true,
-                        'bind_title' => 'social_label',
+                        'bind_title' => 'social_link',
                         'fields'   => array(
                             array(
                                 'id'       => 'social_icon',
@@ -438,6 +527,11 @@ class Page_Options {
 
     function single_project_options() {
         return [
+            'layout' => [
+                'title'  => __( 'Layout', 'steelnova' ),
+                'icon'   => 'eicon-text-field',
+                'fields' => Static_Options::sidebar_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ),
+            ],
             'gallery' => [
                 'title'  => __( 'Gallery', 'steelnova' ),
                 'icon'   => 'eicon-text-field',

@@ -41,7 +41,8 @@ $display_args = [
     'show_excerpt' => $settings['show_excerpt'] === 'yes',
     'num_of_words' => $settings['num_of_words'] ?: -1,
     'show_author'  => $settings['show_author'] === 'yes',
-    'show_category' => $settings['show_category'] === 'yes'
+    'show_category' => $settings['show_category'] === 'yes',
+    'show_date' => $settings['show_category'] === 'yes',
 ];
 
 

@@ -7,6 +7,9 @@
     &__item {
         @include d-inline-flex(14.5px);
     }
+    @media #{$max-md} {
+        gap: 30px;
+    }
 }
 
 .cs-post-meta[data-layout="1"] {

@@ -5,7 +5,7 @@ if ( empty( $settings['content_items'] ) ) {
 }
 
 $wrapper_attrs_tmp = [
-    'class' => 'testimonial-carousel',
+    'class' => 'cs-testimonial-carousel',
     'data-layout' => '2'
 ];
 
@@ -51,6 +51,11 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
     ]
 ]);
 
+$swipper_thumb_settings = [
+    'allowTouchMove' => false,
+    'effect'         => 'fade'
+];
+
 ?>
 
 <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
@@ -59,18 +64,18 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
         $img_height = $settings['img_size']['height'] ?: null;
     
     ?>
-        <div class="carousel__container swiper testimonial-carousel__images">
+        <div class="carousel__container swiper cs-testimonial-carousel__images" data-swiper="<?php echo esc_attr( json_encode( $swipper_thumb_settings ) ); ?>">
             <div class="carousel__inner swiper-wrapper">
                 <?php foreach( $settings['img_items'] as $i => $img ) :
                 ?>
                     <div class="carousel__item swiper-slide">
-                        <?php steelnova_print_image_by_size($img['img']['id'], $img_width, $img_height, ['class' => 'testimonial__image']) ?>
+                        <?php steelnova_print_image_by_size($img['img']['id'], $img_width, $img_height, ['class' => 'cs-testimonial__image']) ?>
                     </div>
                 <?php endforeach; ?>
             </div>
         </div>
     <?php endif; ?>
-    <div class="carousel__container swiper testimonial-carousel__content" data-swiper="<?php echo esc_attr( json_encode( $swiper_settings ) ); ?>">
+    <div class="carousel__container swiper cs-testimonial-carousel__content" data-swiper="<?php echo esc_attr( json_encode( $swiper_settings ) ); ?>">
         <div class="carousel__inner swiper-wrapper">
             <?php foreach( $settings['content_items'] as $i => $content ) : 
                 $content  = $content['content'] ?? '';
@@ -82,17 +87,17 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
                 $image      = $images[$i]['img'] ?? [];
             ?>
                 <div class="carousel__item swiper-slide">
-                    <div class="testimonial">
-                        <div class="testimonial__main">
-                            <div class="testimonial__header">
+                    <div class="cs-testimonial">
+                        <div class="cs-testimonial__main">
+                            <div class="cs-testimonial__header">
                                 <?php if( !empty( $icon['value'] ) ) : ?>
-                                    <div class="testimonial__icon box-icon">
+                                    <div class="cs-testimonial__icon box-icon">
                                         <?php steelnova_elementor_print_icon( $icon ); ?>
                                     </div>
                                 <?php endif; ?>
                                 <?php if( !empty( $rating )) : ?>
-                                    <div class="testimonial__rating">
-                                        <div class="testimonial__rating-star">
+                                    <div class="cs-testimonial__rating">
+                                        <div class="cs-stars">
                                             <?php for($i=1; $i<=5; $i++) : 
                                                 $star_icon_class = $rating <= $i ? 'fill' : 'normal';
                                             ?>
@@ -105,20 +110,20 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
                                     </div>
                                 <?php endif; ?>
                             </div>
-                            <p class="testimonial__content">
+                            <p class="cs-testimonial__content">
                                 <?php echo esc_html( $content ); ?>
                             </p>
                         </div>
                         <div class="divider"></div>
-                        <div class="testimonial__author">
+                        <div class="cs-testimonial__author">
                             <?php if( !empty( $author_image['id'] ) ) : ?>
-                                <?php steelnova_print_image_by_size($author_image['id'], null, null, ['class' => 'testimonial__author-image']); ?>
+                                <?php steelnova_print_image_by_size($author_image['id'], null, null, ['class' => 'cs-testimonial__author-image']); ?>
                             <?php endif; ?>
-                            <div class="testimonial__author-content">
-                                <div class="testimonial__author-name">
+                            <div class="cs-testimonial__author-content">
+                                <div class="cs-testimonial__author-name">
                                     <?php echo esc_html( $author_name ); ?>
                                 </div>
-                                <span class="testimonial__author-title">
+                                <span class="cs-testimonial__author-title">
                                     <?php echo esc_html( $author_title ); ?>
                                 </span>
                             </div>

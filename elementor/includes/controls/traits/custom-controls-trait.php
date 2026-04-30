@@ -199,13 +199,13 @@ trait Custom_Controls_Trait {
             'name' => 'grid_columns',
             'label' => __('Columns', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .grid .grid__item:not(.grid__item--fluid)' => '--steelnova-column: calc( 100% / {{VALUE}} );'
+                '{{WRAPPER}} .grid .grid__item:not(.grid__item--fluid)' => '--cs-column: calc( 100% / {{VALUE}} );'
             ]
         ]);
         $this->gaps([
             'name' => 'grid_gaps',
             'selectors' => [
-                '{{WRAPPER}} .grid' => '--steelnova-column-gap: {{COLUMN}}{{UNIT}}; --steelnova-row-gap: {{ROW}}{{UNIT}};'
+                '{{WRAPPER}} .grid' => '--cs-column-gap: {{COLUMN}}{{UNIT}}; --cs-row-gap: {{ROW}}{{UNIT}};'
             ]
         ]);
         $this->end_controls_tab();

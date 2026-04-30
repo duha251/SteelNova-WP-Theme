@@ -13,26 +13,26 @@ $wrapper_attrs = array_merge(
 
 ?>
 
-<ul class="list">
+<ul class="cs-list">
     <?php foreach ( $settings['items'] as $i => $item ) : ?>
         <?php
             $item_key = 'item-' . $i;
             $item_attrs = [
-                'class' => 'list__item elementor-repeater-item-'.$item['_id']
+                'class' => 'cs-list__item elementor-repeater-item-'.$item['_id']
             ];
 
             $item_link_attrs = steelnova_elementor_get_link_attributes( $item['link'] );
             $item_text_tag = 'span';
-            $item_text_class = 'list__item-text';
+            $item_text_class = 'cs-list__item-text';
             if( !empty( $item_link_attrs ) ) {
                 $item_text_tag = 'a';
-                $item_text_class = 'list__item-link';
+                $item_text_class = 'cs-list__item-link';
             }
             $this->add_render_attribute( $item_key, $item_attrs);
         ?>
         <li <?php echo $this->get_render_attribute_string( $item_key ); ?>>
             <?php if( !empty( $item['icon']['value'] ) ) : ?>
-                <span class="list__item-icon">
+                <span class="cs-list__item-icon">
                     <?php steelnova_elementor_print_icon( $item['icon'] ); ?>
                 </span>
             <?php endif; ?>

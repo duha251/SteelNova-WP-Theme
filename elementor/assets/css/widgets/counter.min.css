@@ -29,8 +29,8 @@
   height: 67px;
 }
 .counter-box[data-layout="2"] .counter-box__number {
-  font-family: var(--steelnova-heading-font);
-  font-size: 57px;
+  font-family: var(--cs-heading-font);
+  font-size: clamp(1.75rem, 1.3317rem + 1.859vw, 3.5625rem);
   font-weight: 600;
   line-height: 1.17544;
   margin-bottom: 20px;
@@ -40,7 +40,7 @@
   margin-bottom: 10px;
 }
 .counter-box[data-layout="2"] .counter-box__description {
-  font-family: var(--steelnova-text-font);
+  font-family: var(--cs-text-font);
   font-size: 14px;
   line-height: 1.71429;
 }

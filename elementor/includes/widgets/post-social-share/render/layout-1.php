@@ -7,7 +7,7 @@ if ( empty( $settings['items'] ) ) {
 $post_id = get_the_ID();
 $wrapper_attrs = array_merge( 
     [
-        'class' => 'steelnova-post-social-share',
+        'class' => 'cs-post-social-share',
     ], 
     $wrapper_attrs
 );
@@ -17,13 +17,12 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
 ?>
 <div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
     <?php if( !empty( $settings['share_label'] ) ) : ?>
-    <div class="steelnova-post-social-share__label">
+    <div class="cs-post-social-share__label">
         <?php echo esc_html($settings['share_label']); ?>
     </div>
     <?php endif; ?>
-    <ul class="steelnova-post-social-share__list">
+    <ul class="cs-post-social-share__list">
         <?php foreach( $settings['items'] as $i => $item ) : 
-            // var_dump($item['social']);
             switch ( $item['social'] ) {
                 case 'facebook' : 
                     $share_url = 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode( get_permalink( $post_id ) );
@@ -63,7 +62,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
                     break;
             }  
         ?>
-        <a class="button steelnova-post-social-share__link" href="<?php echo esc_url( $share_url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $item['social'] ) ; ?>" >
+        <a class="button cs-post-social-share__link" href="<?php echo esc_url( $share_url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $item['social'] ) ; ?>" >
             <?php steelnova_elementor_print_icon( $item['icon'] ); ?>
         </a>
         <?php endforeach; ?>

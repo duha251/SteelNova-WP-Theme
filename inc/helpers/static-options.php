@@ -331,6 +331,58 @@ class Static_Options {
 		return $final_options;
 	}
 
+    public static function sidebar_options( $args = [] ) {
+        $args = array_merge([
+            'scope' => 'global',
+            'prefix_id' => '', 
+        ], $args );
+
+        extract( $args );
+
+		$mode_options = [
+			'none' => __('None', 'steelnova'),
+			'left'    => __('Left', 'steelnova'),
+			'right' => __('Right', 'steelnova'),
+		];
+
+        if( $scope === 'private' ) {
+            $mode_options = [
+                'inherit' => __('Inherit', 'steelnova'),
+                'none'    => __('None', 'steelnova'),
+                'left'    => __('Left', 'steelnova'),
+                'right'   => __('Right', 'steelnova'),
+            ];
+        }
+
+        return [
+            array(
+                'id' => $prefix_id.'sidebar_mode_heading',
+                'title' => esc_html__('Sidebar', 'steelnova'),
+                'type'  => 'section',
+                'indent' => true,
+            ),
+            array(
+                'id'      => $prefix_id.'sidebar_mode',
+                'type'    => 'button_set',
+                'title'   => __( 'Sidebar Mode', 'steelnova' ),
+                'options' => $mode_options,
+                'default' => $scope === 'private' ? 'inherit' : 'none',
+            ),
+            array(
+                'id'       => $prefix_id.'sidebar_template_id',
+                'type'     => 'select',
+                'title'    => __('Sidebar Template', 'steelnova'),
+                'options'  => Static_Options::get_templates_by_type('sidebar'),
+                'select2'  => [ 'allowClear' => false ],
+                'default'  => '',
+                'required' => [
+                    [ $prefix_id.'sidebar_mode', '!=', 'none' ],
+                    [ $prefix_id.'sidebar_mode', '!=', 'inherit' ]
+                ]
+            ),
+        ];
+    }
+
     public static function breadcrumnb_options( $args = [] ) {
         $args = array_merge([
             'scope' => 'global',

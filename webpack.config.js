@@ -10,19 +10,27 @@ module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
     const rootDir = __dirname;
 
+    /*
+    |--------------------------------------------------------------------------
+    | THEME SCSS
+    |--------------------------------------------------------------------------
+    */
     const themeScssEntry = {
         theme: path.resolve(rootDir, 'assets/scss/style.scss'),
     };
 
+    /*
+    |--------------------------------------------------------------------------
+    | ELEMENTOR SCSS
+    |--------------------------------------------------------------------------
+    */
     const elementorScssDir = path.resolve(rootDir, 'elementor/assets/scss');
 
     const elementorScssFiles = fg.sync('**/*.scss', {
         cwd: elementorScssDir,
         absolute: true,
         onlyFiles: true,
-        ignore: [
-            '**/_*.scss',
-        ],
+        ignore: ['**/_*.scss'],
     });
 
     const elementorEntries = elementorScssFiles.reduce((entries, filePath) => {
@@ -34,6 +42,34 @@ module.exports = (env, argv) => {
         return entries;
     }, {});
 
+    /*
+    |--------------------------------------------------------------------------
+    | WOO SCSS (NEW)
+    |--------------------------------------------------------------------------
+    */
+    const wooScssDir = path.resolve(rootDir, 'woo/assets/scss');
+
+    const wooScssFiles = fg.sync('**/*.scss', {
+        cwd: wooScssDir,
+        absolute: true,
+        onlyFiles: true,
+        ignore: ['**/_*.scss'],
+    });
+
+    const wooEntries = wooScssFiles.reduce((entries, filePath) => {
+        const relativePath = path.relative(wooScssDir, filePath);
+        const normalizedPath = relativePath.replace(/\\/g, '/');
+        const entryName = `woo/${normalizedPath.replace(/\.scss$/i, '')}`;
+
+        entries[entryName] = filePath;
+        return entries;
+    }, {});
+
+    /*
+    |--------------------------------------------------------------------------
+    | PLUGINS
+    |--------------------------------------------------------------------------
+    */
     const plugins = [
         new RemoveEmptyScriptsPlugin(),
 
@@ -41,13 +77,21 @@ module.exports = (env, argv) => {
             filename: ({ chunk }) => {
                 const name = chunk.name;
 
+                // Theme
                 if (name === 'theme') {
-                    return  'assets/css/style.min.css';
+                    return 'assets/css/style.min.css';
                 }
 
+                // Elementor
                 if (name.startsWith('elementor/')) {
                     const relativeCssPath = name.replace(/^elementor\//, '');
                     return `elementor/assets/css/${relativeCssPath}.min.css`;
+                }
+
+                // Woo (FIXED: dynamic output, not overwrite)
+                if (name.startsWith('woo/')) {
+                    const relativeCssPath = name.replace(/^woo\//, '');
+                    return `woo/assets/css/${relativeCssPath}.min.css`;
                 }
 
                 return 'assets/css/[name].min.css';
@@ -55,6 +99,11 @@ module.exports = (env, argv) => {
         }),
     ];
 
+    /*
+    |--------------------------------------------------------------------------
+    | CLEAN (PRODUCTION ONLY)
+    |--------------------------------------------------------------------------
+    */
     if (isProduction) {
         plugins.push(
             new CleanWebpackPlugin({
@@ -62,7 +111,6 @@ module.exports = (env, argv) => {
                     'assets/temp/**/*',
                     '**/*.css.map',
                 ],
-                dangerouslyAllowCleanPatternsOutsideProject: false,
                 verbose: false,
             }),
             {
@@ -79,10 +127,16 @@ module.exports = (env, argv) => {
         );
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | CONFIG
+    |--------------------------------------------------------------------------
+    */
     return {
         entry: {
             ...themeScssEntry,
             ...elementorEntries,
+            ...wooEntries, // 👈 ADD HERE
         },
 
         output: {

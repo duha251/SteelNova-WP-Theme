@@ -1,34 +1,77 @@
 @use 'core.scss' as *;
 
 .single {
-    &.single-post {
+    &.has-sidebar {
         #main {
+            padding-inline: 15px;
+            --cs-container: 100%;
             .inner {
-                @include site-spacing-block(108px, 105px, 90px);
+                @include d-flex(100px 30px, null, space-between);
+                .content-area {
+                    flex: 0 1 850px;
+                    max-width: 850px;
+                }
+                .sidebar-area {
+                    flex: 0 1 392px;
+                }
+                @media #{$max-md} {
+                    flex-wrap: wrap;
+                    .content-area {
+                        flex: 0 1 100%;
+                        max-width: 100%;
+                    }
+                    .sidebar-area {
+                        flex: 0 1 100%;
+                    }
+                }
             }
         }
-        padding-inline: 15px;
-        .container {
-            max-width: 825px;
-        }
-        &.has-sidebar {
+        &.single-post {
             #main {
-                .container {
-                    max-width: 1300px;
+                --cs-container: 1300px;
+            }
+        }
+        &.single-project {
+            #main {
+                .inner {
+                    @include d-flex(100px 30px, null, space-between);
+                    .content-area {
+                        flex: 0 1 860px;
+                        max-width: 860px;
+                    }
+                    .sidebar-area {
+                        flex: 0 1 392px;
+                    }
+                    @media #{$max-md} {
+                        flex-wrap: wrap;
+                        .content-area {
+                            flex: 0 1 100%;
+                            max-width: 100%;
+                        }
+                        .sidebar-area {
+                            flex: 0 1 100%;
+                        }
+                    }
                 }
             }
         }
     }
-    &.single-project, &.single-member, &.single-service {
-        --steelnova-container: 100%;
+    &.single-post {
+        #main {
+            --cs-container: 825px;
+        }
+    }
+    &.single-project {
+        
+    }
+    
+    &.single-member, &.single-service {
+        --cs-container: 100%;
         #main {
             .inner {
                 @include site-spacing-block(140px, 120px, 100px);
             }
         }
-        // .container {
-        //     max-width: 1570px;
-        // }
     }
 }
 

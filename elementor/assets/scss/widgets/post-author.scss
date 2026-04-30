@@ -1,0 +1,96 @@
+@use '../../../../assets/scss/core' as *;
+
+// Post Author
+.cs-post-author[data-layout="1"]{
+    @include d-flex(28px);
+    @media #{$max-xs} {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        .cs-post-author____info {
+            flex: 0 1 100%;
+        }
+    }
+    .cs-post-author {
+        &__avatar {
+            @include round-box(133px);
+            flex-shrink: 0;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &__name {
+            @include h8;
+            color: var(--cs-heading-color);
+            margin-bottom: 13px;
+            > a {
+                color: inherit;
+            }
+        }
+        &__bio {
+            @include paragraph-5;
+            margin-bottom: 13px;
+        }
+        &__socials {
+            @include d-inline-flex(33px);
+            > a {
+                color: #121512;
+                &:hover {
+                    color: #FF5B1B;
+                }
+            }
+        }
+    }
+}
+
+.cs-post-author[data-layout="2"]{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .cs-post-author {    
+        &__avatar {
+            @include round-box(207px);
+            overflow: hidden;
+            margin-bottom: 22px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &__name {
+            margin-bottom: 3px;
+            > a {
+                color: inherit;
+            }
+        }
+        &__position {
+            color: #706F6F;
+            font-family: "Public Sans";
+            font-size: 15px;
+        }
+        &__bio {
+            font-size: 15px;
+            line-height: 1.66667;
+            margin-bottom: 30px
+        }
+        &__socials {
+            @include d-inline-flex(8px, null, center);
+            > a {
+                @include round-box(46px);
+                color: #FFF;
+                background-color: #121512;
+                @include d-inline-flex(null, center, center);
+                &:hover {
+                    background-color: #FF5B1B;
+                }
+            }
+        }
+    }
+    .divider {
+        margin-block: 19px;
+    }
+}

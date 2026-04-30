@@ -10,6 +10,11 @@
             display: flex;
             flex-direction: column;
             gap: 57px;
+            > li {
+                display: flex;
+                flex-direction: column;
+                gap: 57px;
+            }
         }
     }
     .divider {
@@ -36,7 +41,7 @@
                 }
             }
             &-name {
-                color: var(--steelnova-heading-color);
+                color: var(--cs-heading-color);
                 @include h6;
                 margin-bottom: 3px;
             }
@@ -53,6 +58,11 @@
             font-size: 13.9px;
             line-height: 1.8705;
             font-weight: 400;
+            > p {
+                br {
+                    display: none;
+                }
+            }
         }
         .comment-reply-link {
             position: absolute;
@@ -68,18 +78,64 @@
             font-weight: 400;
             line-height: 36px;
             padding-inline: 21px;
+            &:hover {
+                background-color: #FF5B1B;
+            }
         }
         .children {
-            margin-top: 57px;
+            display: flex;
+            flex-direction: column;
+            gap: 57px;
             .comment {
-                margin-left: 90px;
+                margin-left: clamp(1.875rem, 1.0096rem + 3.8462vw, 5.625rem);
             }
         }
     }
-
+    .logged-in-as {
+        @include paragraph-4;
+        font-weight: 400;
+        > a {
+            color: #121512;
+            font-weight: inherit;
+            &:hover {
+                color: #FF5B1B;
+            }
+        }
+    }
     .comment-respond {
         .comment-reply-title {
             @include h4;
+            @include d-flex(10px);
+            color: var(--cs-heading-color);
+            small {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            a {
+                position: relative;
+                display: inline-flex;
+                @include box-size( 40px );
+                color: inherit;
+                font-size: 0;
+                &:hover {
+                    color: #FF5B1B;
+                }
+                &::before, &::after {
+                    content: '';
+                    position: absolute;
+                    width: 32px;
+                    height: 2px;
+                    background-color: currentColor;
+                }
+                &::before {
+                    transform: translate(-50%, -50%) rotate(-45deg);
+                }
+                &::after {
+                    transform: translate(-50%, -50%) rotate(45deg);
+                }
+            }
         }
         .comment-form {
             @include d-flex(15px 14px);
@@ -92,7 +148,7 @@
                     border: thin solid #DCDCDC;
                     border-radius: 5px;
                     @include paragraph-5;
-                    color: var(--steelnova-text-color, #4B535D);
+                    color: var(--cs-text-color, #4B535D);
                 }
                 textarea {
                     height: 264px;

@@ -1,8 +1,8 @@
 @use '../core.scss' as *;
 
-.cs-pagination {
+.pagination {
     @include d-flex(10px, null, center);
-    margin-top: 101px;
+    margin-top: clamp(3.125rem, 1.7589rem + 3.7946vw, 6.3125rem);
     .page-numbers {
         @include round-box(50px, 6px);
         @include d-inline-flex(null, center, center);

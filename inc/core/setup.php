@@ -108,7 +108,7 @@ class Setup {
 			'after_title'   => '</h3>',
 		));
 		
-		if ( class_exists( 'Woocommerce' ) ) {
+		if ( class_exists( 'WooCommerce' ) ) {
 			register_sidebar( array(
 				'name'          => esc_html__( 'Shop Sidebar', 'steelnova' ),
 				'id'            => 'sidebar-shop',

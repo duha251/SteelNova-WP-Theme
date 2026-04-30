@@ -48,26 +48,29 @@
   width: 1px;
 }
 
-.list {
+.cs-list {
   display: flex;
   gap: 15px;
   flex-direction: column;
 }
-.list__item {
+.cs-list__item {
   display: inline-flex;
   gap: 5px;
   align-items: center;
 }
-.list__item-icon {
+.cs-list__item-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.image-gallery__item {
+.cs-image-gallery .grid__item {
+  line-height: 0;
+}
+.cs-image-gallery__item {
   display: inline-flex;
 }
-.image-gallery__item img {
+.cs-image-gallery__item img {
   width: 100%;
 }
 
@@ -86,51 +89,56 @@
   height: 100%;
 }
 
-.steelnova-countdown {
+.cs-countdown {
   display: flex;
   gap: 20px;
   color: #FF5B1B;
 }
-.steelnova-countdown__timer {
+@media screen and (max-width: 575px) {
+  .cs-countdown {
+    gap: 8px;
+  }
+}
+.cs-countdown__timer {
   display: inline-flex;
   align-items: center;
   flex-direction: column;
 }
-.steelnova-countdown__timer .unit {
-  font-family: var(--steelnova-text-font);
+.cs-countdown__timer .unit {
+  font-family: var(--cs-text-font);
   font-size: 14px;
   line-height: 1.71429;
   color: #FFF;
   text-transform: uppercase;
 }
-.steelnova-countdown__timer .value, .steelnova-countdown__separator {
-  font-family: var(--steelnova-heading-font);
+.cs-countdown__timer .value, .cs-countdown__separator {
+  font-family: var(--cs-heading-font);
   font-size: clamp(2.5rem, 2.04rem + 2.3vw, 4.8rem);
   font-weight: 600;
   line-height: 1.13021;
   letter-spacing: -2.8px;
 }
 
-.steelnova-search-form {
+.cs-search-form {
   position: relative;
   width: 100%;
 }
-.steelnova-search-form__form {
+.cs-search-form__form {
   display: flex;
   gap: 15px;
   align-items: center;
 }
-.steelnova-search-form__field {
+.cs-search-form__field {
   padding: 14px 55px 14px 25px;
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(5px);
-  font-family: var(--steelnova-text-font);
+  font-family: var(--cs-text-font);
   font-size: 14px;
   line-height: 1.71429;
   color: #FFF;
 }
-.steelnova-search-form__submit {
+.cs-search-form__submit {
   position: absolute;
   top: 3px;
   right: 5px;
@@ -148,11 +156,11 @@
   display: inline-flex;
   gap: 8px;
   align-items: center;
-  font-family: var(--steelnova-text-font);
-  font-size: 14px;
+  font-family: var(--cs-text-font);
+  font-size: 13px;
   font-weight: 600;
   line-height: 1;
-  padding: 17px 25px;
+  padding: 17.5px 28.5px;
   border-radius: 100px;
   background-color: #FF5B1B;
 }
@@ -163,12 +171,12 @@
   color: inherit;
 }
 
-.steelnova-post-tags {
+.cs-post-tags {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
-.steelnova-post-tags a {
+.cs-post-tags a {
   padding: 12px 24px;
   background-color: #121512;
   border-radius: 6px;
@@ -179,24 +187,29 @@
   letter-spacing: 0.72px;
   text-transform: uppercase;
 }
+.cs-post-tags a:hover {
+  background-color: #FF5B1B;
+  color: #FFF;
+}
 
-.steelnova-post-social-share {
+.cs-post-social-share {
   display: flex;
   gap: 15px;
   align-items: center;
 }
-.steelnova-post-social-share__label {
-  color: var(--steelnova-heading-color);
+.cs-post-social-share__label {
+  color: var(--cs-heading-color);
   vertical-align: middle;
-  font-family: var(--steelnova-heading-font);
+  font-size: 16px;
+  font-family: var(--cs-heading-font);
   font-weight: 600;
   line-height: 1.625;
 }
-.steelnova-post-social-share__list {
+.cs-post-social-share__list {
   display: inline-flex;
   gap: 8px;
 }
-.steelnova-post-social-share__link {
+.cs-post-social-share__link {
   --mt-box-size: 46px;
   width: var(--mt-box-size);
   min-width: var(--mt-box-size);
@@ -208,44 +221,8 @@
   background-color: #0A1119;
   color: #FFF;
 }
-
-.steelnova-post-author {
-  display: flex;
-  gap: 28px;
-}
-.steelnova-post-author__avatar {
-  --mt-box-size: 133px;
-  width: var(--mt-box-size);
-  min-width: var(--mt-box-size);
-  height: var(--mt-box-size);
-  border-radius: 50%;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-.steelnova-post-author__avatar img {
-  width: 100%;
-  height: 100%;
-}
-.steelnova-post-author__name {
-  font-family: var(--steelnova-heading-font);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.41667;
-  color: var(--steelnova-heading-color);
-  margin-bottom: 13px;
-}
-.steelnova-post-author__bio {
-  font-family: var(--steelnova-text-font);
-  font-size: 14px;
-  line-height: 1.71429;
-  margin-bottom: 13px;
-}
-.steelnova-post-author__socials {
-  display: inline-flex;
-  gap: 33px;
-}
-.steelnova-post-author__socials > a {
-  color: #121512;
+.cs-post-social-share__link:hover {
+  background-color: #FF5B1B;
 }
 
 .cs-navigation-carousel {
@@ -317,6 +294,89 @@
 .cs-post-navigation .divider {
   flex-grow: 1;
   background-color: #DCDCDC;
+}
+
+.cs-categories {
+  display: flex;
+  flex-direction: column;
+  --cs-row-gap: 10px;
+  margin-block: calc(-1 * var(--cs-row-gap) / 2);
+}
+.cs-categories li a {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  font-family: var(--cs-text-font);
+  font-size: 17px;
+  line-height: 1.64706;
+  color: var(--cs-heading-color);
+  padding-block: var(--cs-row-gap);
+}
+.cs-categories li a .category__count {
+  line-height: 1.625;
+  color: #4B535D;
+}
+.cs-categories.has-divider li + li {
+  border-top: thin dotted #4B535D;
+}
+
+.cs-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cs-tags a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  line-height: 1;
+  border: thin solid #DCDCDC;
+  height: 44px;
+  padding-inline: 23px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+  transition: background-color 0.3s linear, color 0.3s linear, border 0.3s linear;
+}
+.cs-tags a:hover {
+  background-color: #FF5B1B;
+  color: rgba(255, 255, 255, 0.8);
+  border-color: transparent;
+}
+
+.cs-brands {
+  display: flex;
+  flex-direction: column;
+  --cs-row-gap: 10px;
+  margin-block: calc(-1 * var(--cs-row-gap) / 2);
+}
+.cs-brands li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.cs-brands li a {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  font-family: var(--cs-text-font);
+  font-size: 17px;
+  line-height: 1.64706;
+  color: var(--cs-heading-color);
+  padding-block: var(--cs-row-gap);
+}
+.cs-brands li a .category__count {
+  line-height: 1.625;
+  color: #4B535D;
+}
+.cs-brands.has-divider li + li {
+  border-top: thin dotted #4B535D;
 }
 
 /*# sourceMappingURL=style.min.css.map*/

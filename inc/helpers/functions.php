@@ -298,7 +298,6 @@ if ( ! function_exists( 'steelnova_get_user_avatar' ) ) {
 
 if ( ! function_exists( 'steelnova_print_user_avatar' ) ) {
     function steelnova_print_user_avatar( $user_id = 0, $img_size = 96 ) {
-        // Lưu ý: get_avatar trả về HTML nên dùng wp_kses_post là hợp lý
         echo wp_kses_post( steelnova_get_user_avatar( $user_id, $img_size ) );
     }
 }

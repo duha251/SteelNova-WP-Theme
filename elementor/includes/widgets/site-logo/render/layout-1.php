@@ -1,6 +1,6 @@
 <?php
 $wrapper_attrs_tmp = [
-    'class' => 'site-logo'
+    'class' => 'cs-site-logo'
 ];
 
 $this->add_link_attributes( 'wrapper', $settings['link'] );
@@ -11,5 +11,5 @@ $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
 
 <a <?php echo $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ); ?>>
-    <?php steelnova_print_image_by_size( $settings['image']['id'], null, null, ['class' => 'site-logo__image']); ?>
+    <?php steelnova_print_image_by_size( $settings['image']['id'], null, null, ['class' => 'cs-site-logo__image']); ?>
 </a>

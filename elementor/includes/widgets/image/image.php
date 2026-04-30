@@ -26,6 +26,7 @@ class Widget_Image extends SteelNova_Widget_Base {
     public function register_controls() {
         // Content Controls
         $this->register_content_controls();
+        $this->register_loop_animation_controls();
         // Style Controls
         $this->register_image_style_controls();
         // Steelnova Controls
@@ -40,7 +41,6 @@ class Widget_Image extends SteelNova_Widget_Base {
             'name' => 'section_content',
             'label' => __( 'Image', 'steelnova' ),
         ]);
-        
         $this->media([
             'name' => 'img',
             'label' => __('Choose Image', 'steelnova'),

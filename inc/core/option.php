@@ -78,52 +78,55 @@ class Option {
 		return self::$options;
     }
 
-    public function get_page_option( $setting = null, $default = false, $subset = false ) {
-		if (is_null($setting) || empty($setting)) {
+	public function get_page_option( $setting = null, $default = false, $subset = false ) {
+		if ( is_null($setting) || empty($setting) ) {
 			return '';
 		}
 
 		$id = get_the_ID();
 
-		if(function_exists('is_shop') && is_shop()){
-			$real_page = get_post(wc_get_page_id('shop'));
-		}else{
-			$real_page =  get_queried_object();
+		if ( function_exists('is_shop') && is_shop() ) {
+			$real_page = get_post( wc_get_page_id('shop') );
+		} elseif ( is_home() && ! is_front_page() ) {
+			$real_page = get_post( get_option('page_for_posts') );
+		} else {
+			$real_page = get_queried_object();
 		}
 
-		if($real_page instanceof WP_Post){
+		if ( $real_page instanceof \WP_Post ) {
 			$id = $real_page->ID;
 		}
-		
-		$options = !empty($id) && ('' !== get_post_meta($id, $setting, true)) ? get_post_meta($id, $setting, true) : $default;
-		if( !empty($id) && ('' !== get_post_meta($id, $setting, true)) ){
+
+		if ( ! empty($id) && get_post_meta($id, $setting, true) !== '' ) {
 			$options = get_post_meta($id, $setting, true);
-			if(is_array($options)) {
-				if( is_array($default) ){
-					foreach ($options as $key => $value){
-						if(empty($options[$key]) && isset($default[$key]))
+
+			if ( is_array($options) ) {
+				if ( is_array($default) ) {
+					foreach ( $options as $key => $value ) {
+						if ( empty($options[$key]) && isset($default[$key]) ) {
 							$options[$key] = $default[$key];
+						}
 					}
-				}else{
-					foreach ($options as $key => $value){
-						if(empty($options[$key]) && isset($default))
+				} else {
+					foreach ( $options as $key => $value ) {
+						if ( empty($options[$key]) && isset($default) ) {
 							$options[$key] = $default;
-							
+						}
 					}
 				}
 			}
-		}else{
+		} else {
 			$options = $default;
 		}
-		
 
-		if ($subset && !empty($subset)) {  
-			if (isset($options[$subset])) {
+		if ( $subset && ! empty($subset) ) {
+			if ( isset($options[$subset]) ) {
 				$options = $options[$subset];
 			}
-		} 
+		}
+
 		return $options;
-    }
+	}
 
     public function get_option( $setting = null, $default = false, $subset = false ) {
 		if (is_null($setting) || empty($setting)) {

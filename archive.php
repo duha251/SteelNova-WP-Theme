@@ -26,7 +26,9 @@ if( isset( $_GET['sidebar'] ) ) {
 <?php get_header(); ?>
 <main id="main">
     <div class="inner">
-        <div class="content-area">
+        <?php if( $sidebar_mode !== 'none' ) : ?>                    
+            <div class="content-area">
+        <?php endif; ?>
             <?php
                 if( is_numeric($layout) && $layout > 0 && class_exists('Pxltheme_Core') && class_exists('\Elementor\Plugin') ) {
                     echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $archive_template_id );
@@ -48,7 +50,10 @@ if( isset( $_GET['sidebar'] ) ) {
                 }
                 // steelnova()->layout->the_pagination();
             ?>
-        </div>
+        <?php if( $sidebar_mode !== 'none' ) : ?>                    
+            </div>
+        <?php endif; ?>
+
         <?php if( $sidebar_mode !== 'none' ) : ?>
             <div class="sidebar-area">
                 <?php get_sidebar(); ?>

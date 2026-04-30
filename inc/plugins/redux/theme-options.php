@@ -356,10 +356,20 @@ class Theme_Options {
                     'width'          => true, 
                 ),
                 array(
-                    'name'           => 'spacing_block_heading',
-                    'title'          => __('Spacing Block', 'steelnova'),
+                    'name'           => 'spacing_heading',
+                    'title'          => __('Spacing', 'steelnova'),
                     'type'  => 'section',
                     'indent' => true,
+                ),
+                array(
+                    'id'             => 'spacing_inline',
+                    'title'          => esc_html__('Spacing Inline', 'steelnova'),
+                    'type'           => 'spacing',
+                    'mode'           => 'padding',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'left'           => false,
+                    'right'          => false,
                 ),
                 array(
                     'id'             => 'spacing_block',
@@ -473,13 +483,6 @@ class Theme_Options {
             )
         ));
 
-        // Pages Settings
-        \Redux::setSection($opt_name, array(
-            'title' => __('Pages', 'steelnova'),
-            'icon'  => 'eicon-progress-tracker',
-            'fields'     => array(
-            )
-        ));
         \Redux::setSection($opt_name, array(
             'title'  => __('404 Not Found', 'steelnova'),
             'icon'   => 'eicon-error-404',
@@ -531,24 +534,8 @@ class Theme_Options {
                         'options'  => Static_Options::get_templates_by_type('section'),
                         'default'  => '',
                     ),
-                    array(
-                        'id' => 'blog_sidebar_mode_heading',
-                        'title' => esc_html__('Sidebar', 'steelnova'),
-                        'type'  => 'section',
-                        'indent' => true,
-                    ),
-                    array(
-                        'id'      => 'blog_sidebar_mode',
-                        'type'    => 'button_set',
-                        'title'   => __( 'Sidebar Mode', 'steelnova' ),
-                        'options' => [
-                            'none' => __('None', 'steelnova'),
-                            'left' => __('Left', 'steelnova'),
-                            'right' => __('Right', 'steelnova'),
-                        ], 
-                        'default' => 'none',
-                    ),
                 ),
+                Static_Options::sidebar_options( [ 'scope' => 'global', 'prefix_id' =>'blog_' ] ),
             )
         ));
 
@@ -578,24 +565,8 @@ class Theme_Options {
                         'options'  => Static_Options::get_templates_by_type('section'),
                         'default'  => '',
                     ),
-                    array(
-                        'id' => 'single_post_sidebar_mode_heading',
-                        'title' => esc_html__('Sidebar', 'steelnova'),
-                        'type'  => 'section',
-                        'indent' => true,
-                    ),
-                    array(
-                        'id'      => 'single_post_sidebar_mode',
-                        'type'    => 'button_set',
-                        'title'   => __( 'Sidebar Mode', 'steelnova' ),
-                        'options' => [
-                            'none' => __('None', 'steelnova'),
-                            'left' => __('Left', 'steelnova'),
-                            'right' => __('Right', 'steelnova'),
-                        ], 
-                        'default' => 'none',
-                    ),
                 ),
+                Static_Options::sidebar_options( [ 'scope' => 'global', 'prefix_id' =>'single_post_' ] ),
                 Static_Options::breadcrumnb_options( [ 'scope' => 'private', 'prefix_id' =>'single_post_' ] ),
                 Static_Options::header_options( [ 'scope' => 'private', 'prefix_id' =>'single_post_' ] ), 
                 Static_Options::header_mobile_options( [ 'scope' => 'private', 'prefix_id' =>'single_post_' ] ),
@@ -649,32 +620,8 @@ class Theme_Options {
                         'options'  => Static_Options::get_templates_by_type('section'),
                         'default'  => '',
                     ),
-                    array(
-                        'id' => 'single_project_sidebar_mode_heading',
-                        'title' => esc_html__('Sidebar', 'steelnova'),
-                        'type'  => 'section',
-                        'indent' => true,
-                    ),
-                    array(
-                        'id'      => 'single_project_sidebar_mode',
-                        'type'    => 'button_set',
-                        'title'   => __( 'Sidebar Mode', 'steelnova' ),
-                        'options' => [
-                            'none'  => __('None', 'steelnova'),
-                            'left'  => __('Left', 'steelnova'),
-                            'right' => __('Right', 'steelnova'),
-                        ], 
-                        'default' => 'none',
-                    ),
-                    array(
-                        'id'       => 'single_project_sidebar_template_id',
-                        'type'     => 'select',
-                        'title'    => __('Sidebar Template', 'steelnova'),
-                        'options'  => Static_Options::get_templates_by_type('sidebar'),
-                        'default'  => '',
-                        'required' => ['single_project_sidebar_mode', '!=', 'none']
-                    ),
                 ),
+                Static_Options::sidebar_options( [ 'scope' => 'global', 'prefix_id' =>'single_project_' ] ),
                 Static_Options::breadcrumnb_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ),
                 Static_Options::header_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ), 
                 Static_Options::header_mobile_options( [ 'scope' => 'private', 'prefix_id' =>'single_project_' ] ),
@@ -878,171 +825,130 @@ class Theme_Options {
         //     )
         // ));
 
-        // // Shop
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('Shop', 'steelnova'),
-        //     'icon'  => 'eicon-shop',
-        // ));
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('Archive', 'steelnova'),
-        //     'icon'  => 'eicon-archive-posts',
-        //     'subsection' => true,
-        //     'fields'     => array_merge(
-        //         array(
-        //             array(
-        //                 'id'       => 'shop_before_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Page Before Template', 'steelnova'),
-        //                 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //             array(
-        //                 'id'       => 'shop_after_template_id',
-        //                 'type'     => 'select',
-        //                 'title'    => __('Page After Template', 'steelnova'),
-        //                 'options'  => Helpers::get_templates_by_type('section'),
-        //                 'default'  => '',
-        //             ),
-        //         ),
-        //         Helpers::get_page_hero_options('shop'),
-        //         Helpers::get_breadcrumb_option('shop'),
-        //         array(
-        //             array(
-        //                 'id' => 'shop_sidebar_mode_heading',
-        //                 'title' => esc_html__('Sidebar', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'      => 'shop_sidebar_mode',
-        //                 'type'    => 'button_set',
-        //                 'title'   => __( 'Sidebar Mode', 'steelnova' ),
-        //                 'options' => [
-        //                     'none' => __('None', 'steelnova'),
-        //                     'left' => __('Left', 'steelnova'),
-        //                     'right' => __('Right', 'steelnova'),
-        //                 ], 
-        //                 'default' => 'none',
-        //             ),
-        //             array(
-        //                 'id' => 'shop_css_heading',
-        //                 'title' => esc_html__('Custom Layout', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'             => 'shop_content_spacing',
-        //                 'type'           => 'spacing',
-        //                 'right'          => false,
-        //                 'left'           => false,
-        //                 'mode'           => 'padding',
-        //                 'units'          => array( 'px' ),
-        //                 'units_extended' => 'false',
-        //                 'title'          => esc_html__( 'Spacing Top/Bottom', 'steelnova' ),
-        //                 'default'        => array(
-        //                     'padding-top'    => '',
-        //                     'padding-bottom' => '',
-        //                     'units'          => 'px',
-        //                 )
-        //             ), 
-        //             array(
-        //                 'id'             => 'shop_container_width',
-        //                 'type'           => 'dimensions',
-        //                 'units'          => array('px'), 
-        //                 'units_extended' => 'false',
-        //                 'title'          => __('Container Width', 'steelnova'),
-        //                 'width'          => true, 
-        //                 'height'         => false,
-        //             ),
-        //             array(
-        //                 'id'       => 'product_columns',
-        //                 'type'     => 'select',
-        //                 'title'    => esc_html__('Shop Column', 'steelnova'), 
-        //                 'options'  => array(
-        //                     '1'    => __('1 Column', 'steelnova'),
-        //                     '2'    => __('2 Column', 'steelnova'),
-        //                     '3'    => __('3 Column', 'steelnova'),
-        //                     '4'    => __('4 Column', 'steelnova'),
-        //                     '5'    => __('5 Column', 'steelnova'),
-        //                 ),
-        // 				'select2'  => [ 'allowClear' => false ],
-        //                 'default'  => '3',
-        //             ),
-        //             array(
-        //                 'id'       => 'product_thumb_size',
-        //                 'type'     => 'dimensions',
-        //                 'units'    => array(''),
-        //                 'title'    => esc_html__('Thumbnail Size (Width/Height)', 'steelnova'),
-        //                 'default'  => array(
-        //                     'Width'   => 0, 
-        //                     'Height'  => 0
-        //                 ),
-        //             ),
-        //             array(
-        //                 'id'            => 'products_per_page',
-        //                 'type'          => 'slider',
-        //                 'title'         => esc_html__( 'Products Per Page', 'steelnova' ),
-        //                 'default'       => 9,
-        //                 'min'           => 1,
-        //                 'step'          => 1,
-        //                 'max'           => 50,
-        //                 'display_value' => 'label',
-        //             ),
-        //             array(
-        //                 'id'            => 'related_products_per_page',
-        //                 'type'          => 'slider',
-        //                 'title'         => esc_html__( 'Related Products Per Page', 'steelnova' ),
-        //                 'default'       => 6,
-        //                 'min'           => 1,
-        //                 'step'          => 1,
-        //                 'max'           => 50,
-        //                 'display_value' => 'label',
-        //             )
-        //         )
-        //     )
-        // ));
+        // Shop
+        \Redux::setSection($opt_name, array(
+            'title' => __('Shop', 'steelnova'),
+            'icon'  => 'eicon-products',
+        ));
+        \Redux::setSection($opt_name, array(
+            'title' => __('Archive', 'steelnova'),
+            'icon'  => 'eicon-products',
+            'subsection' => true,
+            'fields'     => array_merge(
+                // array(
+                //     array(
+                //         'id'       => 'shop_before_template_id',
+                //         'type'     => 'select',
+                //         'title'    => __('Page Before Template', 'steelnova'),
+                //         'options'  => Static_Options::get_templates_by_type('section'),
+                //         'default'  => '',
+                //     ),
+                //     array(
+                //         'id'       => 'shop_after_template_id',
+                //         'type'     => 'select',
+                //         'title'    => __('Page After Template', 'steelnova'),
+                //         'options'  => Static_Options::get_templates_by_type('section'),
+                //         'default'  => '',
+                //     ),
+                // ),
+                array(
+                    array(
+                        'id' => 'shop_css_heading',
+                        'title' => esc_html__('Custom Layout', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                    array(
+                        'id'       => 'product_columns',
+                        'type'     => 'select',
+                        'title'    => esc_html__('Shop Column', 'steelnova'), 
+                        'options'  => array(
+                            '1'    => __('1 Column', 'steelnova'),
+                            '2'    => __('2 Column', 'steelnova'),
+                            '3'    => __('3 Column', 'steelnova'),
+                            '4'    => __('4 Column', 'steelnova'),
+                            '5'    => __('5 Column', 'steelnova'),
+                        ),
+        				'select2'  => [ 'allowClear' => false ],
+                        'default'  => '4',
+                    ),
+                    // array(
+                    //     'id'       => 'product_thumb_size',
+                    //     'type'     => 'dimensions',
+                    //     'units'    => array(''),
+                    //     'title'    => esc_html__('Thumbnail Size (Width/Height)', 'steelnova'),
+                    //     'default'  => array(
+                    //         'Width'   => 0, 
+                    //         'Height'  => 0
+                    //     ),
+                    // ),
+                    array(
+                        'id'            => 'products_per_page',
+                        'type'          => 'slider',
+                        'title'         => esc_html__( 'Products Per Page', 'steelnova' ),
+                        'default'       => 12,
+                        'min'           => 1,
+                        'step'          => 1,
+                        'max'           => 50,
+                        'display_value' => 'label',
+                    ),
+                    array(
+                        'id'            => 'related_products_per_page',
+                        'type'          => 'slider',
+                        'title'         => esc_html__( 'Related Products Per Page', 'steelnova' ),
+                        'default'       => 6,
+                        'min'           => 1,
+                        'step'          => 1,
+                        'max'           => 50,
+                        'display_value' => 'label',
+                    ),
+                    array(
+                        'id'             => 'shop_content_spacing',
+                        'type'           => 'spacing',
+                        'right'          => false,
+                        'left'           => false,
+                        'mode'           => 'padding',
+                        'units'          => array( 'px' ),
+                        'units_extended' => 'false',
+                        'title'          => esc_html__( 'Spacing Top/Bottom', 'steelnova' ),
+                        'default'        => array(
+                            'padding-top'    => '',
+                            'padding-bottom' => '',
+                            'units'          => 'px',
+                        )
+                    ), 
+                    array(
+                        'id'             => 'shop_container_width',
+                        'type'           => 'dimensions',
+                        'units'          => array('px'), 
+                        'units_extended' => 'false',
+                        'title'          => __('Container Width', 'steelnova'),
+                        'width'          => true, 
+                        'height'         => false,
+                    ),
+                ),
+                Static_Options::sidebar_options( [ 'scope' => 'global', 'prefix_id' =>'shop_' ] ),
+            )
+        ));
 
-        // \Redux::setSection($opt_name, array(
-        //     'title' => __('Single Product', 'steelnova'),
-        //     'icon'  => 'eicon-single-posts',
-        //     'subsection' => true,
-        //     'fields'     => array_merge(
-        //         Helpers::get_page_hero_options('product'),
-        //         Helpers::get_breadcrumb_option('single_product'),
-        //         array(
-        //             array(
-        //                 'id' => 'single_product_css_heading',
-        //                 'title' => esc_html__('Custom Layout', 'steelnova'),
-        //                 'type'  => 'section',
-        //                 'indent' => true,
-        //             ),
-        //             array(
-        //                 'id'             => 'single_product_content_spacing',
-        //                 'type'           => 'spacing',
-        //                 'right'          => false,
-        //                 'left'           => false,
-        //                 'mode'           => 'padding',
-        //                 'units'          => array( 'px' ),
-        //                 'units_extended' => 'false',
-        //                 'title'          => esc_html__( 'Spacing Top/Bottom', 'steelnova' ),
-        //                 'default'        => array(
-        //                     'padding-top'    => '',
-        //                     'padding-bottom' => '',
-        //                     'units'          => 'px',
-        //                 )
-        //             ), 
-        //             array(
-        //                 'id'             => 'single_product_container_width',
-        //                 'type'           => 'dimensions',
-        //                 'units'          => array('px'), 
-        //                 'units_extended' => 'false',
-        //                 'title'          => __('Container Width', 'steelnova'),
-        //                 'width'          => true, 
-        //                 'height'         => false,
-        //             ),
-        //         )
-        //     )
-        // ));
+        \Redux::setSection($opt_name, array(
+            'title' => __('Single Product', 'steelnova'),
+            'icon'  => 'eicon-single-posts',
+            'subsection' => true,
+            'fields'     => array_merge(
+                Static_Options::breadcrumnb_options( [ 'scope' => 'private', 'prefix_id' =>'single_product_' ] ),
+                Static_Options::header_options( [ 'scope' => 'private', 'prefix_id' =>'single_product_' ] ), 
+                Static_Options::header_mobile_options( [ 'scope' => 'private', 'prefix_id' =>'single_product_' ] ),
+                Static_Options::hero_options([ 
+                    'scope' => 'private', 
+                    'prefix_id' =>'single_product_', 
+                    'meta_key' => 'single', 
+                    'title' => 'Browse Our Premium Industrial <br> Manufacturing Solutions', 
+                    'note'  => __( 'Explore our collection of high quality industrial equipment and manufacturing products designed to <br> support modern engineering operations with reliability, precision, and long term performance', 'steelnova' ) 
+                ]), 
+                Static_Options::footer_options( [ 'scope' => 'private', 'prefix_id' =>'single_product_' ] ), 
+            )
+        ));
         
        
 

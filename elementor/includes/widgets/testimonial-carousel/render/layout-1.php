@@ -5,7 +5,7 @@ if ( empty( $settings['content_items'] ) ) {
 }
 
 $wrapper_attrs_tmp = [
-    'class' => 'testimonial-carousel',
+    'class' => 'cs-testimonial-carousel',
     'data-layout' => '1'
 ];
 
@@ -38,7 +38,7 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
             'spaceBetween' => $settings['space_between_lg']['column'] ?: 30
         ],
         'xl' => [
-            'slidesPerView' => $settings['slides_per_view_xl'] ?: 3,
+            'slidesPerView' => $settings['slides_per_view_xl'] ?: 2,
             'gridRows' => $settings['swiper_grid_rows_xl'] ?: 1,
             'spaceBetween' => $settings['space_between_xl']['column'] ?: 42
         ],
@@ -63,23 +63,23 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
                 $icon     = $own_icons[$i]['icon'] ?? $settings['icon'];
             ?>
                 <div class="carousel__item swiper-slide">
-                    <div class="testimonial">
+                    <div class="cs-testimonial">
                         <svg class="mask" width="89" height="89" viewBox="0 0 89 89" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.5 89L0 0C7 0 11 5 11 11V66C11 73 17 78 23 78H78C85 78 89 83 89 89H0.5Z" fill="white"/>
                         </svg>
                         <?php if( !empty( $icon['value'] ) ) : ?>
-                            <div class="testimonial__icon box-icon">
+                            <div class="cs-testimonial__icon box-icon">
                                 <?php steelnova_elementor_print_icon( $icon ); ?>
                             </div>
                         <?php endif; ?>
-                        <div class="testimonial__rating">
+                        <div class="cs-testimonial__rating">
                             <?php if( !empty( $settings['rating_label'] ) ) : ?>
-                                <div class="testimonial__rating-label">
+                                <div class="cs-testimonial__rating-label">
                                     <?php echo esc_html( $settings['rating_label'] ); ?>
                                 </div>
                             <?php endif; ?>
                             <?php if( !empty( $rating )) : ?>
-                                <div class="testimonial__rating-star">
+                                <div class="cs-stars">
                                     <?php for($i=1; $i<=5; $i++) : 
                                         $star_icon_class = $rating <= $i ? 'fill' : 'normal';
                                     ?>
@@ -89,21 +89,20 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
                                     <?php endfor; ?>
                                 </div>
                             <?php endif; ?>
-                            
                         </div>
-                        <p class="testimonial__content">
+                        <p class="cs-testimonial__content">
                             <?php echo esc_html( $content ); ?>
                         </p>
                         <div class="divider"></div>
-                        <div class="testimonial__author">
+                        <div class="cs-testimonial__author">
                             <?php if( !empty( $author_image['id'] ) ) : ?>
-                                <?php steelnova_print_image_by_size($author_image['id'], null, null, ['class' => 'testimonial__author-image']); ?>
+                                <?php steelnova_print_image_by_size($author_image['id'], null, null, ['class' => 'cs-testimonial__author-image']); ?>
                             <?php endif; ?>
-                            <div class="testimonial__author-content">
-                                <div class="testimonial__author-name">
+                            <div class="cs-testimonial__author-content">
+                                <div class="cs-testimonial__author-name">
                                     <?php echo esc_html( $author_name ); ?>
                                 </div>
-                                <span class="testimonial__author-title">
+                                <span class="cs-testimonial__author-title">
                                     <?php echo esc_html( $author_title ); ?>
                                 </span>
                             </div>

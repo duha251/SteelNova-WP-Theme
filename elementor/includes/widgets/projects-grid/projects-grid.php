@@ -53,6 +53,10 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
                     'title' => __('Layout 1', 'steelnova'),
                     'image' => content_url('/uploads/widget-layout/project-1.webp'),
                 ],
+                '2' => [
+                    'title' => __('Layout 2', 'steelnova'),
+                    'image' => content_url('/uploads/widget-layout/project-2.webp'),
+                ],
             ],
             'default' => '1',
         ]);
@@ -158,23 +162,15 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
             'label' => __('Show Button', 'steelnova'),
             'default' => 'yes',
             'condition' => [
-                'layout' => ['1', '2', '3']
+                'layout' => ['1', '2']
             ]
         ]);
         $this->text([
             'name' => 'btn_text',
             'label' => __('Button Text', 'steelnova'),
             'condition' => [
-                'layout' => ['1', '2', '3'],
+                'layout' => ['1'],
                 'show_button' => 'yes', 
-            ]
-        ]);
-        $this->switcher([
-            'name' => 'show_layout_feature',
-            'label' => __('Show Layout Feature', 'steelnova'),
-            'default' => 'yes',
-            'condition' => [
-                'layout' => ['3']
             ]
         ]);
         $this->switcher([
@@ -201,7 +197,26 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
             'label' => __('Show Category', 'steelnova'),
             'default' => 'yes',
             'condition' => [
-                'layout' => ['1', '2', '3']
+                'layout' => ['1', '2']
+            ]
+        ]);
+
+        $this->switcher([
+            'name' => 'show_meta',
+            'label' => __('Show Meta', 'steelnova'),
+            'default' => 'yes',
+            'condition' => [
+                'layout' => ['2']
+            ]
+        ]);
+        $this->number([
+            'name' => 'num_of_meta',
+            'label' => __( 'Number of Meta', 'steelnova' ),
+            'min' => -1,
+            'description' => __('Show Full Meta with value = -1', 'steelnova'),
+            'condition' => [
+                'layout' => ['2'],
+                'show_meta' => 'yes'
             ]
         ]);
         

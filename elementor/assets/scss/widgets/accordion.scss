@@ -1,14 +1,21 @@
 @use '../../../../assets/scss/core' as *;
 
-.steelnova-accordion {
+.cs-accordion {
     &.has-divider {
-        .steelnova-accordion__item + .steelnova-accordion__item {
-            border-top: thin solid #DCE2E1;
+        // .cs-accordion__item + .cs-accordion__item {
+        //     border-top: thin solid #DCE2E1;
+        // }
+        .cs-accordion__item {
+            &:last-child {
+                .cs-accordion__header {
+                    border-color: transparent;
+                }
+            }
         }
     }
     &__item {
         cursor: pointer;
-        padding: 18px 0px;
+        padding-top: 20px;
         &.is-active {
             .icon-plus {
                 background-color: #FF5B1B;
@@ -21,6 +28,8 @@
     }
     &__header {
         @include d-flex(30px, null, space-between);
+        padding-bottom: 15px;
+        border-bottom: thin solid #DCE2E1;
     }
     &__icon {
         flex-shrink: 0;
@@ -40,8 +49,10 @@
         overflow: hidden;
         transition: height 500ms ease;
         > p {
-            padding-top: 21px;
+            padding-block: 22px;
+            padding-bottom: 16px;
             cursor: default;
+            max-width: 675px;
         }
     }
 }

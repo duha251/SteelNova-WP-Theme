@@ -1,0 +1,33 @@
+@use '../../../../assets/scss/core' as *;
+
+.products-listing {
+    @include d-flex(11px);
+    flex-direction: column;
+    .product {
+        @include d-flex(15px, center);
+        &__thumbnail {
+            flex: 0 1 98px;
+            min-width: 70px;
+            padding: 15px;
+            min-height: 120px;
+            border-radius: 10px;
+            border: thin solid #DCDCDC;
+            @include d-flex(null, center, center);
+            img {
+                max-width: 60px;
+            }
+        }
+        &__content {
+            flex: 0 1 200px;
+        }
+        &__name {
+            margin-top: 11px;
+            > a {
+                color: inherit;
+            }
+            &:hover {
+                color: #FF5B1B;
+            }
+        }
+    }
+}

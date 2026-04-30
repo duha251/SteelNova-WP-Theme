@@ -182,7 +182,7 @@ class Pxl_Hooks {
      * Resgister taxonomies
      */
     function register_taxonomies( $taxonomies ) {
-        $taxonomies['project-category'] = array(
+        $taxonomies['project_category'] = array(
             'status'     => true,
             'post_type'  => array( 'project' ),
             'taxonomy'   => 'Project Category',

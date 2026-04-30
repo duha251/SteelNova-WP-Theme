@@ -21,8 +21,33 @@
 
 .blog {
     #main {
+        --cs-container: 1100px;
+        padding-inline: 15px;
         .inner {
             @include site-spacing-block;
+        }
+    }
+    &.has-sidebar {
+        #main {
+            --cs-container: 1392px;
+            .inner {
+                @include d-flex(100px 30px, null, space-between);
+                .content-area {
+                    flex: 0 1 952px;
+                }
+                .sidebar-area {
+                    flex: 0 1 392px;
+                }
+                @media #{$max-md} {
+                    flex-wrap: wrap;
+                    .content-area {
+                        flex: 0 1 100%;
+                    }
+                    .sidebar-area {
+                        flex: 0 1 100%;
+                    }
+                }
+            }
         }
     }
 }

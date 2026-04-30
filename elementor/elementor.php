@@ -43,12 +43,9 @@ class SteelNova_Elementor {
 		add_filter( 'elementor/settings/general/disable_typography_schemes', '__return_false' );
 
 		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'enqueue_frontend_styles' ] );
+		add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_editor_styles' ] );
 		add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'enqueue_editor_styles' ] );
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
-
-
-		// add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_editor_styles' ] );
-
 		add_action( 'elementor/frontend/after_enqueue_scripts', [ $this, 'enqueue_frontend_scripts' ] );
 
 		add_action( 'elementor/elements/categories_registered', [ $this, 'register_elementor_widget_categories' ] );
@@ -95,7 +92,15 @@ class SteelNova_Elementor {
 	public function register_elementor_widget_categories( $elements_manager ) {
 		$categories = [
 			'steelnova-theme' => [
-				'title' => esc_html__( 'SteelNova Widgets', 'steelnova' ),
+				'title' => esc_html__( 'SteelNova Elements', 'steelnova' ),
+				'icon'  => 'fa fa-plug',
+			],
+			'steelnova-single' => [
+				'title' => esc_html__( 'SteelNova Post', 'steelnova' ),
+				'icon'  => 'fa fa-plug',
+			],
+			'steelnova-woo' => [
+				'title' => esc_html__( 'SteelNova WOO', 'steelnova' ),
 				'icon'  => 'fa fa-plug',
 			],
 		];
@@ -348,5 +353,6 @@ class SteelNova_Elementor {
 		wp_register_script('steelnova-counter', get_template_directory_uri() . '/elementor/assets/js/counter.js', ['jquery', 'ScrollTrigger'], $this->version, true);
 		wp_register_script('steelnova-countdown', get_template_directory_uri() . '/elementor/assets/js/countdown.js', ['jquery'], $this->version, true);
 		wp_register_script('steelnova-accordion', get_template_directory_uri() . '/elementor/assets/js/accordion.js', ['jquery'], $this->version, true);
+		wp_register_script('steelnova-price-filter', get_template_directory_uri() . '/elementor/assets/js/price-filter.js', ['jquery'], $this->version, true);
 	}
 }

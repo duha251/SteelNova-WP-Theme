@@ -43,7 +43,7 @@ class Widget_List extends SteelNova_Widget_Base {
         ]);
         $this->group_flex_css([
             'name' => 'flex_css',
-            'selector' => '{{WRAPPER}} .list',
+            'selector' => '{{WRAPPER}} .cs-list',
         ]);
         $this->end_controls_section();
     }
@@ -59,7 +59,7 @@ class Widget_List extends SteelNova_Widget_Base {
         $this->group_flex_css([
             'name' => 'item_flex_css',
             'exclude' => ['align_items_vertical', 'justify_content_vertical', 'wrap'],
-            'selector' => '{{WRAPPER}} .list .list__item',
+            'selector' => '{{WRAPPER}} .cs-list .cs-list__item',
         ]);
         $this->end_controls_section();
     }
@@ -101,14 +101,15 @@ class Widget_List extends SteelNova_Widget_Base {
             'label' => __( 'Icon Size', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .list .list__item{{CURRENT_ITEM}} .list__item-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .list .list__item{{CURRENT_ITEM}} .list__item-icon svg' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-list .cs-list__item{{CURRENT_ITEM}} .cs-list__item-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-list .cs-list__item{{CURRENT_ITEM}} .cs-list__item-icon svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ], $repeater);
         
         $this->repeater([
             'name'   => 'items',
             'label'  => __('List', 'steelnova'),
+            'title_field' => '{{{ text }}',
             'fields' => $repeater->get_controls(),
         ]);
         $this->end_controls_section();
@@ -126,8 +127,8 @@ class Widget_List extends SteelNova_Widget_Base {
             'name' => 'icon_size',
             'label' => __( 'Icon Size', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .list .list__item .list__item-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .list .list__item .list__item-icon svg' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
@@ -135,14 +136,14 @@ class Widget_List extends SteelNova_Widget_Base {
             'label' => __( 'Box Width', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .list .list__item .list__item-icon' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
             'name' => 'box_icon_height',
             'label' => __( 'Box Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .list .list__item .list__item-icon' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon' => 'height: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->_start_controls_tabs([
@@ -157,16 +158,16 @@ class Widget_List extends SteelNova_Widget_Base {
             'name' => 'icon_color',
             'label' => __( 'Icon Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .list .list__item .list__item-icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'icon_background',
-            'selector' => '{{WRAPPER}} .list .list__item .list__item-icon',
+            'selector' => '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css',
-            'selector' => '{{WRAPPER}} .list .list__item .list__item-icon',
+            'selector' => '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon',
         ]);
         $this->end_controls_tab();
 
@@ -184,12 +185,12 @@ class Widget_List extends SteelNova_Widget_Base {
         ]);
         $this->group_background([
             'name' => 'icon_background_hover',
-            'selector' => '{{WRAPPER}} .list .list__item .list__item-icon:not(.background-gradient):hover,
-                           {{WRAPPER}} .list .list__item .list__item-icon:not(.background-gradient):before',
+            'selector' => '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon:not(.background-gradient):hover,
+                           {{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon:not(.background-gradient):before',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css_hover',
-            'selector' => '{{WRAPPER}} .list .list__item .list__item-icon:not(.background-gradient):hover',
+            'selector' => '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon:not(.background-gradient):hover',
         ]);
         $this->select([
             'name' => 'icon_hover_style',
@@ -212,14 +213,14 @@ class Widget_List extends SteelNova_Widget_Base {
         //         'left'   => __('Left', 'steelnova'),
         //     ],
         //     'selectors' => [
-        //         '{{WRAPPER}} .list .list__item .list__item-icon:before' => 'transform-origin: {{VALUE}};'
+        //         '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon:before' => 'transform-origin: {{VALUE}};'
         //     ]
         // ]);
         $this->time([
             'name' => 'icon_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .list .list__item .list__item-icon' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-icon' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -238,7 +239,7 @@ class Widget_List extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'text_typography',
-            'selector' => '{{WRAPPER}} .list .list__item .list__item-text, {{WRAPPER}} .list .list__item .list__item-link',
+            'selector' => '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-text, {{WRAPPER}} .cs-list .cs-list__item .cs-list__item-link',
         ]);
 
         $this->_start_controls_tabs([
@@ -254,7 +255,7 @@ class Widget_List extends SteelNova_Widget_Base {
             'name' => 'text_color',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .list .list__item .list__item-text, {{WRAPPER}} .list .list__item .list__item-link' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-text, {{WRAPPER}} .cs-list .cs-list__item .cs-list__item-link' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -268,7 +269,7 @@ class Widget_List extends SteelNova_Widget_Base {
             'name' => 'text_color_hover',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .list .list__item .list__item-text:hover, {{WRAPPER}} .list .list__item .list__item-link:hover' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-text:hover, {{WRAPPER}} .cs-list .cs-list__item .cs-list__item-link:hover' => 'color: {{VALUE}};',
             ],
         ]);
         $this->time([
@@ -276,7 +277,7 @@ class Widget_List extends SteelNova_Widget_Base {
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .list .list__item .list__item-text, {{WRAPPER}} .list .list__item .list__item-link' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-list .cs-list__item .cs-list__item-text, {{WRAPPER}} .cs-list .cs-list__item .cs-list__item-link' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();

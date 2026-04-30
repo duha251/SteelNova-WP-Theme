@@ -44,7 +44,7 @@ if ( post_password_required() ) {
     $args = array(
         'id_form'           => 'commentform',
         'id_submit'         => 'submit',
-        'class_submit'      => 'button button--primary',
+        'class_submit'      => 'cs-button cs-button--primary',
         'title_reply'       => __( 'Make a Comment', 'steelnova'),
         'title_reply_to'    => __( 'Write your comment %s', 'steelnova'),
         'cancel_reply_link' => __( 'Cancel Comment', 'steelnova'),

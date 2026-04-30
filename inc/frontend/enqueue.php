@@ -46,9 +46,27 @@ class Enqueue {
 		wp_register_script('swiper-bundle', get_template_directory_uri() . '/assets/js/libraries/swiper-bundle.min.js', [], '12.1.3', true);
 		wp_register_script('gsap', get_template_directory_uri() . '/assets/js/libraries/gsap.min.js', [], '3.14.2', true);
 		wp_register_script('ScrollTrigger', get_template_directory_uri() . '/assets/js/libraries/ScrollTrigger.min.js', ['gsap'], '3.14.2', true);
+		wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/libraries/nice-select.min.js', [], '3.4.3', true);
 
-		// Appply defer and module attributes to the main app.js script
-		wp_enqueue_script_module('app', get_template_directory_uri() . '/assets/js/app.js', [], $this->version, []);
+		// Core
+		wp_enqueue_script('steelnova-utils', get_template_directory_uri() . '/assets/js/core/utils.js', [], $this->version, true);
+
+		// Components
+		wp_enqueue_script('steelnova-drawer', get_template_directory_uri() . '/assets/js/components/drawer.js', [], $this->version, true);
+		wp_enqueue_script('steelnova-video-popup', get_template_directory_uri() . '/assets/js/components/video-popup.js', [], $this->version, true);
+
+		// App
+		wp_enqueue_script(
+			'app',
+			get_template_directory_uri() . '/assets/js/app.js',
+			[
+				'steelnova-utils',
+				'steelnova-drawer',
+				'steelnova-video-popup',
+			],
+			$this->version,
+			true
+		);
     }
 
     /**
@@ -58,8 +76,11 @@ class Enqueue {
         wp_enqueue_style('steelnova-style', get_template_directory_uri() . '/assets/css/style.min.css', [], $this->version);
         wp_add_inline_style( 'steelnova-style', $this->render_inline_styles() );
         wp_enqueue_style('steelnova-wp-block-style', get_template_directory_uri() . '/assets/css/wp-block.css', [], $this->version);
+
+		// Libraries
+        wp_enqueue_style('nice-select-style', get_template_directory_uri() . '/assets/css/libraries/nice-select.css', [], '1.0.0');
 		
-        // // Enquence Google Font
+        // Enquence Google Font
         $google_font_url = $this->get_google_fonts_url();
         if ( ! empty( $google_font_url ) ) {
             wp_enqueue_style( 'steelnova-google-fonts', $google_font_url, [], null );
@@ -93,8 +114,9 @@ class Enqueue {
 		$linear_gradient_colors    = $this->get_style_config( 'linear_gradient' );
 		$theme_typography = $this->get_style_config( 'theme_typography' );
 		$spacing_block    = $this->get_style_config( 'spacing_block' );
+		$spacing_inline   = $this->option->get_option('spacing_inline', []);
 		$css_editor = $this->option->get_option('css_editor', '');
-		
+		steelnova_debug( $spacing_inline );
 		$breakpoints = [
 			'xs' => '575px',
 			'sm' => '767px',
@@ -111,19 +133,19 @@ class Enqueue {
 
 		echo ':root{';
 			foreach ( $theme_colors as $color => $value ) {
-				printf( '--steelnova-%1$s-color: %2$s;', esc_attr( $color ), esc_attr( $value ) );
+				printf( '--cs-%1$s-color: %2$s;', esc_attr( $color ), esc_attr( $value ) );
 			}
 			foreach ( $link_colors as $color => $value ) {
-				printf( '--steelnova-link-%1$s: %2$s;', esc_attr( $color ), esc_attr( $value ) );
+				printf( '--cs-link-%1$s: %2$s;', esc_attr( $color ), esc_attr( $value ) );
 			}
 			foreach ( $linear_gradient_colors as $color => $value ) {
-				printf( '--steelnova-linear-color-%1$s: %2$s;', esc_attr( $color ), esc_attr( $value ) );
+				printf( '--cs-linear-color-%1$s: %2$s;', esc_attr( $color ), esc_attr( $value ) );
 			}
 			foreach ( $theme_typography as $font => $value ) {
 				$font_family = is_array( $value) ? $value['font-family'] : $value;
-				printf( '--steelnova-%1$s-font: %2$s;', esc_attr( $font ), esc_attr( $font_family ) );
+				printf( '--cs-%1$s-font: %2$s;', esc_attr( $font ), esc_attr( $font_family ) );
 			}
-			printf( '--steelnova-container: %1$s;', esc_attr( $container_size . $container_unit ) );
+			printf( '--cs-container: %1$s;', esc_attr( $container_size . $container_unit ) );
 		echo '}';
 
 		foreach ( $spacing_block as $breakpoint_key => $value ) {
@@ -152,6 +174,9 @@ class Enqueue {
 				}
 			}
 		}
+
+		
+
 		if( !empty( $css_editor ) ) {
 			pxl_print_html( $css_editor );
 		}
@@ -187,14 +212,14 @@ class Enqueue {
                 'heading'   => $this->option->get_option( 'heading_font', 'Plus Jakarta Sans' ),
 			],
 			'spacing_block' => [
-				''          =>  $this->option->get_theme_option( 'spacing_block'   , [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'xl'        =>  $this->option->get_theme_option( 'spacing_block_xl', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'lg'        =>  $this->option->get_theme_option( 'spacing_block_lg', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'md'        =>  $this->option->get_theme_option( 'spacing_block_md', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'sm'        =>  $this->option->get_theme_option( 'spacing_block_sm', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'xs'        =>  $this->option->get_theme_option( 'spacing_block_xs', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
+				''          =>  $this->option->get_option( 'spacing_block'   , [ 'padding-top' => '', 'padding-bottom' => '' ] ),
+				'xl'        =>  $this->option->get_option( 'spacing_block_xl', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
+				'lg'        =>  $this->option->get_option( 'spacing_block_lg', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
+				'md'        =>  $this->option->get_option( 'spacing_block_md', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
+				'sm'        =>  $this->option->get_option( 'spacing_block_sm', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
+				'xs'        =>  $this->option->get_option( 'spacing_block_xs', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
 			],
-			'container' => $this->option->get_theme_option( 'container_width', ['width' => '', 'units' => 'px'] ),
+			'container' => $this->option->get_option( 'container_width', ['width' => '', 'units' => 'px'] ),
 		];
 		return isset( $configs[ $key ] ) ? $configs[ $key ] : [];
 	}

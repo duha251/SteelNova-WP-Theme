@@ -9,11 +9,11 @@ class SteelNova_Admin_User {
     private $meta_key = 'steelnova_user_avatar_id';
 
     public function __construct() {
-        add_action( 'show_user_profile', [ $this, 'render_avatar_field' ] );
-        add_action( 'edit_user_profile', [ $this, 'render_avatar_field' ] );
+        add_action( 'show_user_profile', [ $this, 'render_user_custom_field' ] );
+        add_action( 'edit_user_profile', [ $this, 'render_user_custom_field' ] );
 
-        add_action( 'personal_options_update', [ $this, 'save_avatar_field' ] );
-        add_action( 'edit_user_profile_update', [ $this, 'save_avatar_field' ] );
+        add_action( 'personal_options_update', [ $this, 'save_user_custom_field' ] );
+        add_action( 'edit_user_profile_update', [ $this, 'save_user_custom_field' ] );
 
         add_action( 'admin_enqueue_scripts', [ $this, 'load_media_assets' ] );
 
@@ -31,7 +31,7 @@ class SteelNova_Admin_User {
         wp_enqueue_media();
     }
 
-    public function render_avatar_field( $user ) {
+    public function render_user_custom_field( $user ) {
         $avatar_id = get_user_meta( $user->ID, $this->meta_key, true );
         $preview_url = $avatar_id ? wp_get_attachment_image_url( $avatar_id, 'thumbnail' ) : '';
         ?>
@@ -50,6 +50,18 @@ class SteelNova_Admin_User {
                         <button type="button" class="button" id="mv_upload_btn"><?php esc_html_e( 'Choose Image', 'steelnova' ); ?></button>
                         <button type="button" class="button" id="mv_remove_btn" style="<?php echo ! $avatar_id ? 'display:none;' : ''; ?>"><?php esc_html_e( 'Remove', 'steelnova' ); ?></button>
                         <p class="description"><?php esc_html_e( 'This image will be used as a priority over Gravatar.', 'steelnova' ); ?></p>
+                    </td>
+                </tr>
+                <!-- Position -->
+                <tr>
+                    <th><label for="position">Position</label></th>
+                    <td>
+                        <input type="text" 
+                            name="position" 
+                            id="position" 
+                            value="<?php echo esc_attr(get_user_meta($user->ID, 'position', true)); ?>" 
+                            class="regular-text" />
+                        <p class="description">Enter user position (e.g. Developer, Manager...)</p>
                     </td>
                 </tr>
             </table>
@@ -81,11 +93,15 @@ class SteelNova_Admin_User {
         <?php
     }
 
-    public function save_avatar_field( $user_id ) {
+    public function save_user_custom_field( $user_id ) {
         if ( ! current_user_can( 'edit_user', $user_id ) ) return;
         
         if ( isset( $_POST['steelnova_user_avatar_id'] ) ) {
             update_user_meta( $user_id, $this->meta_key, sanitize_text_field( $_POST['steelnova_user_avatar_id'] ) );
+        }
+
+        if (isset($_POST['position'])) {
+            update_user_meta($user_id, 'position', sanitize_text_field($_POST['position']));
         }
     }
 

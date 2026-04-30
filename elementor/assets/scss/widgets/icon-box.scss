@@ -1,6 +1,6 @@
 @use '../../../../assets/scss/core' as *;
 
-.icon-box {
+.cs-icon-box {
     @include d-flex(15px, center);
     &__title {
         > a {
@@ -18,7 +18,7 @@
         flex-direction: column;
         align-items: stretch;
         gap: 30px;
-        .icon-box__icon {
+        .cs-icon-box__icon {
             @include box-size(50px);
             align-items: flex-start;
             justify-content: flex-start;
@@ -33,13 +33,13 @@
                 background-color: rgba($color: #FFF, $alpha: .1);
             }
         }
-        .icon-box__title {
+        .cs-icon-box__title {
             color: #FFF;
         }
-        .icon-box__content {
+        .cs-icon-box__content {
             gap: 10px;
         }
-        .icon-box__description {
+        .cs-icon-box__description {
             color: #FFF;
             line-height: 1.625;
         }

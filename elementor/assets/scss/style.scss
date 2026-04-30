@@ -47,7 +47,7 @@
 }
 
 // List
-.list {
+.cs-list {
     @include d-flex(15px);
     flex-direction: column;
     &__item {
@@ -59,7 +59,10 @@
 }
 
 // Image Gallery
-.image-gallery {
+.cs-image-gallery {
+    .grid__item {
+        line-height: 0;
+    }
     &__item {
         display: inline-flex;
         img {
@@ -85,9 +88,12 @@
 }
 
 // Countdown
-.steelnova-countdown {
+.cs-countdown {
     @include d-flex(20px);
     color: #FF5B1B;
+    @media #{$max-xs} {
+        gap: 8px;
+    }
     &__timer {
         @include d-inline-flex(null, center);
         flex-direction: column;
@@ -103,7 +109,7 @@
 }
 
 // Search Form
-.steelnova-search-form {
+.cs-search-form {
     position: relative;
     width: 100%;
     &__form {
@@ -132,7 +138,7 @@
     color: #FFF;
     @include d-inline-flex(8px, center);
     @include text-button-1;
-    padding: 17px 25px;
+    padding: 17.5px 28.5px;
     border-radius: 100px;
     background-color: #FF5B1B;
     .separator {
@@ -145,7 +151,7 @@
 
 
 // Post Tags
-.steelnova-post-tags {
+.cs-post-tags {
     @include d-flex(10px, null, null);
     flex-wrap: wrap;
     a {
@@ -158,14 +164,18 @@
         line-height: 1.66667;
         letter-spacing: 0.72px;
         text-transform: uppercase;
+        &:hover {
+            background-color: #FF5B1B;
+            color: #FFF;
+        }
     }
 }
 
 // Post Social Share
-.steelnova-post-social-share {
+.cs-post-social-share {
     @include d-flex(15px, center);
     &__label {
-        color: var(--steelnova-heading-color);
+        color: var(--cs-heading-color);
         vertical-align: middle;
         @include h7;
     }
@@ -177,34 +187,8 @@
         @include d-inline-flex(null, center, center);
         background-color: #0A1119;
         color: #FFF;
-    }
-}
-
-// Post Author
-.steelnova-post-author {
-    @include d-flex(28px);
-    &__avatar {
-        @include round-box(133px);
-        flex-shrink: 0;
-        overflow: hidden;
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    &__name {
-        @include h8;
-        color: var(--steelnova-heading-color);
-        margin-bottom: 13px;
-    }
-    &__bio {
-        @include paragraph-5;
-        margin-bottom: 13px;
-    }
-    &__socials {
-        @include d-inline-flex(33px);
-        > a {
-            color: #121512;
+        &:hover {
+            background-color: #FF5B1B;
         }
     }
 }
@@ -273,5 +257,87 @@
     .divider {
         flex-grow: 1;
         background-color: #DCDCDC;
+    }
+}
+
+.cs-categories {
+    display: flex;
+    flex-direction: column;
+    --cs-row-gap: 10px;
+    margin-block: calc( -1 * ( var(--cs-row-gap) / 2 ) );
+    li {
+        a {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            gap: 15px;
+            justify-content: space-between;
+            @include paragraph-3;
+            color: var(--cs-heading-color);
+            padding-block: var(--cs-row-gap);
+            .category__count {
+                @include paragraph-4;
+                color: #4B535D;
+            }
+        }
+    }
+    &.has-divider {
+        li + li {
+            border-top: thin dotted #4B535D;
+        }
+    }
+}
+
+// Tags
+.cs-tags {
+    @include d-flex(10px);
+    flex-wrap: wrap;
+    a {
+        @include d-flex(null, center, center);
+        border-radius: 6px;
+        line-height: 1;
+        border: thin solid #DCDCDC;
+        height: 44px;
+        padding-inline: 23px;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.72px;
+        text-transform: uppercase;
+        transition: background-color .3s linear, color .3s linear, border .3s linear;
+        &:hover {
+            background-color: #FF5B1B;
+            color: rgba( #FFF, 0.8 );
+            border-color: transparent;
+        }
+    }
+}
+
+// Brands
+.cs-brands {
+    display: flex;
+    flex-direction: column;
+    --cs-row-gap: 10px;
+    margin-block: calc( -1 * ( var(--cs-row-gap) / 2 ) );
+    li {
+        @include d-flex(8px, center);
+        a {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            gap: 15px;
+            justify-content: space-between;
+            @include paragraph-3;
+            color: var(--cs-heading-color);
+            padding-block: var(--cs-row-gap);
+            .category__count {
+                @include paragraph-4;
+                color: #4B535D;
+            }
+        }
+    }
+    &.has-divider {
+        li + li {
+            border-top: thin dotted #4B535D;
+        }
     }
 }

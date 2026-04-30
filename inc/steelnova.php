@@ -23,6 +23,9 @@ use SteelNova\Inc\Plugins\Redux\Page_Options;
 //Elementor
 use SteelNova\Elementor\SteelNova_Elementor;
 
+// WooCommerce
+use SteelNova\WooCommerce\SteelNova_WooCommerce;
+
 
 final class SteelNova {
 
@@ -32,6 +35,7 @@ final class SteelNova {
     public $component;
     public $post_manager;
     public $customize;
+    public $woo;
 
     private function __construct() {
         $this->register_autoloader();
@@ -74,6 +78,10 @@ final class SteelNova {
         if ( did_action( 'elementor/loaded' )) {
             new SteelNova_Elementor( $this->get_theme_version() );
         }
+
+        if( class_exists( 'WooCommerce' ) ) {
+            $this->woo = new SteelNova_WooCommerce( $this->option, $this->get_theme_version() ) ;
+        }
     }
 
     public function get_theme_name() {
@@ -112,6 +120,7 @@ final class SteelNova {
         ];
 
         require_once get_template_directory() . '/elementor/elementor.php';
+        require_once get_template_directory() . '/woo/woo.php';
 
         foreach ( $prefixes as $prefix => $base_dir ) {
             if ( strpos( $class_name, $prefix ) !== 0 ) {

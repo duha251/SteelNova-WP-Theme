@@ -7,7 +7,7 @@
 
         $carousels.each(function () {
             const $carousel = $(this);
-
+            const carouselClasses = $carousel.attr('class');
             if ($carousel.hasClass('swiper-initialized')) return;
 
             const serverSettings = $carousel.data('swiper') || {};
@@ -30,7 +30,10 @@
                 mousewheel: !!serverSettings.mousewheel,
             };
 
-            // 3. Xử lý Autoplay
+            if( serverSettings.effect ) {
+                settings.effect = serverSettings.effect;
+            }
+
             if (serverSettings.autoPlay && serverSettings.autoPlay.enable) {
                 settings.autoplay = {
                     delay: serverSettings.autoPlay.delay || 3000,
@@ -40,7 +43,6 @@
                 };
             }
 
-            // 4. Xử lý Free Mode
             if (serverSettings.free_mode && serverSettings.free_mode.enable) {
                 settings.freeMode = {
                     enabled: true,
@@ -49,13 +51,10 @@
                 };
             }
 
-            // 5. Xử lý Navigation (Ưu tiên ID từ PHP nếu có)
             if (serverSettings.navigation) {
                 const prevSelector = serverSettings.navigation.prevEl || '';
                 const nextSelector = serverSettings.navigation.nextEl || '';
-                console.log(serverSettings.navigation.prevEl)
 
-                console.log( $(serverSettings.navigation.prevEl)[0] )
                 const prevEl = prevSelector
                     ? document.querySelector(prevSelector)
                     : null;
@@ -69,10 +68,8 @@
                     nextEl: nextEl || $carousel.find('.carousel-button-next')[0] || null,
                 };
 
-                console.log('navigation:', settings.navigation);
             }
 
-            // 6. Xử lý Pagination
             if (serverSettings.pagination) {
                 settings.pagination = {
                     el: $carousel.find('.carousel-pagination')[0],
@@ -129,35 +126,23 @@
             settings.on = {
                 init: function () {
                     const swiper = this;
-                    const $el = $(swiper.el);
-                    if ($el.closest('#horizontalCarousel').length) {
-                        const mainSwiper = $('.custom-product-gallery .swiper')[0]?.swiper;
-                        if (mainSwiper) {
-                            $(swiper.slides).on('click', function () {
-                                const index = $(this).index();
-                                const realIndex = this.dataset.swiperSlideIndex !== undefined
-                                    ? parseInt(this.dataset.swiperSlideIndex, 10)
-                                    : index;
-                                mainSwiper.slideTo(realIndex);
-                            });
+                    const swiperEl = $(swiper.el);
+                },
+                slideChange: function () {
+                    const swiper = this;
+                    const activeIndex = swiper.activeIndex;
+                    let realIndex = swiper.realIndex;
+                    let index = serverSettings.loop == true ? activeIndex : realIndex;
+                    if( carouselClasses.includes('cs-testimonial-carousel__content') ) {
+                        const $carouselThumbs = $carousel.siblings('.cs-testimonial-carousel__images');
+                        if( $carouselThumbs.length ) {
+                            $carouselThumbs.get(0).swiper.slideTo(index);
                         }
                     }
                 },
-                slideChange: function () {
-                    handleBoxShadow(this);
-                },
                 transitionEnd: function () {
-                    handleBoxShadow(this);
                 }
             };
-
-            function handleBoxShadow(swiper) {
-                const $el = $(swiper.el);
-                if ($el.hasClass('swiper-boxshadow')) {
-                    $(swiper.slides).css('opacity', '0');
-                    $(swiper.slides).filter('.swiper-slide-visible').css('opacity', '1');
-                }
-            }
 
             new Swiper($carousel[0], settings);
         });

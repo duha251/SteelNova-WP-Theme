@@ -34,6 +34,29 @@ class Layout {
     }
 
     public function after_main_content_render() {
+        if( class_exists('WooCommerce') ) {
+            ?> 
+                <svg class="svg-origintal svg-linked">
+                    <defs>
+                        <linearGradient id="steelnova-star-201" x1="7.60846" y1="0" x2="7.60846" y2="16" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF5B1B"/>
+                            <stop offset="1" stop-color="#993710"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <svg class="svg-origintal svg-linked">
+                    <defs>
+                        <linearGradient id="steelnova-star-201_gradient" x1="7.60846" y1="0" x2="7.60846" y2="16" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF5B1B"/>
+                            <stop offset="1" stop-color="#993710"/>
+                        </linearGradient>
+                        <clipPath id="steelnova-star-201_clip">
+                            <rect x="0" y="0" width="8" height="15"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            <?php
+        }
         $this->get_footer();
     }
 

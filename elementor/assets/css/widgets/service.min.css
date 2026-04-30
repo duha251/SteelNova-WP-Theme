@@ -41,7 +41,7 @@
   background-color: #DCDCDC;
 }
 .service__title {
-  font-family: var(--steelnova-heading-font);
+  font-family: var(--cs-heading-font);
   font-weight: 600;
   line-height: 1.375;
   align-self: center;
@@ -67,8 +67,8 @@
   align-items: center;
 }
 .service__button {
-  font-family: var(--steelnova-text-font);
-  font-size: 14px;
+  font-family: var(--cs-text-font);
+  font-size: 13px;
   font-weight: 600;
   line-height: 1;
   color: #FFF;

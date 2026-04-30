@@ -44,7 +44,7 @@ const hideOverlays = () => {
     document.querySelector(SELECTORS.overlay).classList.remove("is-visible");
 };
 
-export const closeDrawer = (panel = currentPanel) => {
+const closeDrawer = (panel = currentPanel) => {
     if (!panel) return;
 
     panel.classList.remove("is-active");
@@ -56,7 +56,7 @@ export const closeDrawer = (panel = currentPanel) => {
     }
 };
 
-export const openDrawer = (panel) => {
+const openDrawer = (panel) => {
     if (!panel) return;
 
     if (currentPanel && currentPanel !== panel) {
@@ -70,7 +70,7 @@ export const openDrawer = (panel) => {
     currentPanel = panel;
 };
 
-export const initDrawer = () => {
+const initDrawer = () => {
     if (isDrawerBound) return;
     isDrawerBound = true;
 

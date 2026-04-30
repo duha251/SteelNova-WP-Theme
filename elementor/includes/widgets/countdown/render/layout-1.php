@@ -1,6 +1,6 @@
 <?php
 $wrapper_attrs_tmp = [
-    'class' => 'steelnova-countdown',
+    'class' => 'cs-countdown',
 ];
 
 $date = new DateTime();
@@ -18,11 +18,11 @@ $wrapper_attrs = array_merge( $wrapper_attrs_tmp, $wrapper_attrs );
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
 <ul <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
-    <li class="steelnova-countdown__timer days" data-unit="<?php echo esc_attr($day_unit); ?>"></li>
-    <li class="steelnova-countdown__separator"><?php esc_html_e(':', 'steelnova'); ?></li>
-    <li class="steelnova-countdown__timer hours" data-unit="<?php echo esc_attr($hour_unit); ?>"></li>
-    <li class="steelnova-countdown__separator"><?php esc_html_e(':', 'steelnova'); ?></li>
-    <li class="steelnova-countdown__timer minutes" data-unit="<?php echo esc_attr($minute_unit); ?>"></li>
-    <li class="steelnova-countdown__separator"><?php esc_html_e(':', 'steelnova'); ?></li>
-    <li class="steelnova-countdown__timer seconds" data-unit="<?php echo esc_attr($second_unit); ?>"></li>
+    <li class="cs-countdown__timer days" data-unit="<?php echo esc_attr($day_unit); ?>"></li>
+    <li class="cs-countdown__separator"><?php esc_html_e(':', 'steelnova'); ?></li>
+    <li class="cs-countdown__timer hours" data-unit="<?php echo esc_attr($hour_unit); ?>"></li>
+    <li class="cs-countdown__separator"><?php esc_html_e(':', 'steelnova'); ?></li>
+    <li class="cs-countdown__timer minutes" data-unit="<?php echo esc_attr($minute_unit); ?>"></li>
+    <li class="cs-countdown__separator"><?php esc_html_e(':', 'steelnova'); ?></li>
+    <li class="cs-countdown__timer seconds" data-unit="<?php echo esc_attr($second_unit); ?>"></li>
 </ul>

@@ -6,6 +6,11 @@ $post_header_template_id = (int) steelnova()->get_option('single_' . $post_type 
 $post_footer_template_id = (int) steelnova()->get_option('single_' . $post_type . '_footer_template_id', 0);
 
 $sidebar_mode = steelnova()->get_option('single_'.$post_type.'_sidebar_mode', 'none');
+
+if( $sidebar_mode === 'inherit' ) {
+    $sidebar_mode = steelnova()->get_theme_option('single_'.$post_type.'_sidebar_mode', 'none');
+}
+
 if( isset( $_GET['sidebar'] ) ) {
     $sidebar_mode = $_GET['sidebar'];
 }
@@ -16,7 +21,9 @@ if( isset( $_GET['sidebar'] ) ) {
 <main id="main">
     <div class="container">
         <div class="inner">
-            <div class="content-area">            
+            <?php if( $sidebar_mode !== 'none' ) : ?>                    
+                <div class="content-area">    
+            <?php endif; ?>        
                 <?php while ( have_posts() ) : ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                         <?php
@@ -47,8 +54,8 @@ if( isset( $_GET['sidebar'] ) ) {
                         comments_template();
                     }
                 endwhile; ?>
-            </div>
             <?php if( $sidebar_mode !== 'none' ) : ?>
+                </div>
                 <div class="sidebar-area">
                     <?php get_sidebar(); ?>
                 </div>
