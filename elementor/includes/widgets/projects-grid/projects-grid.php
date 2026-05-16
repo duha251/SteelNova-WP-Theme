@@ -60,6 +60,24 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
             ],
             'default' => '1',
         ]);
+        $this->visual_choice([
+            'name' => 'layout2_style',
+            'label' => __( 'Choose Layout Style', 'steelnova' ),
+            'options' => [
+                '0' => [
+                    'title' => __('Default', 'steelnova'),
+                    'image' => content_url('/uploads/widget-layout/project-1.webp'),
+                ],
+                '2' => [
+                    'title' => __('Layout 2', 'steelnova'),
+                    'image' => content_url('/uploads/widget-layout/project-2.webp'),
+                ],
+            ],
+            'default' => '0',
+            'condition' => [
+                'layout' => '2',
+            ]
+        ]);
         $this->end_controls_section();
     }
 
@@ -98,7 +116,7 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
             'name' =>'categories',
             'label_block' => true,
             'label' => __('Categories', 'steelnova'),
-            'options' => steelnova()->post_manager->get_cpt_category_list( 'project-category' ),
+            'options' => steelnova()->post_manager->get_cpt_category_list( 'project_category' ),
             'multiple' => true,
             'condition' => [
                 'source_type' => 'category',
@@ -156,6 +174,15 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
             'options' => Static_Options::title_html_tag_options( true ),
             'separator' => 'before',
             'default' => ''
+        ]);
+        $this->number([
+            'name' => 'item_active',
+            'label' => __('Item Active', 'steelnova'),
+            'min' => 1,
+            'default' => 1,
+            'condition' => [
+                'layout2_style' => '2'
+            ]
         ]);
         $this->switcher([
             'name' => 'show_btn',

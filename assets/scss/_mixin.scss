@@ -53,9 +53,9 @@
 
 @mixin box-size($width: 30px, $height: $width) {
     @if $width == $height {
-        --mt-box-size: #{$width};
-        width: var(--mt-box-size);
-        height: var(--mt-box-size);
+        --cs-box-size: #{$width};
+        width: var(--cs-box-size);
+        height: var(--cs-box-size);
     }
     @else {
         width: $width;
@@ -64,10 +64,10 @@
 }
 
 @mixin round-box($box-size: 50px, $round: 50%) {
-    --mt-box-size: #{$box-size};
-    width: var(--mt-box-size);
-    min-width: var(--mt-box-size);
-    height: var(--mt-box-size);
+    --cs-box-size: #{$box-size};
+    width: var(--cs-box-size);
+    min-width: var(--cs-box-size);
+    height: var(--cs-box-size);
     border-radius: $round;
 }
 

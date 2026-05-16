@@ -42,7 +42,7 @@ const initVideoPopup = () => {
     };
 
     body.addEventListener("click", (e) => {
-        const btn = e.target.closest('.button[data-type="play"]');
+        const btn = e.target.closest('.cs-button[data-type="play"]');
         if (!btn) return;
 
         e.preventDefault();
@@ -95,7 +95,7 @@ const initVideoPopup = () => {
     });
 
     body.addEventListener("click", (e) => {
-        if (e.target.closest(".video-popup .button--close")) {
+        if (e.target.closest(".video-popup .cs-button--close")) {
             closeVideoPopup();
         }
     });

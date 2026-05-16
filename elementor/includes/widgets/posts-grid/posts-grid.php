@@ -61,6 +61,10 @@ class Widget_Posts_Grid extends SteelNova_Widget_Base {
                     'title' => __('Layout 3', 'steelnova'),
                     'image' => content_url('/uploads/widget-layout/posts-3.webp'),
                 ],
+                '4' => [
+                    'title' => __('Layout 4', 'steelnova'),
+                    'image' => content_url('/uploads/widget-layout/posts-4.webp'),
+                ],
             ],
             'default' => '1',
         ]);
@@ -142,7 +146,7 @@ class Widget_Posts_Grid extends SteelNova_Widget_Base {
     }
 
 
-        /**
+    /**
      * Register Grid Source Content Controls
      */
     protected function register_post_display_settings_controls() {        
@@ -190,7 +194,7 @@ class Widget_Posts_Grid extends SteelNova_Widget_Base {
             'label' => __('Show Date', 'steelnova'),
             'default' => 'yes',
             'condition' => [
-                'layout' => ['1', '2', '3']
+                'layout' => ['1', '2', '3', '4']
             ]
         ]);
         $this->text([
@@ -199,7 +203,7 @@ class Widget_Posts_Grid extends SteelNova_Widget_Base {
             'description' => '<a href="https://www.php.net/manual/en/function.date.php" target="_blank">Learn More.<a/>',
             'placeholder' => __('F d, Y', 'steelnova'),
             'condition' => [
-                'layout' => ['2'],
+                'layout' => ['2', '4'],
                 'show_date' => 'yes'
             ]
         ]);
@@ -227,7 +231,7 @@ class Widget_Posts_Grid extends SteelNova_Widget_Base {
             'label' => __('Show Author', 'steelnova'),
             'default' => 'yes',
             'condition' => [
-                'layout' => ['1']
+                'layout' => ['1', '4']
             ]
         ]);
 
@@ -236,7 +240,7 @@ class Widget_Posts_Grid extends SteelNova_Widget_Base {
             'label' => __('Show Category', 'steelnova'),
             'default' => 'yes',
             'condition' => [
-                'layout' => ['1', '2', '3']
+                'layout' => ['1', '2', '3', '4']
             ]
         ]);
         

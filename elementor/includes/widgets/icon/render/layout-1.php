@@ -1,7 +1,7 @@
 <?php
 $wrapper_attrs = array_merge( 
     [
-        'class' => 'icon-wrapper',
+        'class' => 'cs-icon-wrapper',
     ], 
     $wrapper_attrs
 );

@@ -1,0 +1,56 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./elementor/assets/scss/widgets/steps-carousel.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+.cs-steps-carousel .cs-step {
+  padding: 30px 9px 10px;
+  border-radius: 8px;
+  background-color: #FAF5ED;
+}
+.cs-steps-carousel .cs-step__header {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 63px;
+  max-width: 220px;
+  margin-inline: auto;
+}
+@media screen and (max-width: 767px) {
+  .cs-steps-carousel .cs-step__header {
+    max-width: 100%;
+  }
+}
+.cs-steps-carousel .cs-step__index {
+  font-family: var(--cs-heading-font);
+  font-size: clamp(1.5rem, 1.4135rem + 0.3846vw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.33333;
+  letter-spacing: -1px;
+  color: var(--cs-heading-color);
+}
+.cs-steps-carousel .cs-step__icon {
+  color: #706F6F;
+}
+.cs-steps-carousel .cs-step__content {
+  padding: 18px 20px;
+  border-top: thin solid #DCDCDC;
+  border-radius: 6px;
+  background-color: #FFF;
+}
+.cs-steps-carousel .cs-step__description {
+  font-family: var(--cs-text-font);
+  font-size: 14px;
+  line-height: 1.71429;
+}
+.cs-steps-carousel .cs-step__title {
+  color: var(--cs-heading-color);
+  margin-bottom: 6px;
+}
+.cs-steps-carousel .cs-step div.cs-step__title {
+  font-size: 16px;
+  font-family: var(--cs-heading-font);
+  font-weight: 600;
+  line-height: 1.625;
+}
+
+/*# sourceMappingURL=steps-carousel.min.css.map*/

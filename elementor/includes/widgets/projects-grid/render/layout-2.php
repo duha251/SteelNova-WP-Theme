@@ -33,8 +33,8 @@ if( count( $posts ) === 0 ) {
 }
 
 $display_args = [
-    'img_width'  => $settings['img_size']['width'] ?: null,
-    'img_height' => $settings['img_size']['height'] ?: null,
+    'img_width'  => $settings['img_size']['width'] ?: 1356,
+    'img_height' => $settings['img_size']['height'] ?: 748,
     'title_tag'  => $settings['title_tag'] ?: 'h6',
     'show_btn' => $settings['show_btn'] === 'yes',
     'show_excerpt' => $settings['show_excerpt'] === 'yes',
@@ -44,18 +44,25 @@ $display_args = [
     'num_of_meta' => $settings['num_of_meta'] ?: 2,
 ];
 
-
 $wrapper_attrs = [
     'class' => 'grid cs-projects-grid is-post-type-project',
     'data-layout'   => $layout,
 ];
 
+if( $settings['layout2_style'] !== '0' ) {
+    $wrapper_attrs['data-layout_style'] = $settings['layout2_style'];
+}
+
 $this->add_render_attribute('wrapper', $wrapper_attrs);
 
+$item_active = $settings['item_active'] ?: 1;
 ?>
 <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
     <div class="grid__inner">
-        <?php foreach( $posts as $i => $post ) : ?>
+        <?php foreach( $posts as $i => $post ) : 
+            $active_class = $item_active === ( $i + 1 ) ? ' is-active' : '';
+            $display_args['active_class'] = $active_class;
+        ?>
             <div class="grid__item">
                 <?php steelnova_get_template('/elementor/includes/widgets/projects-grid/templates/project-' . $layout, [
                     'display_args' => $display_args,

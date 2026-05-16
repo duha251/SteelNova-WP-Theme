@@ -1,0 +1,45 @@
+@use '../../../../assets/scss/core' as *;
+
+.cs-marquee {
+    &__inner {
+        --cs-animation-duration: 30s;
+        display: flex;
+        overflow-x: clip;
+         --cs-translate-x: -100%;
+        &[data-direction="rtl"] {
+            --cs-translate-x: calc( -100% - ( var(--cs-column-gap) / 2 ) );
+        }
+        &[data-direction="ltr"] {
+            --cs-translate-x: calc( 100% + ( var(--cs-column-gap) / 2 ) );
+            justify-content: end;
+        }
+        &:hover {
+            &.pause-on-hover {
+                .cs-marquee__list {
+                    animation-play-state: paused;
+                }
+            }
+        }
+    }
+    &__list {
+        display: flex;
+        align-items: center;
+        min-width: max-content;
+        animation: marquee var(--cs-animation-duration) linear infinite;
+        gap: var(--cs-column-gap);
+        will-change: transform;
+        &.main {
+            padding-right: calc( var(--cs-column-gap) / 2 );
+        }
+        &.clone {
+            padding-left: calc( var(--cs-column-gap) / 2 );
+        }
+    }
+    &__item {
+        flex-shrink: 0;
+        @include d-inline-flex(0, center, center);
+        &--image {
+            overflow: hidden;
+        }
+    }
+}

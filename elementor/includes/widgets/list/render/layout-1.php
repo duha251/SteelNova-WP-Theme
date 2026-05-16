@@ -30,6 +30,9 @@ $wrapper_attrs = array_merge(
             }
             $this->add_render_attribute( $item_key, $item_attrs);
         ?>
+        <?php if( $settings['has_divider'] && $i !== 0 ) : ?>
+            <span class="divider"></span>
+        <?php endif; ?>
         <li <?php echo $this->get_render_attribute_string( $item_key ); ?>>
             <?php if( !empty( $item['icon']['value'] ) ) : ?>
                 <span class="cs-list__item-icon">

@@ -46,7 +46,7 @@ class Widget_Counter extends SteelNova_Widget_Base {
         ]);
         $this->group_flex_css([
             'name' => 'flex_css',
-            'selector' => '{{WRAPPER}} .icon-text',
+            'selector' => '{{WRAPPER}} .cs-counter',
             'exclude' => ['align_items_vertical', 'justify_content_vertical', 'gaps', 'direction', 'wrap'],
         ]);
         $this->end_controls_section();
@@ -112,28 +112,28 @@ class Widget_Counter extends SteelNova_Widget_Base {
             'label' => __( 'Box Width', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .counter' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-counter' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
             'name' => 'counter_height',
             'label' => __( 'Box Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .counter' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-counter' => 'height: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->group_background([
             'name' => 'counter_background',
             'separator' => 'before',
-            'selector' => '{{WRAPPER}} .counter',
+            'selector' => '{{WRAPPER}} .cs-counter',
         ]);
         $this->group_typography([
             'name' => 'counter_typography',
-            'selector' => '{{WRAPPER}} .counter',
+            'selector' => '{{WRAPPER}} .cs-counter',
         ]);
         $this->group_background([
 			'name' => 'counter_fill',
-			'selector' => '{{WRAPPER}} .counter',
+			'selector' => '{{WRAPPER}} .cs-counter',
 			'fields_options' => [
 				'background' => [
 					'label' => __( 'Text Fill', 'steelnova' ),
@@ -141,24 +141,24 @@ class Widget_Counter extends SteelNova_Widget_Base {
 				'color' => [
 					'label' => __( 'Text Color', 'steelnova' ),
 					'selectors' => [
-						'{{WRAPPER}} .counter' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .cs-counter' => 'color: {{VALUE}};',
 					],
 				],
 				'image' => [
 					'selectors' => [
-						'{{WRAPPER}} .counter' => 'background-image: url("{{URL}}"); -webkit-background-clip: text; background-clip: text; color: transparent;',
+						'{{WRAPPER}} .cs-counter' => 'background-image: url("{{URL}}"); -webkit-background-clip: text; background-clip: text; color: transparent;',
 					],
 				],
 				'color_b' => [
 					'selectors' => [
-						'{{WRAPPER}} .counter' => '-webkit-background-clip: text; background-clip: text; color: transparent;',
+						'{{WRAPPER}} .cs-counter' => '-webkit-background-clip: text; background-clip: text; color: transparent;',
 					],
 				],
 			],
 		]);
         $this->group_box_css([
             'name' => 'counter_',
-            'selector' => '{{WRAPPER}} .counter',
+            'selector' => '{{WRAPPER}} .cs-counter',
         ]);
         $this->end_controls_section();
     }
@@ -174,13 +174,13 @@ class Widget_Counter extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'counter_prefix_typography',
-            'selector' => '{{WRAPPER}} .counter .counter__value-prefix',
+            'selector' => '{{WRAPPER}} .cs-counter .cs-counter__number-prefix',
         ]);
         $this->color([
             'name' => 'counter_prefix_color',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .counter .counter__value-prefix' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-counter .cs-counter__number-prefix' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_section();
@@ -196,13 +196,13 @@ class Widget_Counter extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'counter_suffix_typography',
-            'selector' => '{{WRAPPER}} .counter .counter__value-suffix',
+            'selector' => '{{WRAPPER}} .cs-counter .cs-counter__number-suffix',
         ]);
         $this->color([
             'name' => 'counter_suffix_color',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .counter .counter__value-suffix' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-counter .cs-counter__number-suffix' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_section();

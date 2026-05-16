@@ -3,25 +3,25 @@ $thumbnail_id = get_post_thumbnail_id($post->ID);
 $thumbnail_url = get_the_post_thumbnail_url($post->ID);   
 extract( $display_args ); 
 
+
 ?>
-<article class="project project-<?php echo esc_attr( $post->ID  ); ?>" style="background-image: url(<?php echo esc_url($thumbnail_url); ?>)">
+<article class="project project-<?php echo esc_attr( $post->ID . $active_class ); ?>" style="background-image: url(<?php echo esc_url($thumbnail_url); ?>)">
+    <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" class="box-link"></a>
     <div class="project__content">
         <div class="project__content-inner">
             <svg class="mask" width="90" height="90" viewBox="0 0 89 89" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 89L0 0C7 0 11 5 11 11V66C11 73 17 78 23 78H78C85 78 89 83 89 89H0.5Z" fill="white"/>
             </svg>
             <?php 
-            if( $show_category == true ) : 
+            $terms = get_the_terms($post->ID, 'project_category');
+            if( $show_category == true && !empty($terms) && !is_wp_error($terms) ) : 
                 echo '<div class="project__category categories">';
-                $terms = get_the_terms($post->ID, 'project-category');
-                if (!empty($terms) && !is_wp_error($terms)) {
                     foreach ($terms as $term) {
                         echo '<a href="' . esc_url(get_term_link($term)) . '">';
                         echo '<span class="icon-dot"></span>';
                         echo esc_html($term->name);
                         echo '</a>';
                     }
-                }    
                 echo '</div>';
             endif;
             ?>
@@ -51,7 +51,7 @@ extract( $display_args );
                             $icon_url  = $project_info['info_icon'][$i]['url'] ?? '';
                             ?>
                             <li class="list__item">
-                                <span class="list__item-icon box-icon">
+                                <span class="list__item-icon d-inline-flex-center">
                                     <?php steelnova_print_svg_content( $icon_url ); ?>
                                 </span>
                                 <span class="list__item-value">

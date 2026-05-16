@@ -32,6 +32,11 @@
 
             if( serverSettings.effect ) {
                 settings.effect = serverSettings.effect;
+                if( serverSettings.effect === 'fade' ) {
+                    settings.fadeEffect = {
+                        crossFade: true
+                    };
+                }
             }
 
             if (serverSettings.autoPlay && serverSettings.autoPlay.enable) {
@@ -64,26 +69,25 @@
                     : null;
 
                 settings.navigation = {
-                    prevEl: prevEl || $carousel.find('.carousel-button-prev')[0] || null,
-                    nextEl: nextEl || $carousel.find('.carousel-button-next')[0] || null,
+                    prevEl: prevEl || $carousel.find('.carousel__button-prev')[0] || null,
+                    nextEl: nextEl || $carousel.find('.carousel__button-next')[0] || null,
                 };
 
             }
 
-            if (serverSettings.pagination) {
+            if ( serverSettings.pagination !== false ) {
+                console.log($carousel.find('.carousel__pagination'));
                 settings.pagination = {
-                    el: $carousel.find('.carousel-pagination')[0],
+                    el: $carousel.find('.carousel__pagination')[0],
                     type: 'bullets',
                     clickable: true,
                     bulletClass: 'bullet',
-                    bulletActiveClass: 'is-active',
                 };
             }
 
-            // 7. Xử lý Scrollbar
             if (serverSettings.scrollBar) {
                 settings.scrollbar = {
-                    el: $carousel.find('.carousel-scrollbar')[0],
+                    el: $carousel.find('.carousel__scrollbar')[0],
                 };
             }
 
@@ -97,32 +101,31 @@
                     576: { 
                         slidesPerView: serverSettings.breakpoints.sm?.slidesPerView ?? 1,
                         spaceBetween: serverSettings.breakpoints.sm?.spaceBetween ?? 0,
-                        grid: serverSettings.breakpoints.sm?.grid
+                        grid: serverSettings.breakpoints.sm?.grid ?? 1
                     },
                     768: { 
                         slidesPerView: serverSettings.breakpoints.md?.slidesPerView ?? 2,
                         spaceBetween: serverSettings.breakpoints.md?.spaceBetween ?? 20,
-                        grid: serverSettings.breakpoints.md?.grid
+                        grid: serverSettings.breakpoints.md?.grid ?? 1
                     },
                     992: { 
                         slidesPerView: serverSettings.breakpoints.lg?.slidesPerView ?? 3,
                         spaceBetween: serverSettings.breakpoints.lg?.spaceBetween ?? 20,
-                        grid: serverSettings.breakpoints.lg?.grid
+                        grid: serverSettings.breakpoints.lg?.grid ?? 1
                     },
                     1200: { 
                         slidesPerView: serverSettings.breakpoints.xl?.slidesPerView ?? 4,
                         spaceBetween: serverSettings.breakpoints.xl?.spaceBetween ?? 30,
-                        grid: serverSettings.breakpoints.xl?.grid
+                        grid: serverSettings.breakpoints.xl?.grid ?? 1
                     },
                     1400: { 
                         slidesPerView: serverSettings.breakpoints.xxl?.slidesPerView ?? 5,
                         spaceBetween: serverSettings.breakpoints.xxl?.spaceBetween ?? 30,
-                        grid: serverSettings.breakpoints.xxl?.grid
+                        grid: serverSettings.breakpoints.xxl?.grid ?? 1
                     }
                 };
             }
 
-            // 9. Giữ lại các Events on của bạn
             settings.on = {
                 init: function () {
                     const swiper = this;
@@ -153,9 +156,15 @@
     }
 
     $(window).on('elementor/frontend/init', function () {
-        elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-service-carousel.default', carouselHandler);
+        elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-services-carousel.default', carouselHandler);
         elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-testimonial-carousel.default', carouselHandler);
         elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-project-image-gallery.default', carouselHandler);
+        elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-steps-carousel.default', carouselHandler);
+        elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-members-carousel.default', carouselHandler);
+        elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-icons-carousel.default', carouselHandler);
+        elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-posts-carousel.default', carouselHandler);
+        elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-price-carousel.default', carouselHandler);
+        elementorFrontend.hooks.addAction('frontend/element_ready/steelnova-projects-carousel.default', carouselHandler);
     });
 
 })(jQuery);

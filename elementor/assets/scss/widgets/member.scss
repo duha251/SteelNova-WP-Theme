@@ -1,0 +1,81 @@
+@use '../../../../assets/scss/core' as *;
+
+
+.cs-members-grid {
+    --cs-row-gap: 60px;
+    --cs-column-gap: 52px;
+    @media #{$max-lg} {
+        --cs-column-gap: 30px;
+    }
+    @media #{$max-md} {
+        --cs-column: 50%;
+    }
+    @media #{$max-sm} {
+        --cs-column: 100%;
+    }
+}
+
+.cs-members-grid[data-layout="1"], .cs-members-carousel[data-layout="1"] {
+    .member {
+        &__thumbnail {
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            img {
+                width: 100%;
+            }
+        }
+        &__title {
+            > a {
+                color: inherit;
+            }
+        }
+        &__role {
+            margin-top: 3px;
+            font-size: 18px;
+            line-height: 1.4444;
+        }
+    }
+}
+
+.cs-members-grid[data-layout="2"], .cs-members-carousel[data-layout="2"] {
+    .member {
+        padding: 39px 40px 34px;
+        background-color: #FFF;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        @media #{$max-lg} {
+            padding: 30px;
+        }
+        @media #{$max-xs} {
+            padding: 30px 15px;
+        }
+        &__title {
+            margin-bottom: 2px;
+        }
+        &__content {
+            margin-bottom: 35px;
+        }
+        &__thumbnail {
+            max-width: 333px;
+            border-radius: 50%;
+            border: 15px solid #EBDDC4;
+            overflow: hidden;
+        }
+        .divider {
+            margin-block: 38px 21px;
+        }
+        &__socials {
+            gap: 11px;
+            a {
+                @include round-box(45px);
+                background-color: #121512;
+                justify-content: center;
+                color: #FFF;
+            }
+        }
+    }
+}

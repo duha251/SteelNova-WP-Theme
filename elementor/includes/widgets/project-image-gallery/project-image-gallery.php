@@ -14,7 +14,7 @@ class Widget_Project_Image_Gallery extends SteelNova_Widget_Base {
             'icon'       => 'eicon-featured-image',
             'keywords'   => [ 'cs', 'steelnova', 'image', 'img', 'featured image', 'post' ],
             'script'     => ['steelnova-carousel'],
-            'style'      => ['swiper'],
+            'style'      => ['swiper', 'steelnova-swiper'],
         ];
     }
 

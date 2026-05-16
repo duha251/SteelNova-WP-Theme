@@ -33,16 +33,15 @@ if( count( $posts ) === 0 ) {
 }
 
 $display_args = [
-    'img_width'  => $settings['img_size']['width'] ?: null,
-    'img_height' => $settings['img_size']['height'] ?: null,
+    'img_width'  => $settings['img_size']['width'] ?: 1200,
+    'img_height' => $settings['img_size']['height'] ?: 657,
     'title_tag'  => $settings['title_tag'] ?: 'h4',
     'show_btn' => $settings['show_btn'] === 'yes',
-    'btn_text'   => $settings['btn_text'] ?: 'Read The Article',
+    'btn_text'   => $settings['btn_text'] ?: 'Learn Details',
     'show_excerpt' => $settings['show_excerpt'] === 'yes',
     'num_of_words' => $settings['num_of_words'] ?: -1,
     'show_category' => $settings['show_category'] === 'yes'
 ];
-
 
 $wrapper_attrs = [
     'class' => 'grid cs-projects-grid is-post-type-project',

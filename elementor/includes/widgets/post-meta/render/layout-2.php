@@ -31,7 +31,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
         <?php if( $item['meta_type'] !== 'project_info' ) : ?>
             <li <?php echo $this->get_render_attribute_string( $item_key ); ?>>
                 <?php if( !empty( $item['icon']['value'] ) ) : ?>
-                    <div class="cs-post-meta__item-icon box-icon">
+                    <div class="cs-post-meta__item-icon d-inline-flex-center">
                         <?php steelnova_elementor_print_icon( $item['icon'] ); ?>
                     </div>
                 <?php endif; ?>
@@ -63,7 +63,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
                     ?>
                         <li <?php echo $this->get_render_attribute_string( $item_key ); ?>>
                             <?php if( !empty( $icon_url ) ) : ?>
-                                <div class="cs-post-meta__item-icon box-icon">
+                                <div class="cs-post-meta__item-icon d-inline-flex-center">
                                     <?php steelnova_print_svg_content( $icon_url ); ?>
                                 </div>
                             <?php endif; ?>

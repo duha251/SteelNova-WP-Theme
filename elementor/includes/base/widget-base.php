@@ -86,7 +86,7 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'label' => __( 'Normal', 'steelnova' ),
         ]);
         $this->group_background([
-            'name' => '_background',
+            'name' => 'steelnova_background',
             'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]',
         ]);
         $this->group_box_css([
@@ -131,18 +131,6 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
                 'tab'     => 'steelnova_extra',
             ]
         );
-        $this->select([
-            'name' => '_overflow',
-            'label' => __('Overflow', 'steelnova'),
-            'options' => [
-                '' => __('Default', 'steelnova'),
-                'hidden' => __('Hidden', 'steelnova'),
-                'auto' => __('Auto', 'steelnova'),
-            ],
-            'selectors' => [
-                '{{WRAPPER}}' => 'overflow: {{VALUE}};'
-            ]
-        ]);
         $this->group_width([
             'name' => '_width',
             'label' => __( 'CSS Width', 'steelnova' ),
@@ -161,6 +149,52 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'label' => __( 'CSS Height', 'steelnova' ),
             'selector' => '{{WRAPPER}}',
         ]);
+        $this->select([
+            'name' => '_overflow',
+            'label' => __('Overflow', 'steelnova'),
+            'separator' => 'before',
+            'options' => [
+                '' => __('Default', 'steelnova'),
+                'hidden' => __('Hidden', 'steelnova'),
+                'auto' => __('Auto', 'steelnova'),
+            ],
+            'selectors' => [
+                '{{WRAPPER}}' => 'overflow: {{VALUE}};'
+            ]
+        ]);
+        $this->select([
+            'name' => '_pointer_events',
+            'label' => __('Pointer Events', 'steelnova'),
+            'options' => [
+                '' => __('Default', 'steelnova'),
+                'none' => __('None', 'steelnova'),
+                'visible' => __('Visible', 'steelnova'),
+            ],
+            'selectors' => [
+                '{{WRAPPER}}' => 'pointer-events: {{VALUE}};'
+            ]
+        ]);
+        $this->select([
+            'name' => '_display',
+            'label' => __('Display', 'steelnova'),
+            'options' => [
+                '' => __('Default', 'steelnova'),
+                'inline' => __('Inline', 'steelnova'),
+                'block' => __('Block', 'steelnova'),
+                'inline-block' => __('Inline Block', 'steelnova'),
+                'flex' => __('Flex', 'steelnova'),
+                'inline-flex' => __('Inline Flex', 'steelnova'),
+            ],
+            'selectors' => [
+                '{{WRAPPER}}' => 'display: {{VALUE}} !important;',
+                '{{WRAPPER}} *' => 'display: {{VALUE}} !important;'
+            ]
+        ]);
+        $this->group_css_filter([
+            'name' => 'css_filter',
+            'separator' => 'before',
+            'selector' => '{{WRAPPER}}',
+        ]);
         $this->group_position([
             'name' => '_position',
             'label' => __( 'Position', 'steelnova' ),
@@ -176,12 +210,6 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'selectors' => [
                 '{{WRAPPER}}' => 'z-index: {{VALUE}};',
             ],
-        ]);
-
-        $this->group_css_filter([
-            'name' => 'css_filter',
-            'separator' => 'before',
-            'selector' => '{{WRAPPER}}',
         ]);
         $this->end_controls_section();
     }

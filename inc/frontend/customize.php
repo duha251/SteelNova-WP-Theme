@@ -49,6 +49,9 @@ class Customize {
 			$sidebar_pos_class = steelnova()->get_theme_option('blog_sidebar_mode', '');
 		}elseif ( is_single() ) {
 			$sidebar_pos_class = steelnova()->get_option('single_'.get_post_type().'_sidebar_mode', '');
+			if( $sidebar_pos_class === 'inherit' ) {
+				$sidebar_pos_class = steelnova()->get_theme_option('single_'.get_post_type().'_sidebar_mode', '');
+			}
 		}elseif ( class_exists( 'WooCommerce' ) && is_shop() ) {
 			$sidebar_pos_class = steelnova()->get_theme_option('shop_sidebar_mode', '');
 		}

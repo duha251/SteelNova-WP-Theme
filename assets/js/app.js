@@ -1,8 +1,10 @@
 // DOM Ready
 document.addEventListener("DOMContentLoaded", function() {
-    setMainMinHeight();
+    // setMainMinHeight();
     initDrawer();
     initVideoPopup();
+    hoverActive('.cs-projects-grid[data-layout="2"][data-layout_style="2"] .project');
+    hoverActive('.cs-price-carousel .price__inner');
 });
 
 const setMainMinHeight = () => {

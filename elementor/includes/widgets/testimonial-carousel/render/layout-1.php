@@ -9,6 +9,10 @@ $wrapper_attrs_tmp = [
     'data-layout' => '1'
 ];
 
+if( $settings['swiper_boxshadow'] === 'yes' ) {
+    $wrapper_attrs['class'] .= ' carousel--box-shadow';
+}
+
 $this->add_render_attribute( 'wrapper', $wrapper_attrs_tmp );
 
 $ratings = $settings['rating_items'] ?? [];
@@ -49,6 +53,8 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
         ],
     ]
 ]);
+
+
 ?>
 
 <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
@@ -68,7 +74,7 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
                             <path d="M0.5 89L0 0C7 0 11 5 11 11V66C11 73 17 78 23 78H78C85 78 89 83 89 89H0.5Z" fill="white"/>
                         </svg>
                         <?php if( !empty( $icon['value'] ) ) : ?>
-                            <div class="cs-testimonial__icon box-icon">
+                            <div class="cs-testimonial__icon d-inline-flex-center">
                                 <?php steelnova_elementor_print_icon( $icon ); ?>
                             </div>
                         <?php endif; ?>
@@ -111,5 +117,6 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
                 </div>
             <?php endforeach; ?>
         </div>
+        <?php steelnova_print_swiper_controls( $settings ); ?>
     </div>
 </div>

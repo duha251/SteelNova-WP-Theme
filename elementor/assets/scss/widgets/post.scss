@@ -21,10 +21,15 @@
     }
 }
 
-.posts-grid[data-layout="1"] {
-    --cs-column: 100%;
-    --cs-column-gap: 0px;
-    --cs-row-gap: 30px;
+.cs-posts-grid {
+    &[data-layout="1"], &[data-layout="2"]{
+        --cs-column: 100%;
+        --cs-column-gap: 0px;
+        --cs-row-gap: 30px;
+    }
+}
+
+.cs-posts-grid[data-layout="1"], .cs-posts-carousel[data-layout="1"]{
     .post {
         padding: 21px 21px 68px;
         border-radius: 20px;
@@ -127,10 +132,7 @@
     }
 }
 
-.posts-grid[data-layout="2"] {
-    --cs-column: 100%;
-    --cs-column-gap: 0px;
-    --cs-row-gap: 30px;
+.cs-posts-grid[data-layout="2"], .cs-posts-carousel[data-layout="2"] {
     .post {
         padding: 30px;
         border-radius: 20px;
@@ -214,7 +216,7 @@
     }
 }
 
-.posts-grid[data-layout="3"] {
+.cs-posts-grid[data-layout="3"]{
     .posts-grid__feature {
         .post__category {
             a {
@@ -342,6 +344,28 @@
             &__title {
                 margin-top: 16px;
             }
+            &__date {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                right: 18px;
+                top: 27px;
+                text-align: center;
+                background-color: #FFF;
+                @include paragraph-4;
+                &-day {
+                    min-width: 68px;
+                    height: 54px;
+                    @include d-inline-flex(null, center, center);
+                    @include h8;
+                    color: #FFF;
+                    background-color: #FF5B1B;
+                }
+                @media #{$max-sm} {
+                    right: 15px;
+                    top: 15px;
+                }
+            }
             .cs-button {
                 margin-top: 16px;
                 width: 100%;
@@ -357,53 +381,131 @@
     }
 }
 
-// Post Listing
-.cs-posts-listing {
-    --cs-column: 100%;
-    --cs-column-gap: 0;
-    --cs-row-gap: 60px;
-    .grid__item + .grid__item {
-        border-top: thin solid #DCDCDC; 
-    }
+.cs-posts-carousel[data-layout="3"] {
     .post {
-        @include d-flex(19px);
-        &__thumbnail {
-            overflow: hidden;
-            flex: 0 0 100px;
-            border-radius: 10px;
-            img {
-                width: 100%;
-                height: 100%;
+        padding: 13px 15px 39px;
+        border-radius: 11px;
+        border: thin solid #DCDCDC;
+        background-color: #FFF;
+        &__featured-image {
+            border-radius: 11px;
+        }
+        &__date {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            right: 18px;
+            top: 27px;
+            text-align: center;
+            background-color: #FFF;
+            @include paragraph-4;
+            &-day {
+                min-width: 68px;
+                height: 54px;
+                @include d-inline-flex(null, center, center);
+                @include h8;
+                color: #FFF;
+                background-color: #FF5B1B;
+            }
+            @media #{$max-sm} {
+                right: 15px;
+                top: 15px;
             }
         }
         &__content {
-            flex: 1 1 150px;
+            padding-inline: 20px 10px;
+            @media #{$max-xl} {
+                padding-inline: 0px;
+            }
         }
-        &__date {
-            display: inline-block;
-            padding: 4px 14px;
-            border-radius: 100px;
+        &__category {
+            margin-top: 28px;
+            .icon-dot {
+                background-color: #FF5B1B;
+            }
+            a {
+                height: 32px;
+                @include paragraph-5;
+                color: #0A1119;
+                background-color: #FFF;
+                border-radius: 100px;
+                padding-inline: 10px;
+                border: thin solid #DCDCDC;
+            }
+        }
+        &__title {
+            margin-top: 16px;
+        }
+        .cs-button {
+            margin-top: 16px;
+            width: 100%;
+            padding-inline: 16px;
+            height: 46px;
+            border-radius: 6px;
             background-color: #FAF5ED;
-            border: thin solid #DCDCDC;
             @include text-button-1;
-            margin-bottom: 13px;
-            color: var(--cs-heading-color)
+            color: #0A1119;
+            justify-content: space-between;
         }
-        @media #{$mm-lg} {
-            flex-wrap: wrap;
-            .post__content, .post__thumbnail {
-                flex: 0 1 100%;
+    }
+}
+
+.cs-posts-grid[data-layout="4"], .cs-posts-carousel[data-layout="4"] {
+    --cs-column-gap: 25px;
+    --cs-column: 50%;
+    .post {
+        min-height: 574px;
+        padding: 40px 40px 58px;
+        border-radius: 15px;
+        display: flex;
+        align-items: flex-end;
+	    background: center center / cover no-repeat;
+        isolation: isolate;
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba( #000, 0 ) 0%, #000 100%);
+        }
+        &__category {
+            margin-bottom: 21px;
+            a {
+                padding: 8px 14px;
+                @include subheading-2;
+                border-radius: 100px;
+                border: thin solid #FFF;
+                color: #FFF;
             }
         }
-        @media #{$max-xs} {
-            flex-wrap: wrap;
-            .post__content, .post__thumbnail {
-                flex: 0 1 100%;
+        &__title {
+            color: #FFF;
+            max-width: 450px;
+        }
+        &__content {
+            width: 100%;
+            &-top {
+                margin-bottom: 63px;
+            }
+            &-bottom {
+                color: #FFF;
+                margin-top: 16px;
+                > a {
+                    color: inherit;
+                }
             }
         }
-    } 
-    div.post__title {
-        @include h7;
-        color: var(--cs-heading-color);
+        .divider {
+            background-color: rgba( #FFF, 0.3 );
+        }
+        div.post__title {
+            font-family: "Instrument Sans";
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 1.33;
+            letter-spacing: -0.36px;
+        }
     }
 }

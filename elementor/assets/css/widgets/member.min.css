@@ -1,0 +1,89 @@
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./elementor/assets/scss/widgets/member.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+.cs-members-grid {
+  --cs-row-gap: 60px;
+  --cs-column-gap: 52px;
+}
+@media screen and (max-width: 1199px) {
+  .cs-members-grid {
+    --cs-column-gap: 30px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .cs-members-grid {
+    --cs-column: 50%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .cs-members-grid {
+    --cs-column: 100%;
+  }
+}
+
+.cs-members-grid[data-layout="1"] .member__thumbnail, .cs-members-carousel[data-layout="1"] .member__thumbnail {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.cs-members-grid[data-layout="1"] .member__thumbnail img, .cs-members-carousel[data-layout="1"] .member__thumbnail img {
+  width: 100%;
+}
+.cs-members-grid[data-layout="1"] .member__title > a, .cs-members-carousel[data-layout="1"] .member__title > a {
+  color: inherit;
+}
+.cs-members-grid[data-layout="1"] .member__role, .cs-members-carousel[data-layout="1"] .member__role {
+  margin-top: 3px;
+  font-size: 18px;
+  line-height: 1.4444;
+}
+
+.cs-members-grid[data-layout="2"] .member, .cs-members-carousel[data-layout="2"] .member {
+  padding: 39px 40px 34px;
+  background-color: #FFF;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+@media screen and (max-width: 1199px) {
+  .cs-members-grid[data-layout="2"] .member, .cs-members-carousel[data-layout="2"] .member {
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .cs-members-grid[data-layout="2"] .member, .cs-members-carousel[data-layout="2"] .member {
+    padding: 30px 15px;
+  }
+}
+.cs-members-grid[data-layout="2"] .member__title, .cs-members-carousel[data-layout="2"] .member__title {
+  margin-bottom: 2px;
+}
+.cs-members-grid[data-layout="2"] .member__content, .cs-members-carousel[data-layout="2"] .member__content {
+  margin-bottom: 35px;
+}
+.cs-members-grid[data-layout="2"] .member__thumbnail, .cs-members-carousel[data-layout="2"] .member__thumbnail {
+  max-width: 333px;
+  border-radius: 50%;
+  border: 15px solid #EBDDC4;
+  overflow: hidden;
+}
+.cs-members-grid[data-layout="2"] .member .divider, .cs-members-carousel[data-layout="2"] .member .divider {
+  margin-block: 38px 21px;
+}
+.cs-members-grid[data-layout="2"] .member__socials, .cs-members-carousel[data-layout="2"] .member__socials {
+  gap: 11px;
+}
+.cs-members-grid[data-layout="2"] .member__socials a, .cs-members-carousel[data-layout="2"] .member__socials a {
+  --cs-box-size: 45px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
+  border-radius: 50%;
+  background-color: #121512;
+  justify-content: center;
+  color: #FFF;
+}
+
+/*# sourceMappingURL=member.min.css.map*/

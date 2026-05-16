@@ -188,6 +188,16 @@ trait Custom_Controls_Trait {
             ],
             'default' => '',
         ]);
+        $this->size([
+            'name' => 'grid_pagination_spacing',
+            'label' => __('Spacing Top', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .pagination' => 'margin-top: {{SIZE}}{{UNIT}}',
+            ],
+            'condition' => [
+                'grid_load_type' => ['pagination']
+            ]
+        ]);
         $this->end_controls_tab();
         
         // 
@@ -261,12 +271,6 @@ trait Custom_Controls_Trait {
                 'vertical'   => __('Vertical', 'steelnova'),
             ],
             'default' => 'horizontal',
-        ]);
-
-        $this->switcher([
-            'name'  => 'loop',
-            'label' => __('Infinite Loop', 'steelnova'),
-            'default' => ''
         ]);
 
         $this->switcher([
@@ -374,6 +378,11 @@ trait Custom_Controls_Trait {
             'label' => __('Loop & Interaction', 'steelnova'),
             'separator' => 'before',
         ]);
+        $this->switcher([
+            'name'  => 'loop',
+            'label' => __('Infinite Loop', 'steelnova'),
+            'default' => ''
+        ]);
         $this->number([
             'name'    => 'initial_slide',
             'label'   => __('Initial Slide', 'steelnova'),
@@ -424,41 +433,14 @@ trait Custom_Controls_Trait {
             'name'  => 'swiper_nav',
             'label' => __('Naviagtion', 'steelnova'),
         ]);
-        $this->switcher([
-            'name'  => 'use_nav_widget',
-            'label' => __('Use Navigation Widget', 'steelnova'),
-            'condition' => [
-                'swiper_nav' => 'yes',
-            ]
-        ]);
         $this->text([
             'name'  => 'nav_widget_id',
             'label' => __('Navigation Widget ID', 'steelnova'),
             'placeholder' => __('Ex: nav-carousel-2526', 'steelnova'),
             'condition' => [
                 'swiper_nav' => 'yes',
-                'use_nav_widget' => 'yes'
             ]
         ]);
-        $this->icons([
-            'name' => 'nav_prev_icon',
-            'label' => __('Previous Icon', 'steelnova'),
-            'default' => [],
-            'condition' => [
-                'swiper_nav' => 'yes',
-                'use_nav_widget' => ''
-            ]
-        ]);
-        $this->icons([
-            'name' => 'nav_next_icon',
-            'label' => __('Next Icon', 'steelnova'),
-            'default' => [],
-            'condition' => [
-                'swiper_nav' => 'yes',
-                'use_nav_widget' => ''
-            ]
-        ]);
-
         $this->select([
             'name'  => 'swiper_pagination',
             'label' => __('Pagination', 'steelnova'),
@@ -658,9 +640,6 @@ trait Custom_Controls_Trait {
             'label' => __('Slides Per View', 'steelnova'),
             'options' => $columns_options,
             'default' => '',
-            'condition' => [
-                'slides_per_view' => [''],
-            ]
         ]);
         $this->select([
             'name' => 'swiper_grid_rows',
@@ -681,6 +660,105 @@ trait Custom_Controls_Trait {
             'label' => __('Space Between(px)', 'steelnova'),
         ]);
         $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+
+        $this->register_swiper_bullet_style();
+    }
+
+    /**
+     * Register Swiper Bullet Style Controls
+     */
+    protected function register_swiper_bullet_style( ) {
+        $this->start_style_section([
+            'name' => 'section_bullet_style',
+            'label' => __( 'Bullet', 'steelnova' ),
+            // 'condition' => [
+            //     'swiper_pagination' => 'bullets'
+            // ]
+        ]);
+        $this->size([
+            'name' => 'bullets_spacing_top',
+            'label' => __( 'Bullets Spacing Top', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .carousel .swiper-pagination-bullets' => 'margin-top: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->size([
+            'name' => 'bullets_gap',
+            'label' => __( 'Bullets Gap', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .carousel .swiper-pagination-bullets' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->size([
+            'name' => 'bullet_width',
+            'label' => __( 'Bullet Width', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet' => 'width: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->size([
+            'name' => 'bullet_height',
+            'label' => __( 'Bullet Height', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->_start_controls_tabs([
+            'name' => 'bullet_style_tabs',
+        ]);
+        // Tab Normal Start
+        $this->_start_controls_tab([
+            'name' => 'bullet_tab_normal',
+            'label' => __( 'Normal', 'steelnova' ),
+        ]);
+        $this->color([
+            'name' => 'bullet_color',
+            'label' => __( 'Text Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet' => 'color: {{VALUE}};',
+            ],
+        ]);
+        $this->group_background([
+            'name' => 'bullet_background',
+            'selector' => '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet',
+        ]);
+        $this->group_box_css([
+            'name' => 'bullet_box_css',
+            'selector' => '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet',
+        ]);
+        $this->end_controls_tab();
+
+        // Tab Hover Start
+        $this->_start_controls_tab([
+            'name' => 'bullet_tab_hover',
+            'label' => __( 'Hover', 'steelnova' ),
+        ]);
+        $this->color([
+            'name' => 'bullet_color_hover',
+            'label' => __( 'Text Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet:hover, {{WRAPPER}} .carousel .swiper-pagination-bullets .bullet.swiper-pagination-bullet-active' => 'color: {{VALUE}};',
+            ],
+        ]);
+        $this->group_background([
+            'name' => 'bullet_background_hover',
+            'selector' => '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet:hover, {{WRAPPER}} .carousel .swiper-pagination-bullets .bullet.swiper-pagination-bullet-active',
+        ]);
+        $this->group_box_css([
+            'name' => 'bullet_box_css_hover',
+            'selector' => '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet:hover, {{WRAPPER}} .carousel .swiper-pagination-bullets .bullet.swiper-pagination-bullet-active',
+        ]);
+        $this->time([
+            'name' => 'bullet_transition_duration',
+            'label' => __('Transition Duration', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .carousel .swiper-pagination-bullets .bullet' => 'transition-duration: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->end_controls_tab();
+
         $this->end_controls_tabs();
         $this->end_controls_section();
     }

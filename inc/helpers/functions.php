@@ -121,6 +121,7 @@ if( ! function_exists( 'steelnova_get_carousel_settings' ) ) {
             return '';
         }
         $params = [];
+        $params['effect']    = 'slide';
         $params['direction'] = $settings['swiper_direction'];
         $params['loop']      = $settings['loop'] === 'yes';
         $params['centeredSlides'] = $settings['centered_slides'] === 'yes';
@@ -143,10 +144,10 @@ if( ! function_exists( 'steelnova_get_carousel_settings' ) ) {
         $params['mousewheel'] = $settings['mousewheel'] === 'yes';
         $params['speed']      = $settings['speed'] ?: 500;
         $params['navigation'] = $settings['swiper_nav'] === 'yes' ? [
-            'prevEl' => $settings['use_nav_widget'] === 'yes' ? '#' . esc_attr( $settings['nav_widget_id'] ) . ' .cs-navigation-carousel__button--prev' : '#carousel-' . $args['_id'] . ' .carousel__navigation-prev',
-            'nextEl' => $settings['use_nav_widget'] === 'yes' ? '#' . esc_attr( $settings['nav_widget_id'] ) . ' .cs-navigation-carousel__button--next' : '#carousel-' . $args['_id'] . ' .carousel__navigation-next',
+            'prevEl' => $settings['nav_widget_id'] !== '' ? '#' . esc_attr( $settings['nav_widget_id'] ) . ' .cs-navigation-carousel__button--prev' : '#carousel-' . $args['_id'] . ' .carousel__navigation-prev',
+            'nextEl' => $settings['nav_widget_id'] !== '' ? '#' . esc_attr( $settings['nav_widget_id'] ) . ' .cs-navigation-carousel__button--next' : '#carousel-' . $args['_id'] . ' .carousel__navigation-next',
         ] : false;
-        $params['pagination'] = $settings['swiper_pagination'] === 'yes';
+        $params['pagination'] = !empty( $settings['swiper_pagination'] ) ? $settings['swiper_pagination'] : false;
         $params['scrollBar'] = $settings['swiper_scrollbar'] === 'yes';
         
 
@@ -349,5 +350,48 @@ if( ! function_exists( 'steelnova_get_prefix_id_option') ) {
         //     return 'blog_';
         // }
         return '';
+    }
+}
+
+if( ! function_exists( 'steelnova_get_swiper_controls' ) ) {    
+    function steelnova_get_swiper_controls( $settings = [] ) {
+        ob_start();
+        if( !empty( $settings['swiper_pagination'] ) ) : ?>
+            <div class="carousel__pagination"></div>
+        <?php endif; ?>
+        <?php
+        if( (bool) $settings['swiper_nav'] ) : 
+            $use_nav_widget = $settings['use_nav_widget'] === 'yes';
+            $nav_class = $use_nav_widget ? ' carousel__navigation--hide' : '';
+            $box_gradient_class = !empty( $settings['swiper_nav_btn_background_color_b'] ) || 
+                    !empty( $settings['swiper_nav_btn_background_image'] ) ||  
+                    !empty( $settings['swiper_nav_btn_hover_background_color_b'] ) || 
+                    !empty( $settings['swiper_nav_btn_hover_background_image'] ) ? ' box-gradient' : '';
+        ?>
+            <div class="carousel__navigation<?php echo esc_attr($nav_class); ?>">
+                <div class="cs-button carousel__button carousel__button-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="17" viewBox="0 0 10 17" fill="none">
+                        <path d="M1.03125 7.21875L0 8.25L8.25 16.5L9.28125 15.4687L2.0625 8.25L9.28125 1.03125L8.25 -1.90735e-06L4.125 4.125L1.03125 7.21875Z" fill="#2B2B2B"/>
+                    </svg>
+                </div>
+                <div class="cs-button carousel__button carousel__button-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="17" viewBox="0 0 10 17" fill="none">
+                        <path d="M8.33594 9.28125L9.36719 8.25L1.03125 -1.90735e-06L0 1.03125L7.21875 8.25L0 15.4687L1.03125 16.5L5.24219 12.375L8.33594 9.28125Z" fill="#2B2B2B"/>
+                    </svg>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php
+        if( (bool) $settings['swiper_scrollbar'] ) : ?>
+            <div class="carousel__scrollbar"></div>
+        <?php endif; 
+        $html = ob_get_clean();
+        return $html;
+    }
+}
+
+if( ! function_exists( 'steelnova_print_swiper_controls' ) ) {
+    function steelnova_print_swiper_controls( $settings = [] ) {
+        echo steelnova_get_swiper_controls( $settings );
     }
 }

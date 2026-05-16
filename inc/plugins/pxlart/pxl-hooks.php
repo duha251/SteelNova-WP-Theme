@@ -103,7 +103,7 @@ class Pxl_Hooks {
             'mega-menu'       => __('Mega Menu', 'steelnova') ,
             'hero'            => __('Hero', 'steelnova'), 
             'panel'           => __('Panel', 'steelnova'),
-            // 'archive'      => __('Archive', 'steelnova')
+            'tab'             => __('Tab', 'steelnova'),
             'section'         => __('Section', 'steelnova')
 		];
 		return $extra_type;
@@ -190,6 +190,18 @@ class Pxl_Hooks {
             'args'       => array(
                 'rewrite'             => array(
                     'slug'       => 'project-category'
+                ),
+            ),
+            'labels'     => array()
+        );
+        $taxonomies['service_category'] = array(
+            'status'     => true,
+            'post_type'  => array( 'service' ),
+            'taxonomy'   => 'Service Category',
+            'taxonomies' => 'Service Categories',
+            'args'       => array(
+                'rewrite'             => array(
+                    'slug'       => 'service-category'
                 ),
             ),
             'labels'     => array()

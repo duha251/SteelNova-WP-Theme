@@ -12,16 +12,16 @@
   justify-content: center;
 }
 
-.social-icons {
+.cs-social-icons {
   display: flex;
   gap: 15px;
 }
-.social-icons__link {
+.cs-social-icons > a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-.social-icons__link > svg, .social-icons__link i {
+.cs-social-icons > a > svg, .cs-social-icons > a i {
   position: relative;
 }
 
@@ -33,16 +33,17 @@
   height: 46px;
 }
 
-.divider {
+.cs-divider {
   width: 100%;
   border-color: currentColor;
+  background-color: transparent;
 }
-.divider.divider-horizontal {
+.cs-divider--horizontal {
   border-top-width: thin;
   border-top-style: solid;
   height: 1px;
 }
-.divider.divider-vertical {
+.cs-divider--vertical {
   border-left-width: thin;
   border-left-style: solid;
   width: 1px;
@@ -78,13 +79,18 @@
   display: inline-flex;
 }
 
-.icon-wrapper {
+.cs-icon-wrapper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.steelnova-background {
+.cs-icons-carousel .cs-icon-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.cs-background {
   width: 100%;
   height: 100%;
 }
@@ -142,10 +148,10 @@
   position: absolute;
   top: 3px;
   right: 5px;
-  --mt-box-size: 46px;
-  width: var(--mt-box-size);
-  min-width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 46px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
   border-radius: 50%;
   color: #0A1119;
   background-color: #FFF;
@@ -210,10 +216,10 @@
   gap: 8px;
 }
 .cs-post-social-share__link {
-  --mt-box-size: 46px;
-  width: var(--mt-box-size);
-  min-width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 46px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -231,10 +237,10 @@
   gap: 30px;
 }
 .cs-navigation-carousel__button {
-  --mt-box-size: 50px;
-  width: var(--mt-box-size);
-  min-width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 50px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -377,6 +383,87 @@
 }
 .cs-brands.has-divider li + li {
   border-top: thin dotted #4B535D;
+}
+
+.cs-member-info__role {
+  margin-top: 3px;
+  font-size: 18px;
+  line-height: 1.4444;
+  margin-bottom: 58px;
+}
+@media screen and (max-width: 1199px) {
+  .cs-member-info__role {
+    margin-bottom: 30px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .cs-member-info__role {
+    margin-bottom: 15px;
+  }
+}
+.cs-member-info .divider {
+  margin-block: 38px 25px;
+}
+@media screen and (max-width: 1199px) {
+  .cs-member-info .divider {
+    margin-block: 25px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .cs-member-info .divider {
+    margin-block: 15px;
+  }
+}
+.cs-member-info .list__item {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+.cs-member-info .list__item-label {
+  font-family: var(--cs-heading-font);
+  font-size: clamp(1.125rem, 1.0962rem + 0.1282vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.cs-member-info .list__item-text, .cs-member-info .list__item-link {
+  font-family: var(--cs-heading-font);
+  font-size: clamp(1.5rem, 1.4135rem + 0.3846vw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.33333;
+  letter-spacing: -1px;
+  color: var(--cs-heading-color);
+}
+.cs-member-info__socials {
+  display: flex;
+  gap: 15px;
+}
+.cs-member-info__socials a {
+  --cs-box-size: 48px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
+  border-radius: 50%;
+  background-color: #0A1119;
+  color: #FFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-particles {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  min-height: 50px;
+  pointer-events: none;
+}
+.cs-particles canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /*# sourceMappingURL=style.min.css.map*/

@@ -37,15 +37,30 @@ class Widget_Background extends SteelNova_Widget_Base {
             'name' => 'section_background_style',
             'label' => __( 'Background', 'steelnova' ),
         ]);
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background',
-                'label' => __( 'Background', 'steelnova' ),
-                'types' => [ 'classic', 'gradient' ],
-                'selector' => '{{WRAPPER}} .steelnova-background',
-            ]
-        );
+
+        $this->group_width([
+            'name' => 'box_width',
+            'label' => __( 'Box Width', 'steelnova' ),
+            'selector' => '{{WRAPPER}} .cs-background',
+        ]);
+        $this->group_height([
+            'name' => 'box_height',
+            'label' => __( 'Box Height', 'steelnova' ),
+            'selector' => '{{WRAPPER}} .cs-background',
+        ]);
+        $this->group_background([
+            'name' => 'boxx_background',
+            'types' => [ 'classic', 'gradient' ],
+            'selector' => '{{WRAPPER}} .cs-background',
+        ]);
+        $this->group_css_filter([
+            'name' => 'box_css_filter',
+            'selector' => '{{WRAPPER}} .cs-background',
+        ]);
+        $this->group_box_css([
+            'name' => '_box_css_hover',
+            'selector' => '{{WRAPPER}} .cs-background',
+        ]);
 
         $this->end_controls_section();
     }

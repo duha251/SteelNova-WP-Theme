@@ -354,5 +354,7 @@ class SteelNova_Elementor {
 		wp_register_script('steelnova-countdown', get_template_directory_uri() . '/elementor/assets/js/countdown.js', ['jquery'], $this->version, true);
 		wp_register_script('steelnova-accordion', get_template_directory_uri() . '/elementor/assets/js/accordion.js', ['jquery'], $this->version, true);
 		wp_register_script('steelnova-price-filter', get_template_directory_uri() . '/elementor/assets/js/price-filter.js', ['jquery'], $this->version, true);
+		wp_register_script('steelnova-particles', get_template_directory_uri() . '/elementor/assets/js/particles.js', ['jquery', 'particles-js'], $this->version, true);
+		wp_register_script('steelnova-tabs', get_template_directory_uri() . '/elementor/assets/js/tabs.js', ['jquery'], $this->version, true);
 	}
 }

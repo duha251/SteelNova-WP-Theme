@@ -1,46 +1,15 @@
 @use '../../../../assets/scss/core' as *;
 
 .cs-accordion {
-    &.has-divider {
-        // .cs-accordion__item + .cs-accordion__item {
-        //     border-top: thin solid #DCE2E1;
-        // }
-        .cs-accordion__item {
-            &:last-child {
-                .cs-accordion__header {
-                    border-color: transparent;
-                }
-            }
-        }
-    }
     &__item {
         cursor: pointer;
-        padding-top: 20px;
+        transition: 300ms ease;
         &.is-active {
             .icon-plus {
-                background-color: #FF5B1B;
-                color: #FFF;
                 &::after {
-                    transform: translate(-50%, -50%) rotate(0deg);
+                    width: 0 !important;
+                    transition: width 300ms linear 300ms, background-color 300ms linear;
                 }
-            }
-        }
-    }
-    &__header {
-        @include d-flex(30px, null, space-between);
-        padding-bottom: 15px;
-        border-bottom: thin solid #DCE2E1;
-    }
-    &__icon {
-        flex-shrink: 0;
-        @include round-box(30px, 4px);
-        background-color: #E7ECEB;
-        color: #0A1119;
-        &.icon-plus {
-            transition: .3s ease;
-            &::before, &::after {
-                width: 13px;
-                height: 1px;
             }
         }
     }
@@ -48,11 +17,173 @@
         height: 0;
         overflow: hidden;
         transition: height 500ms ease;
-        > p {
-            padding-block: 22px;
-            padding-bottom: 16px;
-            cursor: default;
-            max-width: 675px;
+    }
+    &__header {
+        @include d-flex(30px, null, space-between);
+    }
+    &__icon {
+        flex-shrink: 0;
+        &.icon-plus {
+            transition: .3s ease;
         }
+    }
+}
+
+.cs-accordion[data-layout="1"] {
+    &.has-divider {
+        .cs-accordion__item {
+            .cs-accordion__header {
+                border-bottom: thin solid #DCE2E1;
+            }
+            &:last-child {
+                .cs-accordion__header {
+                    border-color: transparent;
+                }
+            }
+        }
+    }
+    .cs-accordion {
+        &__item {
+            padding-top: 20px;
+            &.is-active {
+                .icon-plus {
+                    background-color: #FF5B1B;
+                    color: #FFF;
+                    &::after {
+                        transform: translate(-50%, -50%) rotate(0deg);
+                    }
+                }
+            }
+        }
+        &__header {
+            padding-bottom: 15px;
+        }
+        &__icon {
+            @include round-box(30px, 4px);
+            background-color: #E7ECEB;
+            color: #0A1119;
+            &.icon-plus {
+                &::before, &::after {
+                    width: 13px;
+                    height: 1px;
+                }
+            }
+        }
+        &__content {
+            > p {
+                padding-block: 22px;
+                padding-bottom: 16px;
+                cursor: default;
+                max-width: 675px;
+            }
+        }
+    }
+}
+
+.cs-accordion[data-layout="2"] {
+    .cs-accordion {
+        &__item {
+            border: thin solid #DCDCDC;
+            border-radius: 4px;
+            + .cs-accordion__item {
+                margin-top: 22px;
+            }
+            &.is-active {
+                background-color: #121512;
+                .cs-accordion__header {
+                    border-bottom-color: #706F6F;
+                }
+                .cs-accordion__title, .cs-accordion__icon {
+                    color: #FFF;
+                }
+            }
+        }
+        &__header {
+            padding: 16px 25px 16px 20px;
+            border-bottom: thin solid transparent;
+        }
+        &__content {
+            color: #FFF;
+            @include paragraph-5;
+            p {
+                padding: 18.5px 21px;
+            }
+        }
+        &__icon {
+            color: var(--cs-heading-color);
+            &.icon-plus {
+                &::before, &::after {
+                    width: 14px;
+                    height: 3px;
+                    border-radius: 10px
+                }
+            }
+        }
+    }
+    div.cs-accordion__title {
+        @include h7;
+        color: var(--cs-heading-color);
+    }
+}
+
+.cs-accordion[data-layout="3"] {
+    .cs-accordion {
+        &__item {
+            overflow: hidden;
+            border-radius: 14px;
+
+            + .cs-accordion__item {
+                margin-top: 30px;
+            }
+            &.is-active {
+                .cs-accordion__header {
+                    border-color: transparent;
+                    background-color: #FF5B1B;
+                    border-radius: 14px 14px 0 0;
+                }
+                .cs-accordion__title {
+                    color: #FFF;
+                }
+                .cs-accordion__icon {
+                    border-color: #FFF;
+                    background-color: transparent;
+                    color: #FFF;
+                    > svg {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+        &__header {
+            transition: 300ms ease;
+            border-bottom: thin solid transparent;
+            padding: 19px 20px 19px 23.5px;
+            border: thin solid #FAE6D9;
+            background-color: #FAF5ED;
+            border-radius: 14px;
+        }
+        &__content {
+            color: #FFF;
+            background-color: #121512;
+            @include paragraph-5;
+            p {
+                padding: 25px 20px 29px 23.5px;
+            }
+        }
+        &__icon {
+            background-color: #121512;
+            @include round-box(30px, 4px);
+            border: thin solid transparent;
+            color: #FFF;
+            > svg {
+                transition: transform 300ms ease;
+            }
+        }
+        &__title {
+            color: var(--cs-heading-color);
+        }
+    }
+    div.cs-accordion__title {
+        @include h7;
     }
 }

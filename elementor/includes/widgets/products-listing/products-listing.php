@@ -14,7 +14,7 @@ class Widget_Products_Listing extends SteelNova_Widget_Base {
     protected function widget_info() {
         return [
             'name'       => 'steelnova-products-listing',
-            'title'      => __( 'CS Posts Grid', 'steelnova' ),
+            'title'      => __( 'CS Posts Listing', 'steelnova' ),
             'categories' => ['steelnova-woo'],
             'icon'       => 'eicon-post-list',
             'keywords'   => [ 'posts', 'grid', 'blog', 'news', 'steelnova', 'cs', 'casetheme' ],

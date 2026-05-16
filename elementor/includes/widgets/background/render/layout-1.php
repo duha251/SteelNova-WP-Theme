@@ -1,6 +1,6 @@
 <?php
 $wrapper_attrs_tmp = [
-    'class' => 'steelnova-background',
+    'class' => 'cs-background',
 ];
 $wrapper_attrs = array_merge( $wrapper_attrs_tmp, $wrapper_attrs );
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );

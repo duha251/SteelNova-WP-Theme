@@ -25,9 +25,9 @@
   gap: 30px;
 }
 .cs-icon-box[data-layout_style="2"] .cs-icon-box__icon {
-  --mt-box-size: 50px;
-  width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 50px;
+  width: var(--cs-box-size);
+  height: var(--cs-box-size);
   align-items: flex-start;
   justify-content: flex-start;
   position: relative;
@@ -35,10 +35,10 @@
 }
 .cs-icon-box[data-layout_style="2"] .cs-icon-box__icon::before {
   content: "";
-  --mt-box-size: 30px;
-  width: var(--mt-box-size);
-  min-width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 30px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
   border-radius: 50%;
   position: absolute;
   right: 0;

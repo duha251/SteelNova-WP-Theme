@@ -52,8 +52,8 @@ class Widget_Divider extends SteelNova_Widget_Base {
             ],
             'default' => 'solid',
             'selectors' => [
-                '{{WRAPPER}} .divider.divider-horizontal' => 'border-top-style: {{VALUE}};',
-                '{{WRAPPER}} .divider.divider-vertical' => 'border-left-style: {{VALUE}};',
+                '{{WRAPPER}} .cs-divider.cs-divider--horizontal' => 'border-top-style: {{VALUE}};',
+                '{{WRAPPER}} .cs-divider.cs-divider--vertical' => 'border-left-style: {{VALUE}};',
             ]
         ]);      
         $this->select([
@@ -65,6 +65,16 @@ class Widget_Divider extends SteelNova_Widget_Base {
             ],
             'default' => 'horizontal',
         ]);   
+        $this->size([
+            'name' => 'divider_height',
+            'label' => __('Height', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .cs-divider' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [
+                'divider_dir' => 'vertical'
+            ]
+        ]);
         $this->end_controls_section();
     }
 
@@ -80,14 +90,14 @@ class Widget_Divider extends SteelNova_Widget_Base {
             'name' => 'divider_thickness',
             'label' => __('Thickness', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .divider.divider-horizontal' => 'height: {{SIZE}}{{UNIT}}; border-top-width: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .divider.divider-vertical'   => 'width: {{SIZE}}{{UNIT}}; border-left-width: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-divider.cs-divider--horizontal' => 'height: {{SIZE}}{{UNIT}}; border-top-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-divider.cs-divider--vertical'   => 'width: {{SIZE}}{{UNIT}}; border-left-width: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->color([
             'name' => 'divider_color',
             'selectors' => [
-                '{{WRAPPER}} .divider' => 'border-color: {{VALUE}};'
+                '{{WRAPPER}} .cs-divider' => 'border-color: {{VALUE}};'
             ]
         ]);
         $this->end_controls_section();

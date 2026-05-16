@@ -1,6 +1,6 @@
 <?php
 $wrapper_attrs_tmp = [
-    'class' => 'image-wrapper',
+    'class' => 'image-wrapper cs-image',
 ];
 
 if( !empty( $settings['loop_anim'] ) ){

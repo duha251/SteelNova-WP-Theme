@@ -418,7 +418,7 @@ trait Controls_Trait {
     /**
      * Quick choose control
      */
-    protected function choose($args = []) {
+    protected function choose($args = [], $target = null) {
         $defaults = [
             'label' => __( 'Choose', 'steelnova' ),
             'type' => Controls_Manager::CHOOSE,
@@ -429,6 +429,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
@@ -452,7 +453,7 @@ trait Controls_Trait {
     /**
      * Quick text editor
      */
-    protected function wysiwyg( $args = [] ) {
+    protected function wysiwyg( $args = [], $target = null ) {
         $defaults = [
             'label' => __( 'Text Editor', 'steelnova' ),
             'type' => 'wysiwyg',
@@ -464,6 +465,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
@@ -487,7 +489,7 @@ trait Controls_Trait {
     /**
      * 
      */
-    protected function image_size( $args = [] ) {
+    protected function image_size( $args = [], $target = null ) {
         $defaults = [
             'type' => 'image_dimensions',
             'label' => __( 'Image Size', 'steelnova' ),
@@ -499,6 +501,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 

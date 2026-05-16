@@ -458,7 +458,6 @@ class Static_Options {
         return $final_options;
     }
 
-
     public static function get_navigation_menu_options() {
         $menus = get_terms( 'nav_menu', array( 'hide_empty' => false ) );
         $pxl_menus = '';

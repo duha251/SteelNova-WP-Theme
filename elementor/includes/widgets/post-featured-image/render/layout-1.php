@@ -4,6 +4,6 @@ $image_id = get_post_thumbnail_id($post_id);
 $img_w = $settings['img_size']['width'] ?: null;
 $img_h = $settings['img_size']['height'] ?: null;
 ?>
-<div class="post-featured image">
+<div class="cs-post-featured-image cs-image">
     <?php steelnova_print_image_by_size($image_id, $img_w, $img_h, []); ?>
 </div>

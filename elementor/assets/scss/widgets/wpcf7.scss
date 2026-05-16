@@ -5,7 +5,9 @@
         &-form {
             display: flex;
         }
-        
+        .wpcf7-form-control {
+            width: 100%;
+        }
     }
     .wpcf7-form-control-wrap {
         display: inline-flex;

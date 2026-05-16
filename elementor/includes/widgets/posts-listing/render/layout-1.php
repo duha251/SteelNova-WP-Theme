@@ -39,7 +39,8 @@ $title_tag  = $settings['title_tag'] ?: 'div';
 $date_format = $settings['date_format'];
 
 $wrapper_attrs = [
-    'class' => 'grid cs-posts-listing is-post-type-post',
+    'class' => 'grid cs-posts-listing is-post-type-'.$post_type,
+    'data-layout' => '1'
 ];
 
 $this->add_render_attribute('wrapper', $wrapper_attrs);

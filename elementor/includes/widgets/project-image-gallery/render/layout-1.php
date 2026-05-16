@@ -51,6 +51,11 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
         ],
     ]
 ]);
+
+if( $settings['swiper_boxshadow'] === 'yes' ) {
+    $wrapper_attrs['class'] .= ' carousel--box-shadow';
+}
+
 ?>
 <div class="carousel cs-project-image-garelly">
     <div class="carousel__container swiper" data-swiper="<?php echo esc_attr( json_encode( $swiper_settings ) ); ?>">
@@ -61,5 +66,6 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
                 </div>
             <?php endforeach; ?>
         </div>
+        <?php steelnova_print_swiper_controls( $settings ); ?>
     </div>
 </div>

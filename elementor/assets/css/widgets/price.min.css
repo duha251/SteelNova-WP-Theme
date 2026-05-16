@@ -1,0 +1,97 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./elementor/assets/scss/widgets/price.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+.cs-price-carousel .price {
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.27);
+  background-color: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(50px);
+  padding: 12px 12px 11px 12px;
+}
+.cs-price-carousel .price .price__title, .cs-price-carousel .price .price__amount, .cs-price-carousel .price .price__description, .cs-price-carousel .price .price__features li {
+  transition: color 0.3s ease;
+}
+.cs-price-carousel .price__inner {
+  padding: 46px 44px 56px;
+  border-radius: 15.5px;
+  background-color: #FFF;
+  position: relative;
+}
+.cs-price-carousel .price__inner:hover .price__title, .cs-price-carousel .price__inner:hover .price__amount, .cs-price-carousel .price__inner:hover .price__description, .cs-price-carousel .price__inner:hover .price__features li, .cs-price-carousel .price__inner.is-active .price__title, .cs-price-carousel .price__inner.is-active .price__amount, .cs-price-carousel .price__inner.is-active .price__description, .cs-price-carousel .price__inner.is-active .price__features li {
+  color: #FFF;
+}
+@media screen and (max-width: 1399px) {
+  .cs-price-carousel .price__inner {
+    padding: 45px 30px 45px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .cs-price-carousel .price__inner {
+    padding: 30px 15px;
+  }
+}
+.cs-price-carousel .price__icon--main {
+  --cs-box-size: 55px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
+  border-radius: 50%;
+  color: #FFF;
+  background-color: #FF5B1B;
+  display: flex;
+  align-items: center;
+  margin-bottom: 33px;
+}
+.cs-price-carousel .price__icon--copy {
+  position: absolute;
+  right: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 0;
+  color: rgba(169, 146, 138, 0.17);
+  scale: 4.8;
+  transform-origin: top right;
+}
+.cs-price-carousel .price__title {
+  margin-bottom: 13px;
+}
+.cs-price-carousel .price__amount {
+  display: flex;
+  color: var(--cs-heading-color);
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans";
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.05263;
+  letter-spacing: -1px;
+  margin-top: 36px;
+  align-items: flex-end;
+}
+.cs-price-carousel .price__amount-suffix {
+  font-family: var(--cs-text-font);
+  font-size: 17px;
+  line-height: 1.64706;
+  font-weight: 400;
+}
+.cs-price-carousel .price__features {
+  gap: 16px;
+}
+.cs-price-carousel .price__features li {
+  gap: 10px;
+  font-family: var(--cs-text-font);
+  font-size: 17px;
+  line-height: 1.64706;
+}
+.cs-price-carousel .price__features li > svg {
+  color: #FF5B1B;
+}
+.cs-price-carousel .price .divider {
+  margin-block: 32px;
+}
+.cs-price-carousel .price .cs-button {
+  margin-top: 44px;
+  background-color: #0A1119;
+  color: #FFF;
+}
+
+/*# sourceMappingURL=price.min.css.map*/

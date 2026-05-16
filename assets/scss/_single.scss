@@ -1,10 +1,14 @@
 @use 'core.scss' as *;
 
 .single {
+    #main {
+        .inner {
+            @include site-spacing-block;
+        }
+    }
     &.has-sidebar {
         #main {
             padding-inline: 15px;
-            --cs-container: 100%;
             .inner {
                 @include d-flex(100px 30px, null, space-between);
                 .content-area {
@@ -33,6 +37,7 @@
         }
         &.single-project {
             #main {
+                --cs-container: 1570px;
                 .inner {
                     @include d-flex(100px 30px, null, space-between);
                     .content-area {
@@ -51,6 +56,22 @@
                         .sidebar-area {
                             flex: 0 1 100%;
                         }
+                    }
+                }
+            }
+        }
+        &.single-service {
+            #main {
+                --cs-container: 1294px;
+                .content-area {
+                    flex: 0 1 860px;
+                    max-width: 860px;
+                    min-width: 0;
+                }
+                @media #{$max-md} {
+                    .content-area, .sidebar-area {
+                        max-width: 100%;
+                        flex: 0 1 100%;
                     }
                 }
             }

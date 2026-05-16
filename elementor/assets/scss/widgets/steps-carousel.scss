@@ -1,0 +1,41 @@
+@use '../../../../assets/scss/core' as *;
+
+.cs-steps-carousel {
+    .cs-step {
+        padding: 30px 9px 10px;
+        border-radius: 8px;
+        background-color: #FAF5ED;
+        &__header {
+            @include d-flex(30px, center, space-between);
+            margin-bottom: 63px;
+            max-width: 220px;
+            margin-inline: auto;
+            @media #{$max-sm} {
+                max-width: 100%;
+            }
+        }
+        &__index {
+            @include h4;
+            color: var(--cs-heading-color);
+        }
+        &__icon {
+            color: #706F6F;
+        }
+        &__content {
+            padding: 18px 20px;
+            border-top: thin solid #DCDCDC;
+            border-radius: 6px;
+            background-color: #FFF;
+        }
+        &__description {
+            @include paragraph-5;
+        }
+        &__title {
+            color: var(--cs-heading-color);
+            margin-bottom: 6px;
+        }
+        div.cs-step__title {
+            @include h7;
+        }
+    }
+}

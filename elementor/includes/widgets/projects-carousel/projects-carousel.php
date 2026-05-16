@@ -7,18 +7,18 @@ use SteelNova\Inc\Helpers\Static_Options;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Widget_Services extends SteelNova_Widget_Base {
+class Widget_Projects_Carousel extends SteelNova_Widget_Base {
     /**
      * Get the widget information.
      */
     protected function widget_info() {
         return [
-            'name'       => 'steelnova-services',
-            'title'      => __( 'CS Services', 'steelnova' ),
-            'icon'       => 'eicon-post',
-            'keywords'   => [ 'services', 'service', 'features', 'offerings' ],
-            'script'     => [],
-            'style'      => ['steelnova-widget-service']
+            'name'       => 'steelnova-projects-carousel',
+            'title'      => __( 'CS Projects Carousel', 'steelnova' ),
+            'icon'       => 'eicon-posts-carousel',
+            'keywords'   => [ 'posts', 'carousel', 'blog', 'news', 'steelnova', 'cs', 'casetheme', 'project', 'case' ],
+            'script'     => ['steelnova-carousel'],
+            'style'      => ['swiper', 'steelnova-widget-project'],
         ];
     }
 
@@ -33,7 +33,10 @@ class Widget_Services extends SteelNova_Widget_Base {
         // Style Controls
         // $this->register_style_controls();
         // Settings Controls
+        $this->register_carousel_settings_controls();
         $this->register_post_display_settings_controls();
+        // Steelnova Controls
+        $this->register_steelnova_extra_controls();
     }
 
     /**
@@ -44,25 +47,38 @@ class Widget_Services extends SteelNova_Widget_Base {
             'name' => 'section_layout',
             'label' => __( 'Layout', 'steelnova' ),
         ]);
-        $this->select([
-            'name' => 'layout_type',
-            'label' => __('Layout Type', 'steelnova'),
-            'options' => [
-                'grid' => __('Grid', 'steelnova'),
-                'carousel' => __('Carousel', 'steelnova'),
-            ],
-            'default' => 'grid'    
-        ]);
         $this->visual_choice([
             'name' => 'layout',
             'label' => __( 'Choose Layout', 'steelnova' ),
             'options' => [
                 '1' => [
                     'title' => __('Layout 1', 'steelnova'),
-                    'image' => content_url('/uploads/widget-layout/services-1.webp'),
+                    'image' => content_url('/uploads/widget-layout/project-1.webp'),
+                ],
+                '2' => [
+                    'title' => __('Layout 2', 'steelnova'),
+                    'image' => content_url('/uploads/widget-layout/project-2.webp'),
                 ],
             ],
             'default' => '1',
+        ]);
+        $this->visual_choice([
+            'name' => 'layout2_style',
+            'label' => __( 'Choose Layout Style', 'steelnova' ),
+            'options' => [
+                '0' => [
+                    'title' => __('Default', 'steelnova'),
+                    'image' => content_url('/uploads/widget-layout/project-1.webp'),
+                ],
+                '2' => [
+                    'title' => __('Layout 2', 'steelnova'),
+                    'image' => content_url('/uploads/widget-layout/project-2.webp'),
+                ],
+            ],
+            'default' => '0',
+            'condition' => [
+                'layout' => '2',
+            ]
         ]);
         $this->end_controls_section();
     }
@@ -77,7 +93,7 @@ class Widget_Services extends SteelNova_Widget_Base {
         ]);
         $this->hidden([
             'name' => 'post_type',
-            'default' => 'service',
+            'default' => 'project',
         ]);
         $this->select([
             'name' => 'source_type',
@@ -91,8 +107,8 @@ class Widget_Services extends SteelNova_Widget_Base {
         $this->select2([
             'name' =>'ids',
             'label_block' => true,
-            'label' => __('Service List', 'steelnova'),
-            'options' => steelnova()->post_manager->get_cpt_post_list( 'service' ),
+            'label' => __('List Post', 'steelnova'),
+            'options' => steelnova()->post_manager->get_cpt_post_list( 'project' ),
             'multiple' => true,
             'condition' => [
                 'source_type' => 'id',
@@ -101,8 +117,8 @@ class Widget_Services extends SteelNova_Widget_Base {
         $this->select2([
             'name' =>'categories',
             'label_block' => true,
-            'label' => __('Service Categories', 'steelnova'),
-            'options' => steelnova()->post_manager->get_cpt_category_list( 'service_category' ),
+            'label' => __('Categories', 'steelnova'),
+            'options' => steelnova()->post_manager->get_cpt_category_list( 'project_category' ),
             'multiple' => true,
             'condition' => [
                 'source_type' => 'category',
@@ -161,23 +177,78 @@ class Widget_Services extends SteelNova_Widget_Base {
             'separator' => 'before',
             'default' => ''
         ]);
-
+        $this->number([
+            'name' => 'item_active',
+            'label' => __('Item Active', 'steelnova'),
+            'min' => 1,
+            'default' => 1,
+            'condition' => [
+                'layout2_style' => '2'
+            ]
+        ]);
         $this->switcher([
-            'name' => 'show_button',
+            'name' => 'show_btn',
             'label' => __('Show Button', 'steelnova'),
             'default' => 'yes',
             'condition' => [
-                'layout' => ['1']
+                'layout' => ['1', '2']
             ]
         ]);
         $this->text([
-            'name' => 'button_text',
+            'name' => 'btn_text',
             'label' => __('Button Text', 'steelnova'),
             'condition' => [
                 'layout' => ['1'],
                 'show_button' => 'yes', 
             ]
         ]);
+        $this->switcher([
+            'name' => 'show_excerpt',
+            'label' => __('Show Excerpt', 'steelnova'),
+            'default' => 'yes',
+            'condition' => [
+                'layout' => ['1', '2']
+            ]
+        ]);
+        $this->number([
+            'name' => 'num_of_words',
+            'label' => __( 'Number of Words', 'steelnova' ),
+            'min' => -1,
+            'description' => __('Show Full Excerpt with value = -1', 'steelnova'),
+            'condition' => [
+                'layout' => ['1', '2'],
+                'show_excerpt' => 'yes'
+            ]
+        ]);
+
+        $this->switcher([
+            'name' => 'show_category',
+            'label' => __('Show Category', 'steelnova'),
+            'default' => 'yes',
+            'condition' => [
+                'layout' => ['1', '2']
+            ]
+        ]);
+
+        $this->switcher([
+            'name' => 'show_meta',
+            'label' => __('Show Meta', 'steelnova'),
+            'default' => 'yes',
+            'condition' => [
+                'layout' => ['2']
+            ]
+        ]);
+        $this->number([
+            'name' => 'num_of_meta',
+            'label' => __( 'Number of Meta', 'steelnova' ),
+            'min' => -1,
+            'description' => __('Show Full Meta with value = -1', 'steelnova'),
+            'condition' => [
+                'layout' => ['2'],
+                'show_meta' => 'yes'
+            ]
+        ]);
+        
         $this->end_controls_section();
     }
 

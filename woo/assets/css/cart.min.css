@@ -219,10 +219,10 @@
   flex: 0 0 36px;
 }
 .woocommerce-cart .cart-table__col--remove a {
-  --mt-box-size: 36px;
-  width: var(--mt-box-size);
-  min-width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 36px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;

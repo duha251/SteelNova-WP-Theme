@@ -2,7 +2,7 @@
 
 .header-logo {
     img  {
-        height: 34px;
+        height: 32px;
     }
 }
 
@@ -68,7 +68,7 @@
             border-radius: 0;
             top: 0;
             .icon-close {
-                --mt-box-size: 16px;
+                --cs-box-size: 16px;
                 &::after, &::before {
                     height: 1px;
                 }

@@ -18,7 +18,7 @@ class Widget_Posts_Listing extends SteelNova_Widget_Base {
             'icon'       => 'eicon-post-list',
             'keywords'   => [ 'posts', 'grid', 'blog', 'news', 'steelnova', 'cs', 'casetheme', 'list', 'recent', 'featured', 'popular' ],
             'script'     => [],
-            'style'      => ['steelnova-widget-post'],
+            'style'      => ['steelnova-widget-post-listing'],
         ];
     }
 
@@ -26,6 +26,8 @@ class Widget_Posts_Listing extends SteelNova_Widget_Base {
      * Register all controls for the widget.
      */
     public function register_controls() {
+        // Layout Controls
+        $this->register_layout_controls();
         // Content Controls
         $this->register_content_controls();
         // Style Controls
@@ -33,6 +35,34 @@ class Widget_Posts_Listing extends SteelNova_Widget_Base {
         // Settings Controls
         $this->register_grid_settings_controls();
         $this->register_post_display_settings_controls();
+    }
+
+
+    /**  
+     * Register Layout Controls
+    */
+    protected function register_layout_controls() {
+        $this->start_layout_section([ 
+            'name' => 'section_layout', 
+            'label' => __('Layout', 'steelnova')
+        ]);
+        $this->visual_choice([
+            'name' => 'layout',
+            'label' => __('Layout', 'steelnova'),
+            'columns' => '1',
+            'options' => [
+                '1' => [
+                    'title' => esc_attr__( 'Post Listing 1', 'steelnova' ),
+                    'image' => content_url('/uploads/widget-layout/post-listing-1.webp'),
+                ],
+                '2' => [
+                    'title' => esc_attr__( 'Post Listing 2', 'steelnova' ),
+                    'image' => content_url('/uploads/widget-layout/post-listing-2.webp'),
+                ],
+            ],
+            'default' => '1',
+        ]);
+        $this->end_controls_section();
     }
 
     /**

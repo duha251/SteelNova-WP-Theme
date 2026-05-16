@@ -39,10 +39,11 @@ $display_args = [
     'show_btn' => $settings['show_btn'] === 'yes',
     'btn_text'   => $settings['btn_text'] ?: 'Learn Details',
     'show_category' => $settings['show_category'] === 'yes',
+    'show_date'  => $settings['show_date'] === 'yes',
 ];
 
 $wrapper_attrs = [
-    'class' => 'grid posts-grid is-post-type-post',
+    'class' => 'grid cs-posts-grid is-post-type-post',
     'data-layout' => $layout,
 ];
 

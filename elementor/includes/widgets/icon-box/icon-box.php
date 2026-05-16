@@ -52,8 +52,16 @@ class Widget_Icon_Box extends SteelNova_Widget_Base {
             'selector' => '{{WRAPPER}} .cs-icon-box',
         ]);
         $this->size([
+            'name' => 'title_spacing_top',
+            'label' => __('Title Spacing Top', 'steelnova'),
+            'separator' => 'before',
+            'selectors' => [
+                '{{WRAPPER}} .cs-icon-box .cs-icon-box__title' => 'margin-top: {{SIZE}}{{UNIT}};'
+            ]
+        ]);
+        $this->size([
             'name' => 'title_spacing',
-            'label' => __('Title Spacing', 'steelnova'),
+            'label' => __('Title Spacing Bottom', 'steelnova'),
             'selectors' => [
                 '{{WRAPPER}} .cs-icon-box__content' => 'gap: {{SIZE}}{{UNIT}};'
             ]

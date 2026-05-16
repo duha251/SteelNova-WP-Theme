@@ -33,6 +33,7 @@ class Widget_Heading extends SteelNova_Widget_Base {
         $this->register_title_content_controls();
         // Style Controls
         $this->register_title_style_controls();
+        $this->register_line_style_controls();
         $this->register_subtitle_style_controls();
         $this->register_subtitle_icon_style_controls();
         // Steelnova Controls
@@ -128,6 +129,31 @@ class Widget_Heading extends SteelNova_Widget_Base {
         $this->end_controls_section();
     }
 
+
+    /**
+     * Register Text Style Controls
+     */
+    protected function register_line_style_controls() {
+        $this->start_style_section([
+            'name' => 'section_line_style',
+            'label' => __( 'Line', 'steelnova' ),
+            'condition' => [
+                'title_style' => 'underline'
+            ]
+        ]);
+        $this->size([
+            'name' => 'line_width',
+            'label' => __('Line Width', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .heading .heading__title::after' => 'width: {{SIZE}}{{UNIT}};'
+            ]
+        ]);
+        $this->group_background([
+            'name' => 'line_bg',
+            'selector' => '{{WRAPPER}} .heading .heading__title::after',
+        ]);
+        $this->end_controls_section();
+    }
 
     /**
      * Register Text Style Controls

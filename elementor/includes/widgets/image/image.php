@@ -71,20 +71,39 @@ class Widget_Image extends SteelNova_Widget_Base {
         ]);
         $this->group_width([
             'name' => 'box_width',
-            'label' => __('Image Box', 'steelnova'),
+            'label' => __('Box Width', 'steelnova'),
+            'selector' => '{{WRAPPER}} .image-wrapper'
+        ]);
+        $this->group_height([
+            'name' => 'box_height',
+            'label' => __('Box Height', 'steelnova'),
             'selector' => '{{WRAPPER}} .image-wrapper'
         ]);
         $this->select([
             'name' => 'img_width',
             'label' => __('Image Width', 'steelnova'),
+            'separator' => 'before',
             'options' => [
                 'auto' => __('Auto', 'steelnova'),
                 '100%' => __('Full Width', 'steelnova'),
-                '' => __('Custom', 'steelnova'),
+                ''     => __('Custom', 'steelnova'),
             ],
             'selectors' => [
                 '{{WRAPPER}} .image-wrapper img' => 'width: {{VALUE}};',
             ],
+        ]);
+        $this->group_width([
+            'name' => 'img_custom_width',
+            'label' => __('Image Custom Width', 'steelnova'),
+            'selector' => '{{WRAPPER}} .image-wrapper img',
+            'condition' => [
+                'img_width' => '',
+            ],
+        ]);
+        $this->group_height([
+            'name' => 'img_custom_height',
+            'label' => __('Image Height', 'steelnova'),
+            'selector' => '{{WRAPPER}} .image-wrapper img',
         ]);
         $this->start_controls_tabs('img_styles');
 

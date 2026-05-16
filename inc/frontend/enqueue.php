@@ -47,6 +47,7 @@ class Enqueue {
 		wp_register_script('gsap', get_template_directory_uri() . '/assets/js/libraries/gsap.min.js', [], '3.14.2', true);
 		wp_register_script('ScrollTrigger', get_template_directory_uri() . '/assets/js/libraries/ScrollTrigger.min.js', ['gsap'], '3.14.2', true);
 		wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/libraries/nice-select.min.js', [], '3.4.3', true);
+		wp_register_script('particles-js', get_template_directory_uri() . '/assets/js/libraries/particles.min.js', [], '2.0.0', true);
 
 		// Core
 		wp_enqueue_script('steelnova-utils', get_template_directory_uri() . '/assets/js/core/utils.js', [], $this->version, true);
@@ -79,6 +80,7 @@ class Enqueue {
 
 		// Libraries
         wp_enqueue_style('nice-select-style', get_template_directory_uri() . '/assets/css/libraries/nice-select.css', [], '1.0.0');
+        wp_register_style('steelnova-swiper', get_template_directory_uri() . '/assets/css/libraries/swiper.css', [], '1.0.0');
 		
         // Enquence Google Font
         $google_font_url = $this->get_google_fonts_url();
@@ -99,6 +101,7 @@ class Enqueue {
 		$fonts[] = 'Inter:ital,wght@0,100..900;1,100..900';
 		$fonts[] = 'Plus+Jakarta+Sans:wght@200..800';
 		$fonts[] = 'DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000';
+		$fonts[] = 'Instrument+Sans:ital,wght@0,400..700;1,400..700';
 
 		return 'https://fonts.googleapis.com/css2?family=' . implode('&family=', $fonts) . '&display=swap';
 	}
@@ -113,10 +116,8 @@ class Enqueue {
 		$link_colors      = $this->get_style_config( 'link' );
 		$linear_gradient_colors    = $this->get_style_config( 'linear_gradient' );
 		$theme_typography = $this->get_style_config( 'theme_typography' );
-		$spacing_block    = $this->get_style_config( 'spacing_block' );
-		$spacing_inline   = $this->option->get_option('spacing_inline', []);
+
 		$css_editor = $this->option->get_option('css_editor', '');
-		steelnova_debug( $spacing_inline );
 		$breakpoints = [
 			'xs' => '575px',
 			'sm' => '767px',
@@ -125,9 +126,9 @@ class Enqueue {
 			'xl' => '1399px',
 		];
 
-		$container = preg_match('/([\d.]+)([a-z%]*)/', $this->get_style_config( 'container' )['width'], $matches);
-		$container_size = isset($matches[1]) ? (float) $matches[1] : 1300;
-		$container_unit = $matches[2] ?? 'px';
+		// $container = preg_match('/([\d.]+)([a-z%]*)/', $this->get_style_config( 'container' )['width'], $matches);
+		// $container_size = isset($matches[1]) ? (float) $matches[1] : 1300;
+		// $container_unit = $matches[2] ?? 'px';
 
 		ob_start();
 
@@ -145,38 +146,9 @@ class Enqueue {
 				$font_family = is_array( $value) ? $value['font-family'] : $value;
 				printf( '--cs-%1$s-font: %2$s;', esc_attr( $font ), esc_attr( $font_family ) );
 			}
-			printf( '--cs-container: %1$s;', esc_attr( $container_size . $container_unit ) );
+			// printf( '--cs-container: %1$s;', esc_attr( $container_size . $container_unit ) );
 		echo '}';
-
-		foreach ( $spacing_block as $breakpoint_key => $value ) {
-			$pd_top = ( $value['padding-top'] ?? '' ) ;
-			$pd_bottom = ( $value['padding-bottom'] ?? '')  ;
-			if( !empty( $pd_top ) ) {
-				if( !empty( $breakpoint_key ) ) {
-					printf( 
-						'@media screen and (max-width: %1$s) { #main .inner { padding-top: %2$s; } }', 
-						esc_attr( $breakpoints[$breakpoint_key] ),
-						esc_attr( $pd_top ),
-					);
-				}else {
-					printf( '#main .inner { padding-top: %1$s; }', esc_attr( $pd_top ) );
-				}
-			}
-			if( !empty( $pd_bottom ) ) {
-				if( !empty( $breakpoint_key ) ) {
-					printf( 
-						'@media screen and (max-width: %1$s) { #main .inner { padding-bottom: %2$s; } }', 
-						esc_attr( $breakpoints[$breakpoint_key] ),
-						esc_attr( $pd_bottom )
-					);
-				}else {
-					printf( '#main .inner { padding-bottom: %1$s; }', esc_attr( $pd_bottom ) );
-				}
-			}
-		}
-
 		
-
 		if( !empty( $css_editor ) ) {
 			pxl_print_html( $css_editor );
 		}
@@ -210,14 +182,6 @@ class Enqueue {
                 'secondary' => $this->option->get_option( 'secondary_font', 'DM Sans' ),
                 'text'     => $this->option->get_option( 'text_font', 'Public Sans' ),
                 'heading'   => $this->option->get_option( 'heading_font', 'Plus Jakarta Sans' ),
-			],
-			'spacing_block' => [
-				''          =>  $this->option->get_option( 'spacing_block'   , [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'xl'        =>  $this->option->get_option( 'spacing_block_xl', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'lg'        =>  $this->option->get_option( 'spacing_block_lg', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'md'        =>  $this->option->get_option( 'spacing_block_md', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'sm'        =>  $this->option->get_option( 'spacing_block_sm', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
-				'xs'        =>  $this->option->get_option( 'spacing_block_xs', [ 'padding-top' => '', 'padding-bottom' => '' ] ),
 			],
 			'container' => $this->option->get_option( 'container_width', ['width' => '', 'units' => 'px'] ),
 		];

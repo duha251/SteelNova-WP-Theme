@@ -1,11 +1,11 @@
 @use '../../../../assets/scss/core' as *;
 
-.link  {
+.cs-link  {
     @include d-inline-flex(10px, center);
     white-space: nowrap;
 }
 
-.link--underline {
+.cs-link--underline {
     position: relative;
     &::before {
         content: '';

@@ -19,4 +19,8 @@
   pointer-events: none;
 }
 
+.elementor-widget-steelnova_post_featured_image, .elementor-widget-steelnova_image {
+  line-height: 0;
+}
+
 /*# sourceMappingURL=config.min.css.map*/

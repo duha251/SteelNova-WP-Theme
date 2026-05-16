@@ -2,7 +2,7 @@
     "use strict";
 
     function initCounter( $scope ) {
-        let $els = $scope.find('.counter__number');
+        let $els = $scope.find('.counter__number, .cs-counter__number');
         if (!$els.length) {
             return;
         }

@@ -47,7 +47,7 @@ $display_args = [
 
 
 $wrapper_attrs = [
-    'class' => 'grid posts-grid is-post-type-post',
+    'class' => 'grid cs-posts-grid is-post-type-post',
     'data-layout'   => $layout,
 ];
 

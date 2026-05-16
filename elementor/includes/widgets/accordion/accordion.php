@@ -24,41 +24,71 @@ class Widget_Accordion extends SteelNova_Widget_Base {
      */
     protected function register_controls() {
         // Content
-        $this->register_style_layout_controls();
+        $this->register_layout_controls();
+        $this->register_css_layout_controls();
         $this->register_content_controls();
         $this->register_interactions_content_controls();
-
+        // Style
+        $this->register_header_style_controls();
+        $this->register_title_style_controls();
+        $this->register_content_style_controls();
+        $this->register_icon_style_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
     }
 
     /**  
-     * Register Layout Controls
+     * Register Layout Style Controls
     */
-    protected function register_style_layout_controls() {
+    protected function register_layout_controls() {
         $this->start_layout_section([ 
             'name' => 'section_style_layout_style', 
             'label' => __('Layout', 'steelnova'),
         ]);
         $this->visual_choice([
-            'name' => 'layout_style',
-            'label' => __('Layout Style', 'steelnova'),
+            'name' => 'layout',
+            'label' => __('Layout', 'steelnova'),
             'columns' => '1',
             'options' => [
-                '0' => [
-                    'title' => esc_attr__( 'Layout Style Default', 'steelnova' ),
-                    'image' => content_url('/uploads/default-assets/layout/accordion_1.webp'),
-                ],
                 '1' => [
-                    'title' => esc_attr__( 'Layout Style 1', 'steelnova' ),
+                    'title' => esc_attr__( 'Layout 1', 'steelnova' ),
                     'image' => content_url('/uploads/default-assets/layout/accordion_2.webp'),
                 ],
                 '2' => [
-                    'title' => esc_attr__( 'Layout Style 2', 'steelnova' ),
+                    'title' => esc_attr__( 'Layout 2', 'steelnova' ),
                     'image' => content_url('/uploads/default-assets/layout/accordion_2.webp'),
                 ],
+                '3' => [
+                    'title' => esc_attr__( 'Layout 3', 'steelnova' ),
+                    'image' => content_url('/uploads/default-assets/layout/accordion_3.webp'),
+                ],
             ],
-            'default' => '0',
+            'default' => '1',
+        ]);
+        $this->end_controls_section();
+    }
+
+    /**  
+     * Register Layout Controls
+    */
+    protected function register_css_layout_controls() {
+        $this->start_layout_section([ 
+            'name' => 'section_css_layout_style', 
+            'label' => __('Layout CSS', 'steelnova'),
+        ]);
+        $this->size([
+            'name' => 'desc_max_width',
+            'label' => __('Description Max Width', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__content > p' => 'max-width: {{SIZE}}{{UNIT}};'
+            ]
+        ]);
+        $this->size([
+            'name' => 'item_spacing',
+            'label' => __('Item Spacing', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item + .cs-accordion__item' => 'margin-top: {{SIZE}}{{UNIT}};'
+            ]
         ]);
         $this->end_controls_section();
     }
@@ -74,8 +104,8 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         $this->select([
             'name' => 'title_tag',
             'label' => __('Title Tag HTML', 'steelnova'),
-            'options' => Static_Options::title_html_tag_options( true ),
-            'default' => ''
+            'options' => Static_Options::title_html_tag_options(),
+            'default' => 'h6'
         ]);
         $this->switcher([
             'name' => 'show_index',
@@ -86,6 +116,20 @@ class Widget_Accordion extends SteelNova_Widget_Base {
             'name' => 'show_divider',
             'label' => __('Show Divider', 'steelnova'),
             'default' => '',
+            'condition' => [
+                'layout' => ['1']
+            ]
+        ]);
+        $this->color([
+            'name' => 'divider_color',
+            'label' => __('Divider Color', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion.has-divider .cs-accordion__item .cs-accordion__header' => 'border-color: {{VALUE}};',
+                '{{WRAPPER}} .cs-accordion.has-divider .cs-accordion__item:last-child .cs-accordion__header' => 'border-color: transparent;',
+            ],
+            'condition' => [
+                'show_divider' => 'yes'
+            ]
         ]);
         $this->text([
             'name' => 'index_prefix',
@@ -187,7 +231,7 @@ class Widget_Accordion extends SteelNova_Widget_Base {
                 'yes' => '0',
             ],
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-item.is-active .accordion-icon' => 'scale: {{VALUE}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon' => 'scale: {{VALUE}};'
             ]
         ]);
         // $this->switcher([
@@ -224,37 +268,37 @@ class Widget_Accordion extends SteelNova_Widget_Base {
             'name' => 'desc_max_w',
             'label' => __('Description Max Width', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-content p' => 'max-width: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .accordion-content p' => 'max-width: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->slider([
             'name' => 'item_spacing',
             'label' => __('Item Spacing', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-item + .accordion-item' => 'margin-top: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item + .cs-accordion__item' => 'margin-top: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->dimensions([
             'name' => 'index_margin',
             'label' => __( 'Index Margin', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-index' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} .cs-accordion .accordion-index' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
         ]);
 
         $this->group_background([
             'name' => 'box_gradient_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .accordion .box-border-gradient',
+            'selector' => '{{WRAPPER}} .cs-accordion .box-border-gradient',
             'fields_options' => [			
 				'color' => [
 					'selectors' => [
-						'{{WRAPPER}} .accordion .box-border-gradient' => '--mv-background-color: {{VALUE}};',
+						'{{WRAPPER}} .cs-accordion .box-border-gradient' => '--mv-background-color: {{VALUE}};',
 					],
 				],
                 'color_b' => [
 					'selectors' => [
-						'{{WRAPPER}} .accordion .box-border-gradient' => '--mv-background-color-b: {{VALUE}};',
+						'{{WRAPPER}} .cs-accordion .box-border-gradient' => '--mv-background-color-b: {{VALUE}};',
 					],
 				],
 			],
@@ -344,11 +388,11 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         $this->group_background([
             'name' => 'box_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .accordion .accordion-item',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item',
 		]);
-        $this->group_style([
+        $this->group_box_css([
             'name' => 'box_',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item, {{WRAPPER}} .accordion[data-layout_style="2"] .accordion-item .box-border-gradient',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item, {{WRAPPER}} .accordion[data-layout_style="2"] .cs-accordion__item .box-border-gradient',
         ]);
         // End Normal Tab
         $this->end_controls_tab();
@@ -361,22 +405,22 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         $this->group_background([
             'name' => 'box_hover_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .accordion .accordion-item:not(.box-gradient):hover, 
-                            {{WRAPPER}} .accordion .accordion-item.is-active:not(.box-gradient),
-                            {{WRAPPER}} .accordion .box-gradient:before, 
-                            {{WRAPPER}} .accordion .is-active.box-gradient:before',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:not(.box-gradient):hover, 
+                            {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active:not(.box-gradient),
+                            {{WRAPPER}} .cs-accordion .box-gradient:before, 
+                            {{WRAPPER}} .cs-accordion .is-active.box-gradient:before',
 		]);
-        $this->group_style([
+        $this->group_box_css([
             'name' => 'box_hover_',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item:hover, {{WRAPPER}} .accordion .accordion-item.is-active, 
-            {{WRAPPER}} .accordion[data-layout_style="2"] .accordion-item:hover .box-border-gradient, {{WRAPPER}} .accordion[data-layout_style="2"] .accordion-item.is-active .box-border-gradient',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active, 
+            {{WRAPPER}} .accordion[data-layout_style="2"] .cs-accordion__item:hover .box-border-gradient, {{WRAPPER}} .accordion[data-layout_style="2"] .cs-accordion__item.is-active .box-border-gradient',
         ]);
-        $this->duration([
+        $this->time([
             'name' => 'box_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-item, {{WRAPPER}} .accordion .box-gradient:before' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item, {{WRAPPER}} .cs-accordion .box-gradient:before' => 'transition-duration: {{SIZE}}{{UNIT}};'
             ],
         ]);
         // End Hover Tab
@@ -404,11 +448,11 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         $this->group_background([
             'name' => 'header_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .accordion .accordion-item .accordion-header',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__header',
 		]);
-        $this->group_style([
+        $this->group_box_css([
             'name' => 'header_',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item .accordion-header',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__header',
         ]);
         // End Normal Tab
         $this->end_controls_tab();
@@ -421,21 +465,21 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         $this->group_background([
             'name' => 'header_hover_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .accordion .accordion-item:hover .accordion-header:not(.box-gradient), 
-                            {{WRAPPER}} .accordion .accordion-item.is-active .accordion-header:not(.box-gradient),
-                            {{WRAPPER}} .accordion .accordion-item:hover .accordion-header.box-gradient:before,
-                            {{WRAPPER}} .accordion .accordion-item.is-active .accordion-header.box-gradient:before',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__header:not(.box-gradient), 
+                            {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__header:not(.box-gradient),
+                            {{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__header.box-gradient:before,
+                            {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__header.box-gradient:before',
 		]);
-        $this->group_style([
+        $this->group_box_css([
             'name' => 'header_hover_',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item:hover .accordion-header, {{WRAPPER}} .accordion .accordion-item.is-active .accordion-header',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__header, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__header',
         ]);
-        $this->duration([
+        $this->time([
             'name' => 'header_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-header, {{WRAPPER}} .accordion .accordion-header.box-gradient:before' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__header, {{WRAPPER}} .cs-accordion .cs-accordion__header.box-gradient:before' => 'transition-duration: {{SIZE}}{{UNIT}};'
             ],
         ]);
         // End Hover Tab
@@ -454,11 +498,11 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'title_typography',
-            'selector' => '{{WRAPPER}} .accordion .accordion-title',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__title',
         ]);
         $this->group_text_shadow([
             'name' => 'title_text_shadow',
-            'selector' => '{{WRAPPER}} .accordion .accordion-title',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__title',
         ]);
         $this->start_controls_tabs( 'title_style_tabs' );
         // Normal Tab
@@ -467,34 +511,16 @@ class Widget_Accordion extends SteelNova_Widget_Base {
                 'label' => __( 'Normal', 'steelnova' ) 
             ] 
         );
-        $this->group_background([
-			'name' => 'title_fill',
-			'selector' => '{{WRAPPER}} .accordion .accordion-title .title-text:before',
-			'fields_options' => [
-				'background' => [
-					'label' => __( 'Text Fill', 'steelnova' ),
-				],				
-				'color' => [
-					'label' => __( 'Text Color', 'steelnova' ),
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-title' => 'color: {{VALUE}};',
-					],
-				],
-				'image' => [
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-title .title-text:before' => 'background-image: url("{{URL}}"); -webkit-background-clip: text; background-clip: text; color: transparent;',
-					],
-				],
-				'color_b' => [
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-title .title-text:before' => '-webkit-background-clip: text; background-clip: text; color: transparent;',
-					],
-				],
-			],
+        $this->color([
+			'name' => 'title_color',
+            'label' => __('Text Color', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__title' => 'color: {{VALUE}};',
+            ],
 		]);
         $this->group_text_stroke([
             'name' => 'title_text_stroke',
-            'selector' => '{{WRAPPER}} .accordion .accordion-title',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__title',
         ]);
         $this->end_controls_tab();
 
@@ -504,42 +530,23 @@ class Widget_Accordion extends SteelNova_Widget_Base {
                 'label' => __( 'Hover', 'steelnova' ) 
             ] 
         );  
-        $this->group_background([
-			'name' => 'title_hover_fill',
-			'selector' => '{{WRAPPER}} .accordion .accordion-item .accordion-title [data-text]:after',
-			'fields_options' => [
-				'background' => [
-					'label' => __( 'Text Fill', 'steelnova' ),
-				],				
-				'color' => [
-					'label' => __( 'Text Color', 'steelnova' ),
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item:hover .accordion-title .title-text:not([data-text]), 
-                        {{WRAPPER}} .accordion .accordion-item.is-active .accordion-title .title-text:not([data-text])' => 'color: {{VALUE}};',
-					],
-				],
-				'image' => [
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item .accordion-title [data-text]:after' => 'background-image: url("{{URL}}"); -webkit-background-clip: text; background-clip: text; color: transparent;',
-					],
-				],
-				'color_b' => [
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item .accordion-title [data-text]:after' => '-webkit-background-clip: text; background-clip: text; color: transparent;',
-					],
-				],
-			],
+        $this->color([
+			'name' => 'title_hover_color',
+            'label' => __('Text Color', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__title, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__title' => 'color: {{VALUE}};',
+            ],
 		]);
         $this->group_text_stroke([
             'name' => 'title_hover_text_stroke',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item:hover .accordion-title, {{WRAPPER}} .accordion .accordion-item.is-active .accordion-title',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__title, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__title',
         ]);
-        $this->duration([
+        $this->time([
             'name' => 'title_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-item .accordion-title' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__title' => 'transition-duration: {{SIZE}}{{UNIT}};'
             ],
         ]);
         $this->end_controls_tab();
@@ -547,112 +554,6 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         $this->end_controls_section();
     }
 
-    /**  
-     * Register Index Style Controls
-    */
-    protected function register_index_style_controls() {
-        $this->start_style_section([
-            'name' => 'section_index_style',
-            'label' => __('Index', 'steelnova'),
-            'condition' => [
-                'show_index' => 'yes'
-            ],
-        ]);
-        $this->group_typography([
-            'name' => 'index_typography',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item .accordion-index',
-        ]);
-        $this->group_text_shadow([
-            'name' => 'index_text_shadow',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item .accordion-index',
-        ]);
-        $this->start_controls_tabs( 'index_style_tabs' );
-        // Normal Tab
-        $this->start_controls_tab( 'index_style_normal_tab', 
-            [ 
-                'label' => __( 'Normal', 'steelnova' ) 
-            ] 
-        );
-        $this->group_background([
-			'name' => 'index_fill',
-			'selector' => '{{WRAPPER}} .accordion .accordion-item .accordion-index:before',
-			'fields_options' => [
-				'background' => [
-					'label' => __( 'Text Fill', 'steelnova' ),
-				],				
-				'color' => [
-					'label' => __( 'Text Color', 'steelnova' ),
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item .accordion-index:not([data-text])' => 'color: {{VALUE}};',
-					],
-				],
-				'image' => [
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item .accordion-index:before' => 'background-image: url("{{URL}}"); -webkit-background-clip: text; background-clip: text; color: transparent;',
-					],
-				],
-				'color_b' => [
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item .accordion-index:before' => '-webkit-background-clip: text; background-clip: text; color: transparent;',
-					],
-				],
-			],
-		]);
-        $this->group_text_stroke([
-            'name' => 'index_text_stroke',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item .accordion-index',
-        ]);
-
-        $this->end_controls_tab();
-
-        // Hover Tab
-        $this->start_controls_tab( 'index_style_hover_tab', 
-            [ 
-                'label' => __( 'Hover', 'steelnova' ) 
-            ] 
-        );  
-        $this->group_background([
-			'name' => 'index_hover_fill',
-			'selector' => '{{WRAPPER}} .accordion .accordion-item .accordion-index[data-text]:after',
-			'fields_options' => [
-				'background' => [
-					'label' => __( 'Text Fill', 'steelnova' ),
-				],				
-				'color' => [
-					'label' => __( 'Text Color', 'steelnova' ),
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item:hover .accordion-index:not([data-text]), 
-                        {{WRAPPER}} .accordion .accordion-item.is-active .accordion-index:not([data-text])' => 'color: {{VALUE}};',
-					],
-				],
-				'image' => [
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item .accordion-index[data-text]:after' => 'background-image: url("{{URL}}"); -webkit-background-clip: text; background-clip: text; color: transparent;',
-					],
-				],
-				'color_b' => [
-					'selectors' => [
-						'{{WRAPPER}} .accordion .accordion-item .accordion-index[data-text]:after' => '-webkit-background-clip: text; background-clip: text; color: transparent;',
-					],
-				],
-			],
-		]);
-        $this->group_text_stroke([
-            'name' => 'index_hover_text_stroke',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item:hover .accordion-index, {{WRAPPER}} .accordion .accordion-item.is-active .accordion-index',
-        ]);
-        $this->duration([
-            'name' => 'index_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
-            'separator' => 'before',
-            'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-item .accordion-index' => 'transition-duration: {{SIZE}}{{UNIT}};'
-            ],
-        ]);
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
-        $this->end_controls_section();
-    }
 
     /**  
      * Register Icon Style Controls
@@ -662,35 +563,35 @@ class Widget_Accordion extends SteelNova_Widget_Base {
             'name' => 'section_icon_style',
             'label' => __('Icon', 'steelnova'),
         ]);
-        $this->slider([
-            'name' => 'icon_size',
-            'label' => __('Icon Size', 'steelnova'),
+        $this->size([
+            'name' => 'icon_plus_width',
+            'label' => __('Icon Width', 'steelnova'),
             'size_units' => ['px', 'custom'],
             'selectors' => [
-                '{{WRAPPER}} .accordion .icon-plus:after, {{WRAPPER}} .accordion .icon-plus:before' => 'width: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .icon-plus:after, {{WRAPPER}} .cs-accordion .icon-plus:before' => 'width: {{SIZE}}{{UNIT}};'
             ]
         ]);
-        $this->slider([
-            'name' => 'icon_weight',
-            'label' => __('Icon Weight', 'steelnova'),
+        $this->size([
+            'name' => 'icon_plus_height',
+            'label' => __('Icon Height', 'steelnova'),
             'size_units' => ['px', 'custom'],
             'selectors' => [
-                '{{WRAPPER}} .accordion .icon-plus:after, {{WRAPPER}} .accordion .icon-plus:before' => 'height: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .icon-plus:after, {{WRAPPER}} .cs-accordion .icon-plus:before' => 'height: {{SIZE}}{{UNIT}};'
             ]
         ]);
-        $this->slider([
+        $this->size([
             'name' => 'icon_box_size_width',
             'separator' => 'before',
             'label' => __('Box width', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-icon' => 'width: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'width: {{SIZE}}{{UNIT}};'
             ]
         ]);
-        $this->slider([
+        $this->size([
             'name' => 'icon_box_size_height',
             'label' => __('Box Height', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-icon' => 'height: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'height: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->start_controls_tabs( 'icon_style_tabs' );
@@ -704,17 +605,17 @@ class Widget_Accordion extends SteelNova_Widget_Base {
             'name' => 'icon_color',
             'label' => __('Icon Color', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'color: {{VALUE}};',
             ]
         ]);
         $this->group_background([
             'name' => 'icon_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .accordion .accordion-icon',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__icon',
 		]);
-        $this->group_style([
+        $this->group_box_css([
             'name' => 'icon_',
-            'selector' => '{{WRAPPER}} .accordion .accordion-icon',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__icon',
         ]);
         // End Normal Tab
         $this->end_controls_tab();
@@ -728,27 +629,27 @@ class Widget_Accordion extends SteelNova_Widget_Base {
             'name' => 'icon_hover_color',
             'label' => __('Icon Color', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-item:hover .accordion-icon, 
-                {{WRAPPER}} .accordion .accordion-item.is-active .accordion-icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__icon, 
+                {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon' => 'color: {{VALUE}};',
             ]
         ]);
         $this->group_background([
             'name' => 'icon_hover_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .accordion .accordion-item:hover .accordion-icon:not(.box-gradient), 
-            {{WRAPPER}} .accordion .accordion-item.is-active .accordion-icon:not(.box-gradient),
-            {{WRAPPER}} .accordion .accordion-item .accordion-icon.box-gradient:before',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__icon:not(.box-gradient), 
+            {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon:not(.box-gradient),
+            {{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__icon.box-gradient:before',
 		]);
-        $this->group_style([
+        $this->group_box_css([
             'name' => 'icon_hover_',
-            'selector' => '{{WRAPPER}} .accordion .accordion-item:hover .accordion-icon, {{WRAPPER}} .accordion .accordion-item.is-active .accordion-icon',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__icon, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon',
         ]);
-        $this->duration([
+        $this->time([
             'name' => 'icon_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-item .accordion-icon' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__icon' => 'transition-duration: {{SIZE}}{{UNIT}};'
             ],
         ]);
         // End Hover Tab
@@ -768,14 +669,14 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'content_typography',
-            'selector' => '{{WRAPPER}} .accordion .accordion-content p',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__content p',
         ]);
         $this->color([
             'name' => 'content_text_color',
             'label' => __('Text Color', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-content p' => 'color: {{VALUE}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__content p' => 'color: {{VALUE}};'
             ],
         ]);
         $this->color([
@@ -783,17 +684,17 @@ class Widget_Accordion extends SteelNova_Widget_Base {
             'label' => __('Link Color', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .accordion .accordion-content a' => 'color: {{VALUE}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__content a' => 'color: {{VALUE}};'
             ],
         ]);
         $this->group_background([
             'name' => 'content_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .accordion .accordion-content p',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__content',
 		]);
-        $this->group_style([
+        $this->group_box_css([
             'name' => 'content_',
-            'selector' => '{{WRAPPER}} .accordion .accordion-content p'
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__content p'
         ]);
         $this->end_controls_section();
     }

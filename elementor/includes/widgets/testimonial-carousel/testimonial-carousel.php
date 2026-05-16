@@ -16,7 +16,7 @@ class Widget_Testimonial_Carousel extends SteelNova_Widget_Base {
             'icon'       => 'eicon-testimonial-carousel',
             'keywords'   => [ 'cs', 'casethemes', 'steelnova', 'testimonial', 'quote', 'review', 'client', 'feedback', 'comment', 'text', 'typography', 'carousel', 'swiper', 'slider' ],
             'script'     => ['steelnova-carousel'],
-            'style'      => ['swiper', 'steelnova-widget-testimonial']
+            'style'      => ['swiper', 'steelnova-swiper', 'steelnova-widget-testimonial']
         ];
     }
 
@@ -58,6 +58,14 @@ class Widget_Testimonial_Carousel extends SteelNova_Widget_Base {
                 '2' => [
                     'title' => esc_attr__( 'Testimonial 2', 'steelnova' ),
                     'image' => content_url('/uploads/widget-layout/testimonial-1.webp'),
+                ],
+                '3' => [
+                    'title' => esc_attr__( 'Testimonial 3', 'steelnova' ),
+                    'image' => content_url('/uploads/widget-layout/testimonial-3.webp'),
+                ],
+                '4' => [
+                    'title' => esc_attr__( 'Testimonial 4', 'steelnova' ),
+                    'image' => content_url('/uploads/widget-layout/testimonial-4.webp'),
                 ],
             ],
             'default' => '1',
@@ -101,7 +109,7 @@ class Widget_Testimonial_Carousel extends SteelNova_Widget_Base {
             'label' => __('Label', 'steelnova'),
             'default' => __('Rating', 'steelnova'),
             'condition' => [
-                'layout' => ['1']
+                'layout' => ['1', '3', '4']
             ]
         ]);
         $repeater = new \Elementor\Repeater();
@@ -153,7 +161,7 @@ class Widget_Testimonial_Carousel extends SteelNova_Widget_Base {
             'name' => 'section_image_content',
             'label' => __( 'Image', 'steelnova' ),
             'condition' => [
-                'layout' => ['2']
+                'layout' => ['2', '4']
             ]
         ]);
         $this->switcher([

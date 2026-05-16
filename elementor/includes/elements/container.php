@@ -3,7 +3,10 @@ namespace SteelNova\Elementor\Elements;
 
 use SteelNova\Elementor\Controls\Controls_Trait;
 use SteelNova\Elementor\Controls\Custom_Controls_Trait;
-
+use SteelNova\Inc\Helpers\Static_Options;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -61,6 +64,28 @@ class SteelNova_Container {
             ]
         ], $element);
 
+        $this->select([
+            'name' => '_display',
+            'label' => __('Display', 'steelnova'),
+            'options' => [
+                '' => __('Default', 'steelnova'),
+                'block' => __('Block', 'steelnova'),
+                'inline-block' => __('Inline Block', 'steelnova'),
+            ],
+            'selectors' => [
+                '{{WRAPPER}}' => 'display: {{VALUE}} !important;',
+            ]
+        ], $element);
+
+        $this->choose([
+            'name' => '_text_align',
+            'label' => __('Text Align', 'steelnova'),
+            'options' => Static_Options::text_align_css_options(),
+            'selectors' => [
+                '{{WRAPPER}}' => 'text-align: {{VALUE}};',
+            ],
+        ], $element);
+        
         $element->end_controls_section();
     }
     
@@ -81,17 +106,17 @@ class SteelNova_Container {
         ], $element);
         $this->group_background([
             'name' => 'steelnova_bg_overlay',
-            'selector' => '{{WRAPPER}} .steelnova-background-overlay'
+            'selector' => '{{WRAPPER}} .cs-background-overlay'
         ], $element);
         $this->opacity([
             'name' => 'steelnova_bg_overlay_opacity',
             'selectors' => [
-                '{{WRAPPER}} .steelnova-background-overlay' => 'opacity: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-background-overlay' => 'opacity: {{SIZE}}{{UNIT}};'
             ]
         ], $element);
         $this->group_css_filter([
             'name' => 'steelnova_bg_overlay_css_filter',
-            'selector' =>  '{{WRAPPER}} .steelnova-background-overlay'
+            'selector' =>  '{{WRAPPER}} .cs-background-overlay'
         ], $element);
         $element->end_controls_tab();
 

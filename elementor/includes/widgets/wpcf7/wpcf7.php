@@ -33,6 +33,7 @@ class Widget_WPCF7 extends SteelNova_Widget_Base {
         $this->register_input_style_controls();
         $this->register_textarea_style_controls();
         $this->register_select_style_controls();
+        $this->register_select_li_style_controls();
         $this->register_error_message_style_controls();
         $this->register_error_note_style_controls();
         // Settings Controls
@@ -333,19 +334,19 @@ class Widget_WPCF7 extends SteelNova_Widget_Base {
      */
     protected function register_select_style_controls() {
         $this->start_style_section([
-            'name' => 'section_select_style', 
+            'name' => 'section_select_li_style', 
             'label' => __('Select', 'steelnova'),
         ]);
         $this->slider([
             'name' => 'select_height',
             'label' => __('Field Height', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select' => 'height: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select' => 'height: {{SIZE}}{{UNIT}};'
             ]
         ]);
         $this->group_typography([
             'name' => 'select_typography',
-            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select',
+            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select',
         ]);
         $this->start_controls_tabs( 'select_tabs' );
 
@@ -358,19 +359,19 @@ class Widget_WPCF7 extends SteelNova_Widget_Base {
             'name' => 'select_color',
             'label' => __('Text Color', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select' => 'color: {{VALUE}};',
             ]
         ]);
         // Background 
         $this->group_background([
             'name' => 'select_background',
             'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select',
+            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select',
         ]);
         // Group Style
         $this->group_box_css([
             'name' => 'select_',
-            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select'
+            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select'
         ]);
         $this->end_controls_tab();
 
@@ -384,15 +385,16 @@ class Widget_WPCF7 extends SteelNova_Widget_Base {
             'label' => __('Text Color', 'steelnova'),
             'selectors' => [
                 '{{WRAPPER}} .wpcf7 form.wpcf7-form select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form select:focus,
-                {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select.open' => 'color: {{VALUE}};',
+                {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select.open' => 'color: {{VALUE}};',
             ]
         ]);
+
         // Background 
         $this->group_background([
 			'name' => 'select_hover_background',
 			'types' => [ 'classic', 'gradient' ],
 			'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form select:focus,
-            {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select.open',
+            {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select.open',
 		]);
         // Border Color 
         $this->color([
@@ -400,24 +402,57 @@ class Widget_WPCF7 extends SteelNova_Widget_Base {
 			'label' => __( 'Border Color', 'steelnova' ),
 			'selectors' => [
 				'{{WRAPPER}} .wpcf7 form.wpcf7-form select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form select:focus,
-                {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select.open' => 'border-color: {{VALUE}}',
+                {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select.open' => 'border-color: {{VALUE}}',
 			],
 		]);
         $this->group_box_css([
             'name' => 'select_hover',
             'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form select:focus,
-            {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select.open'
+            {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select:hover, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select.open'
         ]);
         $this->time([
             'name' => 'select_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form nice-select' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .wpcf7 form.wpcf7-form select, {{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select' => 'transition-duration: {{SIZE}}{{UNIT}};'
             ],
         ]);
         $this->end_controls_tab();
         $this->end_controls_tabs();
+        $this->end_controls_section();
+    }
+
+    /** 
+     * Register Select Style Controls
+     */
+    protected function register_select_li_style_controls() {
+        $this->start_style_section([
+            'name' => 'section_select_style', 
+            'label' => __('Select List', 'steelnova'),
+        ]);
+        $this->color([
+            'name' => 'select_li_color',
+            'label' => __('Text Color', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select li' => 'color: {{VALUE}};',
+            ]
+        ]);
+        $this->group_typography([
+            'name' => 'select_li_typography',
+            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select li',
+        ]);
+        // Background 
+        $this->group_background([
+            'name' => 'select_li_background',
+            'types' => [ 'classic', 'gradient' ],
+            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select li',
+        ]);
+        // Group Style
+        $this->group_box_css([
+            'name' => 'select_li_box_css',
+            'selector' => '{{WRAPPER}} .wpcf7 form.wpcf7-form .nice-select li'
+        ]);
         $this->end_controls_section();
     }
 

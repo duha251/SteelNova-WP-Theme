@@ -13,12 +13,12 @@ $wrapper_attrs = array_merge(
 
 ?>
 
-<div class="social-icons">
+<div class="cs-social-icons">
     <?php foreach ( $settings['items'] as $i => $social ) : ?>
         <?php
             $item_key = 'item-' . $i;
             $item_attrs = [
-                'class' => 'social-icons__link elementor-repeater-item-'.$social['_id']
+                'class' => 'cs-social-icons__link elementor-repeater-item-'.$social['_id']
             ];
             if( !empty( $settings['icon_hover_style'] ) ) {
                 $item_attrs['data-hover'] = $settings['icon_hover_style'];

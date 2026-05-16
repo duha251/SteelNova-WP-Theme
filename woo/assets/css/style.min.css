@@ -51,9 +51,9 @@
 .woocommerce-page #main .quantity .quantity__field .icon-minus, .woocommerce-page #main .quantity .quantity__field .icon-plus {
   --cs-width: 10px;
   --cs-height: 1px;
-  --mt-box-size: 30px;
-  width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 30px;
+  width: var(--cs-box-size);
+  height: var(--cs-box-size);
   display: inline-flex;
   align-items: center;
   justify-content: center;

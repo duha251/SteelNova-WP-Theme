@@ -1,6 +1,4 @@
 <?php
-use Steelnova\Inc\Integrations\Elementor\Elementor_Helpers;
-
 $layout = $settings['layout'];
 $post_ids = $settings['ids'];
 $cat_ids = $settings['categories'] ?? [];
@@ -19,7 +17,7 @@ if( !empty( $post_ids ) ) {
 if( !empty( $cat_ids ) ) {
     $query_args['tax_query'] = [
         [
-            'taxonomy' => 'service_category',
+            'taxonomy' => 'category',
             'field'    => 'id',
             'terms'    => $cat_ids,
             'operator' => 'IN',
@@ -35,54 +33,44 @@ if( count( $posts ) === 0 ) {
 }
 
 $display_args = [
-    'post_type' => 'service',
     'img_width'  => $settings['img_size']['width'] ?: null,
     'img_height' => $settings['img_size']['height'] ?: null,
     'title_tag'  => $settings['title_tag'] ?: 'div',
+    'show_btn' => $settings['show_button'] === 'yes',
+    'btn_text'   => $settings['button_text'] ?: 'Learn Details',
+    'show_icon' => $settings['show_icon'] === 'yes'
 ];
 
-$custom_settings = json_encode([ $query_args, $display_args ]);
 
 $wrapper_attrs = [
-    'class' => 'is-post-type-service',
-    'data-settings' => $custom_settings,
+    'class' => 'grid cs-services-grid is-post-type-service',
     'data-layout'   => $layout,
 ];
 
 $this->add_render_attribute('wrapper', $wrapper_attrs);
 
 ?>
-<?php if( $settings['layout_type'] === 'grid' ) : 
-    $this->add_render_attribute('wrapper', 'class', ['grid', 'service-grid'] );
-?>
-    <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
-        <div class="grid__inner">
-            <?php foreach( $posts as $post ) : ?>
-                <div class="grid__item">
-                    <?php steelnova_get_template('/elementor/includes/widgets/services/templates/service-1', [
-                        'display_args' => $display_args,
-                        'post' => $post,
-                    ]); ?>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-<?php else : 
-    wp_enqueue_script('swiper'); // Enqueue Swiper script for carousel functionality
-    $this->add_render_attribute('wrapper', 'class', ['carousel', 'service-carousel'] );    
-?>
-    <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
-        <div class="carousel__container swiper">
-            <div class="carousel__inner swiper-wrapper">
-                <?php foreach( $posts as $post ) : ?>
-                    <div class="carousel__item swiper-slide">
-                        <?php steelnova_get_template('/elementor/includes/widgets/services/templates/service-1', [
-                            'display_args' => $display_args,
-                            'post' => $post,
-                        ]); ?>
-                    </div>
-                <?php endforeach; ?>
+<div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
+    <div class="grid__inner">
+        <?php foreach( $posts as $i => $post ) : 
+            $display_args['is_revert'] = $i % 2 === 0;
+        ?>
+            <div class="grid__item">
+                <?php steelnova_get_template('/elementor/includes/widgets/services-grid/templates/service-' . $layout, [
+                    'display_args' => $display_args,
+                    'post' => $post,
+                ]); ?>
             </div>
-        </div>
+        <?php endforeach; ?>
     </div>
-<?php endif; ?>
+    <?php if( $settings['grid_load_type'] === 'pagination'  ) : ?>
+        <?php echo steelnova()->component->get_pagination( $query, false ); ?>
+    <?php endif; ?>
+    <?php if( $settings['grid_load_type'] === 'load_more' ) : ?>
+        <div class="grid__loadmore ajax">
+            <button class="cs-button cs-button--primary cs-button--loadmore" data-current-page="1">
+                <span class="cs-button__text"><?php echo esc_html__('Load More', 'steelnova'); ?></span>
+            </button>
+        </div>
+    <?php endif; ?>
+</div>

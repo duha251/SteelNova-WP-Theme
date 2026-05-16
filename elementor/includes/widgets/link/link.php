@@ -41,7 +41,13 @@ class Widget_Link extends SteelNova_Widget_Base {
             'name' => 'section_layout_style',
             'label' => __( 'Layout Style', 'steelnova' ),
         ]);
-
+        $this->size([
+            'name' => 'gap',
+            'label' => __('Gap', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .cs-link' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
         $this->end_controls_section();
     }
 
@@ -66,7 +72,7 @@ class Widget_Link extends SteelNova_Widget_Base {
             'name' => 'line_thickness',
             'label' => __('Thickness', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .link--underline::before' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-link--underline::before' => 'height: {{SIZE}}{{UNIT}};',
             ],
             'condition' => [
                 'link_style' => ['underline'],
@@ -143,7 +149,7 @@ class Widget_Link extends SteelNova_Widget_Base {
         ]);
         $this->group_typography([
             'name' => 'link_typography',
-            'selector' => '{{WRAPPER}} .link',
+            'selector' => '{{WRAPPER}} .cs-link',
             'separator' => 'before'
         ]);
         $this->_start_controls_tabs([
@@ -158,12 +164,12 @@ class Widget_Link extends SteelNova_Widget_Base {
             'name' => 'link_color',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .link' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-link' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_box_css([
             'name' => 'link_box_css',
-            'selector' => '{{WRAPPER}} .link',
+            'selector' => '{{WRAPPER}} .cs-link',
         ]);
         $this->end_controls_tab();
 
@@ -176,12 +182,12 @@ class Widget_Link extends SteelNova_Widget_Base {
             'name' => 'link_color_hover',
             'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .link:hover' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-link:hover' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_box_css([
             'name' => 'link_box_css_hover',
-            'selector' => '{{WRAPPER}} .link:hover',
+            'selector' => '{{WRAPPER}} .cs-link:hover',
         ]);
         $this->select([
             'name' => 'link_hover_style',
@@ -195,7 +201,7 @@ class Widget_Link extends SteelNova_Widget_Base {
             'name' => 'link_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'selectors' => [
-                '{{WRAPPER}} .link' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-link' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();

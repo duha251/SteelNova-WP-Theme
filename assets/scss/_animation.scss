@@ -96,3 +96,11 @@
     opacity: 0.75;
   }
 }
+
+@keyframes marquee {
+    from {
+        transform: translateX(0) translateY(0);
+    }to{
+        transform: translateX( var(--cs-translate-x, 0) ) translateY( var(--cs-translate-y, 0) );
+    }
+}

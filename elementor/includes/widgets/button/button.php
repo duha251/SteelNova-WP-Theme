@@ -143,6 +143,13 @@ class Widget_Button extends SteelNova_Widget_Base {
             'label' => __( 'Button', 'steelnova' ),
         ]);
         $this->size([
+            'name' => 'btn_gap',
+            'label' => __( 'Button Gap', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-button' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->size([
             'name' => 'btn_width',
             'label' => __( 'Button Width', 'steelnova' ),
             'selectors' => [
@@ -154,6 +161,14 @@ class Widget_Button extends SteelNova_Widget_Base {
             'label' => __( 'Button Height', 'steelnova' ),
             'selectors' => [
                 '{{WRAPPER}} .cs-button' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->size([
+            'name' => 'icon_size',
+            'label' => __( 'Icon Size', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-button .cs-button__icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-button .cs-button__icon svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->group_typography([
@@ -228,11 +243,5 @@ class Widget_Button extends SteelNova_Widget_Base {
         $this->end_controls_section();
     }
 
-    /**
-     * 
-     */
-    // public function before_render() {
-    //     $this->add_render_attribute( '_wrapper', 'class', 'steelnova-button' );
-    // }
 
 }

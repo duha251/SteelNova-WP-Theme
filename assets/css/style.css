@@ -277,9 +277,9 @@ img {
   padding: 50px 30px 30px;
 }
 #headerMobile .header-drawer .button-close {
-  --mt-box-size: 42px;
-  width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 42px;
+  width: var(--cs-box-size);
+  height: var(--cs-box-size);
   position: absolute;
   right: 0;
   background-color: var(--mt-primary-color);
@@ -288,7 +288,7 @@ img {
   top: 0;
 }
 #headerMobile .header-drawer .button-close .icon-close {
-  --mt-box-size: 16px;
+  --cs-box-size: 16px;
 }
 #headerMobile .header-drawer .button-close .icon-close::after, #headerMobile .header-drawer .button-close .icon-close::before {
   height: 1px;
@@ -324,10 +324,10 @@ img {
   opacity: 0.5;
 }
 #headerMobile .header-drawer .header-searchform button {
-  --mt-box-size: 46px;
-  width: var(--mt-box-size);
-  min-width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 46px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
   border-radius: 5px;
   position: absolute;
   right: 0;
@@ -433,10 +433,10 @@ body:has(.header-transparent) .hero[data-layout=default] .inner {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  --mt-box-size: 34px;
-  width: var(--mt-box-size);
-  min-width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 34px;
+  width: var(--cs-box-size);
+  min-width: var(--cs-box-size);
+  height: var(--cs-box-size);
   border-radius: 50%;
   color: #060F16;
   font-weight: 600;
@@ -599,10 +599,10 @@ body:has(.header-transparent) .hero[data-layout=default] .inner {
     display: none;
   }
   .header-menu li > a .menu-link-icon--mobile {
-    --mt-box-size: 24px;
-    width: var(--mt-box-size);
-    min-width: var(--mt-box-size);
-    height: var(--mt-box-size);
+    --cs-box-size: 24px;
+    width: var(--cs-box-size);
+    min-width: var(--cs-box-size);
+    height: var(--cs-box-size);
     border-radius: 5px;
     background-color: #FFF;
     box-shadow: 0 10px 60px 20px rgba(0, 0, 0, 0.08);
@@ -791,9 +791,9 @@ button:hover .hamburger-icon .line-3:after {
 .icon-x {
   --mt-width: 22px;
   position: relative;
-  --mt-box-size: 42px;
-  width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 42px;
+  width: var(--cs-box-size);
+  height: var(--cs-box-size);
   display: inline-block;
 }
 .icon-x:before, .icon-x::after {
@@ -874,9 +874,9 @@ button:hover .hamburger-icon .line-3:after {
   border: 0;
 }
 .video-popup .button--close {
-  --mt-box-size: 42px;
-  width: var(--mt-box-size);
-  height: var(--mt-box-size);
+  --cs-box-size: 42px;
+  width: var(--cs-box-size);
+  height: var(--cs-box-size);
   position: absolute;
   top: 0;
   right: 0;

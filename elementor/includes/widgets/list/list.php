@@ -72,14 +72,18 @@ class Widget_List extends SteelNova_Widget_Base {
             'name' => 'section_content',
             'label' => __( 'Content', 'steelnova' ),
         ]);
-
+        $this->switcher([
+            'name' => 'has_divider',
+            'label' => __('Show Divider', 'steelnova'),
+            'default' => ''
+        ]);
         $repeater = new \Elementor\Repeater();
 
         $this->text([
             'name' => 'text',
             'label' => __( 'Text', 'steelnova' ),
+            'default' => __('#List Item', 'steelnova')
         ], $repeater);
-
         $this->icons([
             'name' => 'icon',
             'label' => __( 'Icon', 'steelnova' ),
@@ -109,7 +113,7 @@ class Widget_List extends SteelNova_Widget_Base {
         $this->repeater([
             'name'   => 'items',
             'label'  => __('List', 'steelnova'),
-            'title_field' => '{{{ text }}',
+            // 'title_field' => '{{{ text }}',
             'fields' => $repeater->get_controls(),
         ]);
         $this->end_controls_section();

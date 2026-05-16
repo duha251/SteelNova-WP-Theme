@@ -2,8 +2,10 @@
 $wrapper_attrs_tmp = [
     'class'  => 'cs-accordion',
     'data-mode'  => $settings['mode'],
-    'data-toggle' => $settings['toggle']
+    'data-toggle' => $settings['toggle'], 
+    'data-layout' => '1'
 ];
+
 if( $settings['show_divider'] === 'yes' ) {
     $wrapper_attrs_tmp['class'] .= ' has-divider';
 }

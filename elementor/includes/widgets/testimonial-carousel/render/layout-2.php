@@ -9,6 +9,11 @@ $wrapper_attrs_tmp = [
     'data-layout' => '2'
 ];
 
+if( $settings['swiper_boxshadow'] === 'yes' ) {
+    $wrapper_attrs['class'] .= ' carousel--box-shadow';
+}
+
+
 $this->add_render_attribute( 'wrapper', $wrapper_attrs_tmp );
 
 $ratings = $settings['rating_items'] ?? [];
@@ -91,7 +96,7 @@ $swipper_thumb_settings = [
                         <div class="cs-testimonial__main">
                             <div class="cs-testimonial__header">
                                 <?php if( !empty( $icon['value'] ) ) : ?>
-                                    <div class="cs-testimonial__icon box-icon">
+                                    <div class="cs-testimonial__icon d-inline-flex-center">
                                         <?php steelnova_elementor_print_icon( $icon ); ?>
                                     </div>
                                 <?php endif; ?>
@@ -132,5 +137,6 @@ $swipper_thumb_settings = [
                 </div>
             <?php endforeach; ?>
         </div>
+        <?php steelnova_print_swiper_controls( $settings ); ?>
     </div>
 </div>

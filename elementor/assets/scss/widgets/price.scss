@@ -1,0 +1,88 @@
+@use '../../../../assets/scss/core' as *;
+
+
+.cs-price-carousel {
+    .price {
+        border-radius: 15px;
+        border: 1px solid rgba( #FFF, 0.27);
+        background-color: rgba(#FFF, 0.13);
+        backdrop-filter: blur(50px);
+        padding: 12px 12px 11px 12px;
+        .price__title, .price__amount, .price__description, .price__features li {
+            transition: color .3s ease;
+        }
+        &__inner {
+            padding: 46px 44px 56px;
+            border-radius: 15.5px;
+            background-color: #FFF;
+            position: relative;
+            &:hover, &.is-active {
+                .price__title, .price__amount, .price__description, .price__features li {
+                    color: #FFF;
+                }
+            }
+            @media #{$max-xl} {
+                padding: 45px 30px 45px;
+            }
+            @media #{$max-xs} {
+                padding: 30px 15px;
+            }
+        }
+        &__icon {
+            &--main {
+                @include round-box(55px);
+                color: #FFF;
+                background-color: #FF5B1B;
+                @include d-flex(null, center);
+                margin-bottom: 33px;
+            }
+            &--copy {
+                position: absolute;
+                right: 0;
+                top: 0;
+                pointer-events: none;
+                z-index: 0;
+                color: rgba( #A9928A, .17 );
+                scale: 4.8;
+                transform-origin: top right;
+            }
+        }
+        &__title {
+            margin-bottom: 13px;
+        }
+        &__amount {
+            display: flex;
+            color: var(--cs-heading-color);
+            font-weight: 600;
+            font-family: "Plus Jakarta Sans";
+            font-size: 38px;
+            font-weight: 600;
+            line-height: 1.05263;
+            letter-spacing: -1px;
+            margin-top: 36px;
+            align-items: flex-end;
+            &-suffix {
+                @include paragraph-3;
+                font-weight: 400;
+            }
+        }
+        &__features {
+            gap: 16px;
+            li {
+                gap: 10px;
+                @include paragraph-3;
+                > svg {
+                    color: #FF5B1B;
+                }
+            }
+        }
+        .divider {
+            margin-block: 32px;
+        }
+        .cs-button {
+            margin-top: 44px;
+            background-color: #0A1119;
+            color: #FFF;
+        }
+    }
+}

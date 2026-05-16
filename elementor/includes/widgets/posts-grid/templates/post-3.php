@@ -7,6 +7,12 @@ extract( $display_args );
         <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>">
             <?php steelnova_print_image_by_size( $thumbnail_id, $img_width, $img_height ); ?>
         </a>
+        <?php if( $show_date == true ) : ?>
+            <div class="post__date">
+                <span class="post__date-day"><?php echo get_the_date( 'd', $post->ID ); ?></span>
+                <?php echo get_the_date( 'M y', $post->ID ); ?>
+            </div>
+        <?php endif; ?>
     </div>
     <div class="post__content">
         <?php if( $show_category == true ) : 

@@ -1,67 +1,290 @@
 @use '../../../../assets/scss/core' as *;
 
-.service {
-    background-color: rgba($color: #FAF5ED, $alpha: .5);
-    border-radius: 10px;
-    border: thin solid #F7EBD7;
-    &__featured-image {
-        position: relative;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    &__heading {
-        @include d-flex(15px);
-        padding: 12px;
-        background-color: #FFF;
-        border-radius: 10px;
-        box-shadow: 0 11px 68px 0 rgba(137, 151, 186, 0.15);
-        position: absolute;
-        left: 21px;
-        right: 21px;
-        bottom: 1px;
-    }
-    &__icon {
-        @include round-box(50px, 10px);
-        @include d-inline-flex(null, center, center);
-        background-color: #FF5B1B;
-        color: #FFF;
-    }
-    .divider {
-        width: 1px;
-        height: 50px;
-        background-color: #DCDCDC;
-    }
-    &__title {
-        font-family: var(--cs-heading-font);
-        font-weight: 600;
-        line-height: 1.375;
-        align-self: center;
-    }
-    &__content {
-        margin: 0 13px 22px 13px;
-        padding: 30px;
-        background-color: #FFF;
-    }
-    &__features {
-        @include d-flex(5px);
-        flex-direction: column;
-        margin-bottom: 22.5px;
-        li {
-            color: #4B535D;
-            font-family: "DM Sans";
-            font-size: 15px;
-            line-height: 1.5;
-            @include d-inline-flex(13.5px, center)
+.cs-services-grid, .cs-services-carousel {
+    .service {
+        &__title {
+            > a {
+                color: inherit;
+            }
         }
     }
-    &__button {
-        @include text-button-1;
-        color: #FFF;
-        border-radius: 6px;
-        padding-inline: 16px;
-        height: 46px;
-        justify-content: space-between;
-        width: 100%;
-        background-color: #121512;
+}
+
+.cs-services-grid {
+    &[data-layout="1"], &[data-layout="3"], &[data-layout="4"] {
+        --cs-column: 25%;
+        --cs-row-gap: 32px;
+        @media #{$max-xl} {
+            --cs-column: 33.333332%;
+        }
+        @media #{$max-md} {
+            --cs-column: 50%;
+        }
+        @media #{$max-sm} {
+            --cs-column: 100%;
+        }
+    }
+    &[data-layout="2"] {
+        --cs-column: 25%;
+        --cs-row-gap: 84px;
+        --cs-column-gap: 40px;
+        @media #{$max-xl} {
+            --cs-column: 33.333332%;
+        }
+        @media #{$max-lg} {
+            --cs-column-gap: 30px;
+            --cs-row-gap: 70px;
+        }
+        @media #{$max-md} {
+            --cs-column: 50%;
+        }
+        @media #{$max-sm} {
+            --cs-column: 100%;
+        }
+    }
+}
+
+.cs-services-grid[data-layout="1"], .cs-services-carousel[data-layout="1"] {
+    .service {
+        position: relative;
+        background-color: rgba($color: #FAF5ED, $alpha: .5);
+        border-radius: 10px;
+        border: thin solid #F7EBD7;
+        &__thumbnail {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        &__heading {
+            @include d-flex(15px);
+            padding: 11px 12px;
+            background-color: #FFF;
+            border-radius: 10px;
+            box-shadow: 0 11px 68px 0 rgba(137, 151, 186, 0.15);
+            position: absolute;
+            left: 21px;
+            right: 21px;
+            bottom: 1px;
+            > .divider {
+                width: 1px;
+                height: 50px;
+                background-color: #DCDCDC;
+            }
+            @media #{$max-lg} {
+                left: 15px;
+                right: 15px;
+            }
+        }
+        &__icon {
+            @include round-box(50px, 10px);
+            @include d-inline-flex(null, center, center);
+            background-color: #FF5B1B;
+            color: #FFF;
+        }
+        &__title {
+            font-family: var(--cs-heading-font);
+            font-weight: 600;
+            line-height: 1.375;
+            align-self: center;
+        }
+        &__content {
+            margin: 0 15px 22px 15px;
+            padding: 30px;
+            background-color: #FFF;
+            @media #{$max-lg} {
+                padding: 30px 15px;
+            }
+        }
+        &__features {
+            @include d-flex(5px);
+            flex-direction: column;
+            margin-bottom: 24px;
+            li {
+                color: #4B535D;
+                font-family: "DM Sans";
+                font-size: 15px;
+                line-height: 1.5;
+                @include d-inline-flex(13.5px, center)
+            }
+        }
+        &__read-more {
+            @include text-button-1;
+            color: #FFF;
+            border-radius: 6px;
+            padding-inline: 16px;
+            height: 46px;
+            justify-content: space-between;
+            width: 100%;
+            background-color: #121512;
+        }
+    }
+}
+
+.cs-services-grid[data-layout="2"], .cs-services-carousel[data-layout="2"] {
+    .service {
+        padding: 34px 37px 35px;
+        box-shadow: 0 11.351px 68.108px 0 rgba(137, 151, 186, 0.15);
+        background-color: #FFF;
+        position: relative;
+        @media #{$max-lg} {
+            padding: 35px 30px;
+        }
+        &__icon {
+            position: absolute;
+            right: 25px;
+            top: -23px;
+            @include round-box(78px, 18px);
+            border: 4px solid #FFDAB6;
+            background-color: #FF5B1B;
+            box-shadow: 0 15.892px 95.351px 0 rgba(137, 151, 186, 0.15);
+            color: #FFF;
+            @include d-inline-flex(null, center, center);
+        }
+        &__title {
+            margin-bottom: 14px;
+            max-width: 250px;
+        }
+        &__excerpt {
+            @include paragraph-4;
+            margin-bottom: 24px;
+        }
+        &__features {
+            padding: 22px 22px 18px 22px;
+            background-color: #FFFBF4;
+            border: thin solid #F6EBD8;
+        }
+        .cs-list {
+            gap: 10px;
+            &__item {
+                @include d-flex(17px, center);
+                @include paragraph-5;
+                color: #121512;
+                &-icon {
+                    background-color: #F7EBD7;
+                    @include round-box(21px);
+                    color: #FF5B1B;
+                    @include d-inline-flex(null, center, center);
+                }
+            }
+        }
+        &__read-more {
+            padding-inline: 16px;
+            height: 46px;
+            background-color: #121512;
+            border-radius: 6px;
+            @include text-button-1;
+            text-transform: capitalize;
+            color: #FFF;
+            margin-top: 24px;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+}
+
+.cs-services-grid[data-layout="3"], .cs-services-carousel[data-layout="3"] {
+    .service {
+        min-height: 486.5px;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        padding: 20px 20px 22px;
+        display: flex;
+        align-items: flex-end;
+        background: center center / cover no-repeat;
+        @media #{$max-lg} {
+            min-height: 450px;
+        }
+        &__content {
+            width: 100%;
+            @include d-flex(15px);
+            padding: 11px 10px 11px 14px;
+            background-color: #FFF;
+            border-radius: 10px;
+            box-shadow: 0 11px 68px 0 rgba(137, 151, 186, 0.15);
+            bottom: 1px;
+            > .divider {
+                width: 1px;
+                height: 50px;
+                background-color: #DCDCDC;
+            }
+            @media #{$max-lg} {
+                left: 15px;
+                right: 15px;
+            }
+        }
+        &__icon {
+            @include round-box(50px, 10px);
+            @include d-inline-flex(null, center, center);
+            background-color: #FF5B1B;
+            color: #FFF;
+        }
+        &__title {
+            font-family: var(--cs-heading-font);
+            font-weight: 600;
+            line-height: 1.375;
+            align-self: center;
+        }
+    }
+}
+
+.cs-services-grid[data-layout="4"], .cs-services-carousel[data-layout="4"] {
+    .service {
+        position: relative;
+        border-radius: 10px;
+        padding: 30px 39px 39px 40px;
+        background: center center / cover no-repeat;
+        min-height: 541px;
+        isolation: isolate;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, #000 0%, rgba( #000, 0) 100%);
+            border-radius: inherit;
+            z-index: -1;
+        }
+        .group {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            background-color: #FAF5ED;
+            padding: 0 0px 12px 12px;
+            border-radius: 0 0 0 10px;
+            .mask {
+                position: absolute;
+                color: #FAF5ED;
+                &--one {
+                    top: 0;
+                    left: 0;
+                    transform: translateX(-100%);
+                }
+                &--two {
+                    bottom: 0;
+                    right: 0;
+                    transform: translateY(100%);
+                }
+            }
+        }
+        &__icon {
+            @include round-box(66px, 10px);
+            background-color: #FF5B1B;
+            color: #FFF;
+            @include d-inline-flex(null, center, center);
+        }
+        &__title {
+            color: #FFF;
+            max-width: 210px;
+        }
+        .divider {
+            margin-block: 23px;
+        }
+        &__excerpt {
+            @include paragraph-4;
+            color: #FFF;
+        }
     }
 }

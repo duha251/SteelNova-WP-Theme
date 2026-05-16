@@ -57,6 +57,7 @@ class Page_Options {
                                     'mega-menu'    => __('Mega Menu', 'steelnova'), 
                                     'hero'         => __('Hero', 'steelnova'), 
                                     'panel'        => __('Panel', 'steelnova'),
+                                    'tab'          => __('Tab', 'steelnova'),
                                     'section'      => __('Section', 'steelnova')
                                 ],
                                 'select2'  => array(

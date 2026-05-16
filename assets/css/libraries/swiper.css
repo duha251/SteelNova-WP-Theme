@@ -1,0 +1,25 @@
+.swiper-pagination-bullets {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 65px;
+    
+}
+
+.swiper-pagination-bullets .bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #DCDCDC;
+    cursor: pointer;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.swiper-pagination-bullets .bullet.swiper-pagination-bullet-active {
+    width: 37px;
+    background-color: #FF5B1B;
+}
+
+.swiper-pagination-bullets .bullet:hover {
+    background-color: #FF5B1B;
+}

@@ -7,18 +7,18 @@ use SteelNova\Inc\Helpers\Static_Options;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Widget_Service_Carousel extends SteelNova_Widget_Base {
+class Widget_Members_Carousel extends SteelNova_Widget_Base {
     /**
      * Get the widget information.
      */
     protected function widget_info() {
         return [
-            'name'       => 'steelnova-service-carousel',
-            'title'      => __( 'CS Service Carousel', 'steelnova' ),
+            'name'       => 'steelnova-members-carousel',
+            'title'      => __( 'CS Members Carousel', 'steelnova' ),
             'icon'       => 'eicon-posts-carousel',
-            'keywords'   => [ 'services', 'service', 'features', 'offerings' ],
+            'keywords'   => [ 'members', 'member', 'features', 'offerings' ],
             'script'     => ['steelnova-carousel'],
-            'style'      => ['swiper'],
+            'style'      => ['swiper', 'steelnova-swiper','steelnova-widget-member']
         ];
     }
 
@@ -33,6 +33,7 @@ class Widget_Service_Carousel extends SteelNova_Widget_Base {
         // Style Controls
         // $this->register_style_controls();
         // Settings Controls
+        $this->register_carousel_settings_controls();
         $this->register_post_display_settings_controls();
     }
 
@@ -50,7 +51,11 @@ class Widget_Service_Carousel extends SteelNova_Widget_Base {
             'options' => [
                 '1' => [
                     'title' => __('Layout 1', 'steelnova'),
-                    'image' => content_url('/uploads/widget-layout/services-1.webp'),
+                    'image' => content_url('/uploads/widget-layout/members-1.webp'),
+                ],
+                '2' => [
+                    'title' => __('Layout 2', 'steelnova'),
+                    'image' => content_url('/uploads/widget-layout/members-2.webp'),
                 ],
             ],
             'default' => '1',
@@ -68,7 +73,7 @@ class Widget_Service_Carousel extends SteelNova_Widget_Base {
         ]);
         $this->hidden([
             'name' => 'post_type',
-            'default' => 'service',
+            'default' => 'member',
         ]);
         $this->select([
             'name' => 'source_type',
@@ -83,20 +88,10 @@ class Widget_Service_Carousel extends SteelNova_Widget_Base {
             'name' =>'ids',
             'label_block' => true,
             'label' => __('Service List', 'steelnova'),
-            'options' => steelnova()->post_manager->get_cpt_post_list( 'service' ),
+            'options' => steelnova()->post_manager->get_cpt_post_list( 'member' ),
             'multiple' => true,
             'condition' => [
                 'source_type' => 'id',
-            ]
-        ]);
-        $this->select2([
-            'name' =>'categories',
-            'label_block' => true,
-            'label' => __('Service Categories', 'steelnova'),
-            'options' => steelnova()->post_manager->get_cpt_category_list( 'service_category' ),
-            'multiple' => true,
-            'condition' => [
-                'source_type' => 'category',
             ]
         ]);
         $this->select([
@@ -152,21 +147,13 @@ class Widget_Service_Carousel extends SteelNova_Widget_Base {
             'separator' => 'before',
             'default' => ''
         ]);
-
         $this->switcher([
-            'name' => 'show_button',
-            'label' => __('Show Button', 'steelnova'),
+            'name' => 'show_socials',
+            'label' => __('Show Socials', 'steelnova'),
+            'separator' => 'before',
             'default' => 'yes',
             'condition' => [
-                'layout' => ['1']
-            ]
-        ]);
-        $this->text([
-            'name' => 'button_text',
-            'label' => __('Button Text', 'steelnova'),
-            'condition' => [
-                'layout' => ['1'],
-                'show_button' => 'yes', 
+                'layout' => '2'
             ]
         ]);
         $this->end_controls_section();

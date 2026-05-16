@@ -3,6 +3,7 @@
 
 .error404 {
     #main {
+        padding-inline: 0;
         text-align: center;
         .inner {
             @include site-spacing-block;

@@ -62,8 +62,8 @@ class Widget_Icon extends SteelNova_Widget_Base {
             'name' => 'icon_size',
             'label' => __( 'Icon Size', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .icon-wrapper svg' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-wrapper svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
@@ -71,14 +71,14 @@ class Widget_Icon extends SteelNova_Widget_Base {
             'label' => __( 'Box Width', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .icon-wrapper' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-wrapper' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->size([
             'name' => 'box_icon_height',
             'label' => __( 'Box Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-wrapper' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-wrapper' => 'height: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->_start_controls_tabs([
@@ -93,16 +93,16 @@ class Widget_Icon extends SteelNova_Widget_Base {
             'name' => 'icon_color',
             'label' => __( 'Icon Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-wrapper' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-icon-wrapper' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'icon_background',
-            'selector' => '{{WRAPPER}} .icon-wrapper',
+            'selector' => '{{WRAPPER}} .cs-icon-wrapper',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css',
-            'selector' => '{{WRAPPER}} .icon-wrapper',
+            'selector' => '{{WRAPPER}} .cs-icon-wrapper',
         ]);
         $this->end_controls_tab();
 
@@ -115,24 +115,24 @@ class Widget_Icon extends SteelNova_Widget_Base {
             'name' => 'icon_color_hover',
             'label' => __( 'Icon Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-wrapper:hover' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-icon-wrapper:hover' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'icon_background_hover',
-            'selector' => '{{WRAPPER}} .icon-wrapper:not(.background-gradient):hover,
-                           {{WRAPPER}} .icon-wrapper:not(.background-gradient):before',
+            'selector' => '{{WRAPPER}} .cs-icon-wrapper:not(.background-gradient):hover,
+                           {{WRAPPER}} .cs-icon-wrapper:not(.background-gradient):before',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css_hover',
-            'selector' => '{{WRAPPER}} .icon-wrapper:not(.background-gradient):hover',
+            'selector' => '{{WRAPPER}} .cs-icon-wrapper:not(.background-gradient):hover',
         ]);
         $this->time([
             'name' => 'icon_transition_duration',
             'label' => __('Transition Duration', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .icon-wrapper' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-icon-wrapper' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();

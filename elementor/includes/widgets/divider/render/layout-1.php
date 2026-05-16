@@ -1,6 +1,6 @@
 <?php
 $wrapper_attrs_tmp = [
-    'class' => 'divider divider-'.$settings['divider_dir']
+    'class' => 'cs-divider cs-divider--'.$settings['divider_dir']
 ];
 
 
