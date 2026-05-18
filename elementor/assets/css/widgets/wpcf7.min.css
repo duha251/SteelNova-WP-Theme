@@ -9,6 +9,7 @@
 }
 .cs-wpcf7 .wpcf7-form-control-wrap {
   display: inline-flex;
+  flex-wrap: wrap;
   width: 100%;
 }
 .cs-wpcf7 .wpcf7-form-control-wrap input, .cs-wpcf7 .wpcf7-form-control-wrap textarea, .cs-wpcf7 .wpcf7-form-control-wrap select {

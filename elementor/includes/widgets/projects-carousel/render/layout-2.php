@@ -96,8 +96,7 @@ $item_active = $settings['item_active'] ?: 1;
     <div class="carousel__container swiper" data-swiper="<?php echo esc_attr( json_encode( $swiper_settings ) ); ?>">
         <div class="carousel__inner swiper-wrapper">
             <?php foreach( $posts as $i => $post ) : 
-                $active_class = $item_active === ( $i + 1 ) ? ' is-active' : '';
-                $display_args['active_class'] = $active_class;    
+                $display_args['active_class'] = '';    
             ?>
                 <div class="carousel__item swiper-slide">
                     <?php steelnova_get_template('/elementor/includes/widgets/projects-grid/templates/project-' . $layout, [

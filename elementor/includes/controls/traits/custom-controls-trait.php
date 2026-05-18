@@ -476,9 +476,6 @@ trait Custom_Controls_Trait {
             'label' => __('Slides Per View ', 'steelnova'),
             'options' => $columns_options,
             'default' => '',
-            'condition' => [
-                'slides_per_view' => [''],
-            ]
         ]);
         $this->select([
             'name' => 'swiper_grid_rows_xs',
@@ -508,9 +505,6 @@ trait Custom_Controls_Trait {
             'label' => __('Slides Per View', 'steelnova'),
             'options' => $columns_options,
             'default' => '',
-            'condition' => [
-                'slides_per_view' => [''],
-            ]
         ]);
         $this->select([
             'name' => 'swiper_grid_rows_sm',
@@ -541,9 +535,6 @@ trait Custom_Controls_Trait {
             'label' => __('Slides Per View', 'steelnova'),
             'options' => $columns_options,
             'default' => '',
-            'condition' => [
-                'slides_per_view' => [''],
-            ]
         ]);
         $this->select([
             'name' => 'swiper_grid_rows_md',
@@ -574,9 +565,6 @@ trait Custom_Controls_Trait {
             'label' => __('Slides Per View', 'steelnova'),
             'options' => $columns_options,
             'default' => '',
-            'condition' => [
-                'slides_per_view' => [''],
-            ]
         ]);
         $this->select([
             'name' => 'swiper_grid_rows_lg',
@@ -607,9 +595,6 @@ trait Custom_Controls_Trait {
             'label' => __('Slides Per View', 'steelnova'),
             'options' => $columns_options,
             'default' => '',
-            'condition' => [
-                'slides_per_view' => [''],
-            ]
         ]);
         $this->select([
             'name' => 'swiper_grid_rows_xl',

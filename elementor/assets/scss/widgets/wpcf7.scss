@@ -11,6 +11,7 @@
     }
     .wpcf7-form-control-wrap {
         display: inline-flex;
+        flex-wrap: wrap;
         width: 100%;
         input, textarea, select {
             width: 100%;

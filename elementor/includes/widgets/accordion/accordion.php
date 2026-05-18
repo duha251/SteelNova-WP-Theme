@@ -29,6 +29,7 @@ class Widget_Accordion extends SteelNova_Widget_Base {
         $this->register_content_controls();
         $this->register_interactions_content_controls();
         // Style
+        $this->register_item_style_controls();
         $this->register_header_style_controls();
         $this->register_title_style_controls();
         $this->register_content_style_controls();
@@ -234,196 +235,83 @@ class Widget_Accordion extends SteelNova_Widget_Base {
                 '{{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon' => 'scale: {{VALUE}};'
             ]
         ]);
-        // $this->switcher([
-        //     'name' => 'use_default_icon',
-        //     'label' => __('Use Default Icon', 'steelnova'),
-        //     'default' => 'yes',
-        // ]);
-        // $this->icons([
-        //     'name' => 'close_icon',
-        //     'label' => __('Close Icon', 'steelnova'),
-        //     'condition' => [
-        //         'use_default_icon!' => 'yes'
-        //     ]
-        // ]);
-        // $this->icons([
-        //     'name' => 'open_icon',
-        //     'label' => __('Open Icon', 'steelnova'),
-        //     'condition' => [
-        //         'use_default_icon!' => 'yes'
-        //     ]
-        // ]);
         $this->end_controls_section();
     }
 
+
     /**  
-     * Register Layout Style Controls
+     * Register Item Style Controls
+     *
+     * Layout 1 : no border/bg on item, padding-top 20px; active icon gets orange bg
+     * Layout 2 : item has border (#DCDCDC) + border-radius 4px; active item bg #121512
+     * Layout 3 : item has border-radius 14px + overflow hidden; active header bg #FF5B1B
     */
-    protected function register_layout_style_controls() {
-        $this->start_style_section([ 
-            'name' => 'section_layout_style', 
-            'label' => __('Layout', 'steelnova'),
+    protected function register_item_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_item_style',
+            'label' => __( 'Item', 'steelnova' ),
         ]);
-        $this->slider([
-            'name' => 'desc_max_w',
-            'label' => __('Description Max Width', 'steelnova'),
-            'selectors' => [
-                '{{WRAPPER}} .cs-accordion .accordion-content p' => 'max-width: {{SIZE}}{{UNIT}};'
-            ]
+
+        $this->start_controls_tabs( 'item_style_tabs' );
+
+        // ── Normal ──────────────────────────────────────────────────────────
+        $this->start_controls_tab( 'item_style_normal_tab', [ 'label' => __( 'Normal', 'steelnova' ) ] );
+
+        $this->group_background([
+            'name'     => 'item_background',
+            'types'    => [ 'classic', 'gradient' ],
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item',
         ]);
-        $this->slider([
-            'name' => 'item_spacing',
-            'label' => __('Item Spacing', 'steelnova'),
-            'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__item + .cs-accordion__item' => 'margin-top: {{SIZE}}{{UNIT}};'
-            ]
+        $this->group_border([
+            'name'     => 'item_border',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item',
         ]);
         $this->dimensions([
-            'name' => 'index_margin',
-            'label' => __( 'Index Margin', 'steelnova' ),
+            'name'  => 'item_border_radius',
+            'label' => __( 'Border Radius', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .accordion-index' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
         ]);
-
-        $this->group_background([
-            'name' => 'box_gradient_background',
-            'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .cs-accordion .box-border-gradient',
-            'fields_options' => [			
-				'color' => [
-					'selectors' => [
-						'{{WRAPPER}} .cs-accordion .box-border-gradient' => '--mv-background-color: {{VALUE}};',
-					],
-				],
-                'color_b' => [
-					'selectors' => [
-						'{{WRAPPER}} .cs-accordion .box-border-gradient' => '--mv-background-color-b: {{VALUE}};',
-					],
-				],
-			],
-            'condition' => [
-                'layout_style' => ['2']
-            ]
-		]);
-        $this->color([
-            'name' => 'gradient_color_1',
-            'label' => __('Gradient Color 1', 'steelnova'),
-            'selectors' => [
-                '{{WRAPPER}}' => '--gradient-color: {{VALUE}};',
-            ],
-            'condition' => [
-                'layout_style' => ['2']
-            ]
-        ]);
-        $this->color([
-            'name' => 'gradient_color_2',
-            'label' => __('Gradient Color 2', 'steelnova'),
-            'selectors' => [
-                '{{WRAPPER}}' => '--gradient-color-2: {{VALUE}};',
-            ],
-            'condition' => [
-                'layout_style' => ['2']
-            ]
-        ]);
-        $this->color([
-            'name' => 'gradient_color_3',
-            'label' => __('Gradient Color 3', 'steelnova'),
-            'selectors' => [
-                '{{WRAPPER}}' => '--gradient-color-3: {{VALUE}};',
-            ],
-            'condition' => [
-                'layout_style' => ['2']
-            ]
-        ]);
-        $this->color([
-            'name' => 'gradient_color_4',
-            'label' => __('Gradient Color 4', 'steelnova'),
-            'selectors' => [
-                '{{WRAPPER}}' => '--gradient-color-4: {{VALUE}};',
-            ],
-            'condition' => [
-                'layout_style' => ['2']
-            ]
-        ]);
-        $this->color([
-            'name' => 'gradient_color_5',
-            'label' => __('Gradient Color 5', 'steelnova'),
-            'selectors' => [
-                '{{WRAPPER}}' => '--gradient-color-5: {{VALUE}};',
-            ],
-            'condition' => [
-                'layout_style' => ['2']
-            ]
-        ]);
-        $this->color([
-            'name' => 'gradient_color_6',
-            'label' => __('Gradient Color 6', 'steelnova'),
-            'selectors' => [
-                '{{WRAPPER}}' => '--gradient-color-6: {{VALUE}};',
-            ],
-            'condition' => [
-                'layout_style' => ['2']
-            ]
-        ]);
-        $this->end_controls_section();
-    }
-
-    /**  
-     * Register Box Style Controls
-    */
-    protected function register_box_style_controls() {
-        $this->start_style_section([ 
-            'name' => 'section_box_style', 
-            'label' => __('Box', 'steelnova'),
-        ]);
-
-        $this->start_controls_tabs( 'box_style_tabs' );
-        // Normal Tab
-        $this->start_controls_tab( 'box_style_normal_tab', 
-            [ 
-                'label' => __( 'Normal', 'steelnova' ) 
-            ] 
-        );
-        $this->group_background([
-            'name' => 'box_background',
-            'types' => [ 'classic', 'gradient' ],
+        $this->group_box_shadow([
+            'name'     => 'item_box_shadow',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item',
-		]);
-        $this->group_box_css([
-            'name' => 'box_',
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item, {{WRAPPER}} .accordion[data-layout_style="2"] .cs-accordion__item .box-border-gradient',
         ]);
-        // End Normal Tab
+        $this->dimensions([
+            'name'  => 'item_padding',
+            'label' => __( 'Padding', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
         $this->end_controls_tab();
-        // Hover Tab
-        $this->start_controls_tab( 'box_style_hover_tab', 
-            [ 
-                'label' => __( 'Hover', 'steelnova' ) 
-            ] 
-        );
+
+        // ── Active / Hover ───────────────────────────────────────────────────
+        $this->start_controls_tab( 'item_style_hover_tab', [ 'label' => __( 'Active / Hover', 'steelnova' ) ] );
+
         $this->group_background([
-            'name' => 'box_hover_background',
-            'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:not(.box-gradient):hover, 
-                            {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active:not(.box-gradient),
-                            {{WRAPPER}} .cs-accordion .box-gradient:before, 
-                            {{WRAPPER}} .cs-accordion .is-active.box-gradient:before',
-		]);
-        $this->group_box_css([
-            'name' => 'box_hover_',
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active, 
-            {{WRAPPER}} .accordion[data-layout_style="2"] .cs-accordion__item:hover .box-border-gradient, {{WRAPPER}} .accordion[data-layout_style="2"] .cs-accordion__item.is-active .box-border-gradient',
+            'name'     => 'item_hover_background',
+            'types'    => [ 'classic', 'gradient' ],
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active',
+        ]);
+        $this->group_border([
+            'name'     => 'item_hover_border',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active',
+        ]);
+        $this->group_box_shadow([
+            'name'     => 'item_hover_box_shadow',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active',
         ]);
         $this->time([
-            'name' => 'box_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
+            'name'  => 'item_transition_duration',
+            'label' => __( 'Transition Duration', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__item, {{WRAPPER}} .cs-accordion .box-gradient:before' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
-        // End Hover Tab
+
         $this->end_controls_tab();
         $this->end_controls_tabs();
         $this->end_controls_section();
@@ -431,58 +319,99 @@ class Widget_Accordion extends SteelNova_Widget_Base {
 
     /**  
      * Register Header Style Controls
+     *
+     * Layout 1 : header has bottom padding + optional divider border-bottom
+     * Layout 2 : header has padding 16px 25px 16px 20px, border-bottom transparent → active #706F6F
+     * Layout 3 : header has border + bg (#FAF5ED / #FAE6D9), active bg #FF5B1B, border-radius 14px
     */
     protected function register_header_style_controls() {
         $this->start_style_section([ 
-            'name' => 'style_header_section', 
-            'label' => __('Header', 'steelnova'),
+            'name'  => 'style_header_section', 
+            'label' => __( 'Header', 'steelnova' ),
         ]);
 
         $this->start_controls_tabs( 'header_style_tabs' );
-        // Normal Tab
-        $this->start_controls_tab( 'header_style_normal_tab', 
-            [ 
-                'label' => __( 'Normal', 'steelnova' ) 
-            ] 
-        );
+
+        // ── Normal ──────────────────────────────────────────────────────────
+        $this->start_controls_tab( 'header_style_normal_tab', [ 'label' => __( 'Normal', 'steelnova' ) ] );
+
         $this->group_background([
-            'name' => 'header_background',
-            'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__header',
-		]);
-        $this->group_box_css([
-            'name' => 'header_',
+            'name'     => 'header_background',
+            'types'    => [ 'classic', 'gradient' ],
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__header',
         ]);
-        // End Normal Tab
+        $this->group_border([
+            'name'     => 'header_border',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__header',
+        ]);
+        $this->dimensions([
+            'name'  => 'header_border_radius',
+            'label' => __( 'Border Radius', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__header' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+        $this->group_box_shadow([
+            'name'     => 'header_box_shadow',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__header',
+        ]);
+        $this->dimensions([
+            'name'  => 'header_padding',
+            'label' => __( 'Padding', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__header' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
         $this->end_controls_tab();
-        // Hover Tab
-        $this->start_controls_tab( 'header_style_hover_tab', 
-            [ 
-                'label' => __( 'Hover', 'steelnova' ) 
-            ] 
-        );
+
+        // ── Active / Hover ───────────────────────────────────────────────────
+        $this->start_controls_tab( 'header_style_hover_tab', [ 'label' => __( 'Active / Hover', 'steelnova' ) ] );
+
+        // Layout 3 active header bg (#FF5B1B) + border-radius
+        $this->color([
+            'name'  => 'header_active_bg_color',
+            'label' => __( 'Active Background Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__header, {{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__header' => 'background-color: {{VALUE}};',
+            ],
+        ]);
+        $this->color([
+            'name'  => 'header_active_border_color',
+            'label' => __( 'Active Border Color', 'steelnova' ),
+            'selectors' => [
+                // Layout 2: active header border-bottom
+                '{{WRAPPER}} .cs-accordion[data-layout="2"] .cs-accordion__item.is-active .cs-accordion__header' => 'border-bottom-color: {{VALUE}};',
+                // Layout 3: active header border transparent
+                '{{WRAPPER}} .cs-accordion[data-layout="3"] .cs-accordion__item.is-active .cs-accordion__header' => 'border-color: {{VALUE}};',
+            ],
+        ]);
+        $this->dimensions([
+            'name'  => 'header_active_border_radius',
+            'label' => __( 'Active Border Radius', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__header' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+            'condition' => [ 'layout' => [ '3' ] ],
+        ]);
         $this->group_background([
-            'name' => 'header_hover_background',
-            'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__header:not(.box-gradient), 
-                            {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__header:not(.box-gradient),
-                            {{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__header.box-gradient:before,
-                            {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__header.box-gradient:before',
-		]);
+            'name'     => 'header_hover_background',
+            'types'    => [ 'classic', 'gradient' ],
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__header',
+        ]);
         $this->group_box_css([
-            'name' => 'header_hover_',
+            'name'     => 'header_hover_',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__header, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__header',
         ]);
         $this->time([
-            'name' => 'header_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
+            'name'  => 'header_transition_duration',
+            'label' => __( 'Transition Duration', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__header, {{WRAPPER}} .cs-accordion .cs-accordion__header.box-gradient:before' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__header' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
-        // End Hover Tab
+
         $this->end_controls_tab();
         $this->end_controls_tabs();
         $this->end_controls_section();
@@ -490,65 +419,69 @@ class Widget_Accordion extends SteelNova_Widget_Base {
 
     /**  
      * Register Title Style Controls
+     *
+     * Layout 1 : default heading color
+     * Layout 2 : heading font 16px/600, heading color; active → white
+     * Layout 3 : heading font 16px/600, heading color; active → white
     */
     protected function register_title_style_controls() {
         $this->start_style_section([
-            'name' => 'section_title_style',
-            'label' => __('Title', 'steelnova'),
+            'name'  => 'section_title_style',
+            'label' => __( 'Title', 'steelnova' ),
         ]);
+
         $this->group_typography([
-            'name' => 'title_typography',
+            'name'     => 'title_typography',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__title',
         ]);
         $this->group_text_shadow([
-            'name' => 'title_text_shadow',
+            'name'     => 'title_text_shadow',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__title',
         ]);
+
         $this->start_controls_tabs( 'title_style_tabs' );
-        // Normal Tab
-        $this->start_controls_tab( 'title_style_normal_tab', 
-            [ 
-                'label' => __( 'Normal', 'steelnova' ) 
-            ] 
-        );
+
+        // ── Normal ──────────────────────────────────────────────────────────
+        $this->start_controls_tab( 'title_style_normal_tab', [ 'label' => __( 'Normal', 'steelnova' ) ] );
+
         $this->color([
-			'name' => 'title_color',
-            'label' => __('Text Color', 'steelnova'),
+            'name'  => 'title_color',
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
                 '{{WRAPPER}} .cs-accordion .cs-accordion__title' => 'color: {{VALUE}};',
             ],
-		]);
+        ]);
         $this->group_text_stroke([
-            'name' => 'title_text_stroke',
+            'name'     => 'title_text_stroke',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__title',
         ]);
+
         $this->end_controls_tab();
 
-        // Hover Tab
-        $this->start_controls_tab( 'title_style_hover_tab', 
-            [ 
-                'label' => __( 'Hover', 'steelnova' ) 
-            ] 
-        );  
+        // ── Active / Hover ───────────────────────────────────────────────────
+        $this->start_controls_tab( 'title_style_hover_tab', [ 'label' => __( 'Active / Hover', 'steelnova' ) ] );
+
         $this->color([
-			'name' => 'title_hover_color',
-            'label' => __('Text Color', 'steelnova'),
+            'name'  => 'title_hover_color',
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__title, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__title' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__title,
+                 {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__title' => 'color: {{VALUE}};',
             ],
-		]);
+        ]);
         $this->group_text_stroke([
-            'name' => 'title_hover_text_stroke',
+            'name'     => 'title_hover_text_stroke',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__title, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__title',
         ]);
         $this->time([
-            'name' => 'title_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
+            'name'  => 'title_transition_duration',
+            'label' => __( 'Transition Duration', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__title' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__title' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
+
         $this->end_controls_tab();
         $this->end_controls_tabs();
         $this->end_controls_section();
@@ -557,102 +490,146 @@ class Widget_Accordion extends SteelNova_Widget_Base {
 
     /**  
      * Register Icon Style Controls
+     *
+     * Layout 1 : icon 30px box, #E7ECEB bg, 13×1px plus lines; active → #FF5B1B bg, white color
+     * Layout 2 : icon heading color, 14×3px rounded plus lines; active → white color
+     * Layout 3 : icon 30px box, #121512 bg, white color, border; active → transparent bg, white border, svg rotates 90°
     */
     protected function register_icon_style_controls() {
         $this->start_style_section([
-            'name' => 'section_icon_style',
-            'label' => __('Icon', 'steelnova'),
+            'name'  => 'section_icon_style',
+            'label' => __( 'Icon', 'steelnova' ),
+        ]);
+
+        // ── Plus line dimensions ─────────────────────────────────────────────
+        $this->heading([
+            'name'  => 'icon_plus_heading',
+            'label' => __( 'Plus Lines', 'steelnova' ),
+            'separator' => 'none',
         ]);
         $this->size([
-            'name' => 'icon_plus_width',
-            'label' => __('Icon Width', 'steelnova'),
-            'size_units' => ['px', 'custom'],
+            'name'  => 'icon_plus_width',
+            'label' => __( 'Line Width', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .icon-plus:after, {{WRAPPER}} .cs-accordion .icon-plus:before' => 'width: {{SIZE}}{{UNIT}};'
-            ]
+                '{{WRAPPER}} .cs-accordion .icon-plus::after,
+                 {{WRAPPER}} .cs-accordion .icon-plus::before' => 'width: {{SIZE}}{{UNIT}};',
+            ],
         ]);
         $this->size([
-            'name' => 'icon_plus_height',
-            'label' => __('Icon Height', 'steelnova'),
-            'size_units' => ['px', 'custom'],
+            'name'  => 'icon_plus_height',
+            'label' => __( 'Line Height (thickness)', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .icon-plus:after, {{WRAPPER}} .cs-accordion .icon-plus:before' => 'height: {{SIZE}}{{UNIT}};'
-            ]
+                '{{WRAPPER}} .cs-accordion .icon-plus::after,
+                 {{WRAPPER}} .cs-accordion .icon-plus::before' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->dimensions([
+            'name'  => 'icon_plus_border_radius',
+            'label' => __( 'Line Border Radius', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .icon-plus::after,
+                 {{WRAPPER}} .cs-accordion .icon-plus::before' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
+        // ── Icon box dimensions ──────────────────────────────────────────────
+        $this->heading([
+            'name'  => 'icon_box_heading',
+            'label' => __( 'Icon Box', 'steelnova' ),
         ]);
         $this->size([
-            'name' => 'icon_box_size_width',
-            'separator' => 'before',
-            'label' => __('Box width', 'steelnova'),
+            'name'  => 'icon_box_size_width',
+            'label' => __( 'Width', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'width: {{SIZE}}{{UNIT}};'
-            ]
+                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => '--cs-box-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+            ],
         ]);
         $this->size([
-            'name' => 'icon_box_size_height',
-            'label' => __('Box Height', 'steelnova'),
+            'name'  => 'icon_box_size_height',
+            'label' => __( 'Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'height: {{SIZE}}{{UNIT}};'
-            ]
+                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'height: {{SIZE}}{{UNIT}};',
+            ],
         ]);
+
         $this->start_controls_tabs( 'icon_style_tabs' );
-        // Normal Tab
-        $this->start_controls_tab( 'icon_style_normal_tab', 
-            [ 
-                'label' => __( 'Normal', 'steelnova' ) 
-            ] 
-        );
+
+        // ── Normal ──────────────────────────────────────────────────────────
+        $this->start_controls_tab( 'icon_style_normal_tab', [ 'label' => __( 'Normal', 'steelnova' ) ] );
+
         $this->color([
-            'name' => 'icon_color',
-            'label' => __('Icon Color', 'steelnova'),
+            'name'  => 'icon_color',
+            'label' => __( 'Icon Color', 'steelnova' ),
             'selectors' => [
                 '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'color: {{VALUE}};',
-            ]
+            ],
         ]);
-        $this->group_background([
-            'name' => 'icon_background',
-            'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__icon',
-		]);
-        $this->group_box_css([
-            'name' => 'icon_',
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__icon',
-        ]);
-        // End Normal Tab
-        $this->end_controls_tab();
-        // Hover Tab
-        $this->start_controls_tab( 'icon_style_hover_tab', 
-            [ 
-                'label' => __( 'Hover', 'steelnova' ) 
-            ] 
-        );
         $this->color([
-            'name' => 'icon_hover_color',
-            'label' => __('Icon Color', 'steelnova'),
+            'name'  => 'icon_bg_color',
+            'label' => __( 'Background Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__icon, 
-                {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon' => 'color: {{VALUE}};',
-            ]
+                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'background-color: {{VALUE}};',
+            ],
+            // Layout 1 & 3 have a bg on the icon box; layout 2 does not
+            'condition' => [ 'layout' => [ '1', '3' ] ],
         ]);
-        $this->group_background([
-            'name' => 'icon_hover_background',
-            'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__icon:not(.box-gradient), 
-            {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon:not(.box-gradient),
-            {{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__icon.box-gradient:before',
-		]);
+        $this->group_border([
+            'name'     => 'icon_border',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__icon',
+        ]);
+        $this->dimensions([
+            'name'  => 'icon_border_radius',
+            'label' => __( 'Border Radius', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->end_controls_tab();
+
+        // ── Active / Hover ───────────────────────────────────────────────────
+        $this->start_controls_tab( 'icon_style_hover_tab', [ 'label' => __( 'Active / Hover', 'steelnova' ) ] );
+
+        $this->color([
+            'name'  => 'icon_hover_color',
+            'label' => __( 'Icon Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__icon,
+                 {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon' => 'color: {{VALUE}};',
+            ],
+        ]);
+        $this->color([
+            'name'  => 'icon_active_bg_color',
+            'label' => __( 'Active Background Color', 'steelnova' ),
+            'selectors' => [
+                // Layout 1: active icon gets orange bg
+                '{{WRAPPER}} .cs-accordion[data-layout="1"] .cs-accordion__item.is-active .cs-accordion__icon' => 'background-color: {{VALUE}};',
+                // Layout 3: active icon gets transparent bg
+                '{{WRAPPER}} .cs-accordion[data-layout="3"] .cs-accordion__item.is-active .cs-accordion__icon' => 'background-color: {{VALUE}};',
+            ],
+            'condition' => [ 'layout' => [ '1', '3' ] ],
+        ]);
+        $this->color([
+            'name'  => 'icon_active_border_color',
+            'label' => __( 'Active Border Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon' => 'border-color: {{VALUE}};',
+            ],
+            'condition' => [ 'layout' => [ '3' ] ],
+        ]);
         $this->group_box_css([
-            'name' => 'icon_hover_',
+            'name'     => 'icon_hover_',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__item:hover .cs-accordion__icon, {{WRAPPER}} .cs-accordion .cs-accordion__item.is-active .cs-accordion__icon',
         ]);
         $this->time([
-            'name' => 'icon_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
+            'name'  => 'icon_transition_duration',
+            'label' => __( 'Transition Duration', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__icon' => 'transition-duration: {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__item .cs-accordion__icon' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
-        // End Hover Tab
+
         $this->end_controls_tab();
         $this->end_controls_tabs();
 
@@ -661,41 +638,61 @@ class Widget_Accordion extends SteelNova_Widget_Base {
 
     /**  
      * Register Content Style Controls
+     *
+     * Layout 1 : content p has padding-block 22px/16px, max-width 675px, default text color
+     * Layout 2 : content white text, 14px, padding 18.5px 21px on p
+     * Layout 3 : content white text on #121512 bg, 14px, padding 25px 20px 29px 23.5px on p
     */
     protected function register_content_style_controls() {
         $this->start_style_section([ 
-            'name' => 'section_content_style', 
-            'label' => __('Content', 'steelnova'),
+            'name'  => 'section_content_style', 
+            'label' => __( 'Content', 'steelnova' ),
         ]);
+
         $this->group_typography([
-            'name' => 'content_typography',
+            'name'     => 'content_typography',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__content p',
         ]);
+
         $this->color([
-            'name' => 'content_text_color',
-            'label' => __('Text Color', 'steelnova'),
+            'name'  => 'content_text_color',
+            'label' => __( 'Text Color', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__content p' => 'color: {{VALUE}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__content p' => 'color: {{VALUE}};',
             ],
         ]);
         $this->color([
-            'name' => 'content_link_color',
-            'label' => __('Link Color', 'steelnova'),
-            'separator' => 'before',
+            'name'  => 'content_link_color',
+            'label' => __( 'Link Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__content a' => 'color: {{VALUE}};'
+                '{{WRAPPER}} .cs-accordion .cs-accordion__content a' => 'color: {{VALUE}};',
             ],
         ]);
-        $this->group_background([
-            'name' => 'content_background',
-            'types' => [ 'classic', 'gradient' ],
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__content',
-		]);
+
+        // Background — layout 2 & 3 have a dark bg on the content wrapper
+        $this->color([
+            'name'  => 'content_bg_color',
+            'label' => __( 'Background Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__content' => 'background-color: {{VALUE}};',
+            ],
+            'condition' => [ 'layout' => [ '2', '3' ] ],
+        ]);
+
+        $this->dimensions([
+            'name'  => 'content_padding',
+            'label' => __( 'Content Padding', 'steelnova' ),
+            'separator' => 'before',
+            'selectors' => [
+                '{{WRAPPER}} .cs-accordion .cs-accordion__content p' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
         $this->group_box_css([
-            'name' => 'content_',
-            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__content p'
+            'name'     => 'content_',
+            'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__content p',
         ]);
+
         $this->end_controls_section();
     }
 }

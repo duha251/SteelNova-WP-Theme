@@ -302,11 +302,19 @@
             @media #{$max-xs} {
                 padding: 50px 15px;
             }
-            &.swiper-slide-active {
-                .project__content {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
+            &__content {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            &:hover {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .swiper-slide-center {
+            .project__content {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
     }

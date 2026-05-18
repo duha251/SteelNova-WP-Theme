@@ -1,6 +1,18 @@
 (function ($) {
     "use strict";
 
+    function setCenterVisibleSlide(swiper) {
+        const $visibleSlides = $(swiper.slides).filter('.swiper-slide-visible');
+
+        $(swiper.slides).removeClass('swiper-slide-center');
+
+        if (!$visibleSlides.length) return;
+
+        const centerIndex = Math.floor($visibleSlides.length / 2);
+
+        $visibleSlides.eq(centerIndex).addClass('swiper-slide-center');
+    }
+
     function initSwiperCarousel($scope) {
         const $carousels = $scope.find('.swiper');
         if (!$carousels.length) return;
@@ -130,6 +142,7 @@
                 init: function () {
                     const swiper = this;
                     const swiperEl = $(swiper.el);
+                    setCenterVisibleSlide(swiper)
                 },
                 slideChange: function () {
                     const swiper = this;
@@ -142,6 +155,7 @@
                             $carouselThumbs.get(0).swiper.slideTo(index);
                         }
                     }
+                    setCenterVisibleSlide(swiper)
                 },
                 transitionEnd: function () {
                 }

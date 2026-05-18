@@ -360,7 +360,15 @@
     padding: 50px 15px;
   }
 }
-.cs-projects-carousel[data-layout="2"][data-layout_style="2"] .project.swiper-slide-active .project__content {
+.cs-projects-carousel[data-layout="2"][data-layout_style="2"] .project__content {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.cs-projects-carousel[data-layout="2"][data-layout_style="2"] .project:hover {
+  opacity: 1;
+  transform: translateX(0);
+}
+.cs-projects-carousel[data-layout="2"][data-layout_style="2"] .swiper-slide-center .project__content {
   opacity: 1;
   transform: translateX(0);
 }
