@@ -11,12 +11,12 @@ class Widget_Price_Filter extends SteelNova_Widget_Base {
      */
     protected function widget_info() {
         return [
-            'name'  => 'steelnova-price-filter',
-            'title' => __( 'CS Price Filter', 'steelnova' ),
-            'icon'  => 'eicon-filter',
-            'keywords' => [ 'cs', 'casethemes', 'steelnova', 'price filter', 'filter price', 'price range', 'price slider', 'range slider', 'woocommerce price', 'woocommerce filter', 'product filter', 'shop filter', 'filter by price', 'price sorting', 'min max price', 'price control', 'catalog filter', 'ecommerce filter', 'store filter', 'woocommerce widget', 'shop widget', 'product price', 'price bar', 'price UI', 'price control UI' ],
-            'script' => ['steelnova-price-filter'],
-            'style'  => ['steelnova-widget-price-filter']
+            'name'     => 'steelnova-price-filter',
+            'title'    => __( 'CS Price Filter', 'steelnova' ),
+            'icon'     => 'eicon-filter',
+            'keywords' => [ 'cs', 'casethemes', 'steelnova', 'price filter', 'price range', 'price slider', 'woocommerce', 'shop filter' ],
+            'script'   => ['steelnova-price-filter'],
+            'style'    => ['steelnova-widget-price-filter'],
         ];
     }
 
@@ -24,58 +24,14 @@ class Widget_Price_Filter extends SteelNova_Widget_Base {
      * Register all controls for the widget.
      */
     public function register_controls() {
-        // Layout Controls
-        // $this->register_layout_controls();
-        // $this->register_layout_style_controls();
         // Content Controls
         $this->register_content_controls();
         // Style Controls
-        // $this->register_icon_style_controls();
-        // $this->register_title_style_controls();
-        // $this->register_desc_style_controls();
-    } 
-
-    // protected function register_layout_controls() {
-    //     $this->start_layout_section([ 
-    //         'name' => 'section_layout', 
-    //         'label' => __('Layout', 'steelnova')
-    //     ]);
-    //     $this->visual_choice([
-    //         'name' => 'layout',
-    //         'label' => __('Layout', 'steelnova'),
-    //         'columns' => '1',
-    //         'options' => [
-    //             '1' => [
-    //                 'title' => esc_attr__( 'Post Meta 1', 'steelnova' ),
-    //                 'image' => content_url('/uploads/widget-layout/post-meta-1.webp'),
-    //             ],
-    //         ],
-    //         'default' => '1',
-    //     ]);
-    //     $this->end_controls_section();
-    // }
-
-    /**
-     * Register Layout Controls.
-     */
-    protected function register_layout_style_controls() {
-        $this->start_layout_section([
-            'name' => 'section_layout_style',
-            'label' => __( 'Layout', 'steelnova' ),
-        ]);
-        $this->group_flex_css([
-            'name' => 'flex_css',
-            'selector' => '{{WRAPPER}} .cs-post-meta',
-        ]);
-        $this->heading([
-            'name' => 'item_layout_heading',
-            'label' => __('Item Layout', 'steelnova'),
-        ]);
-        $this->group_flex_css([
-            'name' => 'item_',
-            'selector' => '{{WRAPPER}} .cs-post-meta .cs-post-meta__item',
-        ]);
-        $this->end_controls_section();
+        $this->register_slider_style_controls();
+        $this->register_button_style_controls();
+        $this->register_price_style_controls();
+        // Steelnova Controls
+        $this->register_steelnova_extra_controls();
     }
 
     /**
@@ -83,95 +39,241 @@ class Widget_Price_Filter extends SteelNova_Widget_Base {
      */
     protected function register_content_controls() {
         $this->start_content_section([
-            'name' => 'section_content',
-            'label' => __( 'Content', 'steelnova' ),
+            'name'  => 'section_content',
+            'label' => __( 'Price Filter', 'steelnova' ),
+        ]);
+        $this->text([
+            'name'    => 'button_label',
+            'label'   => __( 'Button Label', 'steelnova' ),
+            'default' => __( 'FILTER', 'steelnova' ),
+        ]);
+        $this->text([
+            'name'    => 'price_label',
+            'label'   => __( 'Price Label', 'steelnova' ),
+            'default' => __( 'Price:', 'steelnova' ),
         ]);
         $this->end_controls_section();
     }
 
+    // =========================================================================
+    // STYLE CONTROLS
+    // =========================================================================
+
     /**
-     * Register Icon Style Controls
+     * Register Slider Style Controls.
+     *
+     * Uses CSS custom properties on .cs-price-filter:
+     *   --track-color  : #dcdcdc  (track background)
+     *   --thumb-color  : #07100d  (thumb handle)
+     *   --accent-color : #ff5b1b  (active progress fill)
+     *
+     * .cs-price-filter__range     — container, height 14px, margin-bottom 28px
+     * .cs-price-filter__track     — full-width bar, height 3px
+     * .cs-price-filter__progress  — active range fill
+     * __input thumb               — 11px circle
      */
-    protected function register_icon_style_controls() {
+    protected function register_slider_style_controls() {
         $this->start_style_section([
-            'name' => 'section_icon_style',
-            'label' => __( 'Icon', 'steelnova' ),
+            'name'  => 'section_slider_style',
+            'label' => __( 'Slider', 'steelnova' ),
         ]);
-        $this->size([
-            'name' => 'icon_size',
-            'label' => __( 'Icon Size', 'steelnova' ),
+
+        // ── CSS variable colours ─────────────────────────────────────────────
+        $this->heading([
+            'name'      => 'slider_colors_heading',
+            'label'     => __( 'Colors', 'steelnova' ),
+            'separator' => 'none',
+        ]);
+        $this->color([
+            'name'  => 'track_color',
+            'label' => __( 'Track Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon svg' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-price-filter' => '--track-color: {{VALUE}};',
             ],
         ]);
-        $this->size([
-            'name' => 'box_icon_width',
-            'label' => __( 'Box Width', 'steelnova' ),
-            'separator' => 'before',
+        $this->color([
+            'name'  => 'accent_color',
+            'label' => __( 'Active Range Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-price-filter' => '--accent-color: {{VALUE}};',
             ],
         ]);
-        $this->size([
-            'name' => 'box_icon_height',
-            'label' => __( 'Box Height', 'steelnova' ),
+        $this->color([
+            'name'  => 'thumb_color',
+            'label' => __( 'Thumb Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon' => 'height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-price-filter' => '--thumb-color: {{VALUE}};',
             ],
         ]);
-        $this->_start_controls_tabs([
-            'name' => 'icon_style_tabs',
+
+        // ── Track dimensions ─────────────────────────────────────────────────
+        $this->heading([
+            'name'  => 'slider_track_heading',
+            'label' => __( 'Track', 'steelnova' ),
         ]);
-        // Tab Normal Start
+        $this->size([
+            'name'  => 'track_height',
+            'label' => __( 'Track Height', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__track,
+                 {{WRAPPER}} .cs-price-filter__progress' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->dimensions([
+            'name'  => 'track_border_radius',
+            'label' => __( 'Track Border Radius', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__track,
+                 {{WRAPPER}} .cs-price-filter__progress' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
+        // ── Thumb dimensions ─────────────────────────────────────────────────
+        $this->heading([
+            'name'  => 'slider_thumb_heading',
+            'label' => __( 'Thumb', 'steelnova' ),
+        ]);
+        $this->size([
+            'name'  => 'thumb_size',
+            'label' => __( 'Thumb Size', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__input::-webkit-slider-thumb' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-price-filter__input::-moz-range-thumb'     => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->dimensions([
+            'name'  => 'thumb_border_radius',
+            'label' => __( 'Thumb Border Radius', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__input::-webkit-slider-thumb' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} .cs-price-filter__input::-moz-range-thumb'     => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
+        // ── Range container spacing ──────────────────────────────────────────
+        $this->heading([
+            'name'  => 'slider_spacing_heading',
+            'label' => __( 'Spacing', 'steelnova' ),
+        ]);
+        $this->size([
+            'name'  => 'range_height',
+            'label' => __( 'Range Container Height', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__range' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->dimensions([
+            'name'  => 'range_spacing',
+            'label' => __( 'Range Spacing (Margin)', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__range' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->end_controls_section();
+    }
+
+    /**
+     * Register Button Style Controls.
+     *
+     * .cs-price-filter__button — height 27px, bg #07100d, white,
+     *   font "Public Sans" 14px 600, padding-inline 22px
+     */
+    protected function register_button_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_button_style',
+            'label' => __( 'Button', 'steelnova' ),
+        ]);
+
+        $this->group_typography([
+            'name'     => 'button_typography',
+            'selector' => '{{WRAPPER}} .cs-price-filter__button',
+        ]);
+        $this->size([
+            'name'  => 'button_height',
+            'label' => __( 'Height', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__button' => 'height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->dimensions([
+            'name'  => 'button_padding',
+            'label' => __( 'Padding', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->_start_controls_tabs([ 'name' => 'button_style_tabs' ]);
+
+        // ── Normal ──────────────────────────────────────────────────────────
         $this->_start_controls_tab([
-            'name' => 'icon_tab_normal',
+            'name'  => 'button_tab_normal',
             'label' => __( 'Normal', 'steelnova' ),
         ]);
         $this->color([
-            'name' => 'icon_color',
-            'label' => __( 'Icon Color', 'steelnova' ),
+            'name'  => 'button_color',
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-price-filter__button' => 'color: {{VALUE}};',
             ],
         ]);
-        $this->group_background([
-            'name' => 'icon_background',
-            'selector' => '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon',
+        $this->color([
+            'name'  => 'button_bg_color',
+            'label' => __( 'Background Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__button' => 'background-color: {{VALUE}};',
+            ],
         ]);
-        $this->group_box_css([
-            'name' => 'icon_box_css',
-            'selector' => '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon',
+        $this->group_border([
+            'name'     => 'button_border',
+            'selector' => '{{WRAPPER}} .cs-price-filter__button',
+        ]);
+        $this->dimensions([
+            'name'  => 'button_border_radius',
+            'label' => __( 'Border Radius', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+        $this->group_box_shadow([
+            'name'     => 'button_box_shadow',
+            'selector' => '{{WRAPPER}} .cs-price-filter__button',
         ]);
         $this->end_controls_tab();
 
-        // Tab Hover Start
+        // ── Hover ────────────────────────────────────────────────────────────
         $this->_start_controls_tab([
-            'name' => 'icon_tab_hover',
+            'name'  => 'button_tab_hover',
             'label' => __( 'Hover', 'steelnova' ),
         ]);
         $this->color([
-            'name' => 'icon_color_hover',
-            'label' => __( 'Icon Color', 'steelnova' ),
+            'name'  => 'button_color_hover',
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta:hover .cs-post-meta__item-icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-price-filter__button:hover' => 'color: {{VALUE}};',
             ],
         ]);
-        $this->group_background([
-            'name' => 'icon_background_hover',
-            'selector' => '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon:not(.background-gradient):hover,
-                           {{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon:not(.background-gradient):before',
+        $this->color([
+            'name'  => 'button_bg_color_hover',
+            'label' => __( 'Background Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__button:hover' => 'background-color: {{VALUE}};',
+            ],
         ]);
-        $this->group_box_css([
-            'name' => 'icon_box_css_hover',
-            'selector' => '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon:not(.background-gradient):hover',
+        $this->group_border([
+            'name'     => 'button_border_hover',
+            'selector' => '{{WRAPPER}} .cs-price-filter__button:hover',
+        ]);
+        $this->group_box_shadow([
+            'name'     => 'button_box_shadow_hover',
+            'selector' => '{{WRAPPER}} .cs-price-filter__button:hover',
         ]);
         $this->time([
-            'name' => 'icon_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
-            'separator' => 'before',
+            'name'  => 'button_transition',
+            'label' => __( 'Transition Duration', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-icon' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-price-filter__button' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -181,111 +283,82 @@ class Widget_Price_Filter extends SteelNova_Widget_Base {
     }
 
     /**
-     * Register Label Style Controls
+     * Register Price Display Style Controls.
+     *
+     * .cs-price-filter__bottom  — flex space-between, gap 24px
+     * .cs-price-filter__price   — price text, line-height 1.625
+     * .cs-price-filter__price-min / __price-max — individual price values
      */
-    protected function register_title_style_controls() {
+    protected function register_price_style_controls() {
         $this->start_style_section([
-            'name' => 'section_title_style',
-            'label' => __( 'Label', 'steelnova' ),
+            'name'  => 'section_price_style',
+            'label' => __( 'Price Display', 'steelnova' ),
+        ]);
+
+        // ── Bottom row layout ────────────────────────────────────────────────
+        $this->heading([
+            'name'      => 'bottom_heading',
+            'label'     => __( 'Bottom Row', 'steelnova' ),
+            'separator' => 'none',
+        ]);
+        $this->gaps([
+            'name'  => 'bottom_gap',
+            'label' => __( 'Gap (button ↔ price)', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__bottom' => 'gap: {{COLUMN}}{{UNIT}};',
+            ],
+        ]);
+
+        // ── Price text ───────────────────────────────────────────────────────
+        $this->heading([
+            'name'  => 'price_text_heading',
+            'label' => __( 'Price Text', 'steelnova' ),
         ]);
         $this->group_typography([
-            'name' => 'title_typography',
-            'selector' => '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-label',
+            'name'     => 'price_typography',
+            'selector' => '{{WRAPPER}} .cs-price-filter__price',
         ]);
 
-        $this->_start_controls_tabs([
-            'name' => 'title_style_tabs',
-        ]);
+        $this->_start_controls_tabs([ 'name' => 'price_style_tabs' ]);
 
-        // Tab Normal Start
         $this->_start_controls_tab([
-            'name' => 'title_tab_normal',
+            'name'  => 'price_tab_normal',
             'label' => __( 'Normal', 'steelnova' ),
         ]);
         $this->color([
-            'name' => 'title_color',
-            'label' => __( 'Text Color', 'steelnova' ),
+            'name'  => 'price_color',
+            'label' => __( 'Label Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-label' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-price-filter__price' => 'color: {{VALUE}};',
+            ],
+        ]);
+        $this->color([
+            'name'  => 'price_value_color',
+            'label' => __( 'Value Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-price-filter__price-min,
+                 {{WRAPPER}} .cs-price-filter__price-max' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_tab();
 
-        // Tab Hover Start
         $this->_start_controls_tab([
-            'name' => 'title_tab_hover',
+            'name'  => 'price_tab_hover',
             'label' => __( 'Hover', 'steelnova' ),
         ]);
         $this->color([
-            'name' => 'title_color_hover',
-            'label' => __( 'Text Color', 'steelnova' ),
+            'name'  => 'price_color_hover',
+            'label' => __( 'Label Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item:hover .cs-post-meta__item-label' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-price-filter:hover .cs-price-filter__price' => 'color: {{VALUE}};',
             ],
-        ]);
-        $this->time([
-            'name' => 'title_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
-            'separator' => 'before',
-            'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item-label' => 'transition-duration: {{SIZE}}{{UNIT}};',
-            ],
-        ]);
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
-        $this->end_controls_section();
-    }
-
-    /**
-     * Register Description Style Controls
-     */
-    protected function register_desc_style_controls() {
-        $this->start_style_section([
-            'name' => 'section_desc_style',
-            'label' => __( 'Description', 'steelnova' ),
-        ]);
-        $this->group_typography([
-            'name' => 'desc_typography',
-            'selector' => '{{WRAPPER}} .cs-post-meta .cs-post-meta__text',
-        ]);
-
-        $this->_start_controls_tabs([
-            'name' => 'desc_style_tabs',
-        ]);
-
-        // Tab Normal Start
-        $this->_start_controls_tab([
-            'name' => 'desc_tab_normal',
-            'label' => __( 'Normal', 'steelnova' ),
         ]);
         $this->color([
-            'name' => 'desc_color',
-            'label' => __( 'Text Color', 'steelnova' ),
+            'name'  => 'price_value_color_hover',
+            'label' => __( 'Value Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__text' => 'color: {{VALUE}};',
-            ],
-        ]);
-        $this->end_controls_tab();
-
-        // Tab Hover Start
-        $this->_start_controls_tab([
-            'name' => 'desc_tab_hover',
-            'label' => __( 'Hover', 'steelnova' ),
-        ]);
-        $this->color([
-            'name' => 'desc_color_hover',
-            'label' => __( 'Text Color', 'steelnova' ),
-            'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__item:hover .cs-post-meta__text' => 'color: {{VALUE}};',
-            ],
-        ]);
-        $this->time([
-            'name' => 'desc_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
-            'separator' => 'before',
-            'selectors' => [
-                '{{WRAPPER}} .cs-post-meta .cs-post-meta__text' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-price-filter:hover .cs-price-filter__price-min,
+                 {{WRAPPER}} .cs-price-filter:hover .cs-price-filter__price-max' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_tab();

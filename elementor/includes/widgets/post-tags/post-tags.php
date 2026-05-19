@@ -11,11 +11,11 @@ class Widget_Post_Tags extends SteelNova_Widget_Base {
      */
     protected function widget_info() {
         return [
-            'name'       => 'steelnova-post-tags',
-            'title'      => __( 'CS Post Tags', 'steelnova' ),
-            'icon'       => 'eicon-tags',
-            'keywords' => [ 'cs', 'casethemes', 'steelnova', 'post tags', 'tags', 'post information', 'social', 'social icon', 'social icons', 'icon', 'icons', 'share', 'social share', 'network', 'social network', 'facebook', 'twitter', 'instagram', 'linkedin', 'youtube', 'pinterest', 'telegram', 'author', 'date', 'category', 'tags' ],
-            'script'     => [],
+            'name'     => 'steelnova-post-tags',
+            'title'    => __( 'CS Post Tags', 'steelnova' ),
+            'icon'     => 'eicon-tags',
+            'keywords' => [ 'cs', 'casethemes', 'steelnova', 'post tags', 'tags', 'taxonomy' ],
+            'script'   => [],
         ];
     }
 
@@ -26,130 +26,162 @@ class Widget_Post_Tags extends SteelNova_Widget_Base {
         // Layout Controls
         $this->register_layout_controls();
         // Style Controls
-        $this->register_icon_style_controls();
+        $this->register_wrapper_style_controls();
+        $this->register_tag_style_controls();
+        // Steelnova Controls
+        $this->register_steelnova_extra_controls();
     }
 
     /**
      * Register Layout Controls.
+     *
+     * Flex layout for the .cs-post-tags wrapper.
      */
     protected function register_layout_controls() {
         $this->start_layout_section([
-            'name' => 'section_layout',
+            'name'  => 'section_layout',
             'label' => __( 'Layout', 'steelnova' ),
         ]);
-        $this->group_flex_css([
-            'name' => 'flex_css',
-            'selector' => '{{WRAPPER}} .post-tags',
+        $this->gaps([
+            'name'  => 'tags_gap',
+            'label' => __( 'Gap', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-post-tags' => 'gap: {{COLUMN}}{{UNIT}};',
+            ],
         ]);
         $this->end_controls_section();
     }
 
+    // =========================================================================
+    // STYLE CONTROLS
+    // =========================================================================
+
     /**
-     * Register Icon Style Controls
+     * Register Wrapper Style Controls.
+     *
+     * .cs-post-tags — flex, gap 10px, flex-wrap wrap
      */
-    protected function register_icon_style_controls( $args = [] ) {
+    protected function register_wrapper_style_controls() {
         $this->start_style_section([
-            'name' => 'section_icon_style',
-            'label' => __( 'Socials Icon', 'steelnova' ),
+            'name'  => 'section_wrapper_style',
+            'label' => __( 'Wrapper', 'steelnova' ),
+        ]);
+
+        $this->group_background([
+            'name'     => 'wrapper_background',
+            'selector' => '{{WRAPPER}} .cs-post-tags',
+        ]);
+        $this->group_box_css([
+            'name'     => 'wrapper_box_css',
+            'selector' => '{{WRAPPER}} .cs-post-tags',
+        ]);
+
+        $this->end_controls_section();
+    }
+
+    /**
+     * Register Tag Link Style Controls.
+     *
+     * .cs-tags a / .cs-post-tags a — height 44px, padding-inline 23px,
+     *   border-radius 6px, border thin solid #DCDCDC,
+     *   font 12px 500 uppercase, letter-spacing 0.72px
+     *   → hover: bg #FF5B1B, color rgba(255,255,255,0.8), border transparent
+     */
+    protected function register_tag_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_tag_style',
+            'label' => __( 'Tag', 'steelnova' ),
+        ]);
+
+        $this->group_typography([
+            'name'     => 'tag_typography',
+            'selector' => '{{WRAPPER}} .cs-post-tags a',
         ]);
         $this->size([
-            'name' => 'icon_size',
-            'label' => __( 'Icon Size', 'steelnova' ),
+            'name'  => 'tag_height',
+            'label' => __( 'Height', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .social-icons .social-icons__link' => 'font-size: {{SIZE}}{{UNIT}};',
-                '{{WRAPPER}} .social-icons .social-icons__link svg' => 'width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-post-tags a' => 'height: {{SIZE}}{{UNIT}};',
             ],
         ]);
-        $this->size([
-            'name' => 'box_icon_width',
-            'label' => __( 'Box Width', 'steelnova' ),
-            'separator' => 'before',
+        $this->dimensions([
+            'name'  => 'tag_padding',
+            'label' => __( 'Padding', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .social-icons .social-icons__link' => 'width: {{SIZE}}{{UNIT}}; min-width: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-post-tags a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
         ]);
-        $this->size([
-            'name' => 'box_icon_height',
-            'label' => __( 'Box Height', 'steelnova' ),
-            'selectors' => [
-                '{{WRAPPER}} .social-icons .social-icons__link' => 'height: {{SIZE}}{{UNIT}};',
-            ],
-        ]);
-        $this->_start_controls_tabs([
-            'name' => 'icon_style_tabs',
-        ]);
-        // Tab Normal Start
+
+        $this->_start_controls_tabs([ 'name' => 'tag_style_tabs' ]);
+
+        // ── Normal ──────────────────────────────────────────────────────────
         $this->_start_controls_tab([
-            'name' => 'icon_tab_normal',
+            'name'  => 'tag_tab_normal',
             'label' => __( 'Normal', 'steelnova' ),
         ]);
         $this->color([
-            'name' => 'icon_color',
-            'label' => __( 'Icon Color', 'steelnova' ),
+            'name'  => 'tag_color',
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .social-icons .social-icons__link' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-post-tags a' => 'color: {{VALUE}};',
             ],
         ]);
-        $this->group_background([
-            'name' => 'icon_background',
-            'selector' => '{{WRAPPER}} .social-icons .social-icons__link',
+        $this->color([
+            'name'  => 'tag_bg_color',
+            'label' => __( 'Background Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-post-tags a' => 'background-color: {{VALUE}};',
+            ],
         ]);
-        $this->group_box_css([
-            'name' => 'icon_box_css',
-            'selector' => '{{WRAPPER}} .social-icons .social-icons__link',
+        $this->group_border([
+            'name'     => 'tag_border',
+            'selector' => '{{WRAPPER}} .cs-post-tags a',
+        ]);
+        $this->dimensions([
+            'name'  => 'tag_border_radius',
+            'label' => __( 'Border Radius', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-post-tags a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+        $this->group_box_shadow([
+            'name'     => 'tag_box_shadow',
+            'selector' => '{{WRAPPER}} .cs-post-tags a',
         ]);
         $this->end_controls_tab();
 
-        // Tab Hover Start
+        // ── Hover ────────────────────────────────────────────────────────────
         $this->_start_controls_tab([
-            'name' => 'icon_tab_hover',
+            'name'  => 'tag_tab_hover',
             'label' => __( 'Hover', 'steelnova' ),
         ]);
         $this->color([
-            'name' => 'icon_color_hover',
-            'label' => __( 'Icon Color', 'steelnova' ),
+            'name'  => 'tag_color_hover',
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-text:hover .icon-text__icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-post-tags a:hover' => 'color: {{VALUE}};',
             ],
         ]);
-        $this->group_background([
-            'name' => 'icon_background_hover',
-            'selector' => '{{WRAPPER}} .social-icons .social-icons__link:not(.background-gradient):hover,
-                           {{WRAPPER}} .social-icons .social-icons__link:not(.background-gradient):before',
-        ]);
-        $this->group_box_css([
-            'name' => 'icon_box_css_hover',
-            'selector' => '{{WRAPPER}} .social-icons .social-icons__link:not(.background-gradient):hover',
-        ]);
-        $this->select([
-            'name' => 'icon_hover_style',
-            'label' => __('Hover Style', 'steelnova'),
-            'separator' => 'before',
-            'options' => [
-                ''    => __('None', 'steelnova'),
-                'fillScale'  => __('Fill Scale', 'steelnova'),
-                'fillReveal' => __('Fill Reveal', 'steelnova'),
+        $this->color([
+            'name'  => 'tag_bg_color_hover',
+            'label' => __( 'Background Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-post-tags a:hover' => 'background-color: {{VALUE}};',
             ],
         ]);
-        // $this->select([
-        //     'name' => 'icon_before_transform_origin',
-        //     'label' => __('Transform Origin', 'steelnova'),
-        //     'options' => [
-        //         ''       => __('Center', 'steelnova'),
-        //         'top'    => __('Top', 'steelnova'),
-        //         'right'  => __('Right', 'steelnova'),
-        //         'bottom' => __('Bottom', 'steelnova'),
-        //         'left'   => __('Left', 'steelnova'),
-        //     ],
-        //     'selectors' => [
-        //         '{{WRAPPER}} .social-icons .social-icons__link:before' => 'transform-origin: {{VALUE}};'
-        //     ]
-        // ]);
+        $this->group_border([
+            'name'     => 'tag_border_hover',
+            'selector' => '{{WRAPPER}} .cs-post-tags a:hover',
+        ]);
+        $this->group_box_shadow([
+            'name'     => 'tag_box_shadow_hover',
+            'selector' => '{{WRAPPER}} .cs-post-tags a:hover',
+        ]);
         $this->time([
-            'name' => 'icon_transition_duration',
-            'label' => __('Transition Duration', 'steelnova'),
+            'name'  => 'tag_transition',
+            'label' => __( 'Transition Duration', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .social-icons .social-icons__link' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-post-tags a' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();
