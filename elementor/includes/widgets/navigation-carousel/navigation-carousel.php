@@ -24,8 +24,9 @@ class Widget_Navigation_Carousel extends SteelNova_Widget_Base {
         $this->register_content_section();
         // Style Controls
         $this->register_btn_style_controls();
-        // Steelnova Controls
+                // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

@@ -165,16 +165,6 @@ class Theme_Options {
                     ],
                     'default'  => '0',
                 ),
-                array(
-                    'id'       => 'loader_logo',
-                    'type'     => 'media',
-                    'title'    => esc_html__('Loader Logo', 'steelnova'),
-                    'default'  => [
-                        'url' => get_template_directory_uri() . '/assets/imgs/logo-icon.webp',
-                    ],
-                    'url'      => false,
-                    'required' => ['site_loader', '=', '1'],
-                ),
                 // array(
                 //     'id'       => 'mouse_move_animation',
                 //     'type'     => 'button_set',

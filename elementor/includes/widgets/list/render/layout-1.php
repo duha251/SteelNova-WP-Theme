@@ -21,6 +21,14 @@ $wrapper_attrs = array_merge(
                 'class' => 'cs-list__item elementor-repeater-item-'.$item['_id']
             ];
 
+            if( !empty( $item['hover_style'] ) ) {
+                $item_attrs['data-hover'] = $item['hover_style'];
+            }
+
+            if( !empty( $item['item_entrance_anim'] ) ) {
+                $item_attrs['class'] .= ' '.$item['item_entrance_anim'];
+            }
+
             $item_link_attrs = steelnova_elementor_get_link_attributes( $item['link'] );
             $item_text_tag = 'span';
             $item_text_class = 'cs-list__item-text';

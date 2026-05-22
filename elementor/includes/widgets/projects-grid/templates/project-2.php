@@ -2,12 +2,11 @@
 $thumbnail_id = get_post_thumbnail_id($post->ID);  
 $thumbnail_url = get_the_post_thumbnail_url($post->ID);   
 extract( $display_args ); 
-
-
+$content_class = $content_class ?? '';
 ?>
 <article class="project project-<?php echo esc_attr( $post->ID . $active_class ); ?>" style="background-image: url(<?php echo esc_url($thumbnail_url); ?>)">
     <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" class="box-link"></a>
-    <div class="project__content">
+    <div class="project__content<?php echo esc_attr( $content_class ); ?>">
         <div class="project__content-inner">
             <svg class="mask" width="90" height="90" viewBox="0 0 89 89" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 89L0 0C7 0 11 5 11 11V66C11 73 17 78 23 78H78C85 78 89 83 89 89H0.5Z" fill="white"/>
@@ -25,7 +24,7 @@ extract( $display_args );
                 echo '</div>';
             endif;
             ?>
-            <<?php echo esc_attr( $title_tag ); ?> class="project__title">
+            <<?php echo esc_attr( $title_tag ); ?> class="project__title" data-hover="text-underline-slide">
                 <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>">
                     <?php echo esc_html( get_the_title( $post->ID ) ); ?>
                 </a>

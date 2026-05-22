@@ -75,6 +75,9 @@
                 background-color: #121512;
                 justify-content: center;
                 color: #FFF;
+                &::before {
+                    background-color: #FF5B1B;
+                }
             }
         }
     }

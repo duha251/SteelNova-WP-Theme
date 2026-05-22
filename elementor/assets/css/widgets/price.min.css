@@ -20,6 +20,9 @@
 .cs-price-carousel .price__inner:hover .price__title, .cs-price-carousel .price__inner:hover .price__amount, .cs-price-carousel .price__inner:hover .price__description, .cs-price-carousel .price__inner:hover .price__features li, .cs-price-carousel .price__inner.is-active .price__title, .cs-price-carousel .price__inner.is-active .price__amount, .cs-price-carousel .price__inner.is-active .price__description, .cs-price-carousel .price__inner.is-active .price__features li {
   color: #FFF;
 }
+.cs-price-carousel .price__inner:hover .cs-button::before, .cs-price-carousel .price__inner.is-active .cs-button::before {
+  opacity: 1;
+}
 @media screen and (max-width: 1399px) {
   .cs-price-carousel .price__inner {
     padding: 45px 30px 45px;
@@ -92,6 +95,9 @@
   margin-top: 44px;
   background-color: #0A1119;
   color: #FFF;
+}
+.cs-price-carousel .price .cs-button:before {
+  background: linear-gradient(90deg, #FF5B1B 0%, #FA2 100%);
 }
 
 /*# sourceMappingURL=price.min.css.map*/

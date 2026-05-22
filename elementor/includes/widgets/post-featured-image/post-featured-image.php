@@ -24,6 +24,9 @@ class Widget_Post_Featured_Image extends SteelNova_Widget_Base {
         $this->register_content_controls();
         // Style 
         $this->register_image_style_controls();
+                // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

@@ -32,7 +32,7 @@ extract( $display_args );
                 <?php foreach( $socials as $i => $social_icon ) : 
                     $social_link = $socials['social_link'][$i] ?? '#';    
                 ?>
-                    <a href="<?php echo esc_url($social_link); ?>">
+                    <a href="<?php echo esc_url($social_link); ?>" data-hover="fillScale">
                         <?php steelnova_print_svg_content( $social_icon['url'] ?? '' ); ?>
                     </a>
                 <?php endforeach; ?>

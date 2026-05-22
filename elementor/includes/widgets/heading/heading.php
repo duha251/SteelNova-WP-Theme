@@ -16,9 +16,8 @@ class Widget_Heading extends SteelNova_Widget_Base {
             'title'      => __( 'CS Heading', 'steelnova' ),
             'icon'       => 'eicon-heading',
             'keywords'   => [ 'cs', 'casethemes', 'steelnova', 'heading', 'title', 'text', 'typography', 'content', 'h1', 'h2', 'h3', 'heading editor' ],
-            'script'     => [],
+            'script'     => ['steelnova-text-animation'],
             'style'      => ['steelnova-widget-heading'],
-            'style'      => ['steelnova-widget-heading']
         ];
     }
 
@@ -38,6 +37,7 @@ class Widget_Heading extends SteelNova_Widget_Base {
         $this->register_subtitle_icon_style_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**
@@ -94,6 +94,10 @@ class Widget_Heading extends SteelNova_Widget_Base {
             'label' => __( 'Subtitle Icon', 'steelnova' ),
             'default' => []
         ]);  
+        $this->group_entrance_animation([
+            'name' => 'subtitle',
+            'selector' => '{{WRAPPER}} .heading .heading__subtitle'
+        ]);
         $this->end_controls_section();
     }
 
@@ -125,6 +129,29 @@ class Widget_Heading extends SteelNova_Widget_Base {
             'label' => __('Title Tag HTML', 'steelnova'),
             'options' => Static_Options::title_html_tag_options(),
             'default' => 'h3'
+        ]);
+        $this->url([
+            'name' => 'link',
+            'label' => __('Link', 'steelnova'),
+            'condition' => [
+                'title!' => ''
+            ]
+        ]);
+        $this->group_entrance_animation([
+            'name' => 'title',
+            'selector' => '{{WRAPPER}} .heading .heading__title',
+            'condition' => [
+                'text_anim' => '',
+            ]
+        ]);
+        $this->select([
+            'name' => 'text_anim',
+            'label' => __("Text Animation", 'steelnova'),
+            'default' => '',
+            'options' => Static_Options::text_animation_options(),
+            // 'condition' => [
+            //     'title_entrance_anim' => '',
+            // ]
         ]);
         $this->end_controls_section();
     }

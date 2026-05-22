@@ -679,17 +679,8 @@ class Widget_Accordion extends SteelNova_Widget_Base {
             ],
             'condition' => [ 'layout' => [ '2', '3' ] ],
         ]);
-
-        $this->dimensions([
-            'name'  => 'content_padding',
-            'label' => __( 'Content Padding', 'steelnova' ),
-            'separator' => 'before',
-            'selectors' => [
-                '{{WRAPPER}} .cs-accordion .cs-accordion__content p' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-            ],
-        ]);
         $this->group_box_css([
-            'name'     => 'content_',
+            'name'     => 'content_box_',
             'selector' => '{{WRAPPER}} .cs-accordion .cs-accordion__content p',
         ]);
 

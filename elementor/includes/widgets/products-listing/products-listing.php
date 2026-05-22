@@ -34,6 +34,9 @@ class Widget_Products_Listing extends SteelNova_Widget_Base {
         // Style Controls
         // $this->register_style_controls();
         // Settings Controls
+                // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
 

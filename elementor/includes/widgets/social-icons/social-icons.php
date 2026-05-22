@@ -29,6 +29,9 @@ class Widget_Social_Icons extends SteelNova_Widget_Base {
         $this->register_content_controls();
         // Style Controls
         $this->register_icon_style_controls();
+                // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**
@@ -190,17 +193,18 @@ class Widget_Social_Icons extends SteelNova_Widget_Base {
             'name' => 'icon_color_hover',
             'label' => __( 'Icon Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .icon-text:hover .icon-text__icon' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-social-icons .cs-social-icons__link:hover' => 'color: {{VALUE}};',
             ],
         ]);
         $this->group_background([
             'name' => 'icon_background_hover',
-            'selector' => '{{WRAPPER}} .cs-social-icons .cs-social-icons__link:not(.background-gradient):hover,
-                           {{WRAPPER}} .cs-social-icons .cs-social-icons__link:not(.background-gradient):before',
+            'selector' => '{{WRAPPER}} .cs-social-icons .cs-social-icons__link:not(.box-gradient):not([data-hover]):hover,
+                           {{WRAPPER}} .cs-social-icons .cs-social-icons__link:not(.box-gradient):before,
+                            {{WRAPPER}} .cs-social-icons .cs-social-icons__link[data-hover]:before',
         ]);
         $this->group_box_css([
             'name' => 'icon_box_css_hover',
-            'selector' => '{{WRAPPER}} .cs-social-icons .cs-social-icons__link:not(.background-gradient):hover',
+            'selector' => '{{WRAPPER}} .cs-social-icons .cs-social-icons__link:hover',
         ]);
         $this->select([
             'name' => 'icon_hover_style',

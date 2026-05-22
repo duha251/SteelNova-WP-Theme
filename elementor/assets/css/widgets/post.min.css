@@ -411,6 +411,27 @@
   color: #0A1119;
   justify-content: space-between;
 }
+.cs-posts-grid[data-layout="3"] .posts-grid__more .post .cs-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FF5B1B;
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+.cs-posts-grid[data-layout="3"] .posts-grid__more .post .cs-button:hover {
+  color: #FFF;
+}
+.cs-posts-grid[data-layout="3"] .posts-grid__more .post .cs-button:hover::before {
+  transform-origin: left center;
+  transform: scaleX(1);
+}
 
 .cs-posts-carousel[data-layout="3"] .post {
   padding: 13px 15px 39px;
@@ -491,6 +512,27 @@
   line-height: 1;
   color: #0A1119;
   justify-content: space-between;
+}
+.cs-posts-carousel[data-layout="3"] .post .cs-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FF5B1B;
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+.cs-posts-carousel[data-layout="3"] .post .cs-button:hover {
+  color: #FFF;
+}
+.cs-posts-carousel[data-layout="3"] .post .cs-button:hover::before {
+  transform-origin: left center;
+  transform: scaleX(1);
 }
 
 .cs-posts-grid[data-layout="4"], .cs-posts-carousel[data-layout="4"] {

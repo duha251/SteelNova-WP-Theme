@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 use SteelNova\Elementor\Controls\Controls_Trait;
 use SteelNova\Elementor\Controls\Custom_Controls_Trait;
 use Elementor\Widget_Base;
+use SteelNova\Inc\Helpers\Static_Options;
 
 abstract class SteelNova_Widget_Base extends Widget_Base {
 
@@ -71,8 +72,8 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]',
         ]);
         $this->group_height([
-            'name' => '_box_width',
-            'label' => __( 'Box Width', 'steelnova' ),
+            'name' => '_box_height',
+            'label' => __( 'Box Height', 'steelnova' ),
             'selector' => '{{WRAPPER}} [data-widget-cat="steelnova"]',
         ]);
 
@@ -124,13 +125,10 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
     }
 
     protected function register_steelnova_extra_controls() {
-        $this->start_controls_section(
-            'my_custom_layout_section',
-            [
-                'label'   => __( 'Extra Options', 'steelnova' ),
-                'tab'     => 'steelnova_extra',
-            ]
-        );
+        $this->start_steelnova_section([
+            'name' => 'my_custom_layout_section',
+            'label'   => __( 'Extra Options', 'steelnova' ),
+        ]);
         $this->group_width([
             'name' => '_width',
             'label' => __( 'CSS Width', 'steelnova' ),
@@ -229,6 +227,8 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'options' => [
                 ''    => __('None', 'steelnova'),
                 'smoke' => __('Smoke', 'steelnova'),
+                'drill-bounce' => __('Drill Bounce', 'steelnova'),
+                'sway-rotate'  => __('Sway Rotate', 'steelnova')
             ]
         ]);
         $this->time([
@@ -249,6 +249,48 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             ],
             'condition' => [
                 'loop_anim!' => ''
+            ]
+        ]);
+        $this->end_controls_section();
+    }
+
+    /**
+     * Register Loop Animation Controls.
+     */
+    protected function register_steelnova_animation_controls() {
+        $this->start_controls_section(
+            'my_custom_entrance_animation_section',
+            [
+                'label'   => __( 'Entrance Animation', 'steelnova' ),
+                'tab'     => 'steelnova_extra',
+            ]
+        );
+        $this->select([
+            'name' => 'entrance_anim',
+            'label' => __('Entrance Animation', 'steelnova'),
+            'default' => '',
+            'prefix_class' => 'wow ',
+            'render_type' => 'none',
+            'groups' => Static_Options::entrance_animation_options()
+        ]);
+        $this->time([
+            'name' => 'entrance_anim_duration',
+            'label' => __('Animation Duration', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}}' => 'animation-duration: {{SIZE}}{{UNIT}}; -webkit-animation-duration: {{SIZE}}{{UNIT}};'
+            ],
+            'condition' => [
+                'entrance_anim!' => ''
+            ]
+        ]);
+        $this->time([
+            'name' => 'entrance_anim_delay',
+            'label' => __('Animation Delay', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}}' => 'animation-delay: {{SIZE}}{{UNIT}}; -webkit-animation-delay: {{SIZE}}{{UNIT}};'
+            ],
+            'condition' => [
+                'entrance_anim!' => ''
             ]
         ]);
         $this->end_controls_section();
@@ -282,6 +324,9 @@ abstract class SteelNova_Widget_Base extends Widget_Base {
             'data-widget-type' => 'single',
             'data-widget-cat' => 'steelnova',
         ];
+        if( !empty( $settings['entrance_anim'] ) ) {
+            $wrapper_attrs['data-aos'] = $settings['entrance_anim'];
+        }
 
         if ( file_exists( $template_file ) ) {
             include $template_file;

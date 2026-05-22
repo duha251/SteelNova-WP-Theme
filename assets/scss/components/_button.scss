@@ -8,12 +8,14 @@ button, .cs-button {
     outline: none;
     white-space: nowrap;
     @include transition;
-    color: var(--mt-link-color);
+    color: var(--cs-link-color);
+    isolation: isolate;
     .button-icon {
         @include d-inline-flex(null, center, center);
     }
     .cs-button__icon {
         @include d-inline-flex(null, center, center);
+        transition: 300ms ease;
     }
 }
 
@@ -34,4 +36,30 @@ button, .cs-button {
     padding-inline: 30px;
     border-radius: 8px;
     gap: 11px;
+    &:hover {
+        &:not(.box-gradient) {
+            background-color: #0A1119;
+        }
+        .cs-button__icon {
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+.cs-button--back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: #FF5B1B;
+    color: #FFF;
+    @include round-box(52px);
+    opacity: 0;
+    transform: translateY(30px);
+    z-index: 99999;
+    &.is-show {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

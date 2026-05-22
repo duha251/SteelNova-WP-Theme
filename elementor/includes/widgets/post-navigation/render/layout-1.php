@@ -11,8 +11,8 @@ if( $prev_post ) {
 }
 
 $this->add_render_attribute('next_link', 'class', ['cs-button', 'cs-post-navigation__button', 'cs-post-navigation__button--next']);
-if( $prev_post ) {
-    $this->add_render_attribute('next_link', 'href',  get_permalink( $prev_post->ID ));
+if( $next_post ) {
+    $this->add_render_attribute('next_link', 'href',  get_permalink( $next_post->ID ));
 }else {
     $this->add_render_attribute('next_link', 'class',  'cs-button--disable');
 }

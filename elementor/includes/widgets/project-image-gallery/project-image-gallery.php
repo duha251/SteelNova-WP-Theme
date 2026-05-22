@@ -28,6 +28,7 @@ class Widget_Project_Image_Gallery extends SteelNova_Widget_Base {
         $this->register_carousel_settings_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

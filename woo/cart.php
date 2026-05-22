@@ -110,7 +110,7 @@ class Cart extends SteelNova_WooCommerce {
         <div class="cart-drawer drawer" id="cartDrawer" data-drawer="right" aria-hidden="true">
             <div class="cart-drawer__header">
                 <h3 class="cart-drawer__title"><?php echo esc_html__( 'Your cart', 'mindverse' ); ?></h3>
-                <button type="button" class="button-close" aria-label="<?php echo esc_attr__( 'Close cart', 'mindverse' ); ?>">
+                <button type="button" class="cs-button--close" aria-label="<?php echo esc_attr__( 'Close cart', 'mindverse' ); ?>">
                     <span class="icon-close"></span>
                 </button>
             </div>

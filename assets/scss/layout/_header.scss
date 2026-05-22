@@ -1,5 +1,9 @@
 @use '../core.scss' as *;
 
+.header {
+    opacity: 0;
+}
+
 .header-logo {
     img  {
         height: 32px;
@@ -59,12 +63,12 @@
         background-color: #FFF;
         box-shadow: (0px 5px 50px 0px rgba($color: #000000, $alpha: .05));
         padding: 50px 30px 30px;
-        .button-close {
+        .cs-button--close {
             @include box-size(42px);
             position: absolute;
             right: 0;
-            background-color: var(--mt-primary-color);
-            color: var(--mt-secondary-color);
+            background-color: var(--cs-primary-color);
+            color: var(--cs-secondary-color);
             border-radius: 0;
             top: 0;
             .icon-close {
@@ -109,8 +113,8 @@
                 position: absolute;
                 right: 0;
                 top: 0;
-                background-color: var(--mt-primary-color);
-                color: var(--mt-secondary-color);
+                background-color: var(--cs-primary-color);
+                color: var(--cs-secondary-color);
                 border-bottom-left-radius: 0; 
                 border-top-left-radius: 0;
             }

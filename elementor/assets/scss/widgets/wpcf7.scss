@@ -4,6 +4,7 @@
     .wpcf7 {
         &-form {
             display: flex;
+            flex-wrap: wrap;
         }
         .wpcf7-form-control {
             width: 100%;
@@ -19,5 +20,12 @@
     }
     label {
         display: block;
+    }
+    .wpcf7-response-output {
+        flex: 0 1 100%;
+    }
+    .wpcf7-not-valid-tip {
+        font-size: 12px;
+        margin-top: 5px;
     }
 }

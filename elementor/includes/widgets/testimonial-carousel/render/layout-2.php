@@ -69,7 +69,7 @@ $swipper_thumb_settings = [
         $img_height = $settings['img_size']['height'] ?: null;
     
     ?>
-        <div class="carousel__container swiper cs-testimonial-carousel__images" data-swiper="<?php echo esc_attr( json_encode( $swipper_thumb_settings ) ); ?>">
+        <div class="carousel__container swiper cs-testimonial-carousel__images wow fadeInLeft" data-swiper="<?php echo esc_attr( json_encode( $swipper_thumb_settings ) ); ?>">
             <div class="carousel__inner swiper-wrapper">
                 <?php foreach( $settings['img_items'] as $i => $img ) :
                 ?>
@@ -80,7 +80,7 @@ $swipper_thumb_settings = [
             </div>
         </div>
     <?php endif; ?>
-    <div class="carousel__container swiper cs-testimonial-carousel__content" data-swiper="<?php echo esc_attr( json_encode( $swiper_settings ) ); ?>">
+    <div class="carousel__container swiper cs-testimonial-carousel__content wow fadeInRight" data-swiper="<?php echo esc_attr( json_encode( $swiper_settings ) ); ?>">
         <div class="carousel__inner swiper-wrapper">
             <?php foreach( $settings['content_items'] as $i => $content ) : 
                 $content  = $content['content'] ?? '';
@@ -90,6 +90,7 @@ $swipper_thumb_settings = [
                 $author_title = $authors[$i]['author_title'] ?? '';
                 $icon     = $own_icons[$i]['icon'] ?? $settings['icon'];
                 $image      = $images[$i]['img'] ?? [];
+                
             ?>
                 <div class="carousel__item swiper-slide">
                     <div class="cs-testimonial">

@@ -35,6 +35,9 @@ class Widget_Posts_Listing extends SteelNova_Widget_Base {
         // Settings Controls
         $this->register_grid_settings_controls();
         $this->register_post_display_settings_controls();
+                // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
 

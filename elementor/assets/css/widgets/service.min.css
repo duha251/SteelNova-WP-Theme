@@ -4,6 +4,12 @@
 .cs-services-grid .service__title > a, .cs-services-carousel .service__title > a {
   color: inherit;
 }
+.cs-services-grid .service__thumbnail img, .cs-services-carousel .service__thumbnail img {
+  transition: 300ms linear;
+}
+.cs-services-grid .service__thumbnail:hover img, .cs-services-carousel .service__thumbnail:hover img {
+  scale: 1.15;
+}
 
 .cs-services-grid[data-layout="1"], .cs-services-grid[data-layout="3"], .cs-services-grid[data-layout="4"] {
   --cs-column: 25%;
@@ -103,6 +109,9 @@
   line-height: 1.375;
   align-self: center;
 }
+.cs-services-grid[data-layout="1"] .service__title:hover, .cs-services-carousel[data-layout="1"] .service__title:hover {
+  color: #FF5B1B;
+}
 .cs-services-grid[data-layout="1"] .service__content, .cs-services-carousel[data-layout="1"] .service__content {
   margin: 0 15px 22px 15px;
   padding: 30px;
@@ -139,7 +148,26 @@
   height: 46px;
   justify-content: space-between;
   width: 100%;
+  position: relative;
+  overflow: hidden;
   background-color: #121512;
+}
+.cs-services-grid[data-layout="1"] .service__read-more::before, .cs-services-carousel[data-layout="1"] .service__read-more::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FF5B1B;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+.cs-services-grid[data-layout="1"] .service__read-more:hover::before, .cs-services-carousel[data-layout="1"] .service__read-more:hover::before {
+  transform: scaleX(1);
+  transform-origin: left center;
 }
 
 .cs-services-grid[data-layout="2"] .service, .cs-services-carousel[data-layout="2"] .service {
@@ -173,6 +201,9 @@
 .cs-services-grid[data-layout="2"] .service__title, .cs-services-carousel[data-layout="2"] .service__title {
   margin-bottom: 14px;
   max-width: 250px;
+}
+.cs-services-grid[data-layout="2"] .service__title:hover, .cs-services-carousel[data-layout="2"] .service__title:hover {
+  color: #FF5B1B;
 }
 .cs-services-grid[data-layout="2"] .service__excerpt, .cs-services-carousel[data-layout="2"] .service__excerpt {
   line-height: 1.625;
@@ -222,6 +253,24 @@
   width: 100%;
   justify-content: space-between;
 }
+.cs-services-grid[data-layout="2"] .service__read-more::before, .cs-services-carousel[data-layout="2"] .service__read-more::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FF5B1B;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.5s ease;
+  border-radius: inherit;
+  z-index: -1;
+}
+.cs-services-grid[data-layout="2"] .service__read-more:hover::before, .cs-services-carousel[data-layout="2"] .service__read-more:hover::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
 
 .cs-services-grid[data-layout="3"] .service, .cs-services-carousel[data-layout="3"] .service {
   min-height: 486.5px;
@@ -247,6 +296,7 @@
   border-radius: 10px;
   box-shadow: 0 11px 68px 0 rgba(137, 151, 186, 0.15);
   bottom: 1px;
+  z-index: 9;
 }
 .cs-services-grid[data-layout="3"] .service__content > .divider, .cs-services-carousel[data-layout="3"] .service__content > .divider {
   width: 1px;
@@ -276,6 +326,9 @@
   font-weight: 600;
   line-height: 1.375;
   align-self: center;
+}
+.cs-services-grid[data-layout="3"] .service__title:hover, .cs-services-carousel[data-layout="3"] .service__title:hover {
+  color: #FF5B1B;
 }
 
 .cs-services-grid[data-layout="4"] .service, .cs-services-carousel[data-layout="4"] .service {

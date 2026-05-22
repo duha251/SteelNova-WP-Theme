@@ -47,10 +47,18 @@
                 flex: 0 1 100%;
             }
         }
+        &__title {
+            > a {
+                &:hover {
+                    color: #FF5B1B;
+                }
+            }
+        }
     } 
     div.post__title {
         @include h7;
         color: var(--cs-heading-color);
+
     }
 }
 

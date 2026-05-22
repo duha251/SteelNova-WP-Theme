@@ -63,6 +63,7 @@
   top: 50%;
   transform: translate(50%, -50%) scaleX(-1);
   color: rgba(255, 255, 255, 0.03);
+  animation: spin-2 10s linear infinite;
 }
 .cs-projects-grid[data-layout="1"] .project.revert, .cs-projects-carousel[data-layout="1"] .project.revert {
   flex-direction: row-reverse;
@@ -80,6 +81,7 @@
   left: 0;
   right: auto;
   transform: translate(-50%, -50%);
+  animation: spin-3 10s linear infinite;
 }
 @media screen and (max-width: 767px) {
   .cs-projects-grid[data-layout="1"] .project.revert, .cs-projects-carousel[data-layout="1"] .project.revert {
@@ -128,6 +130,9 @@
 .cs-projects-grid[data-layout="1"] .project__title, .cs-projects-carousel[data-layout="1"] .project__title {
   color: #FFF;
 }
+.cs-projects-grid[data-layout="1"] .project__title:hover, .cs-projects-carousel[data-layout="1"] .project__title:hover {
+  color: #FF5B1B;
+}
 .cs-projects-grid[data-layout="1"] .project .divider, .cs-projects-carousel[data-layout="1"] .project .divider {
   background-color: rgba(112, 111, 111, 0.6);
   margin-top: 23px;
@@ -149,6 +154,13 @@
   font-size: 13px;
   font-weight: 600;
   line-height: 1;
+}
+.cs-projects-grid[data-layout="1"] .project .cs-button:hover, .cs-projects-carousel[data-layout="1"] .project .cs-button:hover {
+  background-color: #FFF;
+  color: #0A1119;
+}
+.cs-projects-grid[data-layout="1"] .project .cs-button:hover .cs-button__icon, .cs-projects-carousel[data-layout="1"] .project .cs-button:hover .cs-button__icon {
+  transform: rotate(-45deg);
 }
 
 .cs-projects-grid[data-layout="2"], .cs-projects-carousel[data-layout="2"] {
@@ -294,10 +306,19 @@
   background-color: #FF5B1B;
   color: #FFF;
 }
+.cs-projects-grid[data-layout="2"] .project .cs-button__icon, .cs-projects-carousel[data-layout="2"] .project .cs-button__icon {
+  transform: rotate(-45deg);
+}
 @media screen and (max-width: 767px) {
   .cs-projects-grid[data-layout="2"] .project .cs-button, .cs-projects-carousel[data-layout="2"] .project .cs-button {
     --cs-box-size: 50px;
   }
+}
+.cs-projects-grid[data-layout="2"] .project .cs-button:hover, .cs-projects-carousel[data-layout="2"] .project .cs-button:hover {
+  background-color: #0A1119;
+}
+.cs-projects-grid[data-layout="2"] .project .cs-button:hover .cs-button__icon, .cs-projects-carousel[data-layout="2"] .project .cs-button:hover .cs-button__icon {
+  transform: rotate(0deg);
 }
 .cs-projects-grid[data-layout="2"][data-layout_style="2"], .cs-projects-carousel[data-layout="2"][data-layout_style="2"] {
   --cs-row-gap: 50px;

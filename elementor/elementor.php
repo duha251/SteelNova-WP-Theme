@@ -159,6 +159,8 @@ class SteelNova_Elementor {
 			require_once $widget_base_file;
 		}
 
+		require_once get_template_directory() . '/elementor/includes/widgets/posts-grid/traits/post-style-controls.php';
+
         require_once get_template_directory() . '/elementor/includes/elements/container.php';
 	}
 
@@ -356,5 +358,7 @@ class SteelNova_Elementor {
 		wp_register_script('steelnova-price-filter', get_template_directory_uri() . '/elementor/assets/js/price-filter.js', ['jquery'], $this->version, true);
 		wp_register_script('steelnova-particles', get_template_directory_uri() . '/elementor/assets/js/particles.js', ['jquery', 'particles-js'], $this->version, true);
 		wp_register_script('steelnova-tabs', get_template_directory_uri() . '/elementor/assets/js/tabs.js', ['jquery'], $this->version, true);
+		wp_register_script('steelnova-text-animation', get_template_directory_uri() . '/elementor/assets/js/text-animation.js', ['jquery', 'SplitText', 'ScrollTrigger'], $this->version, true);
+		wp_register_script('steelnova-sticky', get_template_directory_uri() . '/elementor/assets/js/sticky.js', ['jquery', 'ScrollTrigger'], $this->version, true);
 	}
 }

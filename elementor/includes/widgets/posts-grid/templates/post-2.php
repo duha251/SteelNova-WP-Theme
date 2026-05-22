@@ -3,7 +3,7 @@ $thumbnail_id = get_post_thumbnail_id($post->ID);
 extract( $display_args ); 
 ?>
 <article class="post post-<?php echo esc_attr( $post->ID ); ?>">
-    <div class="post__featured-image">
+    <div class="post__featured-image" data-hover="zoom-in">
         <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>">
             <?php steelnova_print_image_by_size( $thumbnail_id, $img_width, $img_height, [] ); ?>
         </a>
@@ -23,7 +23,7 @@ extract( $display_args );
                 <?php endif; ?>
             </div>
         <?php endif; ?>
-        <<?php echo esc_attr( $title_tag ); ?> class="post__title">
+        <<?php echo esc_attr( $title_tag ); ?> class="post__title" data-hover="text-underline-slide">
             <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>">
                 <?php echo esc_html( get_the_title( $post->ID ) ); ?>
             </a>

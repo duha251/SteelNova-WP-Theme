@@ -21,7 +21,16 @@ if( $settings['btn_type'] === 'submit' &&  $settings['wpcf7_form_id'] != 0) {
     $wrapper_attrs_tmp['data-form-id'] = $settings['wpcf7_form_id'];
 }
 
+$box_gradient_class = !empty( $settings['btn_background_color_b'] ) || 
+                    !empty( $settings['btn_background_image'] ) ||  
+                    !empty( $settings['btn_background_hover_color_b'] ) || 
+                    !empty( $settings['btn_background_hover_image'] ) ? ' box-gradient' : '';
+
+$wrapper_attrs_tmp['class'] .= $box_gradient_class;
+
 $wrapper_attrs = array_merge( $wrapper_attrs_tmp, $wrapper_attrs );
+
+
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
 

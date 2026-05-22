@@ -31,6 +31,7 @@ class Widget_Text_Editor extends SteelNova_Widget_Base {
         $this->register_link_style_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

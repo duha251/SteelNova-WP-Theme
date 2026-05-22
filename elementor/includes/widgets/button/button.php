@@ -32,6 +32,7 @@ class Widget_Button extends SteelNova_Widget_Base {
         $this->register_style_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**
@@ -215,8 +216,8 @@ class Widget_Button extends SteelNova_Widget_Base {
         ]);
         $this->group_background([
             'name' => 'btn_background_hover',
-            'selector' => '{{WRAPPER}} .cs-button:not(.background-gradient):hover,
-                           {{WRAPPER}} .cs-button:not(.background-gradient):before',
+            'selector' => '{{WRAPPER}} .cs-button:not(.box-gradient):hover,
+                           {{WRAPPER}} .cs-button.box-gradient:before',
         ]);
         $this->group_box_css([
             'name' => 'btn_box_css_hover',

@@ -7,9 +7,7 @@
  * @link https://steelnova.casethemes.net
  * @since 1.0.0
  */
-
-$sidebar_mode = isset( $_GET['sidebar'] ) ? $_GET['sidebar'] : 'none';
-
+$sidebar_mode = isset( $_GET['sidebar'] ) ? $_GET['sidebar'] : steelnova()->get_page_option( 'sidebar_mode', 'none');
 ?>
 
 <?php get_header(); ?>

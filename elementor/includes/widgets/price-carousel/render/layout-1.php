@@ -63,9 +63,17 @@ $item_active = $settings['item_active'] ?: 1;
     <div class="carousel__container swiper" data-swiper="<?php echo esc_attr( json_encode( $swiper_settings ) ); ?>">
         <div class="carousel__inner swiper-wrapper">
             <?php foreach( $settings['items'] as $i => $item ) : 
-                $active_class = $item_active === ( $i + 1 ) ? ' is-active' : '';    
+                $active_class = $item_active === ( $i + 1 ) ? ' is-active' : '';  
+                $item_key = 'item-'.$i;
+                $item_attrs = [
+                    'class' => 'carousel__item swiper-slide'
+                ];
+                if( !empty( $settings['items_animation'] ) && isset($settings['items_animation'][$i]['item_entrance_anim']) && !empty( $settings['items_animation'][$i]['item_entrance_anim'] ) ) {
+                    $item_attrs['class'] .= ' wow elementor-repeater-item-'.$settings['items_animation'][$i]['_id'].' '.$settings['items_animation'][$i]['item_entrance_anim'];
+                }
+                $this->add_render_attribute( $item_key , $item_attrs);  
             ?>
-                <div class="carousel__item swiper-slide">
+                <div <?php pxl_print_html( $this->get_render_attribute_string($item_key) ); ?>>
                     <div class="price">
                         <div class="price__inner<?php echo esc_attr( $box_gradient_class . $active_class ); ?>">
                             <?php if( !empty( $item['icon']['value'] ) ) : ?>
@@ -116,7 +124,7 @@ $item_active = $settings['item_active'] ?: 1;
                                 endif;
                             ?>
                             <?php if( !empty( $item['link']['url'] ) ) : ?>
-                                <a href="<?php steelnova_elementor_print_link_attributes( $item['link'] ); ?>" class="cs-button cs-button--primary">
+                                <a href="<?php steelnova_elementor_print_link_attributes( $item['link'] ); ?>" class="cs-button cs-button--primary box-gradient">
                                     <span class="cs-button__icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                             <path d="M5.39401 0.251055C5.72875 -0.083685 6.27133 -0.083685 6.60607 0.251055L11.749 5.39398C12.0837 5.72872 12.0837 6.27132 11.749 6.60605L6.60607 11.749C6.27134 12.0837 5.72874 12.0837 5.39401 11.749C5.05928 11.4142 5.0593 10.8717 5.39401 10.5369L9.07372 6.85717H0.857149C0.38378 6.85717 3.49814e-05 6.47338 0 6.00002C2.76113e-08 5.52662 0.383759 5.14286 0.857149 5.14286H9.07372L5.39401 1.46312C5.05928 1.1284 5.0593 0.585797 5.39401 0.251055Z" fill="white"/>

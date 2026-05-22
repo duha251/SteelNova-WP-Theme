@@ -11,7 +11,7 @@ extract( $display_args );
             
                 </div>
             <?php endif; ?>
-            <<?php echo esc_attr( $title_tag ); ?> class="post__title">
+            <<?php echo esc_attr( $title_tag ); ?> class="post__title" data-hover="text-underline-slide">
                 <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>">
                     <?php echo esc_html( get_the_title( $post->ID ) ); ?>
                 </a>

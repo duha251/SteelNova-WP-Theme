@@ -17,7 +17,7 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
             'title'      => __( 'CS Projects Grid', 'steelnova' ),
             'icon'       => 'eicon-posts-grid',
             'keywords'   => [ 'posts', 'grid', 'blog', 'news', 'steelnova', 'cs', 'casetheme', 'project', 'case' ],
-            'script'     => [],
+            'script'     => ['steelnova-sticky'],
             'style'      => ['steelnova-widget-project'],
         ];
     }
@@ -30,11 +30,15 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
         $this->register_layout_controls();
         // Content Controls
         $this->register_content_controls();
+        $this->register_entrance_animation_controls();
         // Style Controls
         // $this->register_style_controls();
         // Settings Controls
         $this->register_grid_settings_controls();
         $this->register_post_display_settings_controls();
+                // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**
@@ -174,6 +178,15 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
             'options' => Static_Options::title_html_tag_options( true ),
             'separator' => 'before',
             'default' => ''
+        ]);
+        $this->switcher([
+            'name' => 'sticky_on_scroll',
+            'label' => __('Sticky on Scroll', 'steelnova'),
+            'default' => '',
+            'condition' => [
+                'layout' => '2',
+                'layout2_style' => '0'
+            ]
         ]);
         $this->number([
             'name' => 'item_active',

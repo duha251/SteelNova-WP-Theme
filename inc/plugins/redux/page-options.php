@@ -238,6 +238,37 @@ class Page_Options {
 
     function page_options() {
         return [
+            'sidebar' => [
+                'title'  => __( 'Sidebar', 'steelnova' ),
+                'icon'   => 'eicon-sidebar',
+                'fields' => [
+                    array(
+                        'id' => 'sidebar_mode_heading',
+                        'title' => esc_html__('Sidebar', 'steelnova'),
+                        'type'  => 'section',
+                        'indent' => true,
+                    ),
+                    array(
+                        'id'      => 'sidebar_mode',
+                        'type'    => 'button_set',
+                        'title'   => __( 'Sidebar Mode', 'steelnova' ),
+                        'options' => [
+                            'none' => __('None', 'steelnova'),
+                            'left'    => __('Left', 'steelnova'),
+                            'right' => __('Right', 'steelnova'),
+                        ],
+                        'default' => 'none',
+                    ),
+                    array(
+                        'id'       => 'sidebar_template_id',
+                        'type'     => 'select',
+                        'title'    => __('Sidebar Template', 'steelnova'),
+                        'options'  => Static_Options::get_templates_by_type('sidebar'),
+                        'select2'  => [ 'allowClear' => false ],
+                        'default'  => '',
+                    ),
+                ]
+            ],
             // Header
             'header' => [
                 'title'  => __( 'Header', 'steelnova' ),

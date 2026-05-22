@@ -130,6 +130,7 @@
   width: 100%;
 }
 .cs-search-form__form {
+  position: relative;
   display: flex;
   gap: 15px;
   align-items: center;
@@ -270,6 +271,12 @@
   align-items: center;
   justify-content: space-between;
 }
+@media screen and (max-width: 575px) {
+  .cs-post-navigation {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
 .cs-post-navigation__button {
   height: 60px;
   padding-inline: 20px 40px;
@@ -288,14 +295,28 @@
 .cs-post-navigation__button .cs-button__icon {
   display: inline-flex;
   align-items: center;
+  justify-content: flex-start;
   width: 35px;
   height: 32px;
   border-right: thin solid #DCDCDC;
 }
+.cs-post-navigation__button--next {
+  justify-content: end;
+  padding-inline: 40px 20px;
+}
 .cs-post-navigation__button--next .cs-button__icon {
   border-left: thin solid #DCDCDC;
   border-right: none;
-  justify-content: end;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 575px) {
+  .cs-post-navigation__button--next {
+    margin-left: auto;
+  }
+}
+.cs-post-navigation__button:hover {
+  background-color: #0A1119;
+  color: #FFF;
 }
 .cs-post-navigation .divider {
   flex-grow: 1;
@@ -323,6 +344,9 @@
 .cs-categories li a .category__count {
   line-height: 1.625;
   color: #4B535D;
+}
+.cs-categories li a:hover {
+  color: #FF5B1B;
 }
 .cs-categories.has-divider li + li {
   border-top: thin dotted #4B535D;

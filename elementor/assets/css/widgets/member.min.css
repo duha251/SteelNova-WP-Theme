@@ -85,5 +85,8 @@
   justify-content: center;
   color: #FFF;
 }
+.cs-members-grid[data-layout="2"] .member__socials a::before, .cs-members-carousel[data-layout="2"] .member__socials a::before {
+  background-color: #FF5B1B;
+}
 
 /*# sourceMappingURL=member.min.css.map*/

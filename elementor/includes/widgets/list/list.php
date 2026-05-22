@@ -31,6 +31,9 @@ class Widget_List extends SteelNova_Widget_Base {
         // Style Controls
         $this->register_text_style_controls();
         $this->register_icon_style_controls();
+        // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**
@@ -96,6 +99,16 @@ class Widget_List extends SteelNova_Widget_Base {
             ]
         ], $repeater);
 
+        $this->select([
+            'name' => 'hover_style',
+            'label' => __('Hover Style', 'steelnova'),
+            'options' => [
+                '' => __('None', 'steelnova'),
+                'text-underline-slide' => __('Underline Slide', 'steelnova'),
+            ],
+            'default' => '',
+        ], $repeater);
+
         $this->url([
             'name' => 'link',
         ], $repeater);
@@ -108,6 +121,11 @@ class Widget_List extends SteelNova_Widget_Base {
                 '{{WRAPPER}} .cs-list .cs-list__item{{CURRENT_ITEM}} .cs-list__item-icon' => 'font-size: {{SIZE}}{{UNIT}};',
                 '{{WRAPPER}} .cs-list .cs-list__item{{CURRENT_ITEM}} .cs-list__item-icon svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
+        ], $repeater);
+
+        $this->group_entrance_animation([
+            'name' => 'item',
+            'selector' => '{{WRAPPER}} .cs-list .cs-list__item{{CURRENT_ITEM}}'
         ], $repeater);
         
         $this->repeater([

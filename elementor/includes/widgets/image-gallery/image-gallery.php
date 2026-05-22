@@ -16,6 +16,7 @@ class Widget_Image_Gallery extends SteelNova_Widget_Base {
             'icon'       => 'eicon-gallery-grid',
             'keywords' => [ 'cs', 'casethemes', 'steelnova', 'gallery', 'image', 'image gallery', 'grid', 'lightbox', 'photos', 'portfolio', 'carousel', 'slider', 'images', 'album', 'collection', 'media' ],
             'script'     => [],
+            'style'   => ['swiper']
         ];
     }
 
@@ -33,6 +34,7 @@ class Widget_Image_Gallery extends SteelNova_Widget_Base {
         $this->register_grid_settings_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

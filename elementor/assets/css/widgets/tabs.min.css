@@ -44,12 +44,15 @@
   display: flex;
   gap: 30px;
   justify-content: space-between;
+  align-items: flex-start;
 }
 .cs-tabs[data-layout="2"] .cs-tabs__nav {
   flex: 0 1 542px;
   display: flex;
   gap: 12px;
+  position: sticky;
   flex-direction: column;
+  top: 15px;
 }
 .cs-tabs[data-layout="2"] .cs-tabs__nav > button {
   border-radius: 20px;

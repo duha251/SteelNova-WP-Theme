@@ -11,7 +11,7 @@
         </span>
     </button>
     <div class="drawer header-drawer">
-        <button class="button-close"><span class="icon-x"></span></button>
+        <button class="cs-button--close"><span class="icon-x"></span></button>
         <div class="header-logo">
             <?php echo wp_kses_post($logo_html); ?>
         </div>

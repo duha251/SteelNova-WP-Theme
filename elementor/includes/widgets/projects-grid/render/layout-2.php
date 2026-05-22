@@ -55,15 +55,36 @@ if( $settings['layout2_style'] !== '0' ) {
 
 $this->add_render_attribute('wrapper', $wrapper_attrs);
 
-$item_active = $settings['item_active'] ?: 1;
+$item_active = $settings['item_active'] ?? 1;
 ?>
 <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
     <div class="grid__inner">
         <?php foreach( $posts as $i => $post ) : 
             $active_class = $item_active === ( $i + 1 ) ? ' is-active' : '';
+            if( $settings['layout2_style'] === '0' ) {
+                $display_args['content_class'] = ' wow fadeInUp';
+            }
             $display_args['active_class'] = $active_class;
+            $item_key = 'item-'.$i;
+
+            $data_settings_sticky = $settings['sticky_on_scroll'] === 'yes' ? [  
+                            "trigger" => ".cs-projects-grid",
+                            "position" => "top",
+                            "offset" => 30,
+                            "spacing" => false,
+                        ] : [];
+            $item_attrs = [
+                'class' => 'grid__item'
+            ];
+            if( !empty( $data_settings_sticky ) ) {
+                $item_attrs['data-sticky-settings'] = json_encode($data_settings_sticky);
+            }
+            if( !empty( $settings['items_animation'] ) && isset($settings['items_animation'][$i]['item_entrance_anim']) && !empty( $settings['items_animation'][$i]['item_entrance_anim'] ) ) {
+                $item_attrs['class'] .= ' wow elementor-repeater-item-'.$settings['items_animation'][$i]['_id'].' '.$settings['items_animation'][$i]['item_entrance_anim'];
+            }
+            $this->add_render_attribute( $item_key , $item_attrs); 
         ?>
-            <div class="grid__item">
+            <div <?php pxl_print_html( $this->get_render_attribute_string($item_key) ); ?>>
                 <?php steelnova_get_template('/elementor/includes/widgets/projects-grid/templates/project-' . $layout, [
                     'display_args' => $display_args,
                     'post' => $post,

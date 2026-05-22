@@ -63,6 +63,7 @@
             top: 50%;
             transform: translate(50%, -50%) scaleX(-1);
             color: rgba(#FFF, 0.03);
+            animation: spin-2 10s linear infinite;
         }
         &.revert {
             flex-direction: row-reverse;
@@ -77,6 +78,7 @@
                 left: 0;
                 right: auto;
                 transform: translate(-50%, -50%) ;
+                animation: spin-3 10s linear infinite;
             }
             @media #{$max-sm} {
                 flex-direction: column;
@@ -118,6 +120,9 @@
         }
         &__title {
             color: #FFF;
+            &:hover {
+                color: #FF5B1B;
+            }
         }
         .divider {
             background-color: rgba( #706F6F, 0.6 );
@@ -137,6 +142,13 @@
             min-width: 194px;
             justify-content: space-between;
             @include text-button-1;
+            &:hover {
+                background-color: #FFF;
+                color: #0A1119;
+                .cs-button__icon {
+                    transform: rotate(-45deg);
+                }
+            }
         }
     }
 }
@@ -245,8 +257,17 @@
             top: 0;
             background-color: #FF5B1B;
             color: #FFF;
+            &__icon {
+                transform: rotate(-45deg);
+            }
             @media #{$max-sm} {
                 --cs-box-size: 50px;
+            }
+            &:hover {
+                background-color: #0A1119;
+                .cs-button__icon {
+                    transform: rotate(0deg);
+                }
             }
         }
     }

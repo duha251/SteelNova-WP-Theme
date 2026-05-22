@@ -20,8 +20,9 @@ class Widget_Particles extends SteelNova_Widget_Base {
     protected function register_controls() {
         $this->content_section();
         // Settings
-                // Steelnova Controls
-        $this->register_steelnova_extra_controls(); 
+        // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     protected function content_section() {

@@ -23,6 +23,7 @@ class Components {
         $this->option = $option_instance;
         add_action('steelnova_before_main_content', [$this, 'before_main_content_render']);
         add_action('steelnova_after_main_content', [$this, 'after_main_content_render']);
+        add_action('wp_footer', [$this, 'footer_content_render']);
     }
 
     public function before_main_content_render() {
@@ -31,6 +32,11 @@ class Components {
     }
 
     public function after_main_content_render() {
+
+    }
+
+    public function footer_content_render() {
+        $this->get_back_to_top();
     }
 
     public function get_body_overlay() {
@@ -44,10 +50,12 @@ class Components {
         if ( !$enable_site_loader ) {
             return '';
         }
-        $loader_image = $this->option->get_theme_option('loader_logo', []); ?>
-        <div id="siteLoader" class="site-loader">
-            <div class="site-loader-logo image">
-                <?php echo wp_kses_post('<img src="' . esc_url( $loader_image['url'] ) . '" alt="Site Loader Logo">'); ?>
+        ?>
+        <div id="preloader" class="preloader">
+            <div class="pxl-loader-spinner">
+                <div class="pxl-loader-bounce1"></div>
+                <div class="pxl-loader-bounce2"></div>
+                <div class="pxl-loader-bounce3"></div>
             </div>
         </div>
         <?php
@@ -58,7 +66,7 @@ class Components {
         if( !$enable_back_to_top ) {
             return '';
         } ?>
-        <button class="back-to-top">
+        <button class="cs-button--back-to-top">
             <span class="button-icon" data-loop-animation="bongBenhStop">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10.375C6.09946 10.375 6.19484 10.3355 6.26516 10.2652C6.33549 10.1948 6.375 10.0995 6.375 10V5.375H5.625V10C5.625 10.207 5.793 10.375 6 10.375Z" fill="black"/>

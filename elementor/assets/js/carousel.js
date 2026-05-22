@@ -88,7 +88,6 @@
             }
 
             if ( serverSettings.pagination !== false ) {
-                console.log($carousel.find('.carousel__pagination'));
                 settings.pagination = {
                     el: $carousel.find('.carousel__pagination')[0],
                     type: 'bullets',

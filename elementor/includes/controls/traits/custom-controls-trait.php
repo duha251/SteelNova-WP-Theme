@@ -52,7 +52,7 @@ trait Custom_Controls_Trait {
         ]);
     }
 
-    protected function time( $args = [] ) {
+    protected function time( $args = [], $target = null ) {
         $defaults = [
             'type' => 'slider',
             'label' => __( 'Time', 'steelnova' ),
@@ -96,6 +96,7 @@ trait Custom_Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
     
@@ -745,6 +746,29 @@ trait Custom_Controls_Trait {
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+        $this->end_controls_section();
+    }
+
+        /**
+     * Register Content Controls.
+     */
+    protected function register_entrance_animation_controls() {
+        $this->start_content_section([
+            'name' => 'section_items_animation_content',
+            'label' => __( 'Entrance Animation', 'steelnova' ),
+        ]);
+        $repeater = new \Elementor\Repeater();
+
+        $this->group_entrance_animation([
+            'name' => 'item',
+            'selector' => '{{WRAPPER}} {{CURRENT_ITEM}}'
+        ], $repeater);
+        
+        $this->repeater([
+            'name'   => 'items_animation',
+            'label'  => __('Items Animation', 'steelnova'),
+            'fields' => $repeater->get_controls(),
+        ]);
         $this->end_controls_section();
     }
 }

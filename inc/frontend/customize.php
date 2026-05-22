@@ -54,6 +54,8 @@ class Customize {
 			}
 		}elseif ( class_exists( 'WooCommerce' ) && is_shop() ) {
 			$sidebar_pos_class = steelnova()->get_theme_option('shop_sidebar_mode', '');
+		}else {
+			$sidebar_pos_class = steelnova()->get_page_option( 'sidebar_mode', 'none');
 		}
 		
 		if( isset( $_GET['sidebar'] ) ) {

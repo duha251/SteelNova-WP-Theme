@@ -39,6 +39,7 @@ class Widget_Counter_Box extends SteelNova_Widget_Base {
         $this->register_counter_suffix_style_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

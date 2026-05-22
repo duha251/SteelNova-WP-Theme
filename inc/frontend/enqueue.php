@@ -46,14 +46,17 @@ class Enqueue {
 		wp_register_script('swiper-bundle', get_template_directory_uri() . '/assets/js/libraries/swiper-bundle.min.js', [], '12.1.3', true);
 		wp_register_script('gsap', get_template_directory_uri() . '/assets/js/libraries/gsap.min.js', [], '3.14.2', true);
 		wp_register_script('ScrollTrigger', get_template_directory_uri() . '/assets/js/libraries/ScrollTrigger.min.js', ['gsap'], '3.14.2', true);
+		wp_register_script('SplitText', get_template_directory_uri() . '/assets/js/libraries/SplitText.min.js', ['gsap'], '3.14.2', true);
 		wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/libraries/nice-select.min.js', [], '3.4.3', true);
 		wp_register_script('particles-js', get_template_directory_uri() . '/assets/js/libraries/particles.min.js', [], '2.0.0', true);
+		wp_enqueue_script('wow', get_template_directory_uri() . '/assets/js/libraries/wow.min.js', [], '1.1.2', true);
 
 		// Core
 		wp_enqueue_script('steelnova-utils', get_template_directory_uri() . '/assets/js/core/utils.js', [], $this->version, true);
 
 		// Components
 		wp_enqueue_script('steelnova-drawer', get_template_directory_uri() . '/assets/js/components/drawer.js', [], $this->version, true);
+		wp_enqueue_script('steelnova-menu', get_template_directory_uri() . '/assets/js/components/menu.js', [], $this->version, true);
 		wp_enqueue_script('steelnova-video-popup', get_template_directory_uri() . '/assets/js/components/video-popup.js', [], $this->version, true);
 
 		// App
@@ -81,6 +84,7 @@ class Enqueue {
 		// Libraries
         wp_enqueue_style('nice-select-style', get_template_directory_uri() . '/assets/css/libraries/nice-select.css', [], '1.0.0');
         wp_register_style('steelnova-swiper', get_template_directory_uri() . '/assets/css/libraries/swiper.css', [], '1.0.0');
+        wp_enqueue_style('aos', get_template_directory_uri() . '/assets/css/libraries/animate.css', [], '1.0.0');
 		
         // Enquence Google Font
         $google_font_url = $this->get_google_fonts_url();
@@ -166,17 +170,17 @@ class Enqueue {
 	public function get_style_config( $key ) {
 		$configs = [
 			'theme_colors'     => [
-				'primary'   => $this->option->get_option( 'primary_color', '#CDF683' ),
-				'secondary' => $this->option->get_option( 'secondary_color', '#000' ),
-				'third'     => $this->option->get_option( 'third_color', '#EDDD5E' ),
+				'primary'   => $this->option->get_option( 'primary_color', '#FF5B1B' ),
+				'secondary' => $this->option->get_option( 'secondary_color', '#0A1119' ),
+				'third'     => $this->option->get_option( 'third_color', '#FFF' ),
 				'body-background'   => $this->option->get_option( 'body_bg_color', '#FFF' ),
 				'heading'   => $this->option->get_option( 'heading_color', '#0A1119' ),
 			],
 			'link'             => [
 				'color'       => $this->option->get_option( 'link_color', [ 'regular' => '#000' ] )['regular'],
-				'hover-color' => $this->option->get_option( 'link_color', [ 'hover' => '#FFF' ] )['hover'],
+				'hover-color' => $this->option->get_option( 'link_color', [ 'hover' => '#FF5B1B' ] )['hover'],
 			],
-			'linear_gradient' => $this->option->get_option( 'linear_gradient_color', [ 'from' => '#000', 'to' => '#FFF' ] ),
+			'linear_gradient' => $this->option->get_option( 'linear_gradient_color', [ 'from' => '#FF5B1B', 'to' => '#FA2' ] ),
 			'theme_typography' => [
 				'primary'   => $this->option->get_option( 'primary_font', 'Public Sans' ),
                 'secondary' => $this->option->get_option( 'secondary_font', 'DM Sans' ),

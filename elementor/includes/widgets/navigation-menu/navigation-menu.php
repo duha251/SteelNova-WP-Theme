@@ -31,6 +31,9 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         // Style Controls
         $this->register_main_menu_style_controls();
         // $this->register_style_controls();
+                // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**
@@ -119,6 +122,7 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
             'label' => __( 'Text Color', 'mindverse' ),
             'selectors' => [
                 '{{WRAPPER}} .navigation-menu > li > a:hover, 
+                {{WRAPPER}} .navigation-menu > li:hover > a,
                 {{WRAPPER}} .navigation-menu > li.current-menu-item > a, 
                 {{WRAPPER}} .navigation-menu > li.current_page_item > a, 
                 {{WRAPPER}} .navigation-menu > li.current-menu-ancestor > a, 

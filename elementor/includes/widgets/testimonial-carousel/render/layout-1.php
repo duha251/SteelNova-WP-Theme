@@ -67,8 +67,16 @@ $swiper_settings = steelnova_get_carousel_settings( $settings, [
                 $author_name  = $authors[$i]['author_name'] ?? '';
                 $author_title = $authors[$i]['author_title'] ?? '';
                 $icon     = $own_icons[$i]['icon'] ?? $settings['icon'];
+                $item_key = 'item-'.$i;
+                $item_attrs = [
+                    'class' => 'carousel__item swiper-slide'
+                ];
+                if( !empty( $settings['items_animation'] ) && isset($settings['items_animation'][$i]['item_entrance_anim']) && !empty( $settings['items_animation'][$i]['item_entrance_anim'] ) ) {
+                    $item_attrs['class'] .= ' wow elementor-repeater-item-'.$settings['items_animation'][$i]['_id'].' '.$settings['items_animation'][$i]['item_entrance_anim'];
+                }
+                $this->add_render_attribute( $item_key , $item_attrs);
             ?>
-                <div class="carousel__item swiper-slide">
+                <div <?php pxl_print_html( $this->get_render_attribute_string($item_key) ); ?>>
                     <div class="cs-testimonial">
                         <svg class="mask" width="89" height="89" viewBox="0 0 89 89" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.5 89L0 0C7 0 11 5 11 11V66C11 73 17 78 23 78H78C85 78 89 83 89 89H0.5Z" fill="white"/>

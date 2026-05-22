@@ -11,6 +11,7 @@
             padding-inline: 15px;
             .inner {
                 @include d-flex(100px 30px, null, space-between);
+                align-items: flex-start;
                 .content-area {
                     flex: 0 1 850px;
                     max-width: 850px;
@@ -37,7 +38,8 @@
         }
         &.single-project {
             #main {
-                --cs-container: 1570px;
+                --cs-container: 1300px;
+                padding-inline: 15px;
                 .inner {
                     @include d-flex(100px 30px, null, space-between);
                     .content-area {
@@ -83,10 +85,15 @@
         }
     }
     &.single-project {
-        
+        #main {
+            padding: 0;
+            --cs-container: 100%;
+        }
     }
-    
-    &.single-member, &.single-service {
+    &.single-service {
+        --cs-container: 1100px;
+    }
+    &.single-member {
         --cs-container: 100%;
         #main {
             .inner {

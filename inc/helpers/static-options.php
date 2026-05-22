@@ -569,4 +569,122 @@ class Static_Options {
             'none'    => __('None', 'steelnova'),
         ];
     }
+
+    public static function entrance_animation_options() {
+        return [
+            [
+                'label' => esc_html__( 'None', 'textdomain' ),
+                'options' => [
+                    '' => esc_html__( 'None', 'textdomain' ),
+                ],
+            ],
+            [
+                'label' => esc_html__( 'Bouncing Entrances', 'textdomain' ),
+                'options' => [
+                    'bounceIn'      => esc_html__( 'Bounce In', 'textdomain' ),
+                    'bounceInDown'  => esc_html__( 'Bounce In Down', 'textdomain' ),
+                    'bounceInLeft'  => esc_html__( 'Bounce In Left', 'textdomain' ),
+                    'bounceInRight' => esc_html__( 'Bounce In Right', 'textdomain' ),
+                    'bounceInUp'    => esc_html__( 'Bounce In Up', 'textdomain' ),
+                ],
+            ],
+            [
+                'label' => esc_html__( 'Fading Entrances', 'textdomain' ),
+                'options' => [
+                    'fadeIn'         => esc_html__( 'Fade In', 'textdomain' ),
+                    'fadeInDown'     => esc_html__( 'Fade In Down', 'textdomain' ),
+                    'fadeInDownBig'  => esc_html__( 'Fade In Down Big', 'textdomain' ),
+                    'fadeInLeft'     => esc_html__( 'Fade In Left', 'textdomain' ),
+                    'fadeInLeftBig'  => esc_html__( 'Fade In Left Big', 'textdomain' ),
+                    'fadeInRight'    => esc_html__( 'Fade In Right', 'textdomain' ),
+                    'fadeInRightBig' => esc_html__( 'Fade In Right Big', 'textdomain' ),
+                    'fadeInUp'       => esc_html__( 'Fade In Up', 'textdomain' ),
+                    'fadeInUpBig'    => esc_html__( 'Fade In Up Big', 'textdomain' ),
+                ],
+            ],
+            [
+                'label' => esc_html__( 'Flippers', 'textdomain' ),
+                'options' => [
+                    'flipInX' => esc_html__( 'Flip In X', 'textdomain' ),
+                    'flipInY' => esc_html__( 'Flip In Y', 'textdomain' ),
+                ],
+            ],
+            [
+                'label' => esc_html__( 'LightSpeed', 'textdomain' ),
+                'options' => [
+                    'lightSpeedIn' => esc_html__( 'LightSpeed In', 'textdomain' ),
+                ],
+            ],
+            [
+                'label' => esc_html__( 'Rotating Entrances', 'textdomain' ),
+                'options' => [
+                    'rotateIn'          => esc_html__( 'Rotate In', 'textdomain' ),
+                    'rotateInDownLeft'  => esc_html__( 'Rotate In Down Left', 'textdomain' ),
+                    'rotateInDownRight' => esc_html__( 'Rotate In Down Right', 'textdomain' ),
+                    'rotateInUpLeft'    => esc_html__( 'Rotate In Up Left', 'textdomain' ),
+                    'rotateInUpRight'   => esc_html__( 'Rotate In Up Right', 'textdomain' ),
+                ],
+            ],
+            [
+                'label' => esc_html__( 'Sliding Entrances', 'textdomain' ),
+                'options' => [
+                    'slideInDown'  => esc_html__( 'Slide In Down', 'textdomain' ),
+                    'slideInLeft'  => esc_html__( 'Slide In Left', 'textdomain' ),
+                    'slideInRight' => esc_html__( 'Slide In Right', 'textdomain' ),
+                    'slideInUp'    => esc_html__( 'Slide In Up', 'textdomain' ),
+                ],
+            ],
+            [
+                'label' => esc_html__( 'Zoom Entrances', 'textdomain' ),
+                'options' => [
+                    'zoomIn'      => esc_html__( 'Zoom In', 'textdomain' ),
+                    'zoomInDown'  => esc_html__( 'Zoom In Down', 'textdomain' ),
+                    'zoomInLeft'  => esc_html__( 'Zoom In Left', 'textdomain' ),
+                    'zoomInRight' => esc_html__( 'Zoom In Right', 'textdomain' ),
+                    'zoomInUp'    => esc_html__( 'Zoom In Up', 'textdomain' ),
+                ],
+            ],
+            [
+                'label' => esc_html__( 'Specials', 'textdomain' ),
+                'options' => [
+                    'rollIn' => esc_html__( 'Roll In', 'textdomain' ),
+                ],
+            ],
+        ];
+    }
+
+    public static function text_animation_options() {
+        return [
+            ''                          => __('None', 'steelnova'),
+            'textRevealUp'              => __('Text Reveal Up', 'steelnova'),
+            'textRevealDown'            => __('Text Reveal Down', 'steelnova'),
+            'textFadeIn'                => __('Text Fade In', 'steelnova'),
+            'textBlurReveal'            => __('Text Blur Reveal', 'steelnova'),
+            'textSplitWordsReveal'      => __('Text Split Words Reveal', 'steelnova'),
+            'textSplitCharsReveal'      => __('Text Split Chars Reveal', 'steelnova'),
+            'textSplitLinesReveal'      => __('Text Split Lines Reveal', 'steelnova'),
+            'textMaskReveal'            => __('Text Mask Reveal', 'steelnova'),
+            'textStaggerReveal'         => __('Text Stagger Reveal', 'steelnova'),
+            'textRotateReveal'          => __('Text Rotate Reveal', 'steelnova'),
+            'textScaleReveal'           => __('Text Scale Reveal', 'steelnova'),
+            'textSkewReveal'            => __('Text Skew Reveal', 'steelnova'),
+            'textClipPathReveal'        => __('Text Clip Path Reveal', 'steelnova'),
+            'textColorChangeOnScroll'   => __('Text Color Change On Scroll', 'steelnova'),
+            'textGradientReveal'        => __('Text Gradient Reveal', 'steelnova'),
+            'textParallax'              => __('Text Parallax', 'steelnova'),
+            'textScrubAnimation'        => __('Text Scrub Animation', 'steelnova'),
+            'textPinReveal'             => __('Text Pin Reveal', 'steelnova'),
+            'textTypewriterOnScroll'    => __('Text Typewriter On Scroll', 'steelnova'),
+            'textWaveReveal'            => __('Text Wave Reveal', 'steelnova'),
+            'textSlideFromLeft'         => __('Text Slide From Left', 'steelnova'),
+            'textSlideFromRight'        => __('Text Slide From Right', 'steelnova'),
+            'textOpacityStagger'        => __('Text Opacity Stagger', 'steelnova'),
+            'textCounterOnScroll'       => __('Text Counter On Scroll', 'steelnova'),
+            'textFlipReveal'            => __('Text Flip Reveal', 'steelnova'),
+            'text3DRotateReveal'        => __('Text 3D Rotate Reveal', 'steelnova'),
+            'textLineMaskReveal'        => __('Text Line Mask Reveal', 'steelnova'),
+            'textWordMaskReveal'        => __('Text Word Mask Reveal', 'steelnova'),
+            'textCharacterWaveOnScroll' => __('Text Character Wave On Scroll', 'steelnova'),
+        ];
+    }
 }

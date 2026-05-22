@@ -37,8 +37,17 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
 ?>
 <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
     <div class="grid__inner">
-        <?php foreach( $posts as $i => $post ) : ?>
-            <div class="grid__item">
+        <?php foreach( $posts as $i => $post ) : 
+            $item_key = 'item-'.$i;
+            $item_attrs = [
+                'class' => 'grid__item'
+            ];
+            if( !empty( $settings['items_animation'] ) && isset($settings['items_animation'][$i]['item_entrance_anim']) && !empty( $settings['items_animation'][$i]['item_entrance_anim'] ) ) {
+                $item_attrs['class'] .= ' wow elementor-repeater-item-'.$settings['items_animation'][$i]['_id'].' '.$settings['items_animation'][$i]['item_entrance_anim'];
+            }
+            $this->add_render_attribute( $item_key , $item_attrs);    
+        ?>
+            <div <?php pxl_print_html( $this->get_render_attribute_string($item_key) ); ?>>
                 <?php steelnova_get_template('/elementor/includes/widgets/members-grid/templates/member-' . $layout, [
                     'display_args' => $display_args,
                     'post' => $post,

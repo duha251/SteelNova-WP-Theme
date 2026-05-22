@@ -96,8 +96,16 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
         <div class="carousel__inner swiper-wrapper">
             <?php foreach( $posts as $i => $post ) : 
                 $display_args['is_revert'] = false;    
+                $item_key = 'item-'.$i;
+                $item_attrs = [
+                    'class' => 'carousel__item swiper-slide'
+                ];
+                if( !empty( $settings['items_animation'] ) && isset($settings['items_animation'][$i]['item_entrance_anim']) && !empty( $settings['items_animation'][$i]['item_entrance_anim'] ) ) {
+                    $item_attrs['class'] .= ' wow elementor-repeater-item-'.$settings['items_animation'][$i]['_id'].' '.$settings['items_animation'][$i]['item_entrance_anim'];
+                }
+                $this->add_render_attribute( $item_key , $item_attrs);
             ?>
-                <div class="carousel__item swiper-slide">
+                <div <?php pxl_print_html( $this->get_render_attribute_string($item_key) ); ?>>
                     <?php steelnova_get_template('/elementor/includes/widgets/projects-grid/templates/project-' . $layout, [
                         'display_args' => $display_args,
                         'post' => $post,

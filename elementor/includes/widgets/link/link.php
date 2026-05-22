@@ -31,6 +31,9 @@ class Widget_Link extends SteelNova_Widget_Base {
         $this->register_content_controls();
         // Style Controls
         $this->register_style_controls();
+                // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**
@@ -40,6 +43,23 @@ class Widget_Link extends SteelNova_Widget_Base {
         $this->start_layout_section([
             'name' => 'section_layout_style',
             'label' => __( 'Layout Style', 'steelnova' ),
+        ]);
+        $this->choose([
+            'name' => 'icon_pos',
+            'label' => esc_html__( 'Icon Position', 'elementor' ),
+			'options' => [
+				'row' => [
+					'title' => esc_html__( 'Row - horizontal', 'elementor' ),
+					'icon' => 'eicon-arrow-right',
+				],
+				'row-reverse' => [
+					'title' => esc_html__( 'Row - reversed', 'elementor' ),
+					'icon' => 'eicon-arrow-left',
+				],
+			],
+			'selectors' => [
+				'{{WAPPER}} .cs-link' => 'flex-direction: {{VALUE}};',
+			],
         ]);
         $this->size([
             'name' => 'gap',
@@ -151,6 +171,14 @@ class Widget_Link extends SteelNova_Widget_Base {
             'name' => 'link_typography',
             'selector' => '{{WRAPPER}} .cs-link',
             'separator' => 'before'
+        ]);
+        $this->size([
+            'name' => 'icon_size',
+            'label' => __('Icon Size', 'steelnova'),
+            'selectors' => [
+                '{{WRAPPER}} .cs-link .cs-link__icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-link .cs-link__icon svg' => 'width: {{SIZE}}{{UNIT}};',
+            ],
         ]);
         $this->_start_controls_tabs([
             'name' => 'link_style_tabs',

@@ -57,6 +57,9 @@
     flex: 0 1 100%;
   }
 }
+.cs-posts-listing[data-layout="1"] .post__title > a:hover {
+  color: #FF5B1B;
+}
 .cs-posts-listing[data-layout="1"] div.post__title {
   font-size: 16px;
   font-family: var(--cs-heading-font);

@@ -20,6 +20,11 @@
                 .price__title, .price__amount, .price__description, .price__features li {
                     color: #FFF;
                 }
+                .cs-button {
+                    &::before {
+                        opacity: 1;
+                    }
+                }
             }
             @media #{$max-xl} {
                 padding: 45px 30px 45px;
@@ -83,6 +88,9 @@
             margin-top: 44px;
             background-color: #0A1119;
             color: #FFF;
+            &:before {
+                background: linear-gradient(90deg, #FF5B1B 0%, #FA2 100%);
+            }
         }
     }
 }

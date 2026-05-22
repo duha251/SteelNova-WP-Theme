@@ -3,6 +3,7 @@
   \*****************************************************************************************************************************************************************************************************************************************************************/
 .cs-wpcf7 .wpcf7-form {
   display: flex;
+  flex-wrap: wrap;
 }
 .cs-wpcf7 .wpcf7 .wpcf7-form-control {
   width: 100%;
@@ -17,6 +18,13 @@
 }
 .cs-wpcf7 label {
   display: block;
+}
+.cs-wpcf7 .wpcf7-response-output {
+  flex: 0 1 100%;
+}
+.cs-wpcf7 .wpcf7-not-valid-tip {
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 /*# sourceMappingURL=wpcf7.min.css.map*/

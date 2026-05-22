@@ -45,11 +45,14 @@
     &[data-layout="2"] {
         @include d-flex(30px);
         justify-content: space-between;
+        align-items: flex-start;
         .cs-tabs {
             &__nav {
                 flex: 0 1 542px;
                 @include d-flex(12px);
+                position: sticky;
                 flex-direction: column;
+                top: 15px;
                 > button {
                     border-radius: 20px;
                     border: 1px solid rgba( #C56228, 0.25 );

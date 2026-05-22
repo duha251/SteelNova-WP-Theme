@@ -32,8 +32,9 @@ class Widget_Post_Author extends SteelNova_Widget_Base {
         $this->register_bio_style_controls();
         $this->register_divider_style_controls();
         $this->register_socials_style_controls();
-        // Steelnova
+        // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

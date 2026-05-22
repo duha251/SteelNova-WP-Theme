@@ -214,3 +214,12 @@
 .carousel__navigation--hide {
     display: none !important;
 }
+
+[data-aos] {
+    animation-duration: 1000ms;
+    -webkit-animation-duration: 1000ms;
+}
+
+[data-sticky-settings] {
+    transition: none !important;
+}

@@ -49,6 +49,13 @@ body {
     //         }
     //     }
     // }
+    #main > inner {
+        align-items: flex-start;
+    }
+    .sidebar-area {
+        position: sticky;
+        top: 15px;
+    }
     &.sidebar-position-left {
         #main {
             .inner {

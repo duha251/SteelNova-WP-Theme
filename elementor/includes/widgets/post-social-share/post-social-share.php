@@ -26,8 +26,9 @@ class Widget_Post_Social_Share extends SteelNova_Widget_Base {
         $this->register_wrapper_style_controls();
         $this->register_label_style_controls();
         $this->register_link_style_controls();
-        // Steelnova
+        // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

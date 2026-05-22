@@ -29,10 +29,14 @@ class Widget_Price_Carousel extends SteelNova_Widget_Base {
         $this->register_layout_controls();
         // Content Controls
         $this->register_content_controls();
+        $this->register_entrance_animation_controls();
         // Style Controls
         $this->register_box_inner_style_controls();
         // Settings Controls
         $this->register_carousel_settings_controls();
+                // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     } 
 
     protected function register_layout_controls() {

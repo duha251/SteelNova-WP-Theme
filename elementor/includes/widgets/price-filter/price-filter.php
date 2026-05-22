@@ -32,6 +32,7 @@ class Widget_Price_Filter extends SteelNova_Widget_Base {
         $this->register_price_style_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

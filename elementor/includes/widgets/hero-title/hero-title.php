@@ -30,6 +30,7 @@ class Widget_Hero_Title extends SteelNova_Widget_Base {
         $this->register_title_style_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
 

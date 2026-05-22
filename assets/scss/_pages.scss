@@ -20,7 +20,7 @@
     }
 }
 
-.blog {
+.blog, .page {
     #main {
         --cs-container: 1100px;
         padding-inline: 15px;
@@ -33,6 +33,7 @@
             --cs-container: 1392px;
             .inner {
                 @include d-flex(100px 30px, null, space-between);
+                align-items: flex-start;
                 .content-area {
                     flex: 0 1 952px;
                 }
@@ -51,4 +52,8 @@
             }
         }
     }
+}
+
+.content-area, .sidebar-area {
+    min-width: 0;
 }

@@ -122,6 +122,7 @@
     position: relative;
     width: 100%;
     &__form {
+        position: relative;
         @include d-flex(15px, center);
     }
     &__field {
@@ -234,6 +235,10 @@
 // Post Navigation
 .cs-post-navigation {
     @include d-flex(null, center, space-between);
+    @media #{$max-xs} {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
     &__button {
         height: 60px;
         padding-inline: 20px 40px;
@@ -251,16 +256,26 @@
         .cs-button__icon {
             display: inline-flex;
             align-items: center;
+            justify-content: flex-start;
             width: 35px;
             height: 32px;
             border-right: thin solid #DCDCDC;
         }
         &--next {
+            justify-content: end;
+            padding-inline: 40px 20px;
             .cs-button__icon {
                 border-left: thin solid #DCDCDC;
                 border-right: none;
-                justify-content: end;
+                justify-content: flex-end;
             }
+            @media #{$max-xs} {
+                margin-left: auto;
+            }
+        }
+        &:hover {
+            background-color: #0A1119;
+            color: #FFF;
         }
     }
     .divider {
@@ -287,6 +302,9 @@
             .category__count {
                 @include paragraph-4;
                 color: #4B535D;
+            }
+            &:hover {
+                color: #FF5B1B;
             }
         }
     }

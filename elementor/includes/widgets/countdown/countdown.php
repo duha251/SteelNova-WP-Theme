@@ -31,6 +31,7 @@ class Widget_Countdown extends SteelNova_Widget_Base {
         $this->register_separator_style_controls();
         // Steelnova Controls
         $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**

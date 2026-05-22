@@ -67,7 +67,7 @@ const initVideoPopup = () => {
         const modalHtml = `
             <div class="video-popup">
                 <div class="video-popup__inner">
-                    <button class="button button--close" aria-label="Close">
+                    <button class="cs-button cs-button--close" aria-label="Close">
                         <span class="icon-x"></span>
                     </button>
                     ${playerHtml}

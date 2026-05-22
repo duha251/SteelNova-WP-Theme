@@ -751,6 +751,21 @@ trait Controls_Trait {
     }
 
     /**
+     * Quick group entrance animation control
+     */ 
+    protected function group_entrance_animation($args = [], $target = null) {
+        $args['type'] = \SteelNova\Elementor\Controls\Group_Control_Entrance_Animation::get_type();
+        $defaults = [];
+        $this->_register_control_helper(
+            'add_group_control',
+            $args,
+            $defaults,
+            __FUNCTION__,
+            $target
+        );
+    }
+
+    /**
      * Quick group position css control
      */ 
     protected function group_position($args = []) {

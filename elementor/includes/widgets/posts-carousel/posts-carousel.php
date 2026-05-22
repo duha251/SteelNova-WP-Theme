@@ -3,11 +3,13 @@ namespace SteelNova\Elementor\Widgets;
 
 use SteelNova\Elementor\Base\SteelNova_Widget_Base;
 use SteelNova\Inc\Helpers\Static_Options;
+use SteelNova\Elementor\Widgets\Traits\Post_Style_Controls;
 
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Widget_Posts_Carousel extends SteelNova_Widget_Base {
+    use Post_Style_Controls;
     /**
      * Get the widget information.
      */
@@ -30,11 +32,16 @@ class Widget_Posts_Carousel extends SteelNova_Widget_Base {
         $this->register_layout_controls();
         // Content Controls
         $this->register_content_controls();
+        $this->register_entrance_animation_controls();
         // Style Controls
-        // $this->register_style_controls();
+        $this->register_all_post_style_controls();
+        
         // Settings Controls
         $this->register_carousel_settings_controls();
         $this->register_post_display_settings_controls();
+        // Steelnova Controls
+        $this->register_steelnova_extra_controls();
+        $this->register_steelnova_animation_controls();
     }
 
     /**
