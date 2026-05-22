@@ -239,6 +239,8 @@ img {
   position: absolute;
   pointer-events: none;
   opacity: 0;
+  top: 0;
+  left: 0;
 }
 
 .radio-field {
@@ -984,6 +986,18 @@ body.sidebar-position-left #main .inner {
   pointer-events: auto;
 }
 
+.pxl-mega-menu {
+  width: 100%;
+}
+
+.custom-hover-menu {
+  transition: border-radius 0.3s linear;
+}
+.custom-hover-menu:has(.header-menu li:hover > .pxl-mega-menu) {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
 body:has(.header-transparent) .hero[data-layout=default] .inner {
   padding-block: 220px 140px;
 }
@@ -1136,7 +1150,7 @@ body:has(.header-transparent) .hero[data-layout=default] .inner {
   }
   .header-menu > li > .sub-menu {
     top: 100%;
-    left: -15px;
+    left: 0;
   }
   .header-menu > li > .sub-menu li > a {
     padding-inline: 15px;

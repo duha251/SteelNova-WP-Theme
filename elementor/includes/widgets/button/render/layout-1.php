@@ -4,7 +4,7 @@ $wrapper_attrs_tmp = [
 ];
 $template_file = 'default';
 
-if( $settings['btn_style'] != 0 ) {
+if( $settings['btn_style'] != '0' ) {
     $wrapper_attrs_tmp['class'] .= ' cs-button--'.$settings['btn_style'];
     $template_file = $settings['btn_style'];
 }

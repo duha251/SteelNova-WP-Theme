@@ -336,6 +336,9 @@
             background-color: #FF5B1B;
             color: #FFF;
             @include d-inline-flex(null, center, center);
+            &:hover {
+                background-color: #121512;
+            }
         }
         &__title {
             color: #FFF;

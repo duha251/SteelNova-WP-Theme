@@ -178,7 +178,7 @@ class Enqueue {
 			],
 			'link'             => [
 				'color'       => $this->option->get_option( 'link_color', [ 'regular' => '#000' ] )['regular'],
-				'hover-color' => $this->option->get_option( 'link_color', [ 'hover' => '#FF5B1B' ] )['hover'],
+				'hover-color' => $this->option->get_option( 'link_color', [ 'hover' => '#FFF' ] )['hover'],
 			],
 			'linear_gradient' => $this->option->get_option( 'linear_gradient_color', [ 'from' => '#FF5B1B', 'to' => '#FA2' ] ),
 			'theme_typography' => [

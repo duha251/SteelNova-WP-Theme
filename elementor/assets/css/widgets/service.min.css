@@ -384,6 +384,9 @@
   align-items: center;
   justify-content: center;
 }
+.cs-services-grid[data-layout="4"] .service__icon:hover, .cs-services-carousel[data-layout="4"] .service__icon:hover {
+  background-color: #121512;
+}
 .cs-services-grid[data-layout="4"] .service__title, .cs-services-carousel[data-layout="4"] .service__title {
   color: #FFF;
   max-width: 210px;

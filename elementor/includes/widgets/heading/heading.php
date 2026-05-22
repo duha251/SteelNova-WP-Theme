@@ -55,6 +55,7 @@ class Widget_Heading extends SteelNova_Widget_Base {
             'selectors' => [
                 '{{WRAPPER}} .heading' => 'text-align: {{VALUE}};',
             ],
+            'method' => 'add_responsive_control'
         ]);
         $this->size([
             'name' => 'subtitle_spacing_bottom',

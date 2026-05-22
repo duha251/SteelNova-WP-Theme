@@ -49,6 +49,7 @@ class Widget_Text_Editor extends SteelNova_Widget_Base {
             'selectors' => [
                 '{{WRAPPER}} .text-editor' => 'text-align: {{VALUE}};',
             ],
+            'method' => 'add_responsive_control'
         ]);
         $this->wysiwyg([
             'name' => 'text',

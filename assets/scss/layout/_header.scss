@@ -139,3 +139,15 @@
         pointer-events: auto;
     }
 }
+
+.pxl-mega-menu {
+    width: 100%;
+}
+
+.custom-hover-menu {
+    transition: border-radius .3s linear;
+    &:has(.header-menu li:hover > .pxl-mega-menu) {
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+}

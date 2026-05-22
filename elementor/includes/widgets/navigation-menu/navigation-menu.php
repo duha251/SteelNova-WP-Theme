@@ -30,6 +30,8 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         $this->register_content_controls();
         // Style Controls
         $this->register_main_menu_style_controls();
+        $this->register_mega_menu_style_controls();
+        $this->register_submenu_style_controls();
         // $this->register_style_controls();
                 // Steelnova Controls
         $this->register_steelnova_extra_controls();
@@ -192,6 +194,133 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         ]);
         $this->end_controls_tab();
         $this->end_controls_tabs();
+        $this->end_controls_section();
+    }
+
+        /**
+     * Options submenu (depth > 0) style
+     */
+    protected function register_submenu_style_controls() {
+        $this->start_style_section([
+            'name' => 'style_section_submenu', 
+            'label' => 'Submenu',
+        ]);
+        $this->group_typography([
+            'name' => 'submenu_typography',
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a',
+        ]);
+        $this->group_text_shadow([
+            'name' => 'submenu_text_shadow',
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a',
+        ]);
+        /** ============= Control Tabs Style ============= */
+        $this->start_controls_tabs( 'submenu_tabs' );
+        /** Box Tab Style */
+        $this->_start_controls_tab([
+            'name' => 'submenu_box_tab',
+            'label' => __( 'Box', 'mindverse' ),
+        ]);
+        $this->group_background([
+            'name' => 'submenu_box_background',
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu',
+        ]);
+
+        $this->group_box_css([
+            'name' => 'submenu_box_css',
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu'
+        ]);
+        $this->end_controls_tab();
+        /** Normal Tab Style */
+        $this->_start_controls_tab([
+            'name' => 'submenu_normal_tab',
+            'label' => __( 'Normal', 'mindverse' ),
+        ]);
+        // Text Color
+        $this->color([
+            'name' => 'submenu_color',
+            'label' => __( 'Text Color', 'mindverse' ),
+            'selectors' => [
+                '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a' => 'color: {{VALUE}}',
+            ],
+        ]);
+        // Background 
+        $this->group_background([
+            'name' => 'submenu_background',
+            'types' => [ 'classic', 'gradient' ],
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a',
+            'exclude' => ['image']
+        ]);
+        $this->group_box_css([
+            'name' => 'submenu_css',
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a'
+        ]);
+        $this->end_controls_tab();
+
+        /** Hover/Active Tab Style */
+        $this->_start_controls_tab([
+            'name' => 'submenu_normal_hover',
+            'label' => __( 'Hover/Active', 'mindverse' ),
+        ]);
+        // Text Color Hover
+        $this->color([
+            'name' => 'submenu_color_hover',
+            'label' => __( 'Text Color', 'mindverse' ),
+            'selectors' => [
+                '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a:hover' => 'color: {{VALUE}}',
+            ],
+        ]);
+        // Background Hover
+        $this->group_background([
+            'name' => 'submenu_background_hover',
+            'types' => [ 'classic', 'gradient' ],
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a:hover',
+            'exclude' => ['image']
+        ]);
+        // Border Hover 
+        $this->color([
+            'name' => '_submenu_border_color_hover',
+            'label' => __( 'Border Color', 'mindverse' ),
+            'separator' => 'before',
+            'selectors' => [
+                '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a:hover' => 'border-color: {{VALUE}}',
+            ],
+        ]);
+        $this->group_box_css([
+            'name' => 'submenu_css_hover',
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a:hover'
+        ]);
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+    }
+
+
+    protected function register_mega_menu_style_controls() {
+        $this->start_style_section([
+            'name' => 'style_section_megamenu', 
+            'label' => 'Mega Menu',
+        ]);
+        $this->select([
+            'name' => 'mega_menu_overflow',
+            'label' => __('Overflow', 'steelnova'),
+            'options' => [
+                '' => __('Default', 'steelnova'),
+                'hidden' => __('Hidden', 'steelnova'),
+                'auto' => __('Auto', 'steelnova'),
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .navigation-menu li > .sub-menu.pxl-mega-menu' => 'overflow: {{VALUE}};'
+            ]
+        ]);
+        $this->group_background([
+            'name' => 'mega_menu_background',
+            'types' => [ 'classic', 'gradient' ],
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu.pxl-mega-menu',
+		]);
+        $this->group_box_css([
+            'name' => 'mega_menu_',
+            'selector' => '{{WRAPPER}} .navigation-menu li > .sub-menu.pxl-mega-menu',
+        ]);
         $this->end_controls_section();
     }
 

@@ -11,7 +11,7 @@ $title_tag = $settings['title_tag'] ?: 'h3';
         $subtitle_attrs = [
             'class' => 'heading__subtitle',
         ];
-        if( !empty( $settings['subtitle_style'] != 0 ) ) {
+        if( !empty( $settings['subtitle_style'] != '0' ) ) {
             $subtitle_attrs['class'] .= ' heading__subtitle--'.$settings['subtitle_style'];
             if( $settings['subtitle_style'] === 'primary' ) {
                 $subtitle_icon_html = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">

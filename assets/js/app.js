@@ -5,7 +5,10 @@ let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector(".preloader").classList.add("loading");
+    const preloader = document.querySelector(".preloader");
+    if( preloader ) {
+        preloader.classList.add("loading");
+    }
     setMainMinHeight();
     window.addEventListener('resize', setMainMinHeight);
     initDrawer();
