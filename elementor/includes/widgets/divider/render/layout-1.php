@@ -8,5 +8,5 @@ $wrapper_attrs = array_merge( $wrapper_attrs_tmp, $wrapper_attrs );
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+<div <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
 </div>

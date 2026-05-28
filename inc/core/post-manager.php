@@ -180,16 +180,34 @@ class Post_Manager {
         $settings = isset($_POST['settings']) ? $_POST['settings'] : [];
         $cat_slug = isset($_POST['cat_slug']) ? $_POST['cat_slug'] : '';
         
-        $query_args = $settings[0];
+        $post_type = $settings['post_type'] ?? 'post';
+
+        $query_args = [
+            'post_type'      => $post_type,
+            'posts_per_page' => $settings['posts_per_page'] ?: 6, 
+            'orderby'        => $settings['orderby'],   
+            'order'          => $settings['order'], 
+        ];   
         $query_args['paged'] = $paged;
 
-        $display_args = $settings[1];
-        
-        if( isset( $settings['post_ids'] ) && !empty( $settings['post_ids'] ) ) {
-            $query_args['post__in'] = $settings['post_ids'];
+        if( isset( $settings['post__in'] ) && !empty( $settings['post__in'] ) ) {
+            $query_args['post__in'] = $settings['post__in'];
         }
 
-        $post_type = $query_args['post_type'] === 'team' ? 'team' : 'post';
+        if( isset( $settings['post__not_in'] ) && !empty( $settings['post__not_in'] ) ) {
+            $query_args['post__not_in'] = $settings['post__not_in'];
+        }
+        
+        if( isset( $settings['tax_query'] ) && !empty( $settings['tax_query'] )  ) {
+            $query_args['tax_query'] = [
+                [
+                    'taxonomy' => 'category',
+                    'field'    => 'id',
+                    'terms'    => $settings['tax_query'],
+                    'operator' => 'IN',
+                ]
+            ];
+        }
 
         if( !empty( $cat_slug ) && $cat_slug !== '*' ) {
             $query_args['tax_query'] = [
@@ -204,26 +222,35 @@ class Post_Manager {
 
         extract( $this->get_posts($query_args) );
 
+        $display_args = $settings['display_args'] ?? [];
+
         $html = '';
         ob_start();
         if( count( $posts ) === 0 ) {
             $html = '<div class="message">'.esc_html__('No Posts Found.', 'steelnova').'</div>';
         }else {
-            foreach( $posts as $post ) : 
+            foreach( $posts as $i => $post ) : 
                 $display_args['post'] = $post;    
+                if( $post_type === 'project' && $layout == '1' ) {
+                    $display_args['is_revert'] = $i % 2 === 0;
+                }
             ?>
-                <div class="grid-item">
-                    <?php steelnova_get_template('/elementor/templates/content/'.$post_type.'/layout-'.$layout, $display_args ); ?>
+                <div class="grid__item">
+                    <?php steelnova_get_template('/elementor/includes/widgets/'.$post_type.'s-grid/templates/'.$post_type.'-' . $layout, [
+                        'display_args' => $display_args,
+                        'post' => $post,
+                    ]); ?>
                 </div>
             <?php endforeach;
         }
         $html = ob_get_clean();
 
-        // $pagination_html = $this->component->get_pagination( $query, true );
+        $pagination_html = $this->component->get_pagination( $query, true );
 
         wp_send_json_success([
             'grid_html' => $html,
             'pagination_html' => $pagination_html,
+            'post_type' => $post_type
         ]);
     }
 }

@@ -24,7 +24,7 @@ class Group_Control_Entrance_Animation extends Group_Control_Base {
 		$fields = [];
 
 		$fields['entrance_anim'] = [
-			'label' => esc_html__( 'Entrance Animation', 'elementor' ),
+			'label' => esc_html__( 'Entrance Animation', 'steelnova' ),
 			'type' => Controls_Manager::SELECT,
 			'groups' => Static_Options::entrance_animation_options(),
 			'default' => '',

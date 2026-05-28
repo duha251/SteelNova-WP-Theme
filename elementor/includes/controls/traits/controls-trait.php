@@ -276,7 +276,7 @@ trait Controls_Trait {
     /**
      * Quick color style
      */
-    protected function color( $args = [] ) {
+    protected function color( $args = [], $target = null ) {
         $defaults = [
             'label' => __( 'Color', 'steelnova' ),
             'type' => Controls_Manager::COLOR,
@@ -286,13 +286,14 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
     /**
      * Quick dimension control
      */
-    protected function dimensions( $args = [] ) {
+    protected function dimensions( $args = [], $target = null ) {
         $defaults = [
             'label' => __( 'Dimension', 'steelnova' ),
             'type' => Controls_Manager::DIMENSIONS,
@@ -303,6 +304,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
@@ -505,7 +507,7 @@ trait Controls_Trait {
         );
     }
 
-    protected function switcher( $args = [] ) {
+    protected function switcher( $args = [], $target = null ) {
         $defaults = [
             'type' => 'switcher',
             'label' => __( 'Switcher', 'steelnova' ),
@@ -516,6 +518,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     } 
 
@@ -653,7 +656,7 @@ trait Controls_Trait {
     /**
      * Quick group Filter control
      */ 
-    protected function group_border( $args = [] ) {
+    protected function group_border( $args = [], $target = null ) {
         $args['type'] = \Elementor\Group_Control_Border::get_type();
         $defaults = [];
         $this->_register_control_helper(
@@ -661,13 +664,14 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 
     /**
      * Quick group Filter control
      */ 
-    protected function group_box_shadow( $args = [] ) {
+    protected function group_box_shadow( $args = [], $target = null ) {
         $args['type'] = \Elementor\Group_Control_Box_Shadow::get_type();
         $defaults = [];
         $this->_register_control_helper(
@@ -675,6 +679,7 @@ trait Controls_Trait {
             $args,
             $defaults,
             __FUNCTION__,
+            $target
         );
     }
 

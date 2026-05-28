@@ -49,22 +49,22 @@ class Widget_Countdown extends SteelNova_Widget_Base {
         ]);
         $this->text([
             'name' => 'day_unit',
-            'label' => __( 'Day Unit', 'komestic' ),
+            'label' => __( 'Day Unit', 'steelnova' ),
             'default' => 'Days',
         ]);
         $this->text([
             'name' => 'hours_unit',
-            'label' => __( 'Hours Unit', 'komestic' ),
+            'label' => __( 'Hours Unit', 'steelnova' ),
             'default' => 'Hours',
         ]);
         $this->text([
             'name' => 'minute_unit',
-            'label' => __( 'Minute Unit', 'komestic' ),
+            'label' => __( 'Minute Unit', 'steelnova' ),
             'default' => 'Minutes',
         ]);
         $this->text([
             'name' => 'second_unit',
-            'label' => __( 'Second Unit', 'komestic' ),
+            'label' => __( 'Second Unit', 'steelnova' ),
             'default' => 'Seconds',
         ]);
         $this->end_controls_section();

@@ -53,6 +53,31 @@ function steelnova_register_required_plugins() {
             'logo'        => $images . '/woo.png',
             'description' => esc_html__( 'WooCommerce is the world’s most popular open-source eCommerce solution.', 'steelnova' ),
         ),
+
+        array(
+            'name'               => esc_html__('WPC Smart Compare for WooCommerce', 'steelnova'),
+            'slug'               => "woo-smart-compare",
+            'required'           => false,
+            'logo'        => $images . '/woo-smart-compare.png',
+            'description' => esc_html__( 'WPC Smart Compare is an optimal solution that brings about beyond-expectation features for improving user experience and enhance the sales strategy on your online WooCommerce shop.', 'steelnova' ),
+        ),
+
+        array(
+            'name'               => esc_html__('WPC Smart Wishlist for WooCommerce', 'steelnova'),
+            'slug'               => "woo-smart-wishlist",
+            'required'           => false,
+            'logo'        => $images . '/woo-smart-wishlist.png',
+            'description' => esc_html__( 'WPC Smart Wishlist is a simple but powerful tool that can help your customer save products for buying later.', 'steelnova' ),
+
+        ),
+
+        array(
+            'name'               => esc_html__('WPC AJAX Add to Cart for WooCommerce', 'steelnova'),
+            'slug'               => "wpc-ajax-add-to-cart",
+            'required'           => false,
+            'logo'        => $images . '/woo-ajax-add-to-cart.png',
+            'description' => esc_html__( 'It is a highly effective plugin for helping online stores cut down the site’s loading time, improve the user experience, and increase sales.', 'steelnova' ),
+        ),
     );
 
     $config = array(

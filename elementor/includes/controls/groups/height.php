@@ -81,7 +81,7 @@ class Group_Control_Height extends Group_Control_Base {
 		return [
             'popover' => [
 				'starter_name' => 'height',
-				'starter_title' => esc_html__( 'Height', 'elementor' ),
+				'starter_title' => esc_html__( 'Height', 'steelnova' ),
 				'settings' => [
 					'render_type' => 'ui',
 				],

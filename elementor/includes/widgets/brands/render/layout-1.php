@@ -29,7 +29,7 @@ if( empty( $brands ) ) {
 }
 ?>
 
-<ul <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+<ul <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php
         foreach ( $brands as $brand ) { 
             $count = $brand->count < 10 ? '0'.$brand->count : $brand->count;

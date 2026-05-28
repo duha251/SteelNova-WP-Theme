@@ -15,14 +15,14 @@ if( !empty($settings['number_delimiter']) ) {
 }
 $title_tag = $settings['title_tag'] ?: 'h5';
 ?>
-<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+<div <?php echo esc_attr( $this->get_render_attribute_string('wrapper')); ?>>
     <div class="cs-counter-box__number cs-counter">
         <?php if(!empty($settings['number_prefix'])) : ?>
             <span class="cs-counter-box__number-prefix cs-counter__number-prefix">
                 <?php echo esc_html($settings['number_prefix']); ?>
             </span>
         <?php endif;?>
-        <span <?php echo $this->get_render_attribute_string('counter-number'); ?>>
+        <span <?php pxl_print_html( $this->get_render_attribute_string('counter-number') ); ?>>
             <?php echo esc_html($settings['ending_number'] ?: 1); ?>
         </span>
         <?php if(!empty($settings['number_suffix'])) : ?>

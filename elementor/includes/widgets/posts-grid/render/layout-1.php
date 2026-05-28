@@ -48,7 +48,8 @@ $display_args = [
 
 $wrapper_attrs = [
     'class' => 'grid cs-posts-grid is-post-type-post',
-    'data-layout'   => $layout,
+    'data-settings' => json_encode( array_merge( $query_args, ['grid_load_type' => $settings['grid_load_type']], ['display_args' => $display_args] ),  ),
+    'data-layout'   => $layout,  
 ];
 
 $this->add_render_attribute('wrapper', $wrapper_attrs);
@@ -56,8 +57,17 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
 ?>
 <div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
     <div class="grid__inner">
-        <?php foreach( $posts as $post ) : ?>
-            <div class="grid__item">
+        <?php foreach( $posts as $i => $post ) : 
+            $item_key = 'item-'.$i;
+            $item_attrs = [
+                'class' => 'grid__item'
+            ];
+            if( !empty( $settings['items_animation'] ) && isset($settings['items_animation'][$i]['item_entrance_anim']) && !empty( $settings['items_animation'][$i]['item_entrance_anim'] ) ) {
+                $item_attrs['class'] .= ' wow elementor-repeater-item-'.$settings['items_animation'][$i]['_id'].' '.$settings['items_animation'][$i]['item_entrance_anim'];
+            }
+            $this->add_render_attribute( $item_key , $item_attrs);       
+        ?>
+            <div <?php pxl_print_html( $this->get_render_attribute_string($item_key) ); ?>>
                 <?php steelnova_get_template('/elementor/includes/widgets/posts-grid/templates/post-' . $layout, [
                     'display_args' => $display_args,
                     'post' => $post,
@@ -66,7 +76,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
         <?php endforeach; ?>
     </div>
     <?php if( $settings['grid_load_type'] === 'pagination'  ) : ?>
-        <?php echo steelnova()->component->get_pagination( $query, false ); ?>
+        <?php echo steelnova()->component->get_pagination( $query, true ); ?>
     <?php endif; ?>
     <?php if( $settings['grid_load_type'] === 'load_more' ) : ?>
         <div class="grid__loadmore ajax">

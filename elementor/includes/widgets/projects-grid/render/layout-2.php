@@ -47,6 +47,7 @@ $display_args = [
 $wrapper_attrs = [
     'class' => 'grid cs-projects-grid is-post-type-project',
     'data-layout'   => $layout,
+    'data-settings' => json_encode( array_merge( $query_args, ['grid_load_type' => $settings['grid_load_type']], ['display_args' => $display_args] ),  ),
 ];
 
 if( $settings['layout2_style'] !== '0' ) {
@@ -67,17 +68,12 @@ $item_active = $settings['item_active'] ?? 1;
             $display_args['active_class'] = $active_class;
             $item_key = 'item-'.$i;
 
-            $data_settings_sticky = $settings['sticky_on_scroll'] === 'yes' ? [  
-                            "trigger" => ".cs-projects-grid",
-                            "position" => "top",
-                            "offset" => 30,
-                            "spacing" => false,
-                        ] : [];
             $item_attrs = [
                 'class' => 'grid__item'
             ];
-            if( !empty( $data_settings_sticky ) ) {
-                $item_attrs['data-sticky-settings'] = json_encode($data_settings_sticky);
+
+            if( $settings['sticky_on_scroll'] === 'yes' ) {
+                $item_attrs['class'] .= ' is-sticky';
             }
             if( !empty( $settings['items_animation'] ) && isset($settings['items_animation'][$i]['item_entrance_anim']) && !empty( $settings['items_animation'][$i]['item_entrance_anim'] ) ) {
                 $item_attrs['class'] .= ' wow elementor-repeater-item-'.$settings['items_animation'][$i]['_id'].' '.$settings['items_animation'][$i]['item_entrance_anim'];
@@ -93,7 +89,7 @@ $item_active = $settings['item_active'] ?? 1;
         <?php endforeach; ?>
     </div>
     <?php if( $settings['grid_load_type'] === 'pagination'  ) : ?>
-        <?php echo steelnova()->component->get_pagination( $query, false ); ?>
+        <?php echo steelnova()->component->get_pagination( $query, true ); ?>
     <?php endif; ?>
     <?php if( $settings['grid_load_type'] === 'load_more' ) : ?>
         <div class="grid__loadmore ajax">

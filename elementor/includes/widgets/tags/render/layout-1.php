@@ -27,7 +27,7 @@ if( empty( $tags ) ) {
 
 ?>
 
-<ul <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+<ul <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php
         foreach ( $tags as $tag_id => $tag_name ) {
 

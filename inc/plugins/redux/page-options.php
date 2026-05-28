@@ -132,7 +132,6 @@ class Page_Options {
                 'context'  => 'advanced',
                 'priority' => 'default',
                 'sections'  => array_merge(
-                    // $this->common_options(),
                     $this->single_project_options(),
                 ) 
             ],
@@ -148,92 +147,6 @@ class Page_Options {
         ];
 
         $metabox->add_meta_data( $panels );
-    }
-
-    function common_options() {
-        return [
-            'layout' => [
-                'title' => __('Layout', 'steelnova'),
-                'icon'  => '',
-                'fields' => [
-                    array(
-                        'id'             => 'container_width',
-                        'type'           => 'dimensions',
-                        'units'          => array('px', '%'), 
-                        'units_extended' => 'false',
-                        'title'          => __( 'Container Width', 'steelnova' ),
-                        'height'         => false,
-                        'width'          => true, 
-                    ),
-                    array(
-                        'id'           => 'spacing_block_heading',
-                        'title'          => __('Spacing Block', 'steelnova'),
-                        'type'  => 'section',
-                        'indent' => true,
-                    ),
-                    array(
-                        'id'             => 'spacing_block',
-                        'title'          => esc_html__('Spacing Block', 'steelnova'),
-                        'type'           => 'spacing',
-                        'mode'           => 'padding',
-                        'units'          => array('px'),
-                        'units_extended' => 'false',
-                        'left'           => false,
-                        'right'          => false,
-                    ),
-                    array(
-                        'id'             => 'spacing_block_xl',
-                        'title'          => esc_html__('Spacing Block ( < 1400px )', 'steelnova'),
-                        'type'           => 'spacing',
-                        'mode'           => 'padding',
-                        'units'          => array('px'),
-                        'units_extended' => 'false',
-                        'left'           => false,
-                        'right'          => false,
-                    ),
-                    array(
-                        'id'             => 'spacing_block_lg',
-                        'title'          => esc_html__('Spacing Block ( < 1200px )', 'steelnova'),
-                        'type'           => 'spacing',
-                        'mode'           => 'padding',
-                        'units'          => array('px'),
-                        'units_extended' => 'false',
-                        'left'           => false,
-                        'right'          => false,
-                    ),
-                    array(
-                        'id'             => 'spacing_block_md',
-                        'title'          => esc_html__('Spacing Block ( < 992px )', 'steelnova'),
-                        'type'           => 'spacing',
-                        'mode'           => 'padding',
-                        'units'          => array('px'),
-                        'units_extended' => 'false',
-                        'left'           => false,
-                        'right'          => false,
-                    ),
-                    array(
-                        'id'             => 'spacing_block_sm',
-                        'title'          => esc_html__('Spacing Block ( < 768px )', 'steelnova'),
-                        'type'           => 'spacing',
-                        'mode'           => 'padding',
-                        'units'          => array('px'),
-                        'units_extended' => 'false',
-                        'left'           => false,
-                        'right'          => false,
-                    ),
-                    array(
-                        'id'             => 'spacing_block_xs',
-                        'title'          => esc_html__('Spacing Block ( < 576px )', 'steelnova'),
-                        'type'           => 'spacing',
-                        'mode'           => 'padding',
-                        'units'          => array('px'),
-                        'units_extended' => 'false',
-                        'left'           => false,
-                        'right'          => false,
-                    )
-                ]
-            ]
-        ];
     }
 
     function page_options() {
@@ -274,6 +187,15 @@ class Page_Options {
                 'title'  => __( 'Header', 'steelnova' ),
                 'icon'   => 'eicon-header',
                 'fields' => array_merge(
+                    array(
+                        array(
+                            'id'       => 'header_nav_menu',
+                            'type'     => 'select',
+                            'title'    => __('Nav Menu', 'steelnova'),
+                            'options'  => Static_Options::get_navigation_menu_options(),
+                            'default'  => '',
+                        ),
+                    ),
                     Static_Options::header_options( [ 'scope' => 'private' ] ),
                     Static_Options::header_sticky_options( [ 'scope' => 'private' ] ),
                 ),

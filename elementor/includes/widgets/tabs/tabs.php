@@ -29,6 +29,10 @@ class Widget_Tabs extends SteelNova_Widget_Base {
         $this->register_layout_controls();
         // Content Controls
         $this->register_content_controls();
+        // Style Controls
+        $this->register_tabs_nav_style_controls();
+        $this->register_tabs_nav_button_style_controls();
+        $this->register_tabs_content_style_controls();
         // Settings Controls
         $this->register_display_settings_controls();
         $this->register_carousel_settings_controls();
@@ -66,7 +70,7 @@ class Widget_Tabs extends SteelNova_Widget_Base {
     protected function register_content_controls() {
         $this->start_content_section([ 
             'name' => 'content_section', 
-            'label' => __('Content', 'mindverse') 
+            'label' => __('Content', 'steelnova') 
         ]);
         $repeater = new \Elementor\Repeater();
         $this->text([
@@ -89,7 +93,192 @@ class Widget_Tabs extends SteelNova_Widget_Base {
         $this->end_controls_section();
     }
 
-            /**
+    /**
+     * Nav Container (.cs-tabs__nav)
+     * Layout 1: border-bottom, gap
+     * Layout 2: gap, flex-basis, sticky top
+     */
+    protected function register_tabs_nav_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_tabs_nav_style',
+            'label' => __( 'Nav Container', 'steelnova' ),
+        ]);
+
+        // --- Layout 1 ---
+        $this->size([
+            'name'      => 'nav_gap_l1',
+            'label'     => __( 'Gap', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="1"] .cs-tabs__nav' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [ 'layout' => '1' ],
+        ]);
+
+        $this->color([
+            'name'      => 'nav_border_color_l1',
+            'label'     => __( 'Border Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="1"] .cs-tabs__nav' => 'border-bottom-color: {{VALUE}};',
+            ],
+            'condition' => [ 'layout' => '1' ],
+        ]);
+
+        // --- Layout 2 ---
+        $this->size([
+            'name'      => 'nav_gap_l2',
+            'label'     => __( 'Gap', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+
+        $this->size([
+            'name'      => 'nav_width_l2',
+            'label'     => __( 'Nav Width', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav' => 'flex: 0 1 {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+
+        $this->size([
+            'name'      => 'nav_sticky_top_l2',
+            'label'     => __( 'Sticky Top Offset', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav' => 'top: {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+
+        $this->size([
+            'name'      => 'tabs_gap_l2',
+            'label'     => __( 'Gap (Nav ↔ Content)', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"]' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+
+        $this->end_controls_section();
+    }
+
+    /**
+     * Nav Button (.cs-tabs__nav > button)
+     * Layout 1: typography, padding-bottom, color — normal / hover / active
+     *           underline indicator color
+     * Layout 2: typography, padding, border-radius, border — normal / active
+     */
+    protected function register_tabs_nav_button_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_tabs_nav_btn_style',
+            'label' => __( 'Nav Button', 'steelnova' ),
+        ]);
+
+        $this->group_typography([
+            'name'     => 'nav_btn_typography',
+            'selector' => '{{WRAPPER}} .cs-tabs__nav > button',
+        ]);
+
+        $this->_start_controls_tabs([ 'name' => 'nav_btn_tabs_l2' ]);
+
+        $this->_start_controls_tab([
+            'name'  => 'nav_btn_l2_tab_normal',
+            'label' => __( 'Normal', 'steelnova' ),
+        ]);
+        $this->color([
+            'name'      => 'nav_btn_color_l2',
+            'label'     => __( 'Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav > button' => 'color: {{VALUE}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+        $this->group_background([
+            'name'     => 'nav_btn_bg_l2',
+            'selector' => '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav > button',
+        ]);
+        $this->group_box_css([
+            'name'     => 'nav_btn_l2_',
+            'selector' => '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav > button',
+        ]);
+        $this->end_controls_tab();
+
+        $this->_start_controls_tab([
+            'name'  => 'nav_btn_l2_tab_active',
+            'label' => __( 'Active', 'steelnova' ),
+        ]);
+        $this->color([
+            'name'      => 'nav_btn_color_active_l2',
+            'label'     => __( 'Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav > button.is-active' => 'color: {{VALUE}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+        $this->color([
+            'name'      => 'nav_btn_icon_color_active_l2',
+            'label'     => __( 'Icon Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav > button.is-active .cs-button__icon' => 'color: {{VALUE}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+        $this->group_background([
+            'name'     => 'nav_btn_bg_active_l2',
+            'selector' => '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav > button.is-active',
+        ]);
+        $this->group_box_css([
+            'name'     => 'nav_btn_active_l2_',
+            'selector' => '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav > button.is-active',
+        ]);
+        $this->time([
+            'name'      => 'nav_btn_transition_l2',
+            'label'     => __( 'Transition Duration', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__nav > button' => 'transition-duration: {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+    }
+
+    /**
+     * Tab Content (.cs-tabs__content)
+     * Layout 2: flex-basis
+     */
+    protected function register_tabs_content_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_tabs_content_style',
+            'label' => __( 'Content Area', 'steelnova' ),
+        ]);
+
+        $this->size([
+            'name'      => 'content_width_l2',
+            'label'     => __( 'Content Width', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .cs-tabs[data-layout="2"] .cs-tabs__content' => 'flex: 0 1 {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [ 'layout' => '2' ],
+        ]);
+
+        $this->group_background([
+            'name'     => 'content_bg',
+            'selector' => '{{WRAPPER}} .cs-tabs__content',
+        ]);
+
+        $this->group_box_css([
+            'name'     => 'content_',
+            'selector' => '{{WRAPPER}} .cs-tabs__content',
+        ]);
+
+        $this->end_controls_section();
+    }
+
+    /**
      * Register Grid Source Content Controls
      */
     protected function register_display_settings_controls() {        

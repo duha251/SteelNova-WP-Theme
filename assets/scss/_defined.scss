@@ -225,3 +225,8 @@
 [data-sticky-settings] {
     transition: none !important;
 }
+
+.is-sticky {
+    position: sticky;
+    top: 15px;
+}

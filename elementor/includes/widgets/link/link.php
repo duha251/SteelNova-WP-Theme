@@ -46,14 +46,14 @@ class Widget_Link extends SteelNova_Widget_Base {
         ]);
         $this->choose([
             'name' => 'icon_pos',
-            'label' => esc_html__( 'Icon Position', 'elementor' ),
+            'label' => esc_html__( 'Icon Position', 'steelnova' ),
 			'options' => [
 				'row' => [
-					'title' => esc_html__( 'Row - horizontal', 'elementor' ),
+					'title' => esc_html__( 'Row - horizontal', 'steelnova' ),
 					'icon' => 'eicon-arrow-right',
 				],
 				'row-reverse' => [
-					'title' => esc_html__( 'Row - reversed', 'elementor' ),
+					'title' => esc_html__( 'Row - reversed', 'steelnova' ),
 					'icon' => 'eicon-arrow-left',
 				],
 			],

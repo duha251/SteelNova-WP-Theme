@@ -125,7 +125,7 @@ window.addEventListener('scroll', function () {
 
     const blurBottomSite = document.querySelector('.blur-bottom-site');
     const backToTop = document.querySelector('.cs-button--back-to-top');
-    const headerSticky = document.querySelector('#header-sticky');
+    const headerSticky = document.querySelector('#headerSticky');
      // Blur Bottom Site
     if (blurBottomSite) {
         const documentHeight = document.documentElement.scrollHeight;
@@ -151,40 +151,26 @@ window.addEventListener('scroll', function () {
         if (scrollTop > 150 && windowWidth >= 1200) {
             if (scrollTop > lastScrollTop) {
                 // Scroll down
-                document
-                    .querySelectorAll('.header-sticky[data-scroll="down"]')
-                    .forEach((element) => {
-                        element.classList.add('is-active');
-                    });
+                if (headerSticky.dataset.scroll === 'down') {
+                    headerSticky.classList.add('is-active');
+                }
 
-                document
-                    .querySelectorAll('.header-sticky[data-scroll="up"]')
-                    .forEach((element) => {
-                        element.classList.remove('is-active');
-                    });
+                if (headerSticky.dataset.scroll === 'up') {
+                    headerSticky.classList.remove('is-active');
+                }
             } else {
                 // Scroll up
-                document
-                    .querySelectorAll('.header-sticky[data-scroll="up"]')
-                    .forEach((element) => {
-                        element.classList.add('is-active');
-                    });
-
-                document
-                    .querySelectorAll('.header-sticky[data-scroll="down"]')
-                    .forEach((element) => {
-                        element.classList.remove('is-active');
-                    });
+                if (headerSticky.dataset.scroll === 'up') {
+                    headerSticky.classList.add('is-active');
+                }
+                if (headerSticky.dataset.scroll === 'down') {
+                    headerSticky.classList.remove('is-active');
+                }
             }
         } else if (scrollTop < 100 && windowWidth >= 1200) {
             // Back to top page, hide all sticky headers
-            document
-                .querySelectorAll('.header-sticky')
-                .forEach((element) => {
-                    element.classList.remove('is-active');
-                });
+            headerSticky.classList.remove('is-active');
         }
-
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     }
 })

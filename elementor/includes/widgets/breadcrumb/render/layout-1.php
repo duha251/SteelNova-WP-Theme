@@ -16,7 +16,7 @@ if( $settings['separator_type'] == '0' ) {
     $separator = steelnova_elementor_get_icon( $settings['separator_icon'] );
 }
 ?>
-<div <?php echo $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ); ?>>
+<div <?php pxl_print_html( $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ) ); ?>>
     <?php pxl_print_html( steelnova()->component->get_breadcrumb([
         'separator' => $separator
     ]) ); ?>

@@ -15,7 +15,7 @@ $current_min = isset($_GET['min_price']) ? absint($_GET['min_price']) : $min_pri
 $current_max = isset($_GET['max_price']) ? absint($_GET['max_price']) : $max_price;
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+<div <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <div class="cs-price-filter__range">
         <span class="cs-price-filter__track"></span>
         <span class="cs-price-filter__progress"></span>

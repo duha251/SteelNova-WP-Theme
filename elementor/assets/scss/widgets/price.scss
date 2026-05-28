@@ -25,6 +25,9 @@
                         opacity: 1;
                     }
                 }
+                .divider {
+                    background-color: rgba( #FFF, 0.1 );
+                }
             }
             @media #{$max-xl} {
                 padding: 45px 30px 45px;
@@ -83,6 +86,7 @@
         }
         .divider {
             margin-block: 32px;
+            background-color: rgba( #031600, 0.1 );
         }
         .cs-button {
             margin-top: 44px;

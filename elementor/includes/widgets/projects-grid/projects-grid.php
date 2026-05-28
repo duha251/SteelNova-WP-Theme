@@ -17,7 +17,7 @@ class Widget_Projects_Grid extends SteelNova_Widget_Base {
             'title'      => __( 'CS Projects Grid', 'steelnova' ),
             'icon'       => 'eicon-posts-grid',
             'keywords'   => [ 'posts', 'grid', 'blog', 'news', 'steelnova', 'cs', 'casetheme', 'project', 'case' ],
-            'script'     => ['steelnova-sticky'],
+            'script'     => ['steelnova-sticky', 'steelnova-post'],
             'style'      => ['steelnova-widget-project'],
         ];
     }

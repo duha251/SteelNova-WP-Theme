@@ -30,7 +30,7 @@ class Checkout extends SteelNova_WooCommerce {
     }
 
     public function order_button_text() {
-        return __('Place order now', 'mindverse');
+        return __('Place order now', 'steelnova');
     }
 
     public function checkout_before_order_review_heading() {
@@ -67,58 +67,58 @@ class Checkout extends SteelNova_WooCommerce {
         | BILLING
         |--------------------------------------------------------------------------
         */
-        $fields['billing']['billing_first_name']['label']       = __( 'First Name', 'mindverse' );
-        $fields['billing']['billing_first_name']['placeholder'] = __( 'Name here', 'mindverse' );
+        $fields['billing']['billing_first_name']['label']       = __( 'First Name', 'steelnova' );
+        $fields['billing']['billing_first_name']['placeholder'] = __( 'Name here', 'steelnova' );
         $fields['billing']['billing_first_name']['priority']    = 10;
         $fields['billing']['billing_first_name']['class']       = [ 'form-row-first' ];
 
-        $fields['billing']['billing_last_name']['label']       = __( 'Last Name', 'mindverse' );
-        $fields['billing']['billing_last_name']['placeholder'] = __( 'Name here', 'mindverse' );
+        $fields['billing']['billing_last_name']['label']       = __( 'Last Name', 'steelnova' );
+        $fields['billing']['billing_last_name']['placeholder'] = __( 'Name here', 'steelnova' );
         $fields['billing']['billing_last_name']['priority']    = 20;
         $fields['billing']['billing_last_name']['class']       = [ 'form-row-last' ];
 
-        $fields['billing']['billing_company']['label']       = __( 'Company Name', 'mindverse' );
-        $fields['billing']['billing_company']['placeholder'] = __( 'Name here', 'mindverse' );
+        $fields['billing']['billing_company']['label']       = __( 'Company Name', 'steelnova' );
+        $fields['billing']['billing_company']['placeholder'] = __( 'Name here', 'steelnova' );
         $fields['billing']['billing_company']['priority']    = 30;
         $fields['billing']['billing_company']['required']    = false;
         $fields['billing']['billing_company']['class']       = [ 'form-row-wide' ];
 
-        $fields['billing']['billing_country']['label']    = __( 'Country / Region', 'mindverse' );
+        $fields['billing']['billing_country']['label']    = __( 'Country / Region', 'steelnova' );
         $fields['billing']['billing_country']['priority'] = 40;
         $fields['billing']['billing_country']['class']    = [ 'form-row-wide' ];
 
-        $fields['billing']['billing_address_1']['label']       = __( 'Street Address', 'mindverse' );
-        $fields['billing']['billing_address_1']['placeholder'] = __( '32nd Madison Street', 'mindverse' );
+        $fields['billing']['billing_address_1']['label']       = __( 'Street Address', 'steelnova' );
+        $fields['billing']['billing_address_1']['placeholder'] = __( '32nd Madison Street', 'steelnova' );
         $fields['billing']['billing_address_1']['priority']    = 50;
         $fields['billing']['billing_address_1']['class']       = [ 'form-row-wide' ];
 
-        $fields['billing']['billing_address_2']['label']       = __( 'Apartment / Unit (Optional)', 'mindverse' );
-        $fields['billing']['billing_address_2']['placeholder'] = __( 'Unit 4', 'mindverse' );
+        $fields['billing']['billing_address_2']['label']       = __( 'Apartment / Unit (Optional)', 'steelnova' );
+        $fields['billing']['billing_address_2']['placeholder'] = __( 'Unit 4', 'steelnova' );
         $fields['billing']['billing_address_2']['priority']    = 60;
         $fields['billing']['billing_address_2']['required']    = false;
         $fields['billing']['billing_address_2']['class']       = [ 'form-row-wide' ];
 
-        $fields['billing']['billing_postcode']['label']       = __( 'Postcode/ Zip', 'mindverse' );
-        $fields['billing']['billing_postcode']['placeholder'] = __( '324456', 'mindverse' );
+        $fields['billing']['billing_postcode']['label']       = __( 'Postcode/ Zip', 'steelnova' );
+        $fields['billing']['billing_postcode']['placeholder'] = __( '324456', 'steelnova' );
         $fields['billing']['billing_postcode']['priority']    = 70;
         $fields['billing']['billing_postcode']['class']       = [ 'form-row-wide' ];
 
-        $fields['billing']['billing_city']['label']       = __( 'Town / City', 'mindverse' );
-        $fields['billing']['billing_city']['placeholder'] = __( 'Amron', 'mindverse' );
+        $fields['billing']['billing_city']['label']       = __( 'Town / City', 'steelnova' );
+        $fields['billing']['billing_city']['placeholder'] = __( 'Amron', 'steelnova' );
         $fields['billing']['billing_city']['priority']    = 80;
         $fields['billing']['billing_city']['class']       = [ 'form-row-wide' ];
 
-        $fields['billing']['billing_state']['label']    = __( 'State *', 'mindverse' );
+        $fields['billing']['billing_state']['label']    = __( 'State *', 'steelnova' );
         $fields['billing']['billing_state']['priority'] = 90;
         $fields['billing']['billing_state']['class']    = [ 'form-row-wide' ];
 
-        $fields['billing']['billing_phone']['label']       = __( 'Phone No', 'mindverse' );
-        $fields['billing']['billing_phone']['placeholder'] = __( '123 456 789', 'mindverse' );
+        $fields['billing']['billing_phone']['label']       = __( 'Phone No', 'steelnova' );
+        $fields['billing']['billing_phone']['placeholder'] = __( '123 456 789', 'steelnova' );
         $fields['billing']['billing_phone']['priority']    = 100;
         $fields['billing']['billing_phone']['class']       = [ 'form-row-wide' ];
 
-        $fields['billing']['billing_email']['label']       = __( 'Email Address', 'mindverse' );
-        $fields['billing']['billing_email']['placeholder'] = __( 'example@gmail.com', 'mindverse' );
+        $fields['billing']['billing_email']['label']       = __( 'Email Address', 'steelnova' );
+        $fields['billing']['billing_email']['placeholder'] = __( 'example@gmail.com', 'steelnova' );
         $fields['billing']['billing_email']['priority']    = 110;
         $fields['billing']['billing_email']['class']       = [ 'form-row-wide' ];
 
@@ -127,48 +127,48 @@ class Checkout extends SteelNova_WooCommerce {
         | SHIPPING
         |--------------------------------------------------------------------------
         */
-        $fields['shipping']['shipping_first_name']['label']       = __( 'First Name', 'mindverse' );
-        $fields['shipping']['shipping_first_name']['placeholder'] = __( 'Name here', 'mindverse' );
+        $fields['shipping']['shipping_first_name']['label']       = __( 'First Name', 'steelnova' );
+        $fields['shipping']['shipping_first_name']['placeholder'] = __( 'Name here', 'steelnova' );
         $fields['shipping']['shipping_first_name']['priority']    = 10;
         $fields['shipping']['shipping_first_name']['class']       = [ 'form-row-first' ];
 
-        $fields['shipping']['shipping_last_name']['label']       = __( 'Last Name', 'mindverse' );
-        $fields['shipping']['shipping_last_name']['placeholder'] = __( 'Name here', 'mindverse' );
+        $fields['shipping']['shipping_last_name']['label']       = __( 'Last Name', 'steelnova' );
+        $fields['shipping']['shipping_last_name']['placeholder'] = __( 'Name here', 'steelnova' );
         $fields['shipping']['shipping_last_name']['priority']    = 20;
         $fields['shipping']['shipping_last_name']['class']       = [ 'form-row-last' ];
 
-        $fields['shipping']['shipping_company']['label']       = __( 'Company Name', 'mindverse' );
-        $fields['shipping']['shipping_company']['placeholder'] = __( 'Name here', 'mindverse' );
+        $fields['shipping']['shipping_company']['label']       = __( 'Company Name', 'steelnova' );
+        $fields['shipping']['shipping_company']['placeholder'] = __( 'Name here', 'steelnova' );
         $fields['shipping']['shipping_company']['priority']    = 30;
         $fields['shipping']['shipping_company']['required']    = false;
         $fields['shipping']['shipping_company']['class']       = [ 'form-row-wide' ];
 
-        $fields['shipping']['shipping_country']['label']    = __( 'Country / Region', 'mindverse' );
+        $fields['shipping']['shipping_country']['label']    = __( 'Country / Region', 'steelnova' );
         $fields['shipping']['shipping_country']['priority'] = 40;
         $fields['shipping']['shipping_country']['class']    = [ 'form-row-wide' ];
 
-        $fields['shipping']['shipping_address_1']['label']       = __( 'Street Address', 'mindverse' );
-        $fields['shipping']['shipping_address_1']['placeholder'] = __( '32nd Madison Street', 'mindverse' );
+        $fields['shipping']['shipping_address_1']['label']       = __( 'Street Address', 'steelnova' );
+        $fields['shipping']['shipping_address_1']['placeholder'] = __( '32nd Madison Street', 'steelnova' );
         $fields['shipping']['shipping_address_1']['priority']    = 50;
         $fields['shipping']['shipping_address_1']['class']       = [ 'form-row-wide' ];
 
-        $fields['shipping']['shipping_address_2']['label']       = __( 'Apartment / Unit (Optional)', 'mindverse' );
-        $fields['shipping']['shipping_address_2']['placeholder'] = __( 'Unit 4', 'mindverse' );
+        $fields['shipping']['shipping_address_2']['label']       = __( 'Apartment / Unit (Optional)', 'steelnova' );
+        $fields['shipping']['shipping_address_2']['placeholder'] = __( 'Unit 4', 'steelnova' );
         $fields['shipping']['shipping_address_2']['priority']    = 60;
         $fields['shipping']['shipping_address_2']['required']    = false;
         $fields['shipping']['shipping_address_2']['class']       = [ 'form-row-wide' ];
 
-        $fields['shipping']['shipping_postcode']['label']       = __( 'Postcode/ Zip', 'mindverse' );
-        $fields['shipping']['shipping_postcode']['placeholder'] = __( '324456', 'mindverse' );
+        $fields['shipping']['shipping_postcode']['label']       = __( 'Postcode/ Zip', 'steelnova' );
+        $fields['shipping']['shipping_postcode']['placeholder'] = __( '324456', 'steelnova' );
         $fields['shipping']['shipping_postcode']['priority']    = 70;
         $fields['shipping']['shipping_postcode']['class']       = [ 'form-row-wide' ];
 
-        $fields['shipping']['shipping_city']['label']       = __( 'Town / City', 'mindverse' );
-        $fields['shipping']['shipping_city']['placeholder'] = __( 'Amron', 'mindverse' );
+        $fields['shipping']['shipping_city']['label']       = __( 'Town / City', 'steelnova' );
+        $fields['shipping']['shipping_city']['placeholder'] = __( 'Amron', 'steelnova' );
         $fields['shipping']['shipping_city']['priority']    = 80;
         $fields['shipping']['shipping_city']['class']       = [ 'form-row-wide' ];
 
-        $fields['shipping']['shipping_state']['label']    = __( 'State', 'mindverse' );
+        $fields['shipping']['shipping_state']['label']    = __( 'State', 'steelnova' );
         $fields['shipping']['shipping_state']['priority'] = 90;
         $fields['shipping']['shipping_state']['class']    = [ 'form-row-wide' ];
 
@@ -177,8 +177,8 @@ class Checkout extends SteelNova_WooCommerce {
         | Note
         |--------------------------------------------------------------------------
         */
-        $fields['order']['order_comments']['label']       = __( 'Order Notes', 'mindverse' );
-        $fields['order']['order_comments']['placeholder'] = __( 'Notes About your order & delivery', 'mindverse' );
+        $fields['order']['order_comments']['label']       = __( 'Order Notes', 'steelnova' );
+        $fields['order']['order_comments']['placeholder'] = __( 'Notes About your order & delivery', 'steelnova' );
         $fields['order']['order_comments']['required']    = false;
         $fields['order']['order_comments']['class']       = [ 'form-row-wide' ];
         $fields['order']['order_comments']['priority']    = 10;

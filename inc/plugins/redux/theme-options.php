@@ -175,30 +175,20 @@ class Theme_Options {
                 //     ],
                 //     'default'  => '0',
                 // ),
-                array(
-                    'id'       => 'smooth_scroll',
-                    'type'     => 'button_set',
-                    'title'    => __('Smooth Scroll', 'steelnova'),
-                    'options'  => [
-                        '1'    => __('On' , 'steelnova'),
-                        '0'    => __('Off', 'steelnova'),
-                    ],
-                    'default'  => '0',
-                ),
+                // array(
+                //     'id'       => 'smooth_scroll',
+                //     'type'     => 'button_set',
+                //     'title'    => __('Smooth Scroll', 'steelnova'),
+                //     'options'  => [
+                //         '1'    => __('On' , 'steelnova'),
+                //         '0'    => __('Off', 'steelnova'),
+                //     ],
+                //     'default'  => '0',
+                // ),
                 array(
                     'id'       => 'back_to_top',
                     'type'     => 'button_set',
                     'title'    => __('Back to Top', 'steelnova'),
-                    'options'  => [
-                        '1'    => __('On' , 'steelnova'),
-                        '0'    => __('Off', 'steelnova'),
-                    ],
-                    'default'  => '0',
-                ),
-                array(
-                    'id'       => 'blur_bottom_site',
-                    'type'     => 'button_set',
-                    'title'    => __('Blur Bottom Site', 'steelnova'),
                     'options'  => [
                         '1'    => __('On' , 'steelnova'),
                         '0'    => __('Off', 'steelnova'),
@@ -406,7 +396,7 @@ class Theme_Options {
                     'scope' => 'private', 
                     'prefix_id' =>'404_', 
                     'meta_key' => 'page', 
-                    'title' => __('404 Not Found!'), 
+                    'title' => __('404 Not Found!', 'steelnova'), 
                     'note'  => __( 'We are a dedicated company focused on delivering reliable solutions through expertise, innovation, and a client-first approach.', 'steelnova' ) 
                 ]), 
                 Static_Options::footer_options( [ 'scope' => 'private', 'prefix_id' =>'404_' ] ), 

@@ -43,7 +43,6 @@ if( isset( $_GET['sidebar'] ) ) {
                                 get_template_part('template-parts/content/none');
                             }
                         }
-                        // steelnova()->layout->get_pagination();
                     ?>
                 <?php if( $sidebar_mode !== 'none' ) : ?>                    
                     </div>

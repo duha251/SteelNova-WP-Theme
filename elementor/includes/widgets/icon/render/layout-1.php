@@ -14,6 +14,6 @@ if ( $has_link ) {
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
 
-<<?php echo esc_attr( $wrapper_tag ); echo $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ); ?>>
+<<?php echo esc_attr( $wrapper_tag ); pxl_print_html( $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ) ); ?>>
     <?php steelnova_elementor_print_icon( $settings['icon'] ); ?>
 </<?php echo esc_attr( $wrapper_tag ); ?>>

@@ -71,6 +71,10 @@
             border: thin solid rgba(#706F6F, .5);
             color: #FFF;
             border-radius: 186px;
+            &:hover {
+                background-color: #FFF;
+                color: var(--cs-heading-color);
+            }
         }
         div.post__title {
             @include paragraph-5;

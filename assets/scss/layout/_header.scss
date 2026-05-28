@@ -1,7 +1,9 @@
 @use '../core.scss' as *;
 
 .header {
-    opacity: 0;
+    &:not(.header-mobible) {
+        opacity: 0;
+    }
 }
 
 .header-logo {
@@ -22,16 +24,9 @@
 }
 
 // Header Desktop
-.header-desktop {
+.header-desktop, .header-sticky {
     @media #{$max-lg} {
         display: none;
-    }
-    .show-case {
-        .show-case-image-group {
-            .show-case-image {
-                pointer-events: none;
-            }
-        }
     }
 }
 
@@ -46,7 +41,6 @@
 // Header Mobile
 #headerMobile {
     @include d-flex(30px, center, space-between);
-    background-color: var(--mt-body-bg-color, #FFF);
     box-shadow: (0px 5px 50px 0px rgba($color: #000000, $alpha: .05));
     padding-inline: 15px;
     position: relative;
@@ -63,31 +57,22 @@
         background-color: #FFF;
         box-shadow: (0px 5px 50px 0px rgba($color: #000000, $alpha: .05));
         padding: 50px 30px 30px;
+        width: fit-content;
+        box-shadow: (0px 5px 50px 0px rgba($color: #000000, $alpha: .05));
+        @media #{$max-xs} {
+            padding: 50px 15px;
+            width: 100%;
+            min-width: 0px;
+        }
         .cs-button--close {
             @include box-size(42px);
             position: absolute;
             right: 0;
             background-color: var(--cs-primary-color);
-            color: var(--cs-secondary-color);
+            color: var(--cs-third-color);
             border-radius: 0;
             top: 0;
-            .icon-close {
-                --cs-box-size: 16px;
-                &::after, &::before {
-                    height: 1px;
-                }
-
-            }
-            &:hover {
-                .icon-close {
-                    &::after, &::before {
-                        transform: translate(-50%, -50%) rotate(0);
-                    }
-                }
-            }
         }
-        width: fit-content;
-        box-shadow: (0px 5px 50px 0px rgba($color: #000000, $alpha: .05));
         .header-logo {
             margin-bottom: 30px;
         }
@@ -96,7 +81,7 @@
                 position: relative;
             }
             input {
-                font-family: var(--mt-primary-font);
+                font-family: var(--cs-primary-font);
                 font-size: 14px;
                 width: 100%;
                 height: 46px;
@@ -114,7 +99,7 @@
                 right: 0;
                 top: 0;
                 background-color: var(--cs-primary-color);
-                color: var(--cs-secondary-color);
+                color: var(--cs-third-color);
                 border-bottom-left-radius: 0; 
                 border-top-left-radius: 0;
             }
@@ -128,9 +113,9 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 10000;
     transition: margin-top cubic-bezier(0.165, 0.84, 0.44, 1) .5s, opacity linear .3s;
-    margin-top: -50px;
+    margin-top: -30px;
     opacity: 0;
     pointer-events: none;
     &.is-active {

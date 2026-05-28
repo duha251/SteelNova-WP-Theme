@@ -95,6 +95,9 @@
         &__title {
             margin-bottom: 24px;
             max-width: 1000px;
+            &:hover {
+                color: #FF5B1B;
+            }
         }
         .divider {
             width: 100%;
@@ -503,6 +506,14 @@
         align-items: flex-end;
 	    background: center center / cover no-repeat;
         isolation: isolate;
+        @media #{$max-md} {
+            padding: 30px 15px 45px;
+            min-height: 500px;
+        }
+        @media #{$max-sm} {
+            padding: 30px 15px 45px;
+            min-height: 450px;
+        }
         &::after {
             content: '';
             position: absolute;
@@ -543,7 +554,7 @@
         }
         div.post__title {
             font-family: "Instrument Sans";
-            font-size: 36px;
+            font-size: clamp(1.375rem, 1.1731rem + 0.8974vw, 2.25rem);
             font-style: normal;
             font-weight: 600;
             line-height: 1.33;

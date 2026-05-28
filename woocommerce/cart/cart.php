@@ -14,18 +14,18 @@ do_action( 'woocommerce_before_cart' );
 
 $cart_headers = array(
 	'thumb'    => '',
-	'product'  => esc_html__( 'Product', 'mindverse' ),
-	'price'    => esc_html__( 'Price', 'mindverse' ),
-	'quantity' => esc_html__( 'Quantity', 'mindverse' ),
-	'subtotal' => esc_html__( 'Subtotal', 'mindverse' ),
+	'product'  => esc_html__( 'Product', 'steelnova' ),
+	'price'    => esc_html__( 'Price', 'steelnova' ),
+	'quantity' => esc_html__( 'Quantity', 'steelnova' ),
+	'subtotal' => esc_html__( 'Subtotal', 'steelnova' ),
 	'remove'   => '',
 );
 ?>
 
-<form class="woocommerce-cart-form cart-layout" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+<form class="woocommerce-cart-form cart" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-	<div class="cart-table">
+	<div class="cart-table woocommerce-cart-form__contents">
 
 		<div class="cart-table__head">
 			<div class="cart-table__col cart-table__col--thumb">
@@ -148,7 +148,7 @@ $cart_headers = array(
 								echo wp_kses_post(
 									apply_filters(
 										'woocommerce_cart_item_backorder_notification',
-										'<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'mindverse' ) . '</p>',
+										'<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'steelnova' ) . '</p>',
 										$product_id
 									)
 								);
@@ -207,7 +207,7 @@ $cart_headers = array(
 								sprintf(
 									'<a role="button" href="%s" class="remove remove-cart-item" aria-label="%s" data-product_id="%s" data-product_sku="%s"></a>',
 									esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
-									esc_attr( sprintf( __( 'Remove %s from cart', 'mindverse' ), wp_strip_all_tags( $product_name ) ) ),
+									esc_attr( sprintf( __( 'Remove %s from cart', 'steelnova' ), wp_strip_all_tags( $product_name ) ) ),
 									esc_attr( $product_id ),
 									esc_attr( $_product->get_sku() )
 								),
@@ -229,34 +229,37 @@ $cart_headers = array(
 		<div class="cart-table__actions">
 			<?php if ( wc_coupons_enabled() ) : ?>
 				<div class="coupon">
-					<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'mindverse' ); ?></label>
+					<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'steelnova' ); ?></label>
+
 					<input
 						type="text"
 						name="coupon_code"
 						class="input-text"
 						id="coupon_code"
 						value=""
-						placeholder="<?php esc_attr_e( 'Coupon code', 'mindverse' ); ?>"
+						placeholder="<?php esc_attr_e( 'Coupon code', 'steelnova' ); ?>"
 					/>
+
 					<button
 						type="submit"
 						class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"
 						name="apply_coupon"
-						value="<?php esc_attr_e( 'Apply coupon', 'mindverse' ); ?>"
+						value="<?php esc_attr_e( 'Apply coupon', 'steelnova' ); ?>"
 					>
-						<?php esc_html_e( 'Apply coupon', 'mindverse' ); ?>
+						<?php esc_html_e( 'Apply coupon', 'steelnova' ); ?>
 					</button>
+
 					<?php do_action( 'woocommerce_cart_coupon' ); ?>
 				</div>
 			<?php endif; ?>
 
 			<button
 				type="submit"
-				class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"
+				class="button update-cart-button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"
 				name="update_cart"
-				value="<?php esc_attr_e( 'Update cart', 'mindverse' ); ?>"
+				value="<?php esc_attr_e( 'Update cart', 'steelnova' ); ?>"
 			>
-				<?php esc_html_e( 'Update cart', 'mindverse' ); ?>
+				<?php esc_html_e( 'Update cart', 'steelnova' ); ?>
 			</button>
 
 			<?php do_action( 'woocommerce_cart_actions' ); ?>

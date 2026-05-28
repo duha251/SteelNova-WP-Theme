@@ -27,7 +27,7 @@ $title_tag = $settings['title_tag'] ?: 'h3';
         }    
         $this->add_render_attribute('subtitle', $subtitle_attrs);
     ?>
-        <div <?php echo $this->get_render_attribute_string('subtitle'); ?>>
+        <div <?php pxl_print_html( $this->get_render_attribute_string('subtitle') ); ?>>
             <?php if( !empty( $subtitle_icon_html ) ) : ?>
                 <span class="heading__subtitle-icon">
                     <?php pxl_print_html( $subtitle_icon_html ); ?>
@@ -55,7 +55,7 @@ $title_tag = $settings['title_tag'] ?: 'h3';
         $this->add_render_attribute('title', $title_attrs);
     ?>
 
-    <<?php echo esc_attr( $settings['title_tag'] ); ?> <?php echo $this->get_render_attribute_string('title'); ?>>
+    <<?php echo esc_attr( $settings['title_tag'] ); ?> <?php pxl_print_html( $this->get_render_attribute_string('title') ); ?>>
         <?php echo esc_html( $settings['title_text'] ); ?>
     </<?php echo esc_attr( $settings['title_tag'] ); ?>>
 </div>

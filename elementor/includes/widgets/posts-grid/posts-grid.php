@@ -19,7 +19,7 @@ class Widget_Posts_Grid extends SteelNova_Widget_Base {
             'title'      => __( 'CS Posts Grid', 'steelnova' ),
             'icon'       => 'eicon-posts-grid',
             'keywords'   => [ 'posts', 'grid', 'blog', 'news', 'steelnova', 'cs', 'casetheme' ],
-            'script'     => [],
+            'script'     => ['steelnova-post'],
             'style'      => ['steelnova-widget-post'],
         ];
     }

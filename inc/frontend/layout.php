@@ -29,6 +29,7 @@ class Layout {
 
     public function before_main_content_render() {
         $this->get_header();
+        $this->get_header_sticky();
         $this->get_header_mobile();
         $this->get_hero();
     }
@@ -100,6 +101,39 @@ class Layout {
         }
         steelnova_get_template('template-parts/header/desktop/builder', [
             'layout_id' => $layout_id,
+        ]);
+    }
+
+    public function get_header_sticky() {
+        $prefix_id = steelnova_get_prefix_id_option();
+
+        $mode = $this->option->get_option( $prefix_id.'header_sticky_mode', 'hide');
+        $layout_id = $this->option->get_option( $prefix_id.'header_sticky_layout', 0);
+        $direction = $this->option->get_option( $prefix_id.'header_sticky_display_on', 'up' );
+
+        if( $mode === 'inherit' ) {
+            $mode = $this->option->get_theme_option( 'header_sticky_mode', 'hide');
+            $layout_id = $this->option->get_theme_option( 'header_sticky_layout', 0);
+        }
+
+        if( $mode === 'hide' || ( $mode === 'builder' && $layout_id === 0 ) ) {
+            return '';
+        }
+
+        $is_builder = (
+            $mode === 'builder' &&
+            is_numeric($layout_id) &&
+            $layout_id > 0 &&
+            class_exists('Pxltheme_Core') &&
+            class_exists('\Elementor\Plugin')
+        );
+
+        if( ! $is_builder ) {
+            return '';
+        }
+        steelnova_get_template('template-parts/header/desktop/sticky', [
+            'layout_id' => $layout_id,
+            'direction' => $direction
         ]);
     }
 

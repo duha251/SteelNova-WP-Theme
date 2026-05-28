@@ -12,6 +12,6 @@ $wrapper_attrs_tmp = [
 $wrapper_attrs = array_merge( $wrapper_attrs_tmp, $wrapper_attrs );
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
-<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+<div <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php pxl_print_shortcode('[contact-form-7 id="'.esc_attr($settings['wpcf7_form_id']).'" html_class="'.esc_attr('grid wpcf7-form wpcf7-form-'.$settings['wpcf7_form_id']).'"]'); ?>
 </div>

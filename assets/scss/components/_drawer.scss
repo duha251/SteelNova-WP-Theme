@@ -16,7 +16,7 @@
     @media #{$max-xs} {
         width: 100%;
         max-width: 420px;
-        min-width: none;
+        min-width: 0;
     }
     &[data-drawer="top"] {
         transform: translate3d(0, -100%, 0);

@@ -2,11 +2,24 @@
 
 .woocommerce-shop {
     &.has-sidebar {
+        #main {
+            .inner {
+                @include d-flex( 90px 30px, flex-start, space-between );
+            }
+        }
         .content-area {
             flex: 0 1 870px;
         }
         .sidebar-area {
             flex: 0 1 392px;
+        }
+        @media #{$max-md} {
+            #main .inner {
+                flex-wrap: wrap;
+            }
+            .content-area, .sidebar-area {
+                flex: 0 1 100%;
+            }
         }
     }
     .content-area {

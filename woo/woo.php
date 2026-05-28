@@ -216,11 +216,11 @@ class SteelNova_WooCommerce {
 
         for ( $i = 1; $i <= 5; $i++ ) {
             if ( $rating >= $i ) {
-                echo $this->star_svg('full', $args);
+                pxl_print_html( $this->star_svg('full', $args));
             } elseif ( $rating >= ($i - 0.5) ) {
-                echo $this->star_svg('half', $args);
+                pxl_print_html( $this->star_svg('half', $args));
             } else {
-                echo $this->star_svg('empty', $args);
+                pxl_print_html( $this->star_svg('empty', $args));
             }
         }
 

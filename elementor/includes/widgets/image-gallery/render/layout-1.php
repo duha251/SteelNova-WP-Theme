@@ -23,7 +23,7 @@ $img_height = $settings['img_size']['height'] ?: null;
             $link_attrs = '';
             if( $settings['action'] === 'link' ) {
                 $item_tag = 'a';
-                $item_class = 'cs-image-gallery__item--link';
+                $item_class = ' cs-image-gallery__item--link';
                 $link_attrs = steelnova_elementor_get_link_attributes([
                     'url' => $img['url'],
                     'target'    => '_blank',

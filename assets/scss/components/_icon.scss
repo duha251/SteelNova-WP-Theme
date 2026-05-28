@@ -84,7 +84,7 @@
 
 
 .icon-x {
-	--mt-width: 22px;
+	--cs-width: 22px;
     position: relative;
     @include box-size(42px);
     display: inline-block;
@@ -94,7 +94,7 @@
         top: 50%;
         left: 50%;
         display: inline-block;
-        width: var(--mt-width);
+        width: var(--cs-width);
         height: 2px;
         background-color: currentColor;
 		border-radius: 50%;

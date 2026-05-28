@@ -16,7 +16,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
 
 ?>
 
-<ul <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+<ul <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php foreach ( $settings['items'] as $i => $item ) : ?>
         <?php
             $item_key = 'item-' . $i;
@@ -29,7 +29,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
             $this->add_render_attribute( $item_key, $item_attrs);
         ?>
         <?php if( $item['meta_type'] !== 'project_info' ) : ?>
-            <li <?php echo $this->get_render_attribute_string( $item_key ); ?>>
+            <li <?php pxl_print_html($this->get_render_attribute_string( $item_key )); ?>>
                 <?php if( !empty( $item['icon']['value'] ) ) : ?>
                     <div class="cs-post-meta__item-icon d-inline-flex-center">
                         <?php steelnova_elementor_print_icon( $item['icon'] ); ?>
@@ -61,7 +61,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
                         $text  = $project_info['info_text'][$i] ?? '';
                         $icon_url  = $project_info['info_icon'][$i]['url'] ?? '';
                     ?>
-                        <li <?php echo $this->get_render_attribute_string( $item_key ); ?>>
+                        <li <?php pxl_print_html( $this->get_render_attribute_string( $item_key ) ); ?>>
                             <?php if( !empty( $icon_url ) ) : ?>
                                 <div class="cs-post-meta__item-icon d-inline-flex-center">
                                     <?php steelnova_print_svg_content( $icon_url ); ?>

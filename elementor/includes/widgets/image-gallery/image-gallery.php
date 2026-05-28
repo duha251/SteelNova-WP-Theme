@@ -75,9 +75,9 @@ class Widget_Image_Gallery extends SteelNova_Widget_Base {
             'name' => 'action',
             'label' => __('Action', 'steelnova'),
             'options' => [
-                'link'        => __('Media Link', 'steelnoval'),
-                'lightbox'    => __('Lightbox', 'steelnoval'),
-                'none'        => __('None', 'steelnoval'),
+                'link'        => __('Media Link', 'steelnova'),
+                'lightbox'    => __('Lightbox', 'steelnova'),
+                'none'        => __('None', 'steelnova'),
             ],
             'default' => 'lightbox'
         ]);

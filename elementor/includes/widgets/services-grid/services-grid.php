@@ -17,7 +17,7 @@ class Widget_Services_Grid extends SteelNova_Widget_Base {
             'title'      => __( 'CS Services Grid', 'steelnova' ),
             'icon'       => 'eicon-posts-grid',
             'keywords'   => [ 'services', 'service', 'features', 'offerings' ],
-            'script'     => [],
+            'script'     => ['steelnova-post'],
             'style'      => ['steelnova-widget-service']
         ];
     }

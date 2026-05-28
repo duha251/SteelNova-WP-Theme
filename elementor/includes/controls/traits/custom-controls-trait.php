@@ -11,7 +11,7 @@ trait Custom_Controls_Trait {
     /**
      * Group Box Style 
      */
-    protected function group_box_css( $args = [] ) {
+    protected function group_box_css( $args = [], $target = null ) {
         $prefix = $args['name'] ?? '';
         $selector = $args['selector'] ?? '';
         // Border
@@ -19,20 +19,20 @@ trait Custom_Controls_Trait {
             'name' => $prefix.'border',
             'selector' => $selector,
             'separator' => 'before',
-        ]);
+        ], $target);
         // Box Shadow
         $this->group_box_shadow([
             'name' => $prefix.'box_shadow',
             'selector' => $selector,
             'separator' => 'before',
-        ]);
+        ], $target);
         $this->number([
             'name' => $prefix.'backdrop_filter',
             'label' => __('Backdrop Filter', 'steelnova'),
             'selectors' => [
                 $selector => 'backdrop-filter: blur({{VALUE}}px);'
             ]
-        ]);
+        ], $target);
         // Border Radius
         $this->dimensions([
             'name' => $prefix.'border_radius',
@@ -40,7 +40,7 @@ trait Custom_Controls_Trait {
             'selectors' => [
                 $selector => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
-        ]);
+        ], $target);
         // Padding 
         $this->dimensions ([
             'name' => $prefix.'padding',
@@ -49,7 +49,7 @@ trait Custom_Controls_Trait {
             'selectors' => [
                 $selector => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
-        ]);
+        ], $target);
     }
 
     protected function time( $args = [], $target = null ) {

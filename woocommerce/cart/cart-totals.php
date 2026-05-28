@@ -24,13 +24,13 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
-	<h4 class="cart-totals__title"><?php esc_html_e( 'Cart total', 'mindverse' ); ?></h4>
+	<h4 class="cart-totals__title"><?php esc_html_e( 'Cart total', 'steelnova' ); ?></h4>
 
 	<div class="shop_table shop_table_responsive cart-totals-table">
 
 		<div class="cart-subtotal cart-totals-table__item">
-			<div class="label"><?php esc_html_e( 'Subtotal', 'mindverse' ); ?></div>
-			<div class="value" data-title="<?php esc_attr_e( 'Subtotal', 'mindverse' ); ?>">
+			<div class="label"><?php esc_html_e( 'Subtotal', 'steelnova' ); ?></div>
+			<div class="value" data-title="<?php esc_attr_e( 'Subtotal', 'steelnova' ); ?>">
 				<?php wc_cart_totals_subtotal_html(); ?>
 			</div>
 		</div>
@@ -57,8 +57,8 @@ defined( 'ABSPATH' ) || exit;
 		<?php elseif ( WC()->cart->needs_shipping() && 'yes' === get_option( 'woocommerce_enable_shipping_calc' ) ) : ?>
 
 			<div class="shipping cart-totals-table__item">
-				<div class="label"><?php esc_html_e( 'Shipping', 'mindverse' ); ?></div>
-				<div class="value" data-title="<?php esc_attr_e( 'Shipping', 'mindverse' ); ?>">
+				<div class="label"><?php esc_html_e( 'Shipping', 'steelnova' ); ?></div>
+				<div class="value" data-title="<?php esc_attr_e( 'Shipping', 'steelnova' ); ?>">
 					<?php woocommerce_shipping_calculator(); ?>
 				</div>
 			</div>
@@ -81,7 +81,7 @@ defined( 'ABSPATH' ) || exit;
 
 			if ( WC()->customer->is_customer_outside_base() && ! WC()->customer->has_calculated_shipping() ) {
 				$estimated_text = sprintf(
-					' <small>' . esc_html__( '(estimated for %s)', 'mindverse' ) . '</small>',
+					' <small>' . esc_html__( '(estimated for %s)', 'steelnova' ) . '</small>',
 					WC()->countries->estimated_for_prefix( $taxable_address[0] ) . WC()->countries->countries[ $taxable_address[0] ]
 				);
 			}
@@ -117,8 +117,8 @@ defined( 'ABSPATH' ) || exit;
 		<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
 
 		<div class="order-total cart-totals-table__item">
-			<div class="label"><?php esc_html_e( 'Total', 'mindverse' ); ?></div>
-			<div class="value" data-title="<?php esc_attr_e( 'Total', 'mindverse' ); ?>">
+			<div class="label"><?php esc_html_e( 'Total', 'steelnova' ); ?></div>
+			<div class="value" data-title="<?php esc_attr_e( 'Total', 'steelnova' ); ?>">
 				<?php wc_cart_totals_order_total_html(); ?>
 			</div>
 		</div>

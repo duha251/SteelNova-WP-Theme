@@ -33,17 +33,17 @@ if ( ! wc_coupons_enabled() ) { // @codingStandardsIgnoreLine.
 		 *
 		 * @since 1.0.0
 		 */
-		wc_print_notice( apply_filters( 'woocommerce_checkout_coupon_message', esc_html__( 'Have a coupon?', 'mindverse' )  ), 'notice' );
+		wc_print_notice( apply_filters( 'woocommerce_checkout_coupon_message', esc_html__( 'Have a coupon?', 'steelnova' )  ), 'notice' );
 	?>
 	<form class="checkout_coupon woocommerce-form-coupon" method="post" style="display:none" id="woocommerce-checkout-form-coupon">
 
 		<p class="form-row form-row-first">
-			<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'mindverse' ); ?></label>
-			<input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e( 'Coupon code', 'mindverse' ); ?>" id="coupon_code" value="" />
+			<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'steelnova' ); ?></label>
+			<input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e( 'Coupon code', 'steelnova' ); ?>" id="coupon_code" value="" />
 		</p>
 
 		<p class="form-row form-row-last">
-			<button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply', 'mindverse' ); ?>"><?php esc_html_e( 'Apply coupon', 'mindverse' ); ?></button>
+			<button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply', 'steelnova' ); ?>"><?php esc_html_e( 'Apply coupon', 'steelnova' ); ?></button>
 		</p>
 	</form>
 </div>

@@ -18,7 +18,7 @@ $this->add_link_attributes( 'wrapper', $settings['link'] );
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
 
-<a <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+<a <?php echo esc_attr($this->get_render_attribute_string('wrapper')); ?>>
     <?php if( !empty( $settings['text'] ) ) : ?>
         <span class="cs-link__text">
             <?php echo esc_html( $settings['text'] ); ?>

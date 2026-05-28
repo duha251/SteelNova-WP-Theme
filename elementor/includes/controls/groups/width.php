@@ -81,7 +81,7 @@ class Group_Control_Width extends Group_Control_Base {
 		return [
             'popover' => [
 				'starter_name' => 'width',
-				'starter_title' => esc_html__( 'Width', 'elementor' ),
+				'starter_title' => esc_html__( 'Width', 'steelnova' ),
 				'settings' => [
 					'render_type' => 'ui',
 				],

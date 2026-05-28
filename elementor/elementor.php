@@ -360,5 +360,10 @@ class SteelNova_Elementor {
 		wp_register_script('steelnova-tabs', get_template_directory_uri() . '/elementor/assets/js/tabs.js', ['jquery'], $this->version, true);
 		wp_register_script('steelnova-text-animation', get_template_directory_uri() . '/elementor/assets/js/text-animation.js', ['jquery', 'SplitText', 'ScrollTrigger'], $this->version, true);
 		wp_register_script('steelnova-sticky', get_template_directory_uri() . '/elementor/assets/js/sticky.js', ['jquery', 'ScrollTrigger'], $this->version, true);
+		wp_register_script('steelnova-post', get_template_directory_uri() . '/elementor/assets/js/post.js', ['jquery'], $this->version, true);
+		wp_localize_script('steelnova-post', 'SteelNovaAjax', array(
+			'ajaxurl' => admin_url('admin-ajax.php'),
+			'nonce'   => wp_create_nonce('steelnova_ajax_nonce') 
+		));
 	}
 }

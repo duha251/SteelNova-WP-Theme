@@ -12,7 +12,7 @@ $post_type = get_post_type();
 $tag_slug = $post_type . '_tag';
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+<div <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php the_terms( get_the_ID(), $tag_slug, '', ''); ?>
     <?php if( $post_type === 'pxl-template' ) : ?>
         <a href="#"><?php echo esc_html__( 'Demo', 'steelnova' ); ?></a>

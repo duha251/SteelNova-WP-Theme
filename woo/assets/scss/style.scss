@@ -156,7 +156,7 @@
             position: relative;
             &:hover {
                 .product__actions {
-                    .cs-button {
+                    .button {
                         opacity: 1;
                         margin: 0;
                     }
@@ -169,7 +169,7 @@
                 bottom: 15px;
                 @include d-flex(15px, null, center);
                 z-index: 9;
-                .cs-button {
+                .button {
                     opacity: 0;
                     margin-top: 15px;
                 }
@@ -239,6 +239,12 @@
             }
             &__name {
                 margin-bottom: 5px;
+                a {
+                    color: inherit;
+                }
+                &:hover {
+                    color: #FF5B1B;
+                }
             }
             .price {
                 margin-bottom: 20px;
@@ -247,10 +253,44 @@
                 @include paragraph-5;
                 margin-bottom: 20px;
             }
+            .add_to_cart_button  {
+                // width: 100%;
+                // max-width:436px;
+                // height: 46px;
+                // border-radius: 6px;
+                // @include text-button-3;
+                // color: #FFF;
+                // text-transform: capitalize;
+                // text-align: center;
+                // &:hover {
+                //     color: #FF5B1B;
+                // }
+            }
         }
     }
 
     
+}
+
+.woocommerce.woocommerce-shop:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    border-radius: 6px;
+    background-color: #0A1119;
+    color: #FFF;
+    width: 100%;
+    padding: 0;
+    font-family: var(--cs-text-font);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.7333333;
+    padding-inline: 30px;
+    max-width: 436px;
+    &:hover {
+        background-color: #FF5B1B;
+    }
 }
 
 .woocommerce form .form-row {

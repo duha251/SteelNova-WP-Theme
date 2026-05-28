@@ -15,7 +15,7 @@ if( !empty($settings['number_delimiter']) ) {
 }
 $title_tag = $settings['title_tag'] ?: 'h5';
 ?>
-<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+<div <?php echo esc_attr($this->get_render_attribute_string('wrapper')); ?>>
     <?php if( !empty( $settings['icon'] ) ) : ?>
         <div class="cs-counter-box__icon d-inline-flex-center">
             <?php steelnova_elementor_print_icon($settings['icon']); ?>
@@ -28,7 +28,7 @@ $title_tag = $settings['title_tag'] ?: 'h5';
                     <?php echo esc_html($settings['number_prefix']); ?>
                 </span>
             <?php endif;?>
-            <span <?php echo $this->get_render_attribute_string('counter-number'); ?>>
+            <span <?php pxl_print_html( $this->get_render_attribute_string('counter-number') ); ?>>
                 <?php echo esc_html($settings['ending_number'] ?: 1); ?>
             </span>
             <?php if(!empty($settings['number_suffix'])) : ?>

@@ -1,7 +1,7 @@
 @use 'core.scss' as *;
 
 .admin-bar {
-    .header-transparent {
+    .header-transparent, #headerSticky{
         top: 32px;
     }
 }

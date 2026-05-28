@@ -105,15 +105,15 @@
 					<?php
 					if ( $formatted_destination ) {
 						printf(
-							esc_html__( 'Shipping to %s.', 'mindverse' ) . ' ',
+							esc_html__( 'Shipping to %s.', 'steelnova' ) . ' ',
 							'<strong>' . esc_html( $formatted_destination ) . '</strong>'
 						);
-						$calculator_text = esc_html__( 'Change address', 'mindverse' );
+						$calculator_text = esc_html__( 'Change address', 'steelnova' );
 					} else {
 						echo wp_kses_post(
 							apply_filters(
 								'woocommerce_shipping_estimate_html',
-								__( 'Shipping options will be updated during checkout.', 'mindverse' )
+								__( 'Shipping options will be updated during checkout.', 'steelnova' )
 							)
 						);
 					}
@@ -128,14 +128,14 @@
 				echo wp_kses_post(
 					apply_filters(
 						'woocommerce_shipping_not_enabled_on_cart_html',
-						__( 'Shipping costs are calculated during checkout.', 'mindverse' )
+						__( 'Shipping costs are calculated during checkout.', 'steelnova' )
 					)
 				);
 			} else {
 				echo wp_kses_post(
 					apply_filters(
 						'woocommerce_shipping_may_be_available_html',
-						__( 'Enter your address to view shipping options.', 'mindverse' )
+						__( 'Enter your address to view shipping options.', 'steelnova' )
 					)
 				);
 			}
@@ -147,7 +147,7 @@
 			echo wp_kses_post(
 				apply_filters(
 					'woocommerce_no_shipping_available_html',
-					__( 'There are no shipping options available.', 'mindverse' )
+					__( 'There are no shipping options available.', 'steelnova' )
 				)
 			);
 			?>
@@ -159,13 +159,13 @@
 				apply_filters(
 					'woocommerce_cart_no_shipping_available_html',
 					sprintf(
-						esc_html__( 'No shipping options were found for %s.', 'mindverse' ) . ' ',
+						esc_html__( 'No shipping options were found for %s.', 'steelnova' ) . ' ',
 						'<strong>' . esc_html( $formatted_destination ) . '</strong>'
 					),
 					$formatted_destination
 				)
 			);
-			$calculator_text = esc_html__( 'Enter a different address', 'mindverse' );
+			$calculator_text = esc_html__( 'Enter a different address', 'steelnova' );
 			?>
 
 		<?php endif; ?>

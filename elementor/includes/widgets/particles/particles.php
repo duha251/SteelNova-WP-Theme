@@ -10,7 +10,7 @@ class Widget_Particles extends SteelNova_Widget_Base {
     protected function widget_info() {
         return [
             'name'       => 'steelnova-particles',
-            'title'      => __( 'CS Particles', 'mindverse' ),
+            'title'      => __( 'CS Particles', 'steelnova' ),
             'icon'       => 'eicon-ellipsis-h',
             'script'     => ['steelnova-particles'],
             'keywords'   => [ 'cs', 'steelnova', 'particles', 'par', 'seed', 'nasa', 'star'],
@@ -32,29 +32,29 @@ class Widget_Particles extends SteelNova_Widget_Base {
         ]);
         $this->number([
             'name' => 'number',
-            'label' => __('Number', 'mindverse'),
+            'label' => __('Number', 'steelnova'),
         ]);
         $this->number([
             'name' => 'size',
-            'label' => __('Size', 'mindverse'),
+            'label' => __('Size', 'steelnova'),
         ]);
         $this->color([
             'name' => 'color',
-            'label' => __('Color' , 'mindverse'),
+            'label' => __('Color' , 'steelnova'),
         ]);
         $this->select([
             'name' => 'shape',
-            'label' => __('Shape', 'mindverse'),
+            'label' => __('Shape', 'steelnova'),
             'default' => 'circle',
             'options' => [
-                'circle' => __('Circle', 'mindverse'),
-                'star'   => __('Star'  , 'mindverse'),
-                'image'    => __('Image' , 'mindverse'),
+                'circle' => __('Circle', 'steelnova'),
+                'star'   => __('Star'  , 'steelnova'),
+                'image'    => __('Image' , 'steelnova'),
             ]
         ]);
         $this->media([
             'name' => 'shape_img',
-            'label' => __('Shape Image', 'mindverse'),
+            'label' => __('Shape Image', 'steelnova'),
             'condition' => [
                 'shape' => ['image']
             ]
@@ -62,31 +62,31 @@ class Widget_Particles extends SteelNova_Widget_Base {
         $this->image_size([
             'name'      => 'img_size',
             'separator' => 'before',
-            'description' => esc_html__( 'Crop the original image size to any custom size. Set custom width or height to keep the original size ratio. (Apply all items)', 'mindverse' ),
+            'description' => esc_html__( 'Crop the original image size to any custom size. Set custom width or height to keep the original size ratio. (Apply all items)', 'steelnova' ),
             'condition' => [
                 'shape' => ['image']
             ]
         ]);
         $this->select([
             'name' => 'dir',
-            'label' => __('Direction', 'mindverse'),
+            'label' => __('Direction', 'steelnova'),
             'default' => 'none',
             'options' => [
-                'none'         => __('Random', 'mindverse'),
-                'top'          => __('Top'  , 'mindverse'),
-                'top-right'    => __('Top Right' , 'mindverse'),
-                'right'        => __('Right', 'mindverse'),
-                'bottom-right' => __('Bottom Right', 'mindverse'),
-                'bottom'       => __('Bottom', 'mindverse'),
-                'bottom-left'  => __('Bottom Left', 'mindverse'),
-                'left'         => __('Left', 'mindverse'),
-                'top-left'     => __('Top Left', 'mindverse'),
+                'none'         => __('Random', 'steelnova'),
+                'top'          => __('Top'  , 'steelnova'),
+                'top-right'    => __('Top Right' , 'steelnova'),
+                'right'        => __('Right', 'steelnova'),
+                'bottom-right' => __('Bottom Right', 'steelnova'),
+                'bottom'       => __('Bottom', 'steelnova'),
+                'bottom-left'  => __('Bottom Left', 'steelnova'),
+                'left'         => __('Left', 'steelnova'),
+                'top-left'     => __('Top Left', 'steelnova'),
             ]
         ]);
 
         $this->slider([
             'name' => 'layout_width',
-            'label' => __('Width', 'mindverse'),
+            'label' => __('Width', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
                 '{{WRAPPER}} .cs-particles' => 'width: {{SIZE}}{{UNIT}};'
@@ -94,7 +94,7 @@ class Widget_Particles extends SteelNova_Widget_Base {
         ]);
         $this->slider([
             'name' => 'layout_max_width',
-            'label' => __('Max Width', 'mindverse'),
+            'label' => __('Max Width', 'steelnova'),
             'separator' => 'before',
             'selectors' => [
                 '{{WRAPPER}} .cs-particles' => 'max-width: {{SIZE}}{{UNIT}};'
@@ -102,7 +102,7 @@ class Widget_Particles extends SteelNova_Widget_Base {
         ]);
         $this->slider([
             'name' => 'layout_height',
-            'label' => __('Height', 'mindverse'),
+            'label' => __('Height', 'steelnova'),
             'selectors' => [
                 '{{WRAPPER}} .cs-particles' => 'height: {{SIZE}}{{UNIT}};'
             ]

@@ -15,7 +15,7 @@ if ( post_password_required() ) {
     ?>
         <div class="comment-wrapper">
             <h4 class="comment-title">
-                <?php echo ($comment_count . ' Comments'); ?>
+                <?php echo esc_attr($comment_count . ' Comments', 'steelnova'); ?>
             </h4>
             <ul class="comment-list">
                 <?php

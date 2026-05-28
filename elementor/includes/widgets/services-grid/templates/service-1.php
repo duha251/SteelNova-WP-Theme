@@ -14,9 +14,11 @@ extract( $display_args );
             <?php steelnova_print_image_by_size( $thumbnail_id, $img_width, $img_height ); ?>
         </a>
         <div class="service__heading">
+            <?php if( !empty( $service_icon ) ) : ?>
             <div class="service__icon">
-                <?php steelnova_print_svg_content( $service_icon['url'] ); ?>
+                <?php steelnova_print_svg_content( $service_icon['url'] ?? '' ); ?>
             </div>
+            <?php endif; ?>
             <div class="divider"></div>
             <<?php echo esc_attr( $display_args['title_tag'] ); ?> class="service__title">
                 <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>">

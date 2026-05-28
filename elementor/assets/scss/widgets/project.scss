@@ -157,11 +157,14 @@
     --cs-row-gap: 60px;
     --cs-column-gap: 0px;
     --cs-column: 100%;
+    position: relative;
     .project {
         border-radius: 8px;
         @include d-flex(null, center, flex-end);
         padding: 121px 150px 173px 100px;
 	    background: center center / cover no-repeat;
+        // position: sticky;
+        // top: 15px;
         @media #{$max-lg} {
             padding: 120px 90px;
         }

@@ -28,7 +28,7 @@ $wrapper_attrs = array_merge(
                 $this->add_link_attributes( $item_key, $social['link'] );
             }
         ?>
-        <a <?php echo $this->get_render_attribute_string( $item_key ); ?>>
+        <a <?php pxl_print_html( $this->get_render_attribute_string( $item_key ) ); ?>>
             <?php steelnova_elementor_print_icon( $social['icon'] ); ?>
         </a>
     <?php endforeach; ?>

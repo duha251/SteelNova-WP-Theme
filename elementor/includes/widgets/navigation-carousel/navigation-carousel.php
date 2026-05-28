@@ -54,7 +54,7 @@ class Widget_Navigation_Carousel extends SteelNova_Widget_Base {
         ]);
         $this->text([
             'name' => 'html_id',
-            'label' => __('HTML ID', 'mindverse'),
+            'label' => __('HTML ID', 'steelnova'),
             'default' => $this->get_id(),
         ]);
                 

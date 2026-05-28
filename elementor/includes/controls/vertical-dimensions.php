@@ -56,8 +56,8 @@ class Control_Vertical_Dimensions extends Control_Dimensions {
 
 	protected function get_dimensions() {
 		return [
-			'top' => esc_html__( 'Top', 'elementor' ),
-			'bottom' => esc_html__( 'Bottom', 'elementor' ),
+			'top' => esc_html__( 'Top', 'steelnova' ),
+			'bottom' => esc_html__( 'Bottom', 'steelnova' ),
 		];
 	}
 

@@ -24,7 +24,7 @@ $id_suffix = wp_unique_id();
 ?>
 <form class="woocommerce-ordering" method="get">
 	<?php if ( $use_label ) : ?>
-		<label for="woocommerce-orderby-<?php echo esc_attr( $id_suffix ); ?>"><?php echo esc_html__( 'Sort by', 'woocommerce' ); ?></label>
+		<label for="woocommerce-orderby-<?php echo esc_attr( $id_suffix ); ?>"><?php echo esc_html__( 'Sort by', 'steelnova' ); ?></label>
 	<?php endif; ?>
 	<select
 		name="orderby"
@@ -32,7 +32,7 @@ $id_suffix = wp_unique_id();
 		<?php if ( $use_label ) : ?>
 			id="woocommerce-orderby-<?php echo esc_attr( $id_suffix ); ?>"
 		<?php else : ?>
-			aria-label="<?php esc_attr_e( 'Shop order', 'woocommerce' ); ?>"
+			aria-label="<?php esc_attr_e( 'Shop order', 'steelnova' ); ?>"
 		<?php endif; ?>
 	>
 		<?php foreach ( $catalog_orderby_options as $id => $name ) : ?>

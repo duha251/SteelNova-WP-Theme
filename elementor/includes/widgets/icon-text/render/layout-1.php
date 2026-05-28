@@ -13,7 +13,7 @@ $wrapper_tag = empty( $link_attrs ) ? 'div ' : 'a ';
 
 <<?php echo esc_attr( $wrapper_tag ); 
     pxl_print_html( $link_attrs );
-    echo $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ); ?>>
+    pxl_print_html( $this->get_render_attribute_string( 'wrapper', $wrapper_attrs ) ); ?>>
     <?php if( !empty( $settings['icon'] ) ): ?>
         <div class="icon-text__icon boicon-x">
             <?php steelnova_elementor_print_icon( $settings['icon'] ); ?>

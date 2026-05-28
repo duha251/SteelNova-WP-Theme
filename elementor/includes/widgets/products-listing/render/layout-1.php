@@ -64,7 +64,7 @@ if( empty( $products ) ) {
                     </a>
                 </h6>
                 <div class="price">
-                    <?php echo $product->get_price_html(); ?>
+                    <?php pxl_print_html( $product->get_price_html() ); ?>
                 </div>
             </div>
         </li>

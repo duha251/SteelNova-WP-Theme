@@ -16,12 +16,13 @@ class SteelNova_Container {
 
 	public function __construct() {
         add_action('elementor/element/container/section_layout/after_section_end', [ $this, 'register_controls' ] , 10, 2);
-        // add_action('elementor/frontend/container/before_render', [ $this, 'before_render' ]);
+        add_action('elementor/frontend/container/before_render', [ $this, 'before_render' ]);
     }
 
     public function register_controls($element, $args) {
         $this->register_steelnova_extra_controls($element, $args);
         $this->register_steelnova_animation_controls($element, $args);
+        $this->register_steelnova_sticky_controls( $element, $args );
     }
 
     public function register_steelnova_extra_controls( $element, $args ) {
@@ -105,81 +106,81 @@ class SteelNova_Container {
             'render_type' => 'none',
             'groups' => [
                 [
-                    'label' => esc_html__( 'None', 'textdomain' ),
+                    'label' => esc_html__( 'None', 'steelnova' ),
                     'options' => [
-                        '' => esc_html__( 'None', 'textdomain' ),
+                        '' => esc_html__( 'None', 'steelnova' ),
                     ],
                 ],
                 [
-                    'label' => esc_html__( 'Bouncing Entrances', 'textdomain' ),
+                    'label' => esc_html__( 'Bouncing Entrances', 'steelnova' ),
                     'options' => [
-                        'bounceIn'      => esc_html__( 'Bounce In', 'textdomain' ),
-                        'bounceInDown'  => esc_html__( 'Bounce In Down', 'textdomain' ),
-                        'bounceInLeft'  => esc_html__( 'Bounce In Left', 'textdomain' ),
-                        'bounceInRight' => esc_html__( 'Bounce In Right', 'textdomain' ),
-                        'bounceInUp'    => esc_html__( 'Bounce In Up', 'textdomain' ),
+                        'bounceIn'      => esc_html__( 'Bounce In', 'steelnova' ),
+                        'bounceInDown'  => esc_html__( 'Bounce In Down', 'steelnova' ),
+                        'bounceInLeft'  => esc_html__( 'Bounce In Left', 'steelnova' ),
+                        'bounceInRight' => esc_html__( 'Bounce In Right', 'steelnova' ),
+                        'bounceInUp'    => esc_html__( 'Bounce In Up', 'steelnova' ),
                     ],
                 ],
                 [
-                    'label' => esc_html__( 'Fading Entrances', 'textdomain' ),
+                    'label' => esc_html__( 'Fading Entrances', 'steelnova' ),
                     'options' => [
-                        'fadeIn'         => esc_html__( 'Fade In', 'textdomain' ),
-                        'fadeInDown'     => esc_html__( 'Fade In Down', 'textdomain' ),
-                        'fadeInDownBig'  => esc_html__( 'Fade In Down Big', 'textdomain' ),
-                        'fadeInLeft'     => esc_html__( 'Fade In Left', 'textdomain' ),
-                        'fadeInLeftBig'  => esc_html__( 'Fade In Left Big', 'textdomain' ),
-                        'fadeInRight'    => esc_html__( 'Fade In Right', 'textdomain' ),
-                        'fadeInRightBig' => esc_html__( 'Fade In Right Big', 'textdomain' ),
-                        'fadeInUp'       => esc_html__( 'Fade In Up', 'textdomain' ),
-                        'fadeInUpBig'    => esc_html__( 'Fade In Up Big', 'textdomain' ),
+                        'fadeIn'         => esc_html__( 'Fade In', 'steelnova' ),
+                        'fadeInDown'     => esc_html__( 'Fade In Down', 'steelnova' ),
+                        'fadeInDownBig'  => esc_html__( 'Fade In Down Big', 'steelnova' ),
+                        'fadeInLeft'     => esc_html__( 'Fade In Left', 'steelnova' ),
+                        'fadeInLeftBig'  => esc_html__( 'Fade In Left Big', 'steelnova' ),
+                        'fadeInRight'    => esc_html__( 'Fade In Right', 'steelnova' ),
+                        'fadeInRightBig' => esc_html__( 'Fade In Right Big', 'steelnova' ),
+                        'fadeInUp'       => esc_html__( 'Fade In Up', 'steelnova' ),
+                        'fadeInUpBig'    => esc_html__( 'Fade In Up Big', 'steelnova' ),
                     ],
                 ],
                 [
-                    'label' => esc_html__( 'Flippers', 'textdomain' ),
+                    'label' => esc_html__( 'Flippers', 'steelnova' ),
                     'options' => [
-                        'flipInX' => esc_html__( 'Flip In X', 'textdomain' ),
-                        'flipInY' => esc_html__( 'Flip In Y', 'textdomain' ),
+                        'flipInX' => esc_html__( 'Flip In X', 'steelnova' ),
+                        'flipInY' => esc_html__( 'Flip In Y', 'steelnova' ),
                     ],
                 ],
                 [
-                    'label' => esc_html__( 'LightSpeed', 'textdomain' ),
+                    'label' => esc_html__( 'LightSpeed', 'steelnova' ),
                     'options' => [
-                        'lightSpeedIn' => esc_html__( 'LightSpeed In', 'textdomain' ),
+                        'lightSpeedIn' => esc_html__( 'LightSpeed In', 'steelnova' ),
                     ],
                 ],
                 [
-                    'label' => esc_html__( 'Rotating Entrances', 'textdomain' ),
+                    'label' => esc_html__( 'Rotating Entrances', 'steelnova' ),
                     'options' => [
-                        'rotateIn'          => esc_html__( 'Rotate In', 'textdomain' ),
-                        'rotateInDownLeft'  => esc_html__( 'Rotate In Down Left', 'textdomain' ),
-                        'rotateInDownRight' => esc_html__( 'Rotate In Down Right', 'textdomain' ),
-                        'rotateInUpLeft'    => esc_html__( 'Rotate In Up Left', 'textdomain' ),
-                        'rotateInUpRight'   => esc_html__( 'Rotate In Up Right', 'textdomain' ),
+                        'rotateIn'          => esc_html__( 'Rotate In', 'steelnova' ),
+                        'rotateInDownLeft'  => esc_html__( 'Rotate In Down Left', 'steelnova' ),
+                        'rotateInDownRight' => esc_html__( 'Rotate In Down Right', 'steelnova' ),
+                        'rotateInUpLeft'    => esc_html__( 'Rotate In Up Left', 'steelnova' ),
+                        'rotateInUpRight'   => esc_html__( 'Rotate In Up Right', 'steelnova' ),
                     ],
                 ],
                 [
-                    'label' => esc_html__( 'Sliding Entrances', 'textdomain' ),
+                    'label' => esc_html__( 'Sliding Entrances', 'steelnova' ),
                     'options' => [
-                        'slideInDown'  => esc_html__( 'Slide In Down', 'textdomain' ),
-                        'slideInLeft'  => esc_html__( 'Slide In Left', 'textdomain' ),
-                        'slideInRight' => esc_html__( 'Slide In Right', 'textdomain' ),
-                        'slideInUp'    => esc_html__( 'Slide In Up', 'textdomain' ),
+                        'slideInDown'  => esc_html__( 'Slide In Down', 'steelnova' ),
+                        'slideInLeft'  => esc_html__( 'Slide In Left', 'steelnova' ),
+                        'slideInRight' => esc_html__( 'Slide In Right', 'steelnova' ),
+                        'slideInUp'    => esc_html__( 'Slide In Up', 'steelnova' ),
                     ],
                 ],
                 [
-                    'label' => esc_html__( 'Zoom Entrances', 'textdomain' ),
+                    'label' => esc_html__( 'Zoom Entrances', 'steelnova' ),
                     'options' => [
-                        'zoomIn'      => esc_html__( 'Zoom In', 'textdomain' ),
-                        'zoomInDown'  => esc_html__( 'Zoom In Down', 'textdomain' ),
-                        'zoomInLeft'  => esc_html__( 'Zoom In Left', 'textdomain' ),
-                        'zoomInRight' => esc_html__( 'Zoom In Right', 'textdomain' ),
-                        'zoomInUp'    => esc_html__( 'Zoom In Up', 'textdomain' ),
+                        'zoomIn'      => esc_html__( 'Zoom In', 'steelnova' ),
+                        'zoomInDown'  => esc_html__( 'Zoom In Down', 'steelnova' ),
+                        'zoomInLeft'  => esc_html__( 'Zoom In Left', 'steelnova' ),
+                        'zoomInRight' => esc_html__( 'Zoom In Right', 'steelnova' ),
+                        'zoomInUp'    => esc_html__( 'Zoom In Up', 'steelnova' ),
                     ],
                 ],
                 [
-                    'label' => esc_html__( 'Specials', 'textdomain' ),
+                    'label' => esc_html__( 'Specials', 'steelnova' ),
                     'options' => [
-                        'rollIn' => esc_html__( 'Roll In', 'textdomain' ),
+                        'rollIn' => esc_html__( 'Roll In', 'steelnova' ),
                     ],
                 ],
             ],
@@ -207,19 +208,111 @@ class SteelNova_Container {
         $element->end_controls_section();
     }
 
-        /**
+    /**
      * Register Loop Animation Controls.
      */
+    protected function register_steelnova_sticky_controls( $element, $args ) {
+        $this->start_steelnova_section([
+            'label'   => __( 'Is Sticky', 'steelnova' ),
+            'name' => 'section_steelnova_sticky',
+        ], $element);
+                // Sticky   
+        $this->select([
+            'name' => 'is_sticky',
+            'label' => esc_html__( 'Is Sticky', 'steelnova' ),
+            'frontend_available' => true,
+            'render_type' => 'template',
+            'options'      => array(
+                'on'  => esc_html__( 'On', 'steelnova' ),           
+                'off' => esc_html__( 'Off', 'steelnova' )
+            ),
+            'default'      => 'off',
+        ], $element);
+        $this->select([
+            'name' => 'sticky_position',
+            'label' => esc_html__( 'Position', 'steelnova' ),
+            'frontend_available' => true,
+            'render_type' => 'none',
+            'options'      => array(
+                'top'         => esc_html__( 'Top', 'steelnova' ),           
+                'bottom'      => esc_html__( 'Bottom', 'steelnova' )
+            ),
+            'default'      => 'top',
+            'condition' => [
+                'is_sticky' => 'on',
+            ]
+        ], $element);
+        $this->number([
+            'name' => 'sticky_offset',
+            'label' => esc_html__( 'Offset(px)', 'steelnova' ),
+            'default' => 0,
+            'min' => 0,
+            'max' => 500,
+            'condition' => [
+                'is_sticky' => 'on',
+            ],
+        ], $element); 
+        $this->switcher([
+            'name' => 'sticky_spacing',
+            'label' => __('Spacing', 'steelnova'),
+            'default' => '',
+            'condition' => [
+                'is_sticky' => 'on',
+            ],
+        ], $element);
+        $this->text([
+            'name' => 'sticky_trigger',
+            'label' => esc_html__( 'Trigger', 'steelnova' ),
+            'placeholder' => esc_html__( 'e.g: .my-class', 'steelnova' ),
+            'description' => __('This is a number(px) or .class, #id.', 'steelnova'),
+            'condition' => [
+                'is_sticky' => 'on',
+            ],
+        ], $element);  
+        $this->select([
+            'name' => 'sticky_responsive',
+            'label' => esc_html__( 'Break On', 'steelnova' ),
+            'default' => '',
+            'options' => Static_Options::elementor_divice_options(),
+            'render_type' => 'none',
+            'frontend_available' => true,
+            'condition' => [
+                'is_sticky' => 'on',
+            ],
+        ], $element);   
+        $this->number([
+            'name' => 'sticky_responsive_screen_w',
+            'label' => __('Screen Width', 'steelnova'),
+            'min' => 0,
+            'default' => 767,
+            'max' => 2400,
+            'condition' => [
+                'sticky_responsive' => 'custom',
+            ]
+        ], $element);
+        $element->end_controls_section();
+    }
 
+    public function before_render( $element ) {
+        $settings = $element->get_settings_for_display();
+        wp_enqueue_script('steelnova-sticky');
+        /**
+         * Add sticky attributes if sticky is enabled
+         */
+        if ( ! empty( $settings['is_sticky'] ) && $settings['is_sticky'] === 'on' ) {
+            $sticky_settings = [
+                'position' => ! empty( $settings['sticky_position'] ) ? $settings['sticky_position'] : 'top',
+                'offset'   => isset( $settings['sticky_offset'] ) ? (int) $settings['sticky_offset'] : 0,
+                'spacing'  => ! empty( $settings['sticky_spacing'] ) ? true : false,
+                'trigger'  => ! empty( $settings['sticky_trigger'] ) ? $settings['sticky_trigger'] : '',
+                'breakOn'  => ! empty( $settings['sticky_responsive_screen_w'] ) ? (int) $settings['sticky_responsive_screen_w'] : 767,
+            ];
 
-        //     $this->group_entrance_animation([
-        //     'name' => 'title_',
-        //     'selector' => '{{WRAPPER}} .heading .heading__title'
-        // ]);
-
-    // public function before_render( $settings ) {
-    //     if(  !empty( $settings['steelnova_bg_overlay_background'] ) ) {
-
-    //     }
-    // }
+            $element->add_render_attribute(
+                '_wrapper',
+                'data-sticky-settings',
+                wp_json_encode( $sticky_settings )
+            );
+        }
+    }
 }

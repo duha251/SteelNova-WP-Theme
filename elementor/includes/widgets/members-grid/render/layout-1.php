@@ -30,6 +30,7 @@ $display_args = [
 $wrapper_attrs = [
     'class' => 'grid cs-members-grid is-post-type-member',
     'data-layout'   => $layout,
+    'data-settings' => json_encode( array_merge( $query_args, ['grid_load_type' => $settings['grid_load_type']], ['display_args' => $display_args] ),  ),
 ];
 
 $this->add_render_attribute('wrapper', $wrapper_attrs);
@@ -56,7 +57,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
         <?php endforeach; ?>
     </div>
     <?php if( $settings['grid_load_type'] === 'pagination'  ) : ?>
-        <?php echo steelnova()->component->get_pagination( $query, false ); ?>
+        <?php echo steelnova()->component->get_pagination( $query, true ); ?>
     <?php endif; ?>
     <?php if( $settings['grid_load_type'] === 'load_more' ) : ?>
         <div class="grid__loadmore ajax">

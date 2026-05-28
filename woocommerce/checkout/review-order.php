@@ -19,8 +19,8 @@
 <div class="shop_table woocommerce-checkout-review-order-table review-order-table">
 
 	<div class="review-order-table__head">
-		<div class="review-order-table__col review-order-table__col--name"><?php esc_html_e( 'Product', 'mindverse' ); ?></div>
-		<div class="review-order-table__col review-order-table__col--total"><?php esc_html_e( 'Price', 'mindverse' ); ?></div>
+		<div class="review-order-table__col review-order-table__col--name"><?php esc_html_e( 'Product', 'steelnova' ); ?></div>
+		<div class="review-order-table__col review-order-table__col--total"><?php esc_html_e( 'Price', 'steelnova' ); ?></div>
 	</div>
 
 	<div class="review-order-table__body">
@@ -84,7 +84,7 @@
 
 		<div class="review-order-table__item cart-subtotal">
 			<div class="review-order-table__col review-order-table__col--label label">
-				<?php esc_html_e( 'Subtotal', 'mindverse' ); ?>
+				<?php esc_html_e( 'Subtotal', 'steelnova' ); ?>
 			</div>
 			<div class="review-order-table__col review-order-table__col--value value">
 				<?php wc_cart_totals_subtotal_html(); ?>
@@ -157,7 +157,7 @@
 
 		<div class="review-order-table__item order-total">
 			<div class="review-order-table__col review-order-table__col--label label">
-				<?php esc_html_e( 'Total', 'mindverse' ); ?>
+				<?php esc_html_e( 'Total', 'steelnova' ); ?>
 			</div>
 			<div class="review-order-table__col review-order-table__col--value value">
 				<div class="price">

@@ -91,12 +91,12 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         /** Normal Tab Style */
         $this->_start_controls_tab([
             'name' => 'main_menu_normal_tab',
-            'label' => __( 'Normal', 'mindverse' ),
+            'label' => __( 'Normal', 'steelnova' ),
         ]);
         // Text Color
         $this->color([
             'name' => 'main_menu_color',
-            'label' => __( 'Text Color', 'mindverse' ),
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
                 '{{WRAPPER}} .navigation-menu > li > a' => 'color: {{VALUE}}',
             ],
@@ -116,12 +116,12 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         /** Hover/Active Tab Style */
         $this->_start_controls_tab([
             'name' => 'main_menu_normal_hover',
-            'label' => __( 'Hover/Active', 'mindverse' ),
+            'label' => __( 'Hover/Active', 'steelnova' ),
         ]);
         // Text Color Hover
         $this->color([
             'name' => 'main_menu_color_hover',
-            'label' => __( 'Text Color', 'mindverse' ),
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
                 '{{WRAPPER}} .navigation-menu > li > a:hover, 
                 {{WRAPPER}} .navigation-menu > li:hover > a,
@@ -149,7 +149,7 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         // Border Hover 
         $this->color([
             'name' => '_main_menu_border_color_hover',
-            'label' => __( 'Border Color', 'mindverse' ),
+            'label' => __( 'Border Color', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
                 '{{WRAPPER}} .navigation-menu > li > a:hover > .menu-link-inner' => 'border-color: {{VALUE}}',
@@ -161,30 +161,30 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         ]);
         // $this->select([
         //     'name' => 'main_menu_hover_style',
-        //     'label' => __( 'Hover Style', 'mindverse' ),
+        //     'label' => __( 'Hover Style', 'steelnova' ),
         //     'separator' => 'before',
         //     'default' => '',
         //     'groups' => [
         //         [
-        //             'label' => __('None', 'mindverse'),
+        //             'label' => __('None', 'steelnova'),
         //             'options' => [
-        //                 '' => __('None', 'mindverse'),
+        //                 '' => __('None', 'steelnova'),
         //             ]
         //         ],
         //         [
-        //             'label' => __('Underline', 'mindverse'),
+        //             'label' => __('Underline', 'steelnova'),
         //             'options' => [
-        //                 'underline-ltr' => __('Underline LTR', 'mindverse'),
-        //                 'underline-rtl' => __('Underline RTL', 'mindverse'),
-        //                 'transition-fill-animation' => __('Transition Fill Animation', 'mindverse'),
-        //                 'rotation-fill-animation' => __('Rotation Fill Animation', 'mindverse'),
+        //                 'underline-ltr' => __('Underline LTR', 'steelnova'),
+        //                 'underline-rtl' => __('Underline RTL', 'steelnova'),
+        //                 'transition-fill-animation' => __('Transition Fill Animation', 'steelnova'),
+        //                 'rotation-fill-animation' => __('Rotation Fill Animation', 'steelnova'),
         //             ]
         //         ],
         //     ],
         // ]);
         $this->slider([
             'name' => 'main_menu_link_line_thickness',
-            'label' => __('Line Thickness', 'mindverse'),
+            'label' => __('Line Thickness', 'steelnova'),
             'selectors' => [
                 '{{WRAPPER}} .navigation-menu > li > a > .menu-link-inner:after' => 'height: {{SIZE}}{{UNIT}};',
             ],
@@ -218,7 +218,7 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         /** Box Tab Style */
         $this->_start_controls_tab([
             'name' => 'submenu_box_tab',
-            'label' => __( 'Box', 'mindverse' ),
+            'label' => __( 'Box', 'steelnova' ),
         ]);
         $this->group_background([
             'name' => 'submenu_box_background',
@@ -233,12 +233,12 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         /** Normal Tab Style */
         $this->_start_controls_tab([
             'name' => 'submenu_normal_tab',
-            'label' => __( 'Normal', 'mindverse' ),
+            'label' => __( 'Normal', 'steelnova' ),
         ]);
         // Text Color
         $this->color([
             'name' => 'submenu_color',
-            'label' => __( 'Text Color', 'mindverse' ),
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
                 '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a' => 'color: {{VALUE}}',
             ],
@@ -259,12 +259,12 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         /** Hover/Active Tab Style */
         $this->_start_controls_tab([
             'name' => 'submenu_normal_hover',
-            'label' => __( 'Hover/Active', 'mindverse' ),
+            'label' => __( 'Hover/Active', 'steelnova' ),
         ]);
         // Text Color Hover
         $this->color([
             'name' => 'submenu_color_hover',
-            'label' => __( 'Text Color', 'mindverse' ),
+            'label' => __( 'Text Color', 'steelnova' ),
             'selectors' => [
                 '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a:hover' => 'color: {{VALUE}}',
             ],
@@ -279,7 +279,7 @@ class Widget_Navigation_Menu extends SteelNova_Widget_Base {
         // Border Hover 
         $this->color([
             'name' => '_submenu_border_color_hover',
-            'label' => __( 'Border Color', 'mindverse' ),
+            'label' => __( 'Border Color', 'steelnova' ),
             'separator' => 'before',
             'selectors' => [
                 '{{WRAPPER}} .navigation-menu li > .sub-menu > li > a:hover' => 'border-color: {{VALUE}}',

@@ -39,7 +39,7 @@ class Widget_Icons_Carousel extends SteelNova_Widget_Base {
     protected function register_content_controls() {
         $this->start_content_section([ 
             'name' => 'content_section', 
-            'label' => __('Content', 'mindverse') 
+            'label' => __('Content', 'steelnova') 
         ]);
         $repeater = new \Elementor\Repeater();
         $this->icons([

@@ -41,7 +41,7 @@ if( empty( $categories ) ) {
 
 ?>
 
-<ul <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+<ul <?php pxl_print_html( $this->get_render_attribute_string( 'wrapper' ); ?>>
     <?php
         foreach ( $categories as $cat_id => $cat_label ) {
 

@@ -19,10 +19,10 @@ $template_id = steelnova()->get_theme_option('404_template', '');
         <div class="container">
             <div class="inner">
                 <h1 class="error404__title">
-                    <?php esc_html_e( '404' ); ?>
+                    <?php esc_html_e( '404', 'steelnova' ); ?>
                 </h1>
                 <div class="error404__subtitle">
-                    <?php esc_html_e( 'Oops! page not found' ); ?>
+                    <?php esc_html_e( 'Oops! page not found', 'steelnova' ); ?>
                 </div>
             </div>
         </div>

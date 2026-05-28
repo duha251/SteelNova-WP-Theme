@@ -20,7 +20,7 @@
     }
 }
 
-.blog, .page {
+.blog, .page:not(:has(.woocommerce)) {
     #main {
         --cs-container: 1100px;
         padding-inline: 15px;

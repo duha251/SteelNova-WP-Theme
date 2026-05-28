@@ -7,17 +7,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Cart extends SteelNova_WooCommerce {
     private $version;
-    public function __construct( $theme_version ) {   
+
+    public function __construct( $theme_version ) {
         $this->version = $theme_version;
+
         add_filter( 'woocommerce_cart_totals_coupon_label', [ $this, 'coupon_label' ] );
         add_filter( 'woocommerce_return_to_shop_text', [ $this, 'button_text_cart_empty' ] );
         add_filter( 'woocommerce_add_to_cart_fragments', [ $this, 'add_cart_fragments' ] );
 
-        add_action( 'wp_ajax_mindverse_remove_cart_item', [ $this, 'ajax_remove_cart_item' ] );
-        add_action( 'wp_ajax_nopriv_mindverse_remove_cart_item', [ $this, 'ajax_remove_cart_item' ] );
+        add_action( 'wp_ajax_steelnova_remove_cart_item', [ $this, 'ajax_remove_cart_item' ] );
+        add_action( 'wp_ajax_nopriv_steelnova_remove_cart_item', [ $this, 'ajax_remove_cart_item' ] );
 
-        add_action( 'wp_ajax_mindverse_update_cart_fragments', [ $this, 'ajax_update_cart_fragments' ] );
-        add_action( 'wp_ajax_nopriv_mindverse_update_cart_fragments', [ $this, 'ajax_update_cart_fragments' ] );
+        add_action( 'wp_ajax_steelnova_update_cart_fragments', [ $this, 'ajax_update_cart_fragments' ] );
+        add_action( 'wp_ajax_nopriv_steelnova_update_cart_fragments', [ $this, 'ajax_update_cart_fragments' ] );
 
         remove_action( 'woocommerce_before_cart', 'woocommerce_output_all_notices', 10 );
         remove_action( 'woocommerce_cart_is_empty', 'wc_empty_cart_message', 10 );
@@ -39,16 +41,16 @@ class Cart extends SteelNova_WooCommerce {
 
     public function empty_cart_message() {
         ?>
-            <div class="empty-cart-label"><?php echo __('Empty Cart!', 'mindverse'); ?></div>
+            <div class="empty-cart-label"><?php echo esc_html__( 'Empty Cart!', 'steelnova' ); ?></div>
         <?php
     }
 
     public function ajax_remove_cart_item() {
-        check_ajax_referer( 'mindverse_remove_cart_item_nonce', 'nonce' );
+        check_ajax_referer( 'steelnova_remove_cart_item_nonce', 'nonce' );
 
         if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
             wp_send_json_error( [
-                'message' => __( 'Cart is unavailable.', 'mindverse' ),
+                'message' => __( 'Cart is unavailable.', 'steelnova' ),
             ] );
         }
 
@@ -58,7 +60,13 @@ class Cart extends SteelNova_WooCommerce {
 
         if ( ! $cart_item_key ) {
             wp_send_json_error( [
-                'message' => __( 'Cart item key is missing.', 'mindverse' ),
+                'message' => __( 'Cart item key is missing.', 'steelnova' ),
+            ] );
+        }
+
+        if ( ! WC()->cart->get_cart_item( $cart_item_key ) ) {
+            wp_send_json_error( [
+                'message' => __( 'This cart item does not exist.', 'steelnova' ),
             ] );
         }
 
@@ -66,12 +74,13 @@ class Cart extends SteelNova_WooCommerce {
 
         if ( ! $removed ) {
             wp_send_json_error( [
-                'message' => __( 'Unable to remove this item.', 'mindverse' ),
+                'message' => __( 'Unable to remove this item.', 'steelnova' ),
             ] );
         }
 
         WC()->cart->calculate_totals();
-
+        WC()->cart->maybe_set_cart_cookies();
+	    wc_clear_notices();
         \WC_AJAX::get_refreshed_fragments();
     }
 
@@ -89,6 +98,7 @@ class Cart extends SteelNova_WooCommerce {
         </div>
         <?php
         $fragments['#cartDrawerContent'] = ob_get_clean();
+
         ob_start();
         ?>
         <div class="cart-total">
@@ -109,20 +119,23 @@ class Cart extends SteelNova_WooCommerce {
         ?>
         <div class="cart-drawer drawer" id="cartDrawer" data-drawer="right" aria-hidden="true">
             <div class="cart-drawer__header">
-                <h3 class="cart-drawer__title"><?php echo esc_html__( 'Your cart', 'mindverse' ); ?></h3>
-                <button type="button" class="cs-button--close" aria-label="<?php echo esc_attr__( 'Close cart', 'mindverse' ); ?>">
-                    <span class="icon-close"></span>
+                <h3 class="cart-drawer__title"><?php echo esc_html__( 'Your cart', 'steelnova' ); ?></h3>
+                <button type="button" class="cs-button--close" aria-label="<?php echo esc_attr__( 'Close cart', 'steelnova' ); ?>">
+                    <span class="icon-x"></span>
                 </button>
             </div>
+
             <div class="cart-drawer__body" id="cartDrawerContent">
                 <?php pxl_print_html( $this->render_cart_content() ); ?>
             </div>
+
             <div class="cart-drawer__footer">
                 <div class="cart-total">
                     <?php pxl_print_html( $this->cart_drawer_subtotal_fragment() ); ?>
                 </div>
+
                 <div class="cart-actions">
-                    <?php 
+                    <?php
                         woocommerce_widget_shopping_cart_button_view_cart();
                         woocommerce_widget_shopping_cart_proceed_to_checkout();
                     ?>
@@ -135,8 +148,8 @@ class Cart extends SteelNova_WooCommerce {
     public function cart_drawer_subtotal_fragment() {
         ob_start();
         ?>
-        <div class="label"><?php echo esc_html__('Subtotal:', 'mindverse'); ?></div>
-        <div class="value"><?php echo WC()->cart->get_cart_subtotal() ?></div>
+        <div class="label"><?php echo esc_html__( 'Subtotal:', 'steelnova' ); ?></div>
+        <div class="value"><?php echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?></div>
         <?php
         return ob_get_clean();
     }
@@ -158,7 +171,7 @@ class Cart extends SteelNova_WooCommerce {
         if ( empty( $cart_items ) ) :
             ?>
             <div class="cart-empty">
-                <p><?php echo esc_html__( 'Your cart is empty.', 'mindverse' ); ?></p>
+                <p><?php echo esc_html__( 'Your cart is empty.', 'steelnova' ); ?></p>
             </div>
             <?php
         else :
@@ -195,7 +208,7 @@ class Cart extends SteelNova_WooCommerce {
                             <h4 class="cart-item__title">
                                 <?php if ( $product_link ) : ?>
                                     <a href="<?php echo esc_url( $product_link ); ?>">
-                                        <?php pxl_print_html( $product_name . '<span class="product-quantity"> x' . $quantity . '</span>'); ?>
+                                        <?php pxl_print_html( $product_name . '<span class="product-quantity"> x' . $quantity . '</span>' ); ?>
                                     </a>
                                 <?php else : ?>
                                     <?php pxl_print_html( $product_name . '<span class="product-quantity"> x' . $quantity . '</span>' ); ?>
@@ -206,14 +219,14 @@ class Cart extends SteelNova_WooCommerce {
                                 <?php echo wp_kses_post( $price_html ); ?>
                             </div>
 
-                                <a
-                                    href="<?php echo esc_url( $remove_url ); ?>"
-                                    class="remove-cart-item"
-                                    data-cart-item-key="<?php echo esc_attr( $cart_item_key ); ?>"
-                                    aria-label="<?php echo esc_attr( sprintf( __( 'Remove "%s" from cart', 'mindverse' ), $product_name ) ); ?>"
-                                >
-                                    <span class="icon-close"></span>
-                                </a>
+                            <a
+                                href="<?php echo esc_url( $remove_url ); ?>"
+                                class="remove-cart-item"
+                                data-cart-item-key="<?php echo esc_attr( $cart_item_key ); ?>"
+                                aria-label="<?php echo esc_attr( sprintf( __( 'Remove "%s" from cart', 'steelnova' ), $product_name ) ); ?>"
+                            >
+                                <span class="icon-x"></span>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -224,38 +237,101 @@ class Cart extends SteelNova_WooCommerce {
         return ob_get_clean();
     }
 
-    function ajax_update_cart_fragments() {
+    public function ajax_update_cart_fragments() {
         \WC_AJAX::get_refreshed_fragments();
     }
 
     public function enqueue_scripts() {
-        if ( is_admin() || !is_cart() ) {
+        if ( is_admin() ) {
             return;
         }
 
         parent::enqueue_scripts();
 
-
-        wp_enqueue_style('wc-cart-style',get_template_directory_uri() . '/woo/assets/css/cart.min.css', [], $this->version );
-
+        wp_enqueue_style(
+            'wc-cart-style',
+            get_template_directory_uri() . '/woo/assets/css/cart.min.css',
+            [],
+            $this->version
+        );
 
         wp_enqueue_script(
             'wc-cart-js',
             get_template_directory_uri() . '/woo/assets/js/cart.js',
-            [ 'jquery' ],
+            [ 'jquery', 'wc-cart-fragments' ],
             null,
             true
         );
 
         wp_localize_script(
             'wc-cart-js',
-            'mindverse_cart_params',
+            'steelnova_cart_params',
             [
-                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                'ajax_url'    => admin_url( 'admin-ajax.php' ),
                 'wc_ajax_url' => \WC_AJAX::get_endpoint( 'add_to_cart' ),
-                'nonce'    => wp_create_nonce( 'mindverse_remove_cart_item_nonce' ),
+                'nonce'       => wp_create_nonce( 'steelnova_remove_cart_item_nonce' ),
             ]
         );
 
+        wp_add_inline_script(
+            'wc-cart-js',
+            "
+            (function ($) {
+                'use strict';
+
+                $(document).on('click', '.cart-drawer .remove-cart-item', function (e) {
+                    e.preventDefault();
+
+                    var \$button = $(this);
+                    var \$cartItem = \$button.closest('.cart-item');
+                    var cartItemKey = \$button.data('cart-item-key');
+                    var fallbackUrl = \$button.attr('href');
+
+                    if (!cartItemKey || \$button.hasClass('is-loading')) {
+                        return;
+                    }
+
+                    \$button.addClass('is-loading');
+                    \$cartItem.addClass('is-removing');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: steelnova_cart_params.ajax_url,
+                        dataType: 'json',
+                        data: {
+                            action: 'steelnova_remove_cart_item',
+                            cart_item_key: cartItemKey,
+                            nonce: steelnova_cart_params.nonce
+                        },
+                        success: function (response) {
+                            if (!response || !response.fragments) {
+                                if (fallbackUrl) {
+                                    window.location.href = fallbackUrl;
+                                }
+
+                                return;
+                            }
+
+                            $.each(response.fragments, function (selector, html) {
+                                $(selector).replaceWith(html);
+                            });
+
+                            $(document.body).trigger('removed_from_cart', [response.fragments, response.cart_hash, \$button]);
+                        },
+                        error: function () {
+                            if (fallbackUrl) {
+                                window.location.href = fallbackUrl;
+                            }
+                        },
+                        complete: function () {
+                            \$button.removeClass('is-loading');
+                            \$cartItem.removeClass('is-removing');
+                        }
+                    });
+                });
+            })(jQuery);
+            ",
+            'after'
+        );
     }
 }

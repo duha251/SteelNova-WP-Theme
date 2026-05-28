@@ -32,7 +32,9 @@ class Widget_Products_Listing extends SteelNova_Widget_Base {
         // Content Controls
         $this->register_content_controls();
         // Style Controls
-        // $this->register_style_controls();
+        $this->register_product_item_style_controls();
+        $this->register_product_thumbnail_style_controls();
+        $this->register_product_name_style_controls();
         // Settings Controls
                 // Steelnova Controls
         $this->register_steelnova_extra_controls();
@@ -130,5 +132,219 @@ class Widget_Products_Listing extends SteelNova_Widget_Base {
         $this->end_controls_section();
     }
 
+    /**
+     * Product Item (.products-listing .product)
+     * CSS: gap, align-items — list gap + item gap
+     */
+    protected function register_product_item_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_product_item_style',
+            'label' => __( 'Product Item', 'steelnova' ),
+        ]);
+
+        $this->size([
+            'name'      => 'products_list_gap',
+            'label'     => __( 'List Gap', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->size([
+            'name'      => 'product_item_gap',
+            'label'     => __( 'Item Gap (Thumbnail ↔ Content)', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->_start_controls_tabs([ 'name' => 'product_item_tabs' ]);
+
+        $this->_start_controls_tab([
+            'name'  => 'product_item_tab_normal',
+            'label' => __( 'Normal', 'steelnova' ),
+        ]);
+        $this->group_background([
+            'name'     => 'product_item_bg',
+            'selector' => '{{WRAPPER}} .products-listing .product',
+        ]);
+        $this->group_box_css([
+            'name'     => 'product_item_',
+            'selector' => '{{WRAPPER}} .products-listing .product',
+        ]);
+        $this->end_controls_tab();
+
+        $this->_start_controls_tab([
+            'name'  => 'product_item_tab_hover',
+            'label' => __( 'Hover', 'steelnova' ),
+        ]);
+        $this->group_background([
+            'name'     => 'product_item_bg_hover',
+            'selector' => '{{WRAPPER}} .products-listing .product:hover',
+        ]);
+        $this->group_box_css([
+            'name'     => 'product_item_hover_',
+            'selector' => '{{WRAPPER}} .products-listing .product:hover',
+        ]);
+        $this->time([
+            'name'      => 'product_item_transition',
+            'label'     => __( 'Transition Duration', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product' => 'transition-duration: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+    }
+
+    /**
+     * Product Thumbnail (.products-listing .product__thumbnail)
+     * CSS: flex-basis, min-width, padding, min-height, border-radius, border
+     */
+    protected function register_product_thumbnail_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_product_thumbnail_style',
+            'label' => __( 'Thumbnail', 'steelnova' ),
+        ]);
+
+        $this->size([
+            'name'      => 'thumbnail_width',
+            'label'     => __( 'Width', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product__thumbnail' => 'flex: 0 1 {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->size([
+            'name'      => 'thumbnail_min_width',
+            'label'     => __( 'Min Width', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product__thumbnail' => 'min-width: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->size([
+            'name'      => 'thumbnail_min_height',
+            'label'     => __( 'Min Height', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product__thumbnail' => 'min-height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->size([
+            'name'      => 'thumbnail_img_max_width',
+            'label'     => __( 'Image Max Width', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product__thumbnail img' => 'max-width: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->_start_controls_tabs([ 'name' => 'thumbnail_tabs' ]);
+
+        $this->_start_controls_tab([
+            'name'  => 'thumbnail_tab_normal',
+            'label' => __( 'Normal', 'steelnova' ),
+        ]);
+        $this->group_background([
+            'name'     => 'thumbnail_bg',
+            'selector' => '{{WRAPPER}} .products-listing .product__thumbnail',
+        ]);
+        $this->group_box_css([
+            'name'     => 'thumbnail_',
+            'selector' => '{{WRAPPER}} .products-listing .product__thumbnail',
+        ]);
+        $this->group_css_filter([
+            'name'     => 'thumbnail_img_filter',
+            'selector' => '{{WRAPPER}} .products-listing .product__thumbnail img',
+        ]);
+        $this->end_controls_tab();
+
+        $this->_start_controls_tab([
+            'name'  => 'thumbnail_tab_hover',
+            'label' => __( 'Hover', 'steelnova' ),
+        ]);
+        $this->group_background([
+            'name'     => 'thumbnail_bg_hover',
+            'selector' => '{{WRAPPER}} .products-listing .product:hover .product__thumbnail',
+        ]);
+        $this->group_box_css([
+            'name'     => 'thumbnail_hover_',
+            'selector' => '{{WRAPPER}} .products-listing .product:hover .product__thumbnail',
+        ]);
+        $this->group_css_filter([
+            'name'     => 'thumbnail_img_filter_hover',
+            'selector' => '{{WRAPPER}} .products-listing .product:hover .product__thumbnail img',
+        ]);
+        $this->time([
+            'name'      => 'thumbnail_transition',
+            'label'     => __( 'Transition Duration', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product__thumbnail' => 'transition-duration: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+    }
+
+    /**
+     * Product Name (.products-listing .product__name)
+     * CSS: margin-top, color, hover color
+     */
+    protected function register_product_name_style_controls() {
+        $this->start_style_section([
+            'name'  => 'section_product_name_style',
+            'label' => __( 'Product Name', 'steelnova' ),
+        ]);
+
+        $this->group_typography([
+            'name'     => 'product_name_typography',
+            'selector' => '{{WRAPPER}} .products-listing .product__name',
+        ]);
+
+        $this->size([
+            'name'      => 'product_name_margin_top',
+            'label'     => __( 'Margin Top', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product__name' => 'margin-top: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->_start_controls_tabs([ 'name' => 'product_name_tabs' ]);
+
+        $this->_start_controls_tab([
+            'name'  => 'product_name_tab_normal',
+            'label' => __( 'Normal', 'steelnova' ),
+        ]);
+        $this->color([
+            'name'      => 'product_name_color',
+            'label'     => __( 'Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product__name,
+                 {{WRAPPER}} .products-listing .product__name > a' => 'color: {{VALUE}};',
+            ],
+        ]);
+        $this->end_controls_tab();
+
+        $this->_start_controls_tab([
+            'name'  => 'product_name_tab_hover',
+            'label' => __( 'Hover', 'steelnova' ),
+        ]);
+        $this->color([
+            'name'      => 'product_name_color_hover',
+            'label'     => __( 'Color', 'steelnova' ),
+            'selectors' => [
+                '{{WRAPPER}} .products-listing .product__name:hover,
+                 {{WRAPPER}} .products-listing .product__name > a:hover' => 'color: {{VALUE}};',
+            ],
+        ]);
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+    }
 
 }

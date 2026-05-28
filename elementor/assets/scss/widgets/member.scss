@@ -1,6 +1,5 @@
 @use '../../../../assets/scss/core' as *;
 
-
 .cs-members-grid {
     --cs-row-gap: 60px;
     --cs-column-gap: 52px;
@@ -28,6 +27,9 @@
         &__title {
             > a {
                 color: inherit;
+            }
+            &:hover {
+                color: #FF5B1B;
             }
         }
         &__role {
