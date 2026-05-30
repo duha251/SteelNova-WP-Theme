@@ -16,7 +16,7 @@ $this->add_render_attribute('wrapper', $wrapper_attrs);
 
 ?>
 
-<ul <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
+<ul <?php pxl_print_html( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php foreach ( $settings['items'] as $i => $item ) : ?>
         <?php
             $item_key = 'item-' . $i;

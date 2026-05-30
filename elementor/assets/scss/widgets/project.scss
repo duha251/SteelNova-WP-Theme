@@ -24,7 +24,7 @@
             @include paragraph-5;
             color: #FFF;
             .icon-dot {
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
             }
         }
     }
@@ -121,7 +121,7 @@
         &__title {
             color: #FFF;
             &:hover {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
         .divider {
@@ -136,7 +136,7 @@
             margin-top: 23px;
             height: 46px;
             border-radius: 6px;
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             color: #FFF;
             padding-inline: 16px;
             min-width: 194px;
@@ -144,7 +144,7 @@
             @include text-button-1;
             &:hover {
                 background-color: #FFF;
-                color: #0A1119;
+                color: var(--cs-heading-color);
                 .cs-button__icon {
                     transform: rotate(-45deg);
                 }
@@ -215,7 +215,7 @@
         &__category {
             margin-bottom: 19px;
             > a {
-                background-color: #121512;
+                background-color: var(--cs-secondary-color);
                 color: #FFF;
             }
         }
@@ -238,10 +238,10 @@
             li {
                 @include d-flex(16px, center);
                 @include h7;
-                color: #0A1119;
+                color: var(--cs-heading-color);
                 .list__item-icon {
                     @include round-box(36px);
-                    background-color: #FF5B1B;
+                    background-color: var(--cs-primary-color);
                     color: #FFF;
                 }
             }
@@ -258,7 +258,7 @@
             position: absolute;
             right: 0;
             top: 0;
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             color: #FFF;
             &__icon {
                 transform: rotate(-45deg);
@@ -267,7 +267,7 @@
                 --cs-box-size: 50px;
             }
             &:hover {
-                background-color: #0A1119;
+                background-color: var(--cs-heading-color);
                 .cs-button__icon {
                     transform: rotate(0deg);
                 }

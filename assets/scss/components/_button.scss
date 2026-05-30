@@ -31,7 +31,7 @@ button, .cs-button {
 .cs-button--primary {
     height: 54px;
     @include text-button-3;
-    background-color: #FF5B1B;
+    background-color: var(--cs-primary-color);
     color: #FFF;
     padding-inline: 30px;
     border-radius: 8px;
@@ -52,7 +52,7 @@ button, .cs-button {
     right: 20px;
     width: 100%;
     height: 40px;
-    background-color: #FF5B1B;
+    background-color: var(--cs-primary-color);
     color: #FFF;
     @include round-box(52px);
     opacity: 0;

@@ -395,3 +395,80 @@ if( ! function_exists( 'steelnova_print_swiper_controls' ) ) {
         echo steelnova_get_swiper_controls( $settings );
     }
 }
+
+if ( ! function_exists( 'steelnova_print_html' ) ) {
+	function steelnova_print_html( $html ) {
+		echo wp_kses(
+			$html,
+			[
+				'svg' => [
+					'class'       => true,
+					'xmlns'       => true,
+					'width'       => true,
+					'height'      => true,
+					'viewBox'     => true,
+					'fill'        => true,
+					'stroke'      => true,
+					'stroke-width' => true,
+					'aria-hidden' => true,
+					'role'        => true,
+					'focusable'   => true,
+				],
+				'path' => [
+					'd'            => true,
+					'fill'         => true,
+					'stroke'       => true,
+					'stroke-width' => true,
+					'stroke-linecap' => true,
+					'stroke-linejoin' => true,
+				],
+				'g' => [
+					'fill'      => true,
+					'stroke'    => true,
+					'clip-path' => true,
+				],
+				'circle' => [
+					'cx'     => true,
+					'cy'     => true,
+					'r'      => true,
+					'fill'   => true,
+					'stroke' => true,
+				],
+				'rect' => [
+					'x'      => true,
+					'y'      => true,
+					'width'  => true,
+					'height' => true,
+					'rx'     => true,
+					'fill'   => true,
+					'stroke' => true,
+				],
+				'line' => [
+					'x1'     => true,
+					'y1'     => true,
+					'x2'     => true,
+					'y2'     => true,
+					'stroke' => true,
+				],
+				'polyline' => [
+					'points' => true,
+					'fill'   => true,
+					'stroke' => true,
+				],
+				'polygon' => [
+					'points' => true,
+					'fill'   => true,
+					'stroke' => true,
+				],
+				'use' => [
+					'href'       => true,
+					'xlink:href' => true,
+				],
+				'defs' => [],
+				'clipPath' => [
+					'id' => true,
+				],
+			]
+		);
+	}
+}

@@ -120,7 +120,7 @@
             display: inline-flex;
             height: 46px;
             border-radius: 6px;
-            background-color: #0A1119;
+            background-color: var(--cs-heading-color);
             color: #FFF;
             width: 100%;
             padding: 0;
@@ -134,7 +134,7 @@
                 display: none;
             }
             &:hover {
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
                 color: #FFF;
             }
         }
@@ -199,7 +199,7 @@
                 margin: 0;
                 &:hover {
                     a {
-                        color: #FF5B1B;
+                        color: var(--cs-primary-color);
                     }
                 }
             }
@@ -243,7 +243,7 @@
                     color: inherit;
                 }
                 &:hover {
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                 }
             }
             .price {
@@ -263,7 +263,7 @@
                 // text-transform: capitalize;
                 // text-align: center;
                 // &:hover {
-                //     color: #FF5B1B;
+                //     color: var(--cs-primary-color);
                 // }
             }
         }
@@ -272,13 +272,15 @@
     
 }
 
-.woocommerce.woocommerce-shop:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button {
+.woocommerce.woocommerce-shop:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button, 
+.woocommerce.archive:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button
+ {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: 46px;
     border-radius: 6px;
-    background-color: #0A1119;
+    background-color: var(--cs-heading-color);
     color: #FFF;
     width: 100%;
     padding: 0;
@@ -289,7 +291,7 @@
     padding-inline: 30px;
     max-width: 436px;
     &:hover {
-        background-color: #FF5B1B;
+        background-color: var(--cs-primary-color);
     }
 }
 

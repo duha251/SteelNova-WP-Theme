@@ -11,6 +11,7 @@
     }
     &__item {
         flex: 0 1 var(--cs-column);
+        max-width: var(--cs-column);
         padding-inline: calc( var(--cs-column-gap) / 2 );
         padding-block: calc( var(--cs-row-gap) / 2 );
         &.grid__item--fluid {

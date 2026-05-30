@@ -50,7 +50,7 @@
         &__title {
             > a {
                 &:hover {
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                 }
             }
         }

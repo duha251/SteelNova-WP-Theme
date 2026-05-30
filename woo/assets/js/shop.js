@@ -10,6 +10,9 @@
         resultCount: ".steelnova-result-count",
         orderingForm: ".woocommerce-ordering",
         orderingSelect: ".woocommerce-ordering select.orderby",
+
+        priceFilterForm: ".cs-price-filter",
+        filterLink: ".cs-categories.is-post-type-product a, .cs-tags a, .cs-brands a",
     };
 
     function getCurrentLayout() {
@@ -58,7 +61,36 @@
         return 1;
     }
 
-    function updateUrl(layout, paged) {
+    function getFiltersFromUrl(url) {
+        const currentUrl = new URL(window.location.href);
+        const targetUrl = url ? new URL(url, window.location.origin) : currentUrl;
+
+        const filters = {
+            product_cat: currentUrl.searchParams.get("product_cat") || steelnova_ajax.product_cat || "",
+            product_tag: currentUrl.searchParams.get("product_tag") || steelnova_ajax.product_tag || "",
+            product_brand: currentUrl.searchParams.get("product_brand") || steelnova_ajax.product_brand || "",
+            min_price: currentUrl.searchParams.get("min_price") || "",
+            max_price: currentUrl.searchParams.get("max_price") || "",
+        };
+
+        const filterKeys = [
+            "product_cat",
+            "product_tag",
+            "product_brand",
+            "min_price",
+            "max_price",
+        ];
+
+        filterKeys.forEach(function (key) {
+            if (targetUrl.searchParams.has(key)) {
+                filters[key] = targetUrl.searchParams.get(key) || "";
+            }
+        });
+
+        return filters;
+    }
+
+    function updateUrl(layout, paged, filters) {
         const newUrl = new URL(window.location.href);
 
         newUrl.searchParams.set("product_view", layout);
@@ -68,6 +100,14 @@
         } else {
             newUrl.searchParams.delete("paged");
         }
+
+        $.each(filters || {}, function (key, value) {
+            if (value !== undefined && value !== null && value !== "") {
+                newUrl.searchParams.set(key, value);
+            } else {
+                newUrl.searchParams.delete(key);
+            }
+        });
 
         window.history.pushState({}, "", newUrl.toString());
     }
@@ -89,10 +129,60 @@
         $(selectors.productsGrid).toggleClass("is-loading", isLoading);
     }
 
+    function updateFilterActiveStates(filters) {
+        const activeFilters = filters || getFiltersFromUrl();
+
+        updateFilterGroupActive(
+            ".cs-categories.is-post-type-product .category",
+            ".category__link",
+            "product_cat",
+            activeFilters.product_cat
+        );
+
+        updateFilterGroupActive(
+            ".cs-tags .tag",
+            ".tag__link",
+            "product_tag",
+            activeFilters.product_tag
+        );
+
+        updateFilterGroupActive(
+            ".cs-brands .brand",
+            ".brand__link",
+            "product_brand",
+            activeFilters.product_brand
+        );
+    }
+
+    function updateFilterGroupActive(itemSelector, linkSelector, queryKey, activeValue) {
+        $(itemSelector).each(function () {
+            const $item = $(this);
+            const $link = $item.find(linkSelector).first();
+            const href = $link.attr("href");
+
+            if (!href) {
+                return;
+            }
+
+            const url = new URL(href, window.location.origin);
+            const linkValue = url.searchParams.get(queryKey) || "";
+            const isActive = activeValue !== "" && linkValue === activeValue;
+
+            $item.toggleClass("is-active", isActive);
+
+            if (isActive) {
+                $link.attr("aria-current", "page");
+            } else {
+                $link.removeAttr("aria-current");
+            }
+        });
+    }
+
     function loadProducts(args = {}) {
         const layout = args.layout || getCurrentLayout();
         const paged = args.paged || 1;
         const orderby = $(selectors.orderingSelect).val() || "";
+        const filters = args.filters || getFiltersFromUrl();
 
         $.ajax({
             url: steelnova_ajax.ajax_url,
@@ -104,8 +194,12 @@
                 layout: layout,
                 paged: paged,
                 orderby: orderby,
-                product_cat: steelnova_ajax.product_cat || "",
-                product_tag: steelnova_ajax.product_tag || "",
+
+                product_cat: filters.product_cat || "",
+                product_tag: filters.product_tag || "",
+                product_brand: filters.product_brand || "",
+                min_price: filters.min_price || "",
+                max_price: filters.max_price || "",
             },
             beforeSend: function () {
                 setLoading(true);
@@ -136,7 +230,8 @@
                 $(selectors.toggleButton).removeClass("is-active");
                 $(selectors.toggleButton + '[data-layout="' + layout + '"]').addClass("is-active");
 
-                updateUrl(layout, paged);
+                updateUrl(layout, paged, filters);
+                updateFilterActiveStates(filters);
                 scrollToProducts();
             },
             complete: function () {
@@ -191,4 +286,44 @@
         });
     });
 
+    $(document).on("submit", selectors.priceFilterForm, function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const filters = getFiltersFromUrl();
+
+        filters.min_price = formData.get("min_price") || "";
+        filters.max_price = formData.get("max_price") || "";
+
+        for (const [key, value] of formData.entries()) {
+            if (key !== "min_price" && key !== "max_price") {
+                filters[key] = value;
+            }
+        }
+
+        loadProducts({
+            layout: getCurrentLayout(),
+            paged: 1,
+            filters: filters,
+        });
+    });
+
+    $(document).on("click", selectors.filterLink, function (e) {
+        const href = $(this).attr("href");
+
+        if (!href) {
+            return;
+        }
+
+        e.preventDefault();
+
+        const filters = getFiltersFromUrl(href);
+
+        loadProducts({
+            layout: getCurrentLayout(),
+            paged: 1,
+            filters: filters,
+        });
+    });
+    updateFilterActiveStates();
 })(jQuery);

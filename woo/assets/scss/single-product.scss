@@ -195,11 +195,11 @@
                         flex-shrink: 0;
                         button {
                             @include box-size(47px);
-                            color: #0A1119;
+                            color: var(--cs-heading-color);
                             background-color: #FAF5ED;
                             font-size: 18px;
                             &:hover {
-                                background-color: #0A1119;
+                                background-color: var(--cs-heading-color);
                                 color: #FFF;
                             }
                         }
@@ -211,7 +211,7 @@
                     @include d-inline-flex(null, center, center);
                     @include text-button-3;
                     color: #FFF;
-                    background-color: #121512;
+                    background-color: var(--cs-secondary-color);
                     float: none;
                     border-radius: 6px;
                     margin-top: 18px;
@@ -219,7 +219,7 @@
                         display: none;
                     }
                     &:hover {
-                        background-color: #FF5B1B;
+                        background-color: var(--cs-primary-color);
                     }
                 }
             }
@@ -230,12 +230,12 @@
                 gap: 8px;
                 margin-top: 27px;
                 > span {
-                    color: #0A1119;
+                    color: var(--cs-heading-color);
                     a, span {
                         color: #4B535D;
                     }
                     a:hover {
-                        color: #FF5B1B;
+                        color: var(--cs-primary-color);
                     }
                     &.tagged_as {
                         a {
@@ -253,17 +253,17 @@
                 @include d-flex(10px, center);
                 flex-wrap: wrap;
                 .social-label {
-                    color: #0A1119;
+                    color: var(--cs-heading-color);
                 }
                 .social-list {
                     @include d-flex(10px);
                     > a {
                         @include round-box(36px);
-                        background-color: #0A1119;
+                        background-color: var(--cs-heading-color);
                         color: #FFF;
                         @include d-inline-flex(null, center, center);
                         &:hover {
-                            background-color: #FF5B1B;
+                            background-color: var(--cs-primary-color);
                         }
                     }
                 }
@@ -299,12 +299,12 @@
                         > a {
                             padding: 0;
                             @include h8;
-                            color: #0A1119;
+                            color: var(--cs-heading-color);
                             padding-bottom: 20px;
                         }
                         &.active {
                             > a {
-                                color: #FF5B1B;
+                                color: var(--cs-primary-color);
                             }
                         }
                     }
@@ -488,11 +488,11 @@
                                         @include text-button-3;
                                         border-radius: 8px;
                                         height: 46px;
-                                        background-color: #0A1119;
+                                        background-color: var(--cs-heading-color);
                                         color: #FFF;
                                         padding-inline: 40px;
                                         &:hover {
-                                            background-color: #FF5B1B;
+                                            background-color: var(--cs-primary-color);
                                         }
                                     }
                                 }

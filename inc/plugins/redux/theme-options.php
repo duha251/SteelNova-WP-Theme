@@ -471,7 +471,7 @@ class Theme_Options {
 
         \Redux::setSection($opt_name, array(
             'title' => __('Project', 'steelnova'),
-            'icon'  => 'eicon-post',
+            'icon'  => 'eicon-folder-o',
         ));
         \Redux::setSection($opt_name, array(
             'title' => __('Archive Project', 'steelnova'),
@@ -526,30 +526,10 @@ class Theme_Options {
         // // Team Settings
         \Redux::setSection($opt_name, array(
             'title'      => __('Team', 'steelnova'),
-            'icon'       => 'eicon-posts-ticker',
+            'icon'       => 'eicon-person',
             'subsection' => false,
             'fields'     => array(),
         ));
-
-        // \Redux::setSection($opt_name, array(
-        //     'title'      => __('Archive Team', 'steelnova'),
-        //     'icon'       => 'eicon-posts-ticker',
-        //     'subsection' => true,
-        //     'fields'     => array(
-        //         array(
-        //             'id'    => 'team_status',
-        //             'type'  => 'switch',
-        //             'title' => __('Status', 'steelnova'),
-        //             'default' => true,
-        //         ),
-        //         array(
-        //             'id'    => 'team_label',
-        //             'type'  => 'text',
-        //             'title' => __('Label', 'steelnova'),
-        //             'default' => __('Team', 'steelnova')
-        //         ),
-        //     ),
-        // ));
 
         \Redux::setSection($opt_name, array(
             'title' => __('Single Member', 'steelnova'),
@@ -597,7 +577,7 @@ class Theme_Options {
         // Services Settings
         \Redux::setSection($opt_name, array(
             'title'      => __('Service', 'steelnova'),
-            'icon'       => 'eicon-posts-ticker',
+            'icon'       => 'eicon-post-content',
             'subsection' => false,
             'fields'     => array(),
         ));
@@ -644,14 +624,14 @@ class Theme_Options {
                     array(
                         'id'       => 'single_service_header_template_id',
                         'type'     => 'select',
-                        'title'    => __('Project Header Template', 'steelnova'),
+                        'title'    => __('Service Header Template', 'steelnova'),
                         'options'  => Static_Options::get_templates_by_type('section'),
                         'default'  => '',
                     ),
                     array(
                         'id'       => 'single_service_footer_template_id',
                         'type'     => 'select',
-                        'title'    => __('Project Footer Template', 'steelnova'),
+                        'title'    => __('Service Footer Template', 'steelnova'),
                         'options'  => Static_Options::get_templates_by_type('section'),
                         'default'  => '',
                     ),
@@ -674,7 +654,7 @@ class Theme_Options {
         // Shop
         \Redux::setSection($opt_name, array(
             'title' => __('Shop', 'steelnova'),
-            'icon'  => 'eicon-products',
+            'icon'  => 'eicon-cart',
         ));
         \Redux::setSection($opt_name, array(
             'title' => __('Archive', 'steelnova'),
@@ -803,7 +783,7 @@ class Theme_Options {
          */
         \Redux::setSection($opt_name, array(
             'title' => __('User Socials', 'steelnova'),
-            'icon'  => 'eicon-single-posts',
+            'icon'  => 'eicon-social-icons',
             'subsection' => false,
             'fields'     => array(
                 array(

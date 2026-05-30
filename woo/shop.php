@@ -55,11 +55,15 @@ class Shop extends SteelNova_WooCommerce {
     }
 
     public function shop_columns( $columns ) {
-        $columns     = (int) $this->option->get_theme_option( 'product_columns', 3 );
+        $columns     = (int) $this->option->get_theme_option( 'product_columns', 4 );
         $sidebar_pos = $this->option->get_theme_option( 'shop_sidebar_mode', 'none' );
-
-        $has_sidebar = ( isset( $_GET['sidebar'] ) && $_GET['sidebar'] !== 'none' ) || $sidebar_pos !== 'none';
-
+        $has_sidebar = false;
+        if( $sidebar_pos !== 'none' ) {
+            $has_sidebar = true;
+        }
+        if( isset( $_GET['sidebar'] ) ) {
+            $has_sidebar = $_GET['sidebar'] !== 'none';
+        }
         if ( intval( $columns ) ) {
             if ( $has_sidebar ) {
                 return max( 1, $columns - 1 );
@@ -68,7 +72,7 @@ class Shop extends SteelNova_WooCommerce {
             return $columns;
         }
 
-        return 3;
+        return $columns;
     }
 
     private function get_current_layout() {
@@ -295,6 +299,9 @@ class Shop extends SteelNova_WooCommerce {
 
         $ordering_args = WC()->query->get_catalog_ordering_args( $orderby );
 
+        $meta_query = WC()->query->get_meta_query();
+        $tax_query  = WC()->query->get_tax_query();
+
         $args = [
             'post_type'      => 'product',
             'post_status'    => 'publish',
@@ -302,8 +309,8 @@ class Shop extends SteelNova_WooCommerce {
             'paged'          => max( 1, absint( $paged ) ),
             'orderby'        => $ordering_args['orderby'],
             'order'          => $ordering_args['order'],
-            'meta_query'     => WC()->query->get_meta_query(),
-            'tax_query'      => WC()->query->get_tax_query(),
+            'meta_query'     => $meta_query,
+            'tax_query'      => $tax_query,
         ];
 
         if ( ! empty( $ordering_args['meta_key'] ) ) {
@@ -324,6 +331,40 @@ class Shop extends SteelNova_WooCommerce {
                 'field'    => 'slug',
                 'terms'    => sanitize_text_field( wp_unslash( $_POST['product_tag'] ) ),
             ];
+        }
+
+        if ( isset( $_POST['product_brand'] ) && $_POST['product_brand'] !== '' ) {
+            $args['tax_query'][] = [
+                'taxonomy' => 'product_brand',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field( wp_unslash( $_POST['product_brand'] ) ),
+            ];
+        }
+
+        $min_price = isset( $_POST['min_price'] ) && $_POST['min_price'] !== ''
+            ? floatval( wp_unslash( $_POST['min_price'] ) )
+            : null;
+
+        $max_price = isset( $_POST['max_price'] ) && $_POST['max_price'] !== ''
+            ? floatval( wp_unslash( $_POST['max_price'] ) )
+            : null;
+
+        if ( $min_price !== null || $max_price !== null ) {
+            $price_query = [
+                'key'     => '_price',
+                'type'    => 'NUMERIC',
+                'compare' => 'BETWEEN',
+                'value'   => [
+                    $min_price !== null ? $min_price : 0,
+                    $max_price !== null ? $max_price : PHP_INT_MAX,
+                ],
+            ];
+
+            $args['meta_query'][] = $price_query;
+        }
+
+        if ( ! empty( $args['tax_query'] ) ) {
+            $args['tax_query']['relation'] = 'AND';
         }
 
         return $args;
@@ -463,10 +504,11 @@ class Shop extends SteelNova_WooCommerce {
         $queried_object = get_queried_object();
 
         wp_localize_script( 'wc-shop-js', 'steelnova_ajax', [
-            'ajax_url'    => admin_url( 'admin-ajax.php' ),
-            'nonce'       => wp_create_nonce( 'steelnova_shop_nonce' ),
-            'product_cat' => is_product_category() && isset( $queried_object->slug ) ? $queried_object->slug : '',
-            'product_tag' => is_product_tag() && isset( $queried_object->slug ) ? $queried_object->slug : '',
+            'ajax_url'      => admin_url( 'admin-ajax.php' ),
+            'nonce'         => wp_create_nonce( 'steelnova_shop_nonce' ),
+            'product_cat'   => is_product_category() && isset( $queried_object->slug ) ? $queried_object->slug : '',
+            'product_tag'   => is_product_tag() && isset( $queried_object->slug ) ? $queried_object->slug : '',
+            'product_brand' => is_tax( 'product_brand' ) && isset( $queried_object->slug ) ? $queried_object->slug : '',
         ]);
     }
 }

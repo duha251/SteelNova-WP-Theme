@@ -13,7 +13,7 @@ if( !empty($settings['number_delimiter']) ) {
     $this->add_render_attribute( 'counter-number', 'data-delimiter', $settings['number_delimiter'] );
 }
 ?>
-<div <?php echo esc_attr( $this->get_render_attribute_string('wrapper') ); ?>>
+<div <?php pxl_print_html( $this->get_render_attribute_string('wrapper') ); ?>>
     <?php if(!empty($settings['number_prefix'])) : ?>
         <span class="cs-counter__number-prefix">
             <?php echo esc_html($settings['number_prefix']); ?>

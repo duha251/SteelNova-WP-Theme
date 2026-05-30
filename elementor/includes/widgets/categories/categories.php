@@ -133,11 +133,11 @@ class Widget_Categories extends SteelNova_Widget_Base {
         ]);
         $this->group_background([
             'name'     => 'item_background_hover',
-            'selector' => '{{WRAPPER}} .cs-categories li:hover',
+            'selector' => '{{WRAPPER}} .cs-categories a:hover',
         ]);
         $this->group_box_css([
             'name'     => 'item_box_css_hover',
-            'selector' => '{{WRAPPER}} .cs-categories li:hover',
+            'selector' => '{{WRAPPER}} .cs-categories a:hover',
         ]);
         $this->time([
             'name'  => 'item_transition',
@@ -167,13 +167,6 @@ class Widget_Categories extends SteelNova_Widget_Base {
             'name'     => 'link_typography',
             'selector' => '{{WRAPPER}} .cs-categories li a.category__link',
         ]);
-        $this->size([
-            'name'  => 'link_inner_gap',
-            'label' => __( 'Inner Gap (name ↔ count)', 'steelnova' ),
-            'selectors' => [
-                '{{WRAPPER}} .cs-categories li a.category__link' => 'gap: {{SIZE}}{{UNIT}};',
-            ],
-        ]);
 
         $this->_start_controls_tabs([ 'name' => 'link_style_tabs' ]);
 
@@ -186,7 +179,7 @@ class Widget_Categories extends SteelNova_Widget_Base {
             'name'  => 'link_color',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-categories li a.category__link' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-categories a' => 'color: {{VALUE}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -200,14 +193,14 @@ class Widget_Categories extends SteelNova_Widget_Base {
             'name'  => 'link_color_hover',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-categories li:hover a.category__link' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-categories a:hover, {{WRAPPER}} .cs-categories a[aria-current="page"]' => 'color: {{VALUE}};',
             ],
         ]);
         $this->time([
             'name'  => 'link_transition',
             'label' => __( 'Transition Duration', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-categories li a.category__link' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                '{{WRAPPER}} .cs-categories a.category__link' => 'transition-duration: {{SIZE}}{{UNIT}};',
             ],
         ]);
         $this->end_controls_tab();
@@ -255,7 +248,7 @@ class Widget_Categories extends SteelNova_Widget_Base {
             'name'  => 'name_color_hover',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-categories li:hover .category__name' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-categories a:hover .category__name' => 'color: {{VALUE}};',
             ],
         ]);
         $this->time([
@@ -310,7 +303,7 @@ class Widget_Categories extends SteelNova_Widget_Base {
             'name'  => 'count_color_hover',
             'label' => __( 'Color', 'steelnova' ),
             'selectors' => [
-                '{{WRAPPER}} .cs-categories li:hover .category__count' => 'color: {{VALUE}};',
+                '{{WRAPPER}} .cs-categories a:hover .category__count' => 'color: {{VALUE}};',
             ],
         ]);
         $this->time([

@@ -20,10 +20,10 @@
             font-style: normal;
             font-weight: 500;
             line-height: 1;
-            background-color: #121512;
+            background-color: var(--cs-secondary-color);
             margin-bottom: 15px;
             .heading__subtitle-icon {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
     }
@@ -38,6 +38,6 @@
         height: 3px;
         border-radius: 30px;
         margin-top: 10px;
-        background-color: #FF5B1B;
+        background-color: var(--cs-primary-color);
     }
 }

@@ -27,7 +27,7 @@
             height: 100%;
             position: absolute;
             top: 0;
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             width: 7px;
         }
         &::before {
@@ -74,7 +74,7 @@
                 color: #FFF;
                 border-radius: 10px;
                 padding-inline: 32px;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
                 width: fit-content;
                 height: 44px;
                 &:hover {
@@ -226,7 +226,7 @@
             line-height: inherit;
         }
         .radio-field {
-            color: #FF5B1B;
+            color: var(--cs-primary-color);
             &__label {
                 color: #4B535D;
             }
@@ -250,10 +250,10 @@
             padding: 0 0 32px 0;
             .radio-field {
                 > input:checked + .radio-field__checked::after {
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                 }
                 > input:checked + .radio-field__checked {
-                    border-color: #FF5B1B;
+                    border-color: var(--cs-primary-color);
                 } 
                 &__label {
                     @include h7;
@@ -295,12 +295,12 @@
             a {
                 color: inherit;
                 &:hover {
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                 }
             }
             #place_order {
                 color: #FFF;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
                 border-radius: 6px;
                 padding-inline: 44px;
                 margin-top: 27px;
@@ -310,7 +310,7 @@
                 text-transform: capitalize;
                 float: none;
                 &:hover {
-                    background-color: #0A1119;
+                    background-color: var(--cs-heading-color);
                 }
             }
         }
@@ -366,7 +366,7 @@
         a {
             color: #4B535D;
             &:hover {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
         + .review-order-table__item {

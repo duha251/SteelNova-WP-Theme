@@ -1,7 +1,5 @@
 <?php
-if($layout_id <= 0) {
-    return;
-}
+
 ?>
 
 <footer id="footer" class="footer" data-layout="default">

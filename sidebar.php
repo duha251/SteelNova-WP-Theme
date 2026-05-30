@@ -6,10 +6,12 @@
  */
 $sidebar = 'sidebar-' . get_post_type();
 $sidebar_class = 'sidebar--' . get_post_type();
-if ( class_exists( 'WooCommerce' ) && ( is_product_category() || is_shop() || is_product() ) ) {
+if ( class_exists( 'WooCommerce' ) && ( is_product_taxonomy() || is_shop() || is_product() ) ) {
     $sidebar_template_id = steelnova()->get_theme_option( 'shop_sidebar_template_id', 0);
 }elseif ( is_single() ) {
     $sidebar_template_id = steelnova()->get_theme_option('single_'.get_post_type().'_sidebar_template_id', 0);
+}elseif ( is_home() || is_author() || is_category() || is_tag() || is_date() ) {
+    $sidebar_template_id = steelnova()->get_theme_option( 'blog_sidebar_template_id', 0);
 }else {
     $sidebar_template_id = steelnova()->get_page_option( 'sidebar_template_id', 0);
 }

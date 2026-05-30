@@ -106,8 +106,33 @@ class Cart extends SteelNova_WooCommerce {
         </div>
         <?php
         $fragments['.cart-total'] = ob_get_clean();
-
+        $fragments['.cart-collaterals-subtotal'] = $this->cart_collaterals_subtotal();
+        $fragments['.cart-collaterals-order-total'] = $this->cart_collaterals_total();
         return $fragments;
+    }
+
+    public function cart_collaterals_subtotal() {
+        ob_start(); ?>
+            <div class="cart-subtotal cart-totals-table__item cart-collaterals-subtotal">
+                <div class="label"><?php esc_html_e( 'Subtotal', 'steelnova' ); ?></div>
+                <div class="value" data-title="<?php esc_attr_e( 'Subtotal', 'steelnova' ); ?>">
+                    <?php wc_cart_totals_subtotal_html(); ?>
+                </div>
+            </div>
+        <?php
+        return ob_get_clean();
+    }
+
+    public function cart_collaterals_total() {
+        ob_start(); ?>
+            <div class="order-total cart-totals-table__item cart-collaterals-order-total">
+                <div class="label"><?php esc_html_e( 'Total', 'steelnova' ); ?></div>
+                <div class="value" data-title="<?php esc_attr_e( 'Total', 'steelnova' ); ?>">
+                    <?php wc_cart_totals_order_total_html(); ?>
+                </div>
+            </div>
+        <?php 
+        return ob_get_clean();
     }
 
     /**

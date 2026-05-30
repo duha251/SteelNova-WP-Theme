@@ -5,8 +5,9 @@
  * @package SteelNova
  */
 // HTML
+
 if($layout_id <= 0) {
-    return;
+    return '';
 }
 ?>
 <header id="headerSticky" class="header header-sticky" data-layout="builder" data-scroll="<?php echo esc_attr( $direction ); ?>">

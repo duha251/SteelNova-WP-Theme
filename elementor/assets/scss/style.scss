@@ -64,6 +64,16 @@
     .grid__item {
         line-height: 0;
     }
+    img {
+        transition: filter 300ms linear;
+    }
+    &:hover {
+        a:not(:hover) {
+            img {
+                filter: blur(3px);
+            }
+        }
+    }
     &__item {
         display: inline-flex;
         img {
@@ -99,7 +109,7 @@
 // Countdown
 .cs-countdown {
     @include d-flex(20px);
-    color: #FF5B1B;
+    color: var(--cs-primary-color);
     @media #{$max-xs} {
         gap: 8px;
     }
@@ -138,7 +148,7 @@
         top: 3px;
         right: 5px;
         @include round-box(46px);
-        color: #0A1119;
+        color: var(--cs-heading-color);
         background-color: #FFF;
     }
 }
@@ -150,7 +160,7 @@
     @include text-button-1;
     padding: 17.5px 28.5px;
     border-radius: 100px;
-    background-color: #FF5B1B;
+    background-color: var(--cs-primary-color);
     .separator {
         line-height: 0;
     }
@@ -166,7 +176,7 @@
     flex-wrap: wrap;
     a {
         padding: 12px 24px;
-        background-color: #121512;
+        background-color: var(--cs-secondary-color);
         border-radius: 6px;
         color: rgba(#FFF, 0.8);
         font-size: 12px;
@@ -175,7 +185,7 @@
         letter-spacing: 0.72px;
         text-transform: uppercase;
         &:hover {
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             color: #FFF;
         }
     }
@@ -195,10 +205,10 @@
     &__link {
         @include round-box(46px);
         @include d-inline-flex(null, center, center);
-        background-color: #0A1119;
+        background-color: var(--cs-heading-color);
         color: #FFF;
         &:hover {
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
         }
     }
 }
@@ -245,7 +255,7 @@
         background-color: #FFF;
         border: thin solid #FAF5ED;
         border-radius: 100px;
-        color: #0A1119;
+        color: var(--cs-heading-color);
         font-family: Inter;
         font-size: 14px;
         font-weight: 500;
@@ -274,7 +284,7 @@
             }
         }
         &:hover {
-            background-color: #0A1119;
+            background-color: var(--cs-heading-color);
             color: #FFF;
         }
     }
@@ -303,8 +313,8 @@
                 @include paragraph-4;
                 color: #4B535D;
             }
-            &:hover {
-                color: #FF5B1B;
+            &:hover, &[aria-current="page"] {
+                color: var(--cs-primary-color);
             }
         }
     }
@@ -319,6 +329,10 @@
 .cs-tags {
     @include d-flex(10px);
     flex-wrap: wrap;
+    li {
+        border: none;
+        padding: 0;
+    }
     a {
         @include d-flex(null, center, center);
         border-radius: 6px;
@@ -331,8 +345,8 @@
         letter-spacing: 0.72px;
         text-transform: uppercase;
         transition: background-color .3s linear, color .3s linear, border .3s linear;
-        &:hover {
-            background-color: #FF5B1B;
+        &:hover, &[aria-current="page"] {
+            background-color: var(--cs-primary-color);
             color: rgba( #FFF, 0.8 );
             border-color: transparent;
         }
@@ -347,6 +361,11 @@
     margin-block: calc( -1 * ( var(--cs-row-gap) / 2 ) );
     li {
         @include d-flex(8px, center);
+        &:hover, &.is-active {
+            .check-box::before {
+                opacity: 1;
+            }
+        }
         a {
             display: flex;
             width: 100%;
@@ -354,11 +373,14 @@
             gap: 15px;
             justify-content: space-between;
             @include paragraph-3;
-            color: var(--cs-heading-color);
+            color: #4B535D;
             padding-block: var(--cs-row-gap);
             .category__count {
                 @include paragraph-4;
                 color: #4B535D;
+            }
+            &:hover, &[aria-current="page"] {
+                color: var(--cs-secondary-color);
             }
         }
     }
@@ -409,7 +431,7 @@
         @include d-flex(15px);
         a {
             @include round-box(48px);
-            background-color: #0A1119;
+            background-color: var(--cs-heading-color);
             color: #FFF;
             @include d-inline-flex(null, center, center);
         }

@@ -76,7 +76,7 @@ final class SteelNova {
         }
 
         if ( did_action( 'elementor/loaded' )) {
-            new SteelNova_Elementor( $this->get_theme_version() );
+            new SteelNova_Elementor( $this->get_theme_version(), $this->post_manager );
         }
 
         if( class_exists( 'WooCommerce' ) ) {

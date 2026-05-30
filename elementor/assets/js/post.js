@@ -1,21 +1,26 @@
 ( function( $ ) {
     "use strict";
+    function getArchiveContext() {
+        return SteelNovaAjax.archive_context || {};
+    }
 
     const ajaxHandler = ( paramObject ) => {
         const {
-            page = 1, 
-            settings = {}, 
+            page = 1,
+            settings = {},
             layout = 1,
             wrapper = '',
             action = '',
-            catSlug = ''
+            catSlug = '',
+            archiveContext = {}
         } = paramObject;
 
         let data = {
-            action: 'load_posts', 
+            action: 'load_posts',
             page: page,
             settings: settings,
             layout: layout,
+            archive_context: archiveContext,
             _ajax_nonce: SteelNovaAjax.nonce
         }
 
@@ -29,7 +34,6 @@
             data: data,
             success: function(response) {
                 if( response.data ) {
-                    console.log(response.data.post_type);
                     const gridHtml = response.data.grid_html;
                     const paginationHtml = response.data.pagination_html;
                     if( wrapper.length ) {
@@ -59,17 +63,17 @@
             const settings = $parent.data('settings');
             const layout = $parent.data('layout');
             $parent.addClass('is-loading');
-            console.log(settings)
             $('html, body').animate({
                 scrollTop: $parent.offset().top - 100
             }, 1000);
             ajaxHandler({
-                page : page,
-                settings : settings,
-                layout : layout,
+                page: page,
+                settings: settings,
+                layout: layout,
                 wrapper: $parent,
                 action: 'pagination',
-            })
+                archiveContext: getArchiveContext()
+            });
         });
     }
 
@@ -84,11 +88,12 @@
             const layout = $parent.data('layout');
             $parent.addClass('is-loading');
             ajaxHandler({
-                page : nextPage,
-                settings : settings,
-                layout : layout,
+                page: nextPage,
+                settings: settings,
+                layout: layout,
                 wrapper: $parent,
                 action: 'load_more',
+                archiveContext: getArchiveContext()
             });
             $parent.data('current-page', nextPage);
         });

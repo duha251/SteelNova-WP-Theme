@@ -19,7 +19,7 @@
             &-icon {
                 @include round-box(50px, 5px);
                 border: thin solid #DCDCDC;
-                color: #0A1119;
+                color: var(--cs-heading-color);
             }
             &-label {
                 display: block;
@@ -28,7 +28,7 @@
             }
             &-value {
                 @include h7;
-                color: #0A1119;
+                color: var(--cs-heading-color);
                 > a {
                     color: inherit;
                 }
@@ -50,14 +50,14 @@
             &-icon {
                 @include round-box(50px);
                 color: #FFF;
-                background-color: #121512;
+                background-color: var(--cs-secondary-color);
             }
             &-content {
                 @include d-flex( 10px );
             }
             &-label {
                 @include subheading-2;
-                color: #0A1119;
+                color: var(--cs-heading-color);
                 line-height: 1;
                 white-space: nowrap;
             }

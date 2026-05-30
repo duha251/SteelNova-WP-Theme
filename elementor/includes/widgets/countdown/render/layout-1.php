@@ -17,7 +17,7 @@ $wrapper_attrs_tmp['data-time'] = $date_time;
 $wrapper_attrs = array_merge( $wrapper_attrs_tmp, $wrapper_attrs );
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
-<ul <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
+<ul <?php pxl_print_html( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <li class="cs-countdown__timer days" data-unit="<?php echo esc_attr($day_unit); ?>"></li>
     <li class="cs-countdown__separator"><?php esc_html_e(':', 'steelnova'); ?></li>
     <li class="cs-countdown__timer hours" data-unit="<?php echo esc_attr($hour_unit); ?>"></li>

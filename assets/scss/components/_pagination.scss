@@ -10,7 +10,7 @@
         @include h6;
         color: #4B535D;
         &.current, &:hover {
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             color: #FFF;
         }
     }

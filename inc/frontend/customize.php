@@ -52,7 +52,7 @@ class Customize {
 			if( $sidebar_pos_class === 'inherit' ) {
 				$sidebar_pos_class = steelnova()->get_theme_option('single_'.get_post_type().'_sidebar_mode', '');
 			}
-		}elseif ( class_exists( 'WooCommerce' ) && is_shop() ) {
+		}elseif ( class_exists( 'WooCommerce' ) && ( is_shop() || is_product_taxonomy() ) ) {
 			$sidebar_pos_class = steelnova()->get_theme_option('shop_sidebar_mode', '');
 		}else {
 			$sidebar_pos_class = steelnova()->get_page_option( 'sidebar_mode', 'none');

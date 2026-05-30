@@ -171,7 +171,7 @@ class Enqueue {
 		$configs = [
 			'theme_colors'     => [
 				'primary'   => $this->option->get_option( 'primary_color', '#FF5B1B' ),
-				'secondary' => $this->option->get_option( 'secondary_color', '#0A1119' ),
+				'secondary' => $this->option->get_option( 'secondary_color', '#121512' ),
 				'third'     => $this->option->get_option( 'third_color', '#FFF' ),
 				'body-background'   => $this->option->get_option( 'body_bg_color', '#FFF' ),
 				'heading'   => $this->option->get_option( 'heading_color', '#0A1119' ),

@@ -93,7 +93,7 @@
         &__icon {
             @include round-box(50px, 10px);
             @include d-inline-flex(null, center, center);
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             color: #FFF;
         }
         &__title {
@@ -102,7 +102,7 @@
             line-height: 1.375;
             align-self: center;
             &:hover {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
         &__content {
@@ -135,7 +135,7 @@
             width: 100%;
             position: relative;
             overflow: hidden;
-            background-color: #121512;
+            background-color: var(--cs-secondary-color);
             &::before {
                 content: '';
                 position: absolute;
@@ -143,7 +143,7 @@
                 top: 0;
                 width: 100%;
                 height: 100%;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
                 transform: scaleX(0);
                 transform-origin: right center;
                 transition: transform 0.5s ease;
@@ -172,7 +172,7 @@
             top: -23px;
             @include round-box(78px, 18px);
             border: 4px solid #FFDAB6;
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             box-shadow: 0 15.892px 95.351px 0 rgba(137, 151, 186, 0.15);
             color: #FFF;
             @include d-inline-flex(null, center, center);
@@ -181,7 +181,7 @@
             margin-bottom: 14px;
             max-width: 250px;
             &:hover {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
         &__excerpt {
@@ -198,11 +198,11 @@
             &__item {
                 @include d-flex(17px, center);
                 @include paragraph-5;
-                color: #121512;
+                color: var(--cs-secondary-color);
                 &-icon {
                     background-color: #F7EBD7;
                     @include round-box(21px);
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                     @include d-inline-flex(null, center, center);
                 }
             }
@@ -210,7 +210,7 @@
         &__read-more {
             padding-inline: 16px;
             height: 46px;
-            background-color: #121512;
+            background-color: var(--cs-secondary-color);
             border-radius: 6px;
             @include text-button-1;
             text-transform: capitalize;
@@ -225,7 +225,7 @@
                 top: 0;
                 width: 100%;
                 height: 100%;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
                 transform: scaleX(0);
                 transform-origin: right center;
                 transition: transform 0.5s ease;
@@ -275,7 +275,7 @@
         &__icon {
             @include round-box(50px, 10px);
             @include d-inline-flex(null, center, center);
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             color: #FFF;
         }
         &__title {
@@ -284,7 +284,7 @@
             line-height: 1.375;
             align-self: center;
             &:hover {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
     }
@@ -339,11 +339,11 @@
         }
         &__icon {
             @include round-box(66px, 10px);
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             color: #FFF;
             @include d-inline-flex(null, center, center);
             &:hover {
-                background-color: #121512;
+                background-color: var(--cs-secondary-color);
             }
         }
         &__title {

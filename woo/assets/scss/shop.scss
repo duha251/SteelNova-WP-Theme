@@ -1,6 +1,6 @@
 @use '../../../assets/scss/core' as *;
 
-.woocommerce-shop {
+.woocommerce-shop, .woocommerce-page.archive {
     &.has-sidebar {
         #main {
             .inner {
@@ -29,7 +29,7 @@
             &-left {
                 @include d-inline-flex( 34px );
                 .woocommerce-result-count {
-                    color: #0A1119;
+                    color: var(--cs-heading-color);
                     margin: 0
                 }
                 .buttons {
@@ -39,7 +39,7 @@
                         background-color: transparent;
                         padding: 0;
                         &:hover, &.is-active {
-                            color: #FF5B1B;
+                            color: var(--cs-primary-color);
                         }
                     }
                 }
@@ -55,7 +55,7 @@
         min-width: 316px;
         padding-inline: 21px;
         height: 54px;
-        color: #0A1119;
+        color: var(--cs-heading-color);
         @include d-flex(null, center);
         font-size: 16px;
         &::after {

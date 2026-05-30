@@ -37,9 +37,9 @@
         &__socials {
             @include d-inline-flex(33px);
             > a {
-                color: #121512;
+                color: var(--cs-secondary-color);
                 &:hover {
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                 }
             }
         }
@@ -82,10 +82,10 @@
             > a {
                 @include round-box(46px);
                 color: #FFF;
-                background-color: #121512;
+                background-color: var(--cs-secondary-color);
                 @include d-inline-flex(null, center, center);
                 &:hover {
-                    background-color: #FF5B1B;
+                    background-color: var(--cs-primary-color);
                 }
             }
         }

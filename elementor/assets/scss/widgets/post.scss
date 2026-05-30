@@ -85,7 +85,7 @@
                 @include d-inline-flex(null, center, center);
                 @include h8;
                 color: #FFF;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
             }
             @media #{$max-sm} {
                 right: 15px;
@@ -95,8 +95,10 @@
         &__title {
             margin-bottom: 24px;
             max-width: 1000px;
+            -ms-word-wrap: break-word;
+            word-wrap: break-word;
             &:hover {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
         .divider {
@@ -116,14 +118,14 @@
             @include paragraph-5;
         }
         &__author {
-            color: #0A1119;
+            color: var(--cs-heading-color);
             background-color: #FFF;
             .highlight {
                 font-weight: 600;
             }
         }
         &__category {
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             color: #FFF;
             a {
                 color: inherit;
@@ -183,7 +185,7 @@
             }
             &-date {
                 @include d-inline-flex(null, center);
-                color: #121512;
+                color: var(--cs-secondary-color);
                 border: thin solid #DCDCDC;
                 background-color: #FFF;
                 font-size: 14px;
@@ -195,7 +197,7 @@
                     @include d-inline-flex(null, center);
                     height: 40px;
                     @include paragraph-5;
-                    background-color: #121512;
+                    background-color: var(--cs-secondary-color);
                     color: #FFF;
                     padding-inline: 15px;
                     border-radius: 100px
@@ -214,7 +216,7 @@
             height: 26px;
             gap: 12px;
             background-color: transparent;
-            color: #0A1119;
+            color: var(--cs-heading-color);
         }
     }
 }
@@ -303,7 +305,7 @@
                     margin-top: 12px;
                 }
                 &__meta {
-                    color: #0A1119;
+                    color: var(--cs-heading-color);
                     @include paragraph-5;
                     margin-top: 12px;
                 }
@@ -332,12 +334,12 @@
             &__category {
                 margin-top: 28px;
                 .icon-dot {
-                    background-color: #FF5B1B;
+                    background-color: var(--cs-primary-color);
                 }
                 a {
                     height: 26px;
                     @include paragraph-5;
-                    color: #0A1119;
+                    color: var(--cs-heading-color);
                     background-color: #FFF;
                     border-radius: 100px;
                     padding-inline: 10px;
@@ -362,7 +364,7 @@
                     @include d-inline-flex(null, center, center);
                     @include h8;
                     color: #FFF;
-                    background-color: #FF5B1B;
+                    background-color: var(--cs-primary-color);
                 }
                 @media #{$max-sm} {
                     right: 15px;
@@ -377,7 +379,7 @@
                 border-radius: 6px;
                 background-color: #FAF5ED;
                 @include text-button-1;
-                color: #0A1119;
+                color: var(--cs-heading-color);
                 justify-content: space-between;
                 &::before {
                     content: '';
@@ -386,7 +388,7 @@
                     top: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: #FF5B1B;
+                    background-color: var(--cs-primary-color);
                     border-radius: inherit;
                     transform: scaleX(0);
                     transform-origin: right center;
@@ -429,7 +431,7 @@
                 @include d-inline-flex(null, center, center);
                 @include h8;
                 color: #FFF;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
             }
             @media #{$max-sm} {
                 right: 15px;
@@ -445,12 +447,12 @@
         &__category {
             margin-top: 28px;
             .icon-dot {
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
             }
             a {
                 height: 32px;
                 @include paragraph-5;
-                color: #0A1119;
+                color: var(--cs-heading-color);
                 background-color: #FFF;
                 border-radius: 100px;
                 padding-inline: 10px;
@@ -468,7 +470,7 @@
             border-radius: 6px;
             background-color: #FAF5ED;
             @include text-button-1;
-            color: #0A1119;
+            color: var(--cs-heading-color);
             justify-content: space-between;
             &::before {
                 content: '';
@@ -477,7 +479,7 @@
                 top: 0;
                 width: 100%;
                 height: 100%;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
                 border-radius: inherit;
                 transform: scaleX(0);
                 transform-origin: right center;

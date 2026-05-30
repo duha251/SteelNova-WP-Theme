@@ -66,13 +66,13 @@
             right: 0;
             top: 0;
             @include round-box(66px, 10px);
-            color: #FF5B1B;
-            background-color: #121512;
+            color: var(--cs-primary-color);
+            background-color: var(--cs-secondary-color);
         }
         &__rating {
             position: relative;
             gap: 10px;
-            color: #0A1119;
+            color: var(--cs-heading-color);
             margin-bottom: 57px;
             @media #{$max-sm} {
                 margin-bottom: 50px;
@@ -129,7 +129,7 @@
         &.cs-testimonial-carousel__content {
             flex: 0 0 calc( 50% - 9px );
             border-radius: 0 20px 20px 0;
-            background-color: #0A1119;
+            background-color: var(--cs-heading-color);
         }
         &.cs-testimonial-carousel__images {
             flex: 0 0 calc( 50% - 9px );
@@ -182,7 +182,7 @@
             gap: 8px;
             border-radius: 100px;
             color: #FFF;
-            background-color: #FF5B1B;
+            background-color: var(--cs-primary-color);
             margin-top: 8px;
         }
         &__content {
@@ -257,7 +257,7 @@
             }
             .cs-stars {
                 gap: 7px;
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
         .divider {
@@ -371,13 +371,13 @@
             right: 0;
             top: 0;
             @include round-box(66px, 10px);
-            color: #FF5B1B;
-            background-color: #121512;
+            color: var(--cs-primary-color);
+            background-color: var(--cs-secondary-color);
         }
         &__rating {
             position: relative;
             gap: 10px;
-            color: #0A1119;
+            color: var(--cs-heading-color);
             margin-bottom: 67px;
             flex-wrap: wrap;
             @media #{$max-sm} {
@@ -391,7 +391,7 @@
             }
         }
         .cs-stars {
-            color: #FF5B1B;
+            color: var(--cs-primary-color);
             gap: 8px;
         }
         &__content {

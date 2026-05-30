@@ -40,7 +40,7 @@
             &--main {
                 @include round-box(55px);
                 color: #FFF;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
                 @include d-flex(null, center);
                 margin-bottom: 33px;
             }
@@ -80,7 +80,7 @@
                 gap: 10px;
                 @include paragraph-3;
                 > svg {
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                 }
             }
         }
@@ -90,10 +90,10 @@
         }
         .cs-button {
             margin-top: 44px;
-            background-color: #0A1119;
+            background-color: var(--cs-heading-color);
             color: #FFF;
             &:before {
-                background: linear-gradient(90deg, #FF5B1B 0%, #FA2 100%);
+                background: linear-gradient(90deg, var(--cs-primary-color) 0%, #FA2 100%);
             }
         }
     }

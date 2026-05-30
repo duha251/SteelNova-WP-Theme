@@ -41,7 +41,7 @@ $wrapper_attrs = array_merge(
         <?php if( $settings['has_divider'] && $i !== 0 ) : ?>
             <span class="divider"></span>
         <?php endif; ?>
-        <li <?php echo esc_attr($this->get_render_attribute_string( $item_key )); ?>>
+        <li <?php pxl_print_html($this->get_render_attribute_string( $item_key )); ?>>
             <?php if( !empty( $item['icon']['value'] ) ) : ?>
                 <span class="cs-list__item-icon">
                     <?php steelnova_elementor_print_icon( $item['icon'] ); ?>

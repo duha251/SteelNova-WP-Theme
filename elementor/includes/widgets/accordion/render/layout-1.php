@@ -13,7 +13,7 @@ $wrapper_attrs = array_merge( $wrapper_attrs_tmp, $wrapper_attrs );
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
 
-<div <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
+<div <?php pxl_print_html( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php foreach($settings['items'] as $i => $item) : 
         $default_active = $settings['default_active'] === ( $i + 1 ) ? ' is-active' : '';
 

@@ -105,18 +105,16 @@ class Layout {
     }
 
     public function get_header_sticky() {
-        $prefix_id = steelnova_get_prefix_id_option();
-
-        $mode = $this->option->get_option( $prefix_id.'header_sticky_mode', 'hide');
-        $layout_id = $this->option->get_option( $prefix_id.'header_sticky_layout', 0);
-        $direction = $this->option->get_option( $prefix_id.'header_sticky_display_on', 'up' );
+        $mode = $this->option->get_option( 'header_sticky_mode', 'hide');
+        $layout_id = $this->option->get_option( 'header_sticky_layout', 0);
+        $direction = $this->option->get_option( 'header_sticky_display_on', 'up' );
 
         if( $mode === 'inherit' ) {
             $mode = $this->option->get_theme_option( 'header_sticky_mode', 'hide');
             $layout_id = $this->option->get_theme_option( 'header_sticky_layout', 0);
         }
 
-        if( $mode === 'hide' || ( $mode === 'builder' && $layout_id === 0 ) ) {
+        if( $mode === 'hide' || ( $mode === 'builder' && $layout_id === 0 ) || is_404() ) {
             return '';
         }
 
@@ -191,7 +189,6 @@ class Layout {
             $mode = $this->option->get_theme_option( 'hero_mode', 'hide');
             $layout_id = $this->option->get_theme_option( 'hero_layout', 0);
         }
-
 
         if( $mode === 'hide' || ( $mode === 'builder' && $layout_id === 0 ) ) {
             return '';

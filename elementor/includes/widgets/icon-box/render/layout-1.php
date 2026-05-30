@@ -15,7 +15,7 @@ if( $settings['layout_style'] != '1' ) {
 $this->add_render_attribute( 'wrapper', $wrapper_attrs );
 ?>
 
-<<?php echo esc_attr( $wrapper_tag ); ?> <?php echo esc_attr($this->get_render_attribute_string('wrapper')); ?>>
+<<?php echo esc_attr( $wrapper_tag ); ?> <?php pxl_print_html($this->get_render_attribute_string('wrapper')); ?>>
     <div class="cs-icon-box__icon">
         <?php steelnova_elementor_print_icon( $settings['icon'] ); ?>
     </div>

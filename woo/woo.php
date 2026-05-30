@@ -69,7 +69,7 @@ class SteelNova_WooCommerce {
                     }
                 ?>
                 <div class="inner">
-                    <?php if( is_shop() ) : ?>
+                    <?php if( is_shop() || is_product_taxonomy() ) : ?>
 
                     <?php endif; ?>
         <?php
@@ -77,7 +77,7 @@ class SteelNova_WooCommerce {
 
     public function woo_after_main_content() {
         ?>
-                    <?php if( is_shop() ) : ?>
+                    <?php if( is_shop() || is_product_taxonomy() ) : ?>
                         <!-- Content Area -->
                         <!-- Sidebar -->
                         <?php 
@@ -255,26 +255,92 @@ class SteelNova_WooCommerce {
     public function get_price_range() {
         global $wpdb;
 
-        $min_price = floor( $wpdb->get_var("
-            SELECT MIN(CAST(meta_value AS DECIMAL(10,2)))
-            FROM {$wpdb->postmeta}
-            WHERE meta_key = '_price'
-            AND meta_value != ''
-        ") );
+        $tax_query  = [];
+        $meta_query = [];
 
-        $max_price = ceil( $wpdb->get_var("
-            SELECT MAX(CAST(meta_value AS DECIMAL(10,2)))
-            FROM {$wpdb->postmeta}
-            WHERE meta_key = '_price'
-            AND meta_value != ''
-        ") );
+        /**
+         * Keep current product category/tag/brand filters,
+         * but do not use min_price/max_price to calculate range.
+         */
+        if ( is_tax() ) {
+            $queried_object = get_queried_object();
 
-        $current_min = isset($_GET['min_price']) ? absint($_GET['min_price']) : $min_price;
-        $current_max = isset($_GET['max_price']) ? absint($_GET['max_price']) : $max_price;
+            if ( $queried_object && ! is_wp_error( $queried_object ) && ! empty( $queried_object->taxonomy ) ) {
+                $tax_query[] = [
+                    'taxonomy' => $queried_object->taxonomy,
+                    'field'    => 'term_id',
+                    'terms'    => [ (int) $queried_object->term_id ],
+                ];
+            }
+        }
+
+        if ( ! empty( $_GET['product_cat'] ) ) {
+            $tax_query[] = [
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field( wp_unslash( $_GET['product_cat'] ) ),
+            ];
+        }
+
+        if ( ! empty( $_GET['product_tag'] ) ) {
+            $tax_query[] = [
+                'taxonomy' => 'product_tag',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field( wp_unslash( $_GET['product_tag'] ) ),
+            ];
+        }
+
+        if ( ! empty( $_GET['product_brand'] ) ) {
+            $tax_query[] = [
+                'taxonomy' => 'product_brand',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field( wp_unslash( $_GET['product_brand'] ) ),
+            ];
+        }
+
+        if ( ! empty( $tax_query ) ) {
+            $tax_query['relation'] = 'AND';
+        }
+
+        $args = [
+            'post_type'      => 'product',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+            'tax_query'      => $tax_query,
+            'meta_query'     => $meta_query,
+        ];
+
+        $product_ids = get_posts( $args );
+
+        if ( empty( $product_ids ) ) {
+            return [
+                'min' => 0,
+                'max' => 0,
+            ];
+        }
+
+        $product_ids = array_map( 'absint', $product_ids );
+        $ids_placeholders = implode( ',', array_fill( 0, count( $product_ids ), '%d' ) );
+
+        $prices = $wpdb->get_row(
+            $wpdb->prepare(
+                "
+                SELECT 
+                    FLOOR( MIN( CAST( meta_value AS DECIMAL(10,2) ) ) ) as min_price,
+                    CEIL( MAX( CAST( meta_value AS DECIMAL(10,2) ) ) ) as max_price
+                FROM {$wpdb->postmeta}
+                WHERE meta_key = '_price'
+                AND meta_value != ''
+                AND post_id IN ($ids_placeholders)
+                ",
+                $product_ids
+            )
+        );
 
         return [
-            'min' => $current_min,
-            'max' => $current_max
+            'min' => isset( $prices->min_price ) ? absint( $prices->min_price ) : 0,
+            'max' => isset( $prices->max_price ) ? absint( $prices->max_price ) : 0,
         ];
     }
 

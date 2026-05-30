@@ -53,7 +53,10 @@ function steelnova_crop_image( $attachment_id, $width = null, $height = null, $c
  */
 function steelnova_get_image_by_size($attachment_id, $width = null, $height = null, $attrs = []) {
     $is_placeholder = $attachment_id === 0;
-    $image_url = $is_placeholder ? \Elementor\Utils::get_placeholder_image_src() : steelnova_crop_image($attachment_id, $width, $height, true);
+    $image_url = steelnova_crop_image($attachment_id, $width, $height, true);
+    if( $is_placeholder && class_exists('\Elementor\Utils') ) {
+        $image_url = \Elementor\Utils::get_placeholder_image_src() ;
+    }
     if ( !$image_url ) {
         return '';
     }        

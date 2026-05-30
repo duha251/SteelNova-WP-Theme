@@ -5,8 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use SteelNova\Elementor\Elements\SteelNova_Container; 
-use SteelNova\Elementor\Elements\SteelNova_Widget; 
+use SteelNova\Elementor\Elements\SteelNova_Container;
+use SteelNova\Inc\Core\Post_Manager;
 
 class SteelNova_Elementor {
 
@@ -15,16 +15,16 @@ class SteelNova_Elementor {
 	 *
 	 * @var string
 	 */
-	private $version;
+	private $version, $post_manager;
 
 	/**
 	 * Constructor.
 	 *
 	 * @param string $theme_version Theme version.
 	 */
-	public function __construct( $theme_version ) {
+	public function __construct( $theme_version, Post_Manager $post_manager_instance ) {
 		$this->version = $theme_version;
-
+		$this->post_manager = $post_manager_instance;
 		add_action( 'elementor/init', [ $this, 'init' ] );
 	}
 
@@ -363,7 +363,8 @@ class SteelNova_Elementor {
 		wp_register_script('steelnova-post', get_template_directory_uri() . '/elementor/assets/js/post.js', ['jquery'], $this->version, true);
 		wp_localize_script('steelnova-post', 'SteelNovaAjax', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
-			'nonce'   => wp_create_nonce('steelnova_ajax_nonce') 
+			'nonce'   => wp_create_nonce('steelnova_ajax_nonce'),
+			'archive_context' => $this->post_manager->get_archive_context(), /// Lỗi 
 		));
 	}
 }

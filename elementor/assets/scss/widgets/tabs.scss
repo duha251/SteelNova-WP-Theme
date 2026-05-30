@@ -26,7 +26,7 @@
                         transition: transform 0.3s ease;
                     }
                     &:hover, &.is-active {
-                        color: #FF5B1B;
+                        color: var(--cs-primary-color);
                         &::before {
                             transform: scaleX(1);
                             transform-origin: left;
@@ -76,9 +76,9 @@
                     &.is-active {
                         color: #FFF;
                         border-color: transparent;
-                        background-color: #121512;
+                        background-color: var(--cs-secondary-color);
                         .cs-button__icon {
-                            color: #FF5B1B;
+                            color: var(--cs-primary-color);
                         }
                     }
                 }

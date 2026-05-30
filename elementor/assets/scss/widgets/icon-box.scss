@@ -23,7 +23,7 @@
             align-items: flex-start;
             justify-content: flex-start;
             position: relative;
-            color: #FF5B1B;
+            color: var(--cs-primary-color);
             &::before {
                 content: '';
                 @include round-box(30px);

@@ -17,9 +17,9 @@
 
 .swiper-pagination-bullets .bullet.swiper-pagination-bullet-active {
     width: 37px;
-    background-color: #FF5B1B;
+    background-color: var(--cs-primary-color);
 }
 
 .swiper-pagination-bullets .bullet:hover {
-    background-color: #FF5B1B;
+    background-color: var(--cs-primary-color);
 }

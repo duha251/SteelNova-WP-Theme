@@ -57,6 +57,16 @@
     @include round-box(14px, 3.5px);
     border: thin solid #DCDCDC;
     flex-shrink: 0;
+    @include d-inline-flex(null, center, center);
+    &:before {
+        content: '';
+        width: calc( var(--cs-width) - 6px );
+        height: calc( var(--cs-width) - 6px );
+        display: inline-block;
+        opacity: 0;
+        background-color: currentColor;
+        transition: opacity 300ms linear;
+    }
 }
 
 .svg-linked {

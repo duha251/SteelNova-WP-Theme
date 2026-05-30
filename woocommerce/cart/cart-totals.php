@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="shop_table shop_table_responsive cart-totals-table">
 
-		<div class="cart-subtotal cart-totals-table__item">
+		<div  class="cart-subtotal cart-totals-table__item cart-collaterals-subtotal">
 			<div class="label"><?php esc_html_e( 'Subtotal', 'steelnova' ); ?></div>
 			<div class="value" data-title="<?php esc_attr_e( 'Subtotal', 'steelnova' ); ?>">
 				<?php wc_cart_totals_subtotal_html(); ?>
@@ -48,7 +48,7 @@ defined( 'ABSPATH' ) || exit;
 
 			<?php do_action( 'woocommerce_cart_totals_before_shipping' ); ?>
 
-			<div class="cart-totals-table__item">
+			<div class="cart-totals-table__item ">
 				<?php wc_cart_totals_shipping_html(); ?>
 			</div>
 
@@ -116,7 +116,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
 
-		<div class="order-total cart-totals-table__item">
+		<div class="order-total cart-totals-table__item cart-collaterals-order-total">
 			<div class="label"><?php esc_html_e( 'Total', 'steelnova' ); ?></div>
 			<div class="value" data-title="<?php esc_attr_e( 'Total', 'steelnova' ); ?>">
 				<?php wc_cart_totals_order_total_html(); ?>

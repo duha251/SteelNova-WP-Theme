@@ -45,7 +45,7 @@
             color: #FFF;
             text-transform: uppercase;
             padding-block: 11px;
-            background-color: #0A1119;
+            background-color: var(--cs-heading-color);
             @include text-button-3;
             @media #{$max-md} {
                 display: none;
@@ -204,7 +204,7 @@
                 a {
                     @include round-box(36px);
                     @include d-inline-flex(null, center, center);
-                    background-color: #FF5B1B;
+                    background-color: var(--cs-primary-color);
                     position: relative;
                     color: #FFF !important;
                     &:hover {
@@ -265,7 +265,7 @@
                 text-transform: uppercase;
                 height: 44px;
                 &:hover {
-                    background-color: #FF5B1B;
+                    background-color: var(--cs-primary-color);
                 }
             }
         }
@@ -298,7 +298,7 @@
                     border-top-color: #FFF;
                 }
                 &__checked {
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                     border-color: currentColor;
                 }
                 &__label {
@@ -402,7 +402,7 @@
                 color: #FFF;
                 border-radius: 6px;
                 padding-inline: 26px;
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
                 margin-top: 10px;
                 width: 100%;
                 max-width: 324px;

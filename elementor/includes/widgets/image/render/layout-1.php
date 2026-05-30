@@ -16,7 +16,7 @@ $img_width = $settings['img_size']['width'] ?? null;
 $img_height = $settings['img_size']['height'] ?? null;
 ?>
 
-<<?php echo esc_attr( $wrapper_tag ); ?> <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
+<<?php echo esc_attr( $wrapper_tag ); ?> <?php pxl_print_html( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php steelnova_print_image_by_size( $settings['img']['id'], $img_width, $img_height, [] ); ?>
     <?php if( $settings['loop_anim'] === 'smoke' ) : ?>
         <div class="smoke"></div>

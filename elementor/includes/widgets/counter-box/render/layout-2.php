@@ -15,7 +15,7 @@ if( !empty($settings['number_delimiter']) ) {
 }
 $title_tag = $settings['title_tag'] ?: 'h5';
 ?>
-<div <?php echo esc_attr($this->get_render_attribute_string('wrapper')); ?>>
+<div <?php pxl_print_html($this->get_render_attribute_string('wrapper')); ?>>
     <?php if( !empty( $settings['icon'] ) ) : ?>
         <div class="cs-counter-box__icon d-inline-flex-center">
             <?php steelnova_elementor_print_icon($settings['icon']); ?>

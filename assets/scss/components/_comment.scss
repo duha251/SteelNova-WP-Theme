@@ -69,7 +69,7 @@
             right: 0;
             top: 0;
             @include d-inline-flex(9px, center);
-            background-color: #121512;
+            background-color: var(--cs-secondary-color);
             color: #FFF;
             border-radius: 6px;
             color: var(--White, #FFF);
@@ -79,7 +79,7 @@
             line-height: 36px;
             padding-inline: 21px;
             &:hover {
-                background-color: #FF5B1B;
+                background-color: var(--cs-primary-color);
             }
         }
         .children {
@@ -95,10 +95,10 @@
         @include paragraph-4;
         font-weight: 400;
         > a {
-            color: #121512;
+            color: var(--cs-secondary-color);
             font-weight: inherit;
             &:hover {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
     }
@@ -120,7 +120,7 @@
                 color: inherit;
                 font-size: 0;
                 &:hover {
-                    color: #FF5B1B;
+                    color: var(--cs-primary-color);
                 }
                 &::before, &::after {
                     content: '';

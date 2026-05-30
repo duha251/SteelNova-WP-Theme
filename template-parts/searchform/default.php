@@ -3,12 +3,12 @@
 	<button type="submit" class="cs-search-form__submit">
         <?php if( !empty( $btn_text ) ) : ?>
             <span class="cs-button__text">
-                <?php pxl_print_html( $btn_text ); ?>
+                <?php echo esc_html( $btn_text ); ?>
             </span>
         <?php endif; ?>
         <?php if( !empty( $btn_icon ) ) : ?>
             <span class="cs-button__icon">
-                <?php pxl_print_html( $btn_icon ); ?>
+                <?php steelnova_print_html( $btn_icon ); ?>
             </span>
         <?php endif; ?>
     </button>

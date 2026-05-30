@@ -15,7 +15,7 @@ $wrapper_attrs = array_merge(
 $this->add_render_attribute('wrapper', $wrapper_attrs);
 
 ?>
-<div <?php echo esc_attr( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
+<div <?php pxl_print_html( $this->get_render_attribute_string( 'wrapper' ) ); ?>>
     <?php if( !empty( $settings['share_label'] ) ) : ?>
     <div class="cs-post-social-share__label">
         <?php echo esc_html($settings['share_label']); ?>

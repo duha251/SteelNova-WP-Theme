@@ -29,7 +29,7 @@
                 color: inherit;
             }
             &:hover {
-                color: #FF5B1B;
+                color: var(--cs-primary-color);
             }
         }
         &__role {
@@ -74,11 +74,11 @@
             gap: 11px;
             a {
                 @include round-box(45px);
-                background-color: #121512;
+                background-color: var(--cs-secondary-color);
                 justify-content: center;
                 color: #FFF;
                 &::before {
-                    background-color: #FF5B1B;
+                    background-color: var(--cs-primary-color);
                 }
             }
         }
